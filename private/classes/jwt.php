@@ -7,6 +7,9 @@ class JSONWebToken {
 	private static string $key = "pjJsH0DwvzV1vFAy";
 
 
+
+
+
 	/**
 	 * Takes a string and returns it in a base64 format, where + is -, / is _, and = is omitted
 	 * 
@@ -16,6 +19,20 @@ class JSONWebToken {
 	private static function stringToBase64(string $string) : string {
 		return str_replace(["+", "/", "="], ["-", "_", ""], base64_encode($string));
 	}
+
+
+	/**
+	 * Takes a base64 encoded string, where + is encoded as a-, / is encoded as _, and = is omitted
+	 * 
+	 * @param	string	$base64		the string to decode
+	 * @return	string				the data in the string
+	 */
+	private static function base64ToString(string $string) : string {
+		
+	}
+
+
+
 
 
 	/**
