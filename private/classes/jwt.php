@@ -106,7 +106,7 @@ class JSONWebToken {
 	 * @return	bool				if the token is valid: true
 	 * @return	array				if the token is invalid: the error
 	 */
-	public static function checkToken(string $token) {
+	public static function validateToken(string $token) {
 
 		// Get all the parts
 		$parts = explode(".", $token);
@@ -127,6 +127,9 @@ class JSONWebToken {
 			$message = httpResponseCode(400, "Invalid token encoding");
 			return $message;
 		}
+
+		// TODO: Check whether it's a JSON token
+		// TODO: Check whether it's the correct algorithm
 
 		// Check whether the signature is valid
 		if($signature !== self::createSignature($header, $payload)) {
