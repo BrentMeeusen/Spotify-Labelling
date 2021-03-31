@@ -61,12 +61,13 @@ class JSONWebToken {
 	 * Creates the token using the payload that the user passes
 	 * 
 	 * @param	string	$payload	the payload to send with the token
+	 * @param	int		$mins		the time in minutes after which the token expires
 	 * @return 	string				the JSON Web Token
 	 */
-	public static function createToken(array $payload) : string {
+	public static function createToken(array $payload, int $mins) : string {
 
 		$header = self::createHeader();
-		$payload = self::createPayload($payload);
+		$payload = self::createPayload($payload, $mins);
 		$signature = self::createSignature($header, $payload);
 
 		return "$header.$payload.$signature";
