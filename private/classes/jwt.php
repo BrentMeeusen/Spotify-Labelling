@@ -74,6 +74,42 @@ class JSONWebToken {
 
 	}
 
+
+	/**
+	 * Checks whether the given token is valid at this point in time
+	 * 
+	 * @param	string	$token		the token to check
+	 * @return	bool				if the token is valid: true
+	 * @return	array				if the token is invalid: the error
+	 */
+	public static function checkToken(string $token) {
+
+		// Get all the parts
+		$parts = explode(".", $token);
+
+		// If there aren't 3 parts (header.payload.signature), return Bad Request
+		if(count($parts) !== 3) {
+			$message = httpResponseCode(400, "Incorrect number of segments");
+			return $message;
+		}
+
+		// Check whether all the segments are encoded correctly
+		print(self::base64ToString($parts[0]));
+
+
+		// // Check whether the signature is valid
+		// $parts[2]
+
+		// return self::stringToBase64(hash_hmac("sha256", "$header.$payload", self::$key, true));
+
+
+
+
+		// The token is valid
+		return TRUE;
+
+	}
+
 }
 
 
