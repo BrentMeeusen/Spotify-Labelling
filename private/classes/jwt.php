@@ -4,6 +4,10 @@
 class JSONWebToken {
 
 
+	// private string $key = "pjJsH0DwvzV1vFAy";
+	private string $key = "joemama69";
+
+
 	private static function stringToBase64(string $string) : string {
 		return str_replace(["+", "/", "="], ["-", "_", ""], base64_encode($string));
 	}
@@ -19,12 +23,18 @@ class JSONWebToken {
 	}
 
 
+	private static function createSignature(string $header, string $payload) : string {
+		GLOBAL $key;
+		return self::stringToBase64(hash_hmac("sha256", "$header.$payload", $key, true));
+	}
 
-	public static function createToken(array $payload) {
+
+
+	public static function createToken(array $payload) : string {
 
 		$header = self::createHeader();
 		$payload = self::createPayload($payload);
-		$signature = "signature";
+		$signature = self::createSignature($header, $payload);
 
 		return json_encode("$header.$payload.$signature");
 
