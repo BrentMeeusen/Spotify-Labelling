@@ -8,11 +8,11 @@ $isValid = JSONWebToken::checkToken($token);
 // $payload = JSONWebToken::getPayload($token);
 
 
-print("ENCODING CUSTOM");
+print("ENCODING CUSTOM\n");
 print(json_encode(JSONWebToken::checkToken("a.b.YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXos")));
 
 
-print("ENCODING CREATED");
+print("ENCODING CREATED\n");
 print(json_encode([ "token" => $token, "is_valid" => $isValid ]));
 // print(json_encode([ "token" => $token, "is_valid" => $isValid, "payload" => $payload ]));
 
