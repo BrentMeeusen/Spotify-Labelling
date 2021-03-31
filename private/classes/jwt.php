@@ -3,9 +3,8 @@
 
 class JSONWebToken {
 
-
-	// private string $key = "pjJsH0DwvzV1vFAy";
-	private string $key = "joemama69";
+	
+	private string $key = "pjJsH0DwvzV1vFAy";
 
 
 	private static function stringToBase64(string $string) : string {
