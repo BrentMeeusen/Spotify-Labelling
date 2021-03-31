@@ -3,9 +3,10 @@
 
 class JSONWebToken {
 
-	private $header = json_encode([ "typ" => "JWT", "alg" => "HS256" ]);
+	private $header;
 
-	public static getHeader() {
+	public static function getHeader() {
+		$header = json_encode([ "typ" => "JWT", "alg" => "HS256" ]);
 		return $header;
 	}
 
