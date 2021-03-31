@@ -12,7 +12,7 @@ class JSONWebToken {
 
 
 
-	public static function createToken($payload) {
+	public static function createToken(array $payload) {
 
 		$header = JSONWebToken::createHeader();
 		$signature = "signature";
