@@ -136,6 +136,12 @@ class JSONWebToken {
 
 
 
+		// TODO: Check whether NOT BEFORE (nbf) is in the past
+		// TODO: Check whether ISSUED AT (iat) is in the past
+		// TODO: Check whether EXPIRED AT (exp) is in the future
+
+
+
 		// The token is valid
 		return TRUE;
 
