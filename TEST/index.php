@@ -9,7 +9,7 @@ $token = JSONWebToken::createToken(["sexy" => "yes"], 60);
 
 
 // print("ENCODING CUSTOM\n");
-print("Encoding custom: " . json_encode(JSONWebToken::checkToken("invalidbase.b.c")));
+print("Encoding custom: " . json_encode(JSONWebToken::validateToken("invalidbase.b.c")));
 
 
 // print("ENCODING CREATED\n");
