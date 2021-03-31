@@ -8,12 +8,12 @@ $isValid = JSONWebToken::checkToken($token);
 // $payload = JSONWebToken::getPayload($token);
 
 
-print("ENCODING CUSTOM\n");
-print(json_encode(JSONWebToken::checkToken("a.b.YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXos")));
+// print("ENCODING CUSTOM\n");
+print("Encoding custom: " . json_encode(JSONWebToken::checkToken("invalidbase.b.c")));
 
 
-print("ENCODING CREATED\n");
-print(json_encode([ "token" => $token, "is_valid" => $isValid ]));
+// print("ENCODING CREATED\n");
+// print(json_encode([ "token" => $token, "is_valid" => $isValid ]));
 // print(json_encode([ "token" => $token, "is_valid" => $isValid, "payload" => $payload ]));
 
 
