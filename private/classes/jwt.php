@@ -3,8 +3,8 @@
 
 class JSONWebToken {
 
-	
-	private string $key = "pjJsH0DwvzV1vFAy";
+
+	private static string $key = "pjJsH0DwvzV1vFAy";
 
 
 	private static function stringToBase64(string $string) : string {
@@ -23,8 +23,7 @@ class JSONWebToken {
 
 
 	private static function createSignature(string $header, string $payload) : string {
-		GLOBAL $key;
-		return self::stringToBase64(hash_hmac("sha256", "$header.$payload", $key, true));
+		return self::stringToBase64(hash_hmac("sha256", "$header.$payload", self::$key, true));
 	}
 
 
