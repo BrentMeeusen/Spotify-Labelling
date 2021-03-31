@@ -110,6 +110,7 @@ class JSONWebToken {
 
 		// Get all the parts
 		$parts = explode(".", $token);
+		list($header, $payload, $signature) = $parts;
 
 		// If there aren't 3 parts (header.payload.signature), return Bad Request
 		if(count($parts) !== 3) {
@@ -118,14 +119,20 @@ class JSONWebToken {
 		}
 
 		// Check whether all the segments are encoded correctly
-		print(self::base64ToString($parts[0]));
+		$headerDecoded = json_decode(self::base64ToString($header));
+		$payloadDecoded = json_decode(self::base64ToString($payload));
+		$signatureDecoded = self::base64ToString($signature);
 
+		if($headerDecoded === NULL || $payloadDecoded === NULL || $signatureDecoded === NULL) {
+			$message = httpResponseCode(400, "Invalid token encoding");
+			return $message;
+		}
 
-		// // Check whether the signature is valid
-		// $parts[2]
-
-		// return self::stringToBase64(hash_hmac("sha256", "$header.$payload", self::$key, true));
-
+		// Check whether the signature is valid
+		if($signature !== self::createSignature($header, $payload)) {
+			$message = httpResponseCode(400, "Invalid signature");
+			return $message;
+		}
 
 
 
