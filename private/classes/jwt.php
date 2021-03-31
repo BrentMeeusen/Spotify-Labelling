@@ -129,6 +129,10 @@ class JSONWebToken {
 		}
 
 		// TODO: Check whether it's a JSON token
+		if(!property_exists($headerDecoded, "typ") || $headerDecoded->typ !== "JWT") {
+			$message = httpResponseCode(400, "Not a JSON Web Token");
+			return $message;
+		}
 		// TODO: Check whether it's the correct algorithm
 
 		// Check whether the signature is valid
