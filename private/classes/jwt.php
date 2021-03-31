@@ -3,13 +3,19 @@
 
 class JSONWebToken {
 
-	private static function createHeader() {
-		return json_encode([ "typ" => "JWT", "alg" => "HS256" ]);
+
+	private static function stringToBase64(string $string) : string {
+		return str_replace(["+", "/", "="], ["-", "_", ""], base64_encode($string));
+	}
+
+
+	private static function createHeader() : string {
+		return stringToBase64(json_encode([ "typ" => "JWT", "alg" => "HS256" ]));
 	}
 
 
 	private static function createPayload(array $payload) : string {
-		return json_encode($payload);
+		return stringToBase64(json_encode($payload));
 	}
 
 
