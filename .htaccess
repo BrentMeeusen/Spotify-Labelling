@@ -33,6 +33,6 @@ RewriteRule 	api/v1/users							users/get/							[L,QSA]
 # ERROR DOCUMENTS
 ###############################
 
-ErrorDocument 403 errors/403/
+ErrorDocument 403 /SpotifyAPI_MYAPI/errors/403/
 ErrorDocument 404 /SpotifyAPI_MYAPI/errors/404/
 
