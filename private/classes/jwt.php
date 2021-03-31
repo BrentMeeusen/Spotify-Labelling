@@ -29,6 +29,13 @@ class JSONWebToken {
 	 */
 	private static function base64ToString(string $string) : string {
 		
+		$remainder = strlen($string) % 4;
+		if($remainder > 0) {
+			$string .= str_repeat("=", 4 - $remainder);
+		}
+
+		return base64_decode(str_repeat(["-", "_"], ["+", "/"], $string));
+
 	}
 
 
