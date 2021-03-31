@@ -4,12 +4,12 @@ include_once("../private/include_all.php");
 include_once("../private/classes/jwt.php");
 
 $token = JSONWebToken::createToken(["sexy" => "yes"], 60);
-// $isValid = JSONWebToken::checkToken($token);
+$isValid = JSONWebToken::validateToken($token);
 // $payload = JSONWebToken::getPayload($token);
 
 
 // print("ENCODING CUSTOM\n");
-print("Encoding custom: " . json_encode(JSONWebToken::validateToken("invalidbase.b.c")));
+// print("Encoding custom: " . json_encode(JSONWebToken::validateToken("invalidbase.b.c")));
 
 
 // print("ENCODING CREATED\n");
