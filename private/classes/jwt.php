@@ -110,13 +110,14 @@ class JSONWebToken {
 
 		// Get all the parts
 		$parts = explode(".", $token);
-		list($header, $payload, $signature) = $parts;
 
 		// If there aren't 3 parts (header.payload.signature), return Bad Request
 		if(count($parts) !== 3) {
-			$message = httpResponseCode(400, "Incorrect number of segments");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Incorrect number of segments"]);
 		}
+
+		list($header, $payload, $signature) = $parts;
+
 
 		// Check whether all the segments are encoded correctly
 		$headerDecoded = json_decode(self::base64ToString($header));
@@ -124,49 +125,42 @@ class JSONWebToken {
 		$signatureDecoded = self::base64ToString($signature);
 
 		if($headerDecoded === NULL || $payloadDecoded === NULL || $signatureDecoded === NULL) {
-			$message = httpResponseCode(400, "Invalid token encoding");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Invalid token encoding"]);
 		}
 
 
 
 		// Check whether it's a JSON token
 		if(!property_exists($headerDecoded, "typ") || $headerDecoded->typ !== "JWT") {
-			$message = httpResponseCode(400, "Not a JSON Web Token");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Not a JSON Web Token"]);
 		}
 		// Check whether it's the correct algorithm
 		if(!property_exists($headerDecoded, "alg") || $headerDecoded->alg !== "HS256") {
-			$message = httpResponseCode(400, "Invalid hashing algorithm");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Invalid hashing algorithm"]);
 		}
 
 
 
 		// Check whether the signature is valid
 		if($signature !== self::createSignature($header, $payload)) {
-			$message = httpResponseCode(400, "Invalid signature");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Invalid signature"]);
 		}
 
 
 
 		// If NOT BEFORE exists, AND if we're before that date, return an error
 		if(property_exists($payloadDecoded, "nbf") && time() < $payloadDecoded->nbf) {
-			$message = httpResponseCode(400, "Token is not yet valid");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Token is not yet valid"]);
 		}
 		
 		// If ISSUED AT exists, AND if we're before that date, return an error
 		if(property_exists($payloadDecoded, "iat") && time() < $payloadDecoded->iat) {
-			$message = httpResponseCode(400, "Token is issued in the future");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Token is issued in the future"]);
 		}
 
 		// If EXPIRES AT exists, AND if we're after that date, return an error
 		if(property_exists($payloadDecoded, "exp") && time() > $payloadDecoded->exp) {
-			$message = httpResponseCode(400, "Token expired");
-			return $message;
+			ApiError::httpResponse(400, ["error" => "Token expired"]);
 		}
 
 
