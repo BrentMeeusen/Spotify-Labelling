@@ -128,7 +128,7 @@ class JSONWebToken {
 			return $message;
 		}
 
-		
+
 
 		// Check whether it's a JSON token
 		if(!property_exists($headerDecoded, "typ") || $headerDecoded->typ !== "JWT") {
@@ -136,7 +136,7 @@ class JSONWebToken {
 			return $message;
 		}
 		// Check whether it's the correct algorithm
-		if(!property_exists($headerDecoded, "alg") || $headerDecoded->typ !== "HS256") {
+		if(!property_exists($headerDecoded, "alg") || $headerDecoded->alg !== "HS256") {
 			$message = httpResponseCode(400, "Invalid hashing algorithm");
 			return $message;
 		}
