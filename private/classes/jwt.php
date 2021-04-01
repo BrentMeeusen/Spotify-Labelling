@@ -104,9 +104,8 @@ class JSONWebToken {
 	 * 
 	 * @param	string	$token		the token to check
 	 * @return	bool				if the token is valid: true
-	 * @return	array				if the token is invalid: the error
 	 */
-	public static function validateToken(string $token) {
+	public static function validateToken(string $token) : bool {
 
 		// Get all the parts
 		$parts = explode(".", $token);
