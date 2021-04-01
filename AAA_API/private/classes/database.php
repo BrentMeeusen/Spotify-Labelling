@@ -21,6 +21,8 @@ class Database {
 	 */
 	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
 
+		return FALSE;
+
 		// Drop the table if it exists
 		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
 		if($stmt === FALSE) {
@@ -34,7 +36,6 @@ class Database {
 			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst creating table \"$table\"", 
 					"db_errno" => $conn->errno, "db_error" => $conn->error ]);
 		}
-
 
 
 		// Prepare the statement and check whether it's fine
@@ -94,10 +95,25 @@ class Database {
 		);
 		";
 
-		self::createTable($conn, $usersSQL, "USERS");
+		$res = self::createTable($conn, $usersSQL, "USERS");
+		if($res === FALSE) {
+			print("Cannot create tables.");
+			exit();
+		}
 
-		// $usersStatement = $conn->prepare($usersSQL);
-		// $usersResult = $usersStatement->execute();
+
+		// Create LABELS table
+
+
+		// Create RIGHTS table
+
+
+		// Create SONGS table
+
+
+		// Create ARTISTS table
+
+
 
 	}
 
