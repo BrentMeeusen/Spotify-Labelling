@@ -11,6 +11,52 @@ class Database {
 	private static mysqli $conn;
 
 
+
+
+
+	/**
+	 * Create a table based on an SQL
+	 * 
+	 * @return	bool	true if everything went right
+	 */
+	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
+
+		// Drop the table if it exists
+		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing table \"$table\"", 
+					"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+		// Execute the statement and check whether nothing went wrong
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst creating table \"$table\"", 
+					"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+
+
+		// Prepare the statement and check whether it's fine
+		$stmt = $conn->prepare($SQL);
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing table \"$table\"", 
+			"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+		// Execute the statement and check whether nothing went wrong
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst creating table \"$table\"", 
+			"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+		// Return true, because nothing went wrong
+		return TRUE;
+
+	}
+
+
 	/**
 	 * Connects to the database
 	 * 
@@ -36,6 +82,22 @@ class Database {
 	 * @param	mysqli 	database to create the tables in
 	 */
 	public static function initialise(mysqli $conn) {
+
+		// Create USERS table
+		$usersSQL = "
+		CREATE TABLE USERS (
+			ID			INT 			NOT NULL 	AUTO_INCREMENT,
+			FirstName	VARCHAR(50) 	NOT NULL,
+			LastName	VARCHAR(50)		NOT NULL,
+			Rights		VARCHAR(10)		NOT NULL,
+			PRIMARY KEY (ID)
+		);
+		";
+
+		self::createTable($conn, $usersSQL, "USERS");
+
+		// $usersStatement = $conn->prepare($usersSQL);
+		// $usersResult = $usersStatement->execute();
 
 	}
 
