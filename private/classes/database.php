@@ -16,14 +16,13 @@ class Database {
 	 * 
 	 * @return	mysqli	the connection
 	 */
-	public static function connect() : ?mysqli {
+	public static function connect() : mysqli {
 
 		self::$conn = new mysqli(self::$host, self::$username, self::$password, self::$database);
 		
 		if(self::$conn->connect_errno !== 0) {
-			httpResponseCode(500, "Database connection failed", [ "db_errno" => self::$conn->connect_errno, 
-					"db_error" => self::$conn->connect_error ]);
-			return NULL;
+			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", 
+					"db_errno" => self::$conn->connect_errno, "db_error" => self::$conn->connect_error ]);
 		}
 		
 		return self::$conn;
@@ -36,6 +35,9 @@ class Database {
 	 * 
 	 * @param	mysqli 	database to create the tables in
 	 */
+	public static function initialise(mysqli $conn) {
+
+	}
 
 }
 
