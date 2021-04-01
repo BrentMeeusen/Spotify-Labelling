@@ -174,16 +174,12 @@ class JSONWebToken {
 	 * Gets the payload from the token, after checking whether the token is valid or not
 	 * 
 	 * @param	string	$token		The token to get the payload from
-	 * @return	string				The error that is given
 	 * @return	StdClass			The payload
 	 */
-	public static function getPayload(string $token) {
+	public static function getPayload(string $token) : StdClass {
 
 		// Check whether the token is valid
 		$res = self::validateToken($token);
-		if($res !== TRUE) {
-			return $res;
-		}
 
 		// If it's valid, return the payload
 		$payload = explode(".", $token)[1];
