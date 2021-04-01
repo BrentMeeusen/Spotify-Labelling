@@ -128,12 +128,20 @@ class JSONWebToken {
 			return $message;
 		}
 
-		// TODO: Check whether it's a JSON token
+		
+
+		// Check whether it's a JSON token
 		if(!property_exists($headerDecoded, "typ") || $headerDecoded->typ !== "JWT") {
 			$message = httpResponseCode(400, "Not a JSON Web Token");
 			return $message;
 		}
-		// TODO: Check whether it's the correct algorithm
+		// Check whether it's the correct algorithm
+		if(!property_exists($headerDecoded, "alg") || $headerDecoded->typ !== "HS256") {
+			$message = httpResponseCode(400, "Invalid hashing algorithm");
+			return $message;
+		}
+
+
 
 		// Check whether the signature is valid
 		if($signature !== self::createSignature($header, $payload)) {
@@ -143,9 +151,23 @@ class JSONWebToken {
 
 
 
-		// TODO: Check whether NOT BEFORE (nbf) is in the past
-		// TODO: Check whether ISSUED AT (iat) is in the past
-		// TODO: Check whether EXPIRED AT (exp) is in the future
+		// If NOT BEFORE exists, AND if we're before that date, return an error
+		if(property_exists($payloadDecoded, "nbf") && time() < $payloadDecoded->nbf) {
+			$message = httpResponseCode(400, "Token is not yet valid");
+			return $message;
+		}
+		
+		// If ISSUED AT exists, AND if we're before that date, return an error
+		if(property_exists($payloadDecoded, "iat") && time() < $payloadDecoded->iat) {
+			$message = httpResponseCode(400, "Token is issued in the future");
+			return $message;
+		}
+
+		// If EXPIRES AT exists, AND if we're after that date, return an error
+		if(property_exists($payloadDecoded, "exp") && time() > $payloadDecoded->exp) {
+			$message = httpResponseCode(400, "Token expired");
+			return $message;
+		}
 
 
 
