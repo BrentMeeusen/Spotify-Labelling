@@ -1,12 +1,12 @@
 <?php
 
 
-class ApiError {
+class ApiResponse {
 
 	/**
-	 * Sets an HTTP response code error with custom arguments if necessary
+	 * Sets an HTTP response code with custom arguments if necessary
 	 * 
-	 * @param	int		$code		The HTTP error code to throw
+	 * @param	int		$code		The HTTP code to return
 	 * @param	array	$arr		The custom arguments to set
 	 */
 	public static function httpResponse(int $code, array $arr = []) : void {
