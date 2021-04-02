@@ -17,18 +17,22 @@
 
 	<body>
 
-		<h1>Spotify Labelling</h1>
+		<div class="main-wrapper">
 
-		<div class="form register-form">
+			<h1>Spotify Labelling</h1>
 
-			<input class="small"		name="first-name"		type="text"			placeholder="FIRST NAME">
-			<input class="small"		name="last-name"		type="text"			placeholder="LAST NAME">
-			<input class="small"		name="username"			type="text"			placeholder="USERNAME">
-			<input class="small"		name="email-address"	type="text"			placeholder="EMAIL ADDRESS">
-			<input class="small"		name="password"			type="password"		placeholder="PASSWORD">
-			<input class="small"		name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
+			<div class="form register-form">
 
-			<button>REGISTER</button>
+				<input class="small"		name="first-name"		type="text"			placeholder="FIRST NAME">
+				<input class="small"		name="last-name"		type="text"			placeholder="LAST NAME">
+				<input class="small"		name="username"			type="text"			placeholder="USERNAME">
+				<input class="small"		name="email-address"	type="text"			placeholder="EMAIL ADDRESS">
+				<input class="small"		name="password"			type="password"		placeholder="PASSWORD">
+				<input class="small"		name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
+
+				<button>REGISTER</button>
+
+			</div>
 
 		</div>
 		
