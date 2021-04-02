@@ -15,11 +15,11 @@
 
 	/* Current theme variables (initially dark theme) */
 	--current--background: #111;
-	--current--background-highlight: #333;
+	--current--background-highlight: #000;
 	--current--text: #FFFD;
 	--current--placeholder: #888;
 	--current--link: #06D;
-	--current--highlight: red;
+	--current--highlight: #700;
 
 }
 
@@ -63,12 +63,14 @@ h1 {
 	flex: 1 1 100%;
 	font-size: 1rem;
 	margin-bottom: 1rem;
+	transition: 0.25s ease border, 0.25s;
 }
 .form > *::placeholder {
 	color: var(--current--placeholder);
 }
 .form > *:focus {
 	outline: none;
+	border-color: var(--current--highlight);
 }
 .form .small {
 	width: 0;
