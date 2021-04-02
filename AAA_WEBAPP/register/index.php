@@ -17,7 +17,7 @@
 
 	<body>
 
-		<h1>Register</h1>
+		<h1>Spotify Labelling</h1>
 		
 	</body>
 </html>
