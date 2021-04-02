@@ -23,16 +23,20 @@
 
 			<div class="form register-form">
 
-				<input class="small"		name="first-name"		type="text"			placeholder="FIRST NAME">
-				<input class="small"		name="last-name"		type="text"			placeholder="LAST NAME">
-				<input class="small"		name="username"			type="text"			placeholder="USERNAME">
-				<input class="small"		name="email-address"	type="text"			placeholder="EMAIL ADDRESS">
-				<input class="small"		name="password"			type="password"		placeholder="PASSWORD">
-				<input class="small"		name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
+				<input class="small"	name="first-name"		type="text"			placeholder="FIRST NAME">
+				<input class="small"	name="last-name"		type="text"			placeholder="LAST NAME">
+				<input class="small"	name="username"			type="text"			placeholder="USERNAME">
+				<input class="small"	name="email-address"	type="text"			placeholder="EMAIL ADDRESS">
+				<input class="small"	name="password"			type="password"		placeholder="PASSWORD">
+				<input class="small"	name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
 
 				<button>REGISTER</button>
 
 			</div>
+
+
+
+			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
 
 		</div>
 		

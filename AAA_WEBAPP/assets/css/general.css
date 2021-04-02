@@ -18,7 +18,7 @@
 	--current--background-highlight: #333;
 	--current--text: #FFFD;
 	--current--placeholder: #888;
-	--current--link: #888;
+	--current--link: #06D;
 	--current--highlight: red;
 
 }
@@ -90,5 +90,21 @@ h1 {
 	margin: 0 5vw;
 }
 
+
+
+
+
+p.footer {
+	position: absolute;
+	bottom: 2rem;
+	font-size: 1rem;
+	width: 100vw;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--current--text);
+}
+p.footer a {
+	color: var(--current--link);
+}
 
 
