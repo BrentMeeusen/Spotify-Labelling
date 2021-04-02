@@ -1,3 +1,25 @@
+:root {
+
+	/* Light theme variables */
+	--light--background: #FFF;
+	--light--text: #333;
+	--light--placeholder: #AAA;
+	--light--link: #02B;
+
+	/* Dark theme variables */
+	--dark--background: #111;
+	--dark--text: #FFF;
+	--dark--placeholder: #888;
+	--dark--link: #06D;
+
+	/* Current theme variables (initially dark theme) */
+	--current--background: #111;
+	--current--text: #FFF;
+	--current--placeholder: #888;
+	--current--link: #888;
+
+}
+
 * {
 	font-family: "Fjalla One", sans-serif;
 }
