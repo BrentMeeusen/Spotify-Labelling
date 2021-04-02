@@ -44,6 +44,9 @@
 			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
 
 		</div>
+
+
+		<script src="../assets/js/general.js"></script>
 		
 	</body>
 </html>
