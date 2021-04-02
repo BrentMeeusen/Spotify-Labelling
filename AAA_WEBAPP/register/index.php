@@ -35,7 +35,7 @@
 			</div>
 
 
-			<button onclick="test()">
+			<button onclick="changeTheme()">
 				Toggle theme!
 			</button>
 
