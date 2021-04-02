@@ -23,12 +23,12 @@
 
 			<div class="form register-form" name="html-js-form" data-action="users/create">
 
-				<input class="small"	name="first-name"		type="text"			placeholder="FIRST NAME">
-				<input class="small"	name="last-name"		type="text"			placeholder="LAST NAME">
-				<input class="small"	name="username"			type="text"			placeholder="USERNAME">
-				<input class="small"	name="email-address"	type="text"			placeholder="EMAIL ADDRESS">
-				<input class="small"	name="password"			type="password"		placeholder="PASSWORD">
-				<input class="small"	name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
+				<input class="small"	name="input first-name"			type="text"			placeholder="FIRST NAME">
+				<input class="small"	name="input last-name"			type="text"			placeholder="LAST NAME">
+				<input class="small"	name="input username"			type="text"			placeholder="USERNAME">
+				<input class="small"	name="input email-address"		type="text"			placeholder="EMAIL ADDRESS">
+				<input class="small"	name="input password"			type="password"		placeholder="PASSWORD">
+				<input class="small"	name="input password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
 
 				<button type="submit" name="html-js-form-submit" value="submit">REGISTER</button>
 
