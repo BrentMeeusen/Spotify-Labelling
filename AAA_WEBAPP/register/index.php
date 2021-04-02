@@ -30,7 +30,7 @@
 				<input class="small"	name="password"			type="password"		placeholder="PASSWORD">
 				<input class="small"	name="password-repeat"	type="password"		placeholder="REPEAT PASSWORD">
 
-				<button type="submit" name="submit" value="submit">REGISTER</button>
+				<button type="submit" name="html-js-form-submit" value="submit">REGISTER</button>
 
 			</div>
 
