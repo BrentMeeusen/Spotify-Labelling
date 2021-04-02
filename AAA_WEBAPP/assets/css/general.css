@@ -8,13 +8,13 @@
 
 	/* Dark theme variables */
 	--dark--background: #111;
-	--dark--text: #FFF;
+	--dark--text: #FFFD;
 	--dark--placeholder: #888;
 	--dark--link: #06D;
 
 	/* Current theme variables (initially dark theme) */
 	--current--background: #111;
-	--current--text: #FFF;
+	--current--text: #FFFD;
 	--current--placeholder: #888;
 	--current--link: #888;
 
@@ -26,8 +26,16 @@
 * {
 	margin: 0;
 	padding: 0;
+	color: var(--current--text);
 	font-family: "Fjalla One", sans-serif;
+	box-sizing: border-box;
+	transition: 0.25s ease background, 0.25s ease color;
 }
+
+html {
+	background-color: var(--current--background);
+}
+
 
 h1 {
 	font-size: 2em;
@@ -35,7 +43,43 @@ h1 {
 	width: 100%;
 	text-align: center;
 	text-transform: uppercase;
-	margin: 3em 0;
+	margin: 2.5em 0;
+}
+
+
+
+.form > * {
+	color: var(--current--text);
+	background-color: var(--current--background);
+	border: 2px solid var(--current--text);
+	padding: 10px;
+	flex: 1 1 100%;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+}
+.form > *::placeholder {
+	color: var(--current--placeholder);
+}
+.form > *:focus {
+	outline: none;
+}
+.form .small {
+	width: 0;
+	flex: 0 1 calc(50% - 0.5rem);
+}
+.form > *:last-child {
+	margin-top: 2rem;
+	margin-bottom: 0;
+}
+
+
+
+.register-form {
+	width: 90vw;
+	margin: 0 5vw;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 
