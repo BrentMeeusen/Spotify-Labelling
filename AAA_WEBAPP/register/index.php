@@ -21,7 +21,7 @@
 
 			<h1>Spotify Labelling</h1>
 
-			<div class="form register-form" data-type="form" data-action="users/create">
+			<div class="form register-form" name="html-js-form" data-action="users/create">
 
 				<input class="small"	name="first-name"		type="text"			placeholder="FIRST NAME">
 				<input class="small"	name="last-name"		type="text"			placeholder="LAST NAME">
