@@ -35,6 +35,11 @@
 			</div>
 
 
+			<button onclick="test()">
+				Toggle theme!
+			</button>
+
+
 
 			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
 
