@@ -7,5 +7,9 @@ I really miss this feature. So when I found out that Spotify had an API that I c
 ## The application
 This web application allows users to manage their account, manage their own labels, manage the songs they want to label, and manage the playlists that are created based on the desired label conditions. In addition, one is able to search for songs by track name, artist, and album.
 
+## Pages
+ - www.domain-name.com/register
+	 - Create an account
+
 ## Endpoints
 
