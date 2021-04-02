@@ -20,8 +20,22 @@
 
 }
 
+
+
+
 * {
+	margin: 0;
+	padding: 0;
 	font-family: "Fjalla One", sans-serif;
+}
+
+h1 {
+	font-size: 2em;
+	letter-spacing: 0.1ch;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 3em 0;
 }
 
 
