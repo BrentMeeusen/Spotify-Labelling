@@ -47,7 +47,11 @@ h1 {
 }
 
 
-
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
 .form > * {
 	color: var(--current--text);
 	background-color: var(--current--background);
@@ -73,13 +77,9 @@ h1 {
 }
 
 
-
 .register-form {
 	width: 90vw;
 	margin: 0 5vw;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
 }
 
 
