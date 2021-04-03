@@ -17,16 +17,16 @@ RewriteEngine On
 ###############################
 
 ############	api/v1/jwt/generate						jwt/generate
-RewriteRule		api/v1/jwt/generate						jwt/generate						[L,QSA]
+RewriteRule		api/v1/jwt/generate						jwt/generate				[L,QSA]
 
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1						[L,QSA]
+RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
 
 ############	api/v1/users/[id]						users/get/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)					users/get/?p1=$1					[L,QSA]
+RewriteRule 	api/v1/users/([0-9]+)					users/get/?p1=$1			[L,QSA]
 
 ############	api/v1/users							users/get/
-RewriteRule 	api/v1/users							users/get/							[L,QSA]
+RewriteRule 	api/v1/users							users/get/					[L,QSA]
 
 
 
@@ -36,6 +36,6 @@ RewriteRule 	api/v1/users							users/get/							[L,QSA]
 # ERROR DOCUMENTS
 ###############################
 
-ErrorDocument 403 /SpotifyAPI_MYAPI/errors/403/
-ErrorDocument 404 /SpotifyAPI_MYAPI/errors/404/
+ErrorDocument 403 /Spotify%20Labelling/AAA_API/errors/403/
+ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/404/
 
