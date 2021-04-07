@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
 						inputs.push({ name: i.name.replace("input ", ""), value: i.value });
 					}
 				}
-			}			
+			}
 
 			// Create an XMLHttpResponse
 			requestLabellingApiEndpoint(f.dataset.action, f.dataset.method, inputs);
