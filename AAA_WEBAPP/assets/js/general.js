@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
 	let index = 0;
 
 	// For each form
-	for(f of forms) {
+	for(form of forms) {
 
 		// When the corresponding submit button is clicked
 		const submit = document.getElementsByName("html-js-form-submit")[index++];
@@ -32,16 +32,16 @@ window.addEventListener("load", () => {
 
 			// Get all inputs and values
 			let inputs = [];
-			for(i of f.childNodes) {
-				if(i.name) {
-					if(i.name.includes("input")) {
-						inputs.push({ name: i.name.replace("input ", ""), value: i.value });
+			for(input of form.childNodes) {
+				if(input.name) {
+					if(input.name.includes("input")) {
+						inputs.push({ name: input.name.replace("input ", ""), value: input.value });
 					}
 				}
 			}
 
 			// Create an XMLHttpResponse
-			requestLabellingApiEndpoint(f.dataset.action, f.dataset.method, inputs);
+			requestLabellingApiEndpoint(form.dataset.action, form.dataset.method, inputs);
 
 		});
 		
