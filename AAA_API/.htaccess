@@ -2,6 +2,9 @@
 # SERVER SETUP
 ###############################
 
+# Disallow users to access a page without a slash
+DirectorySlash off
+
 # Disallow users to access file directories
 Options -Indexes
 
@@ -21,17 +24,17 @@ RewriteRule		api/v1/jwt/generate						jwt/generate				[L,QSA]
 
 
 
-############	api/vi/users/[action]					users/[action]
-RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1
+############	api/v1/users/[action]					users/[action]
+RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1/					[L,QSA]
 
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
-#RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
+RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
 
 ############	api/v1/users/[id]						users/get/?id=[id]
-#RewriteRule 	api/v1/users/([0-9]+)					users/get/?p1=$1			[L,QSA]
+# RewriteRule 	api/v1/users/([0-9]+)					users/get/?p1=$1			[L,QSA]
 
 ############	api/v1/users							users/get/
-#RewriteRule 	api/v1/users							users/get/					[L,QSA]
+# RewriteRule 	api/v1/users							users/get/					[L,QSA]
 
 
 
