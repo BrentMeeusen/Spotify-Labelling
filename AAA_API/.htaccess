@@ -19,6 +19,11 @@ RewriteEngine On
 ############	api/v1/jwt/generate						jwt/generate
 RewriteRule		api/v1/jwt/generate						jwt/generate				[L,QSA]
 
+
+
+############	api/vi/users/[action]					users/[action]
+RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1
+
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
 #RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
 
