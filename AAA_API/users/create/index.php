@@ -27,7 +27,29 @@ if(!isset($payload->register) || $payload->register !== TRUE) {
 
 
 
-$res = [ "message" => "Creating user...", "GET" => $_GET, "POST" => $_POST, "COOKIES" => $_COOKIE, "METHOD" => $_SERVER["REQUEST_METHOD"], "PAYLOAD" => $payload, "HEADERS" => getallheaders() ];
+// Set values of the payload
+$values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
+foreach($_POST as $key => $value) {
+	$values[$key] = $value;
+}
+
+// If the payload doesn't contain any of the required values, return an error
+foreach($values as $key => $val) {
+	if($val === NULL) {
+		ApiResponse::httpResponse(400, ["message" => "Not all required fields were filled in."]);
+	}
+}
+
+
+// Create the entry in the user class
+	// In the class:
+		// Set the basic variables (account status)
+		// Create the database entry
+
+
+
+
+$res = [ "message" => "Creating user...", "GET" => $_GET, "POST" => $_POST, "COOKIES" => $_COOKIE, "METHOD" => $_SERVER["REQUEST_METHOD"], "VALUES" => $values, "PAYLOAD" => $payload, "HEADERS" => getallheaders() ];
 print(json_encode($res));
 
 ?>
