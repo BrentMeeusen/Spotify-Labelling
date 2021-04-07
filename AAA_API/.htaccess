@@ -19,12 +19,12 @@ RewriteEngine On
 # ROUTES
 ###############################
 
-############	api/v1/jwt/generate						jwt/generate
-RewriteRule		api/v1/jwt/generate						jwt/generate				[L,QSA]
+############	api/v1/jwt/generate						jwt/generate/
+RewriteRule		api/v1/jwt/generate						jwt/generate/				[L,QSA]
 
 
 
-############	api/v1/users/[action]					users/[action]
+############	api/v1/users/[action]					users/[action]/
 RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1/					[L,QSA]
 
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
