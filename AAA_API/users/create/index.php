@@ -2,6 +2,11 @@
 
 include_once("../../private/include_all.php");
 
+// If the method is not POST
+if($_SERVER["REQUEST_METHOD"] !== "POST") {
+	ApiResponse::httpResponse(405);
+}
+
 // Get the cookie JWT and the Authorization header JWT
 $cookieJWT = (isset($_COOKIE["jwt"]) ? $_COOKIE["jwt"] : "");
 $headerJWT = (isset(getallheaders()["Authorization"]) ? explode("Bearer ", getallheaders()["Authorization"])[1] : "");
