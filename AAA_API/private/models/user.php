@@ -14,6 +14,18 @@ class User {
 
 
 
+
+
+	/**
+	 * User constructor
+	 * @param mysqli connection
+	 */
+	public function __construct(mysqli $conn) {
+		$this->conn = $conn;
+	}
+
+
+
 }
 
 
