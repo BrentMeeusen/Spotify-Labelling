@@ -10,6 +10,7 @@ class User {
 	private string $username;
 	private string $emailAddress;
 	private int $accountStatus;
+	private string $accountStatusText;
 
 
 
