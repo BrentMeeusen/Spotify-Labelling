@@ -59,11 +59,11 @@ class User {
 	 */
 	public function createUser(array $values) : bool {
 
-		$firstName = $values["FirstName"];
-		$lastName = $values["LastName"];
-		$username = $values["Username"];
-		$password = $values["Password"];
-		$emailAddress = $values["EmailAddress"];
+		$this->firstName = $values["FirstName"];
+		$this->lastName = $values["LastName"];
+		$this->username = $values["Username"];
+		$this->password = $values["Password"];
+		$this->emailAddress = $values["EmailAddress"];
 		$this->setAccountStatus(1);
 
 		return FALSE;
