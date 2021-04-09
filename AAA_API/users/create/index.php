@@ -42,9 +42,8 @@ foreach($values as $key => $val) {
 
 
 // Create the entry in the user class
-	// In the class:
-		// Set the basic variables (account status)
-		// Create the database entry
+$user = new User(Database::connect());
+$user->createUser($values);
 
 
 
