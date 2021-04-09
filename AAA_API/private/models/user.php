@@ -66,6 +66,11 @@ class User {
 		$this->emailAddress = $values["EmailAddress"];
 		$this->setAccountStatus(1);
 
+		// TODO: Prepare SQL statement
+		// TODO: Sanitize input
+		// TODO: Insert input into SQL statement
+		// TODO: Execute SQL statement and return the result
+
 		return FALSE;
 
 	}

@@ -43,7 +43,9 @@ foreach($values as $key => $val) {
 
 // Create the entry in the user class
 $user = new User(Database::connect());
-$user->createUser($values);
+$res = $user->createUser($values);
+
+// TODO: check whether everything went right whilst adding to the database, set response headers and messages.
 
 
 
