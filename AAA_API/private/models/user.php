@@ -20,7 +20,7 @@ class User {
 
 
 	/**
-	 * 
+	 * Sets the account status, both the integer and the text value
 	 */
 	private function setAccountStatus(int $status) : void {
 		
