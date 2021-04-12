@@ -21,8 +21,6 @@ class Database {
 	 */
 	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
 
-		// return FALSE;
-
 		// Drop the table if it exists
 		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
 		if($stmt === FALSE) {
@@ -93,11 +91,7 @@ class Database {
 			PRIMARY KEY (ID)
 		);";
 
-		$res = self::createTable($conn, $SQL, $tableName);
-		if($res === FALSE) {
-			print("Cannot create tables.");
-			exit();
-		}
+		// $res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create LABELS table
