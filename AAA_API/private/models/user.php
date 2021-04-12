@@ -67,13 +67,15 @@ class User {
 	/**
 	 * Checks the user for any duplicate values
 	 * 
-	 * @return	bool	true if any unwanted duplicates are found, false if not
+	 * @return	bool	false if no errors are found
+	 * @return	array	[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates() {
+	private function hasDuplicates() : mixed {
 
 		// Find user by username		=> results? true
 		// Find user by email address	=> results? true
-		// Both no results? False
+		// Both no results? false
+		return FALSE;
 
 	}
 
@@ -142,8 +144,11 @@ class User {
 		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
 
 
-		// TODO: check for duplicate values that should be unique (username, email address)
-		$user->hasDuplicates();
+		// Check for duplicate values that should be unique (username, email address)
+		$dupes = $user->hasDuplicates();
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
 
 
 		// Prepare SQL statement
