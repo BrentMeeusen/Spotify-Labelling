@@ -3,18 +3,18 @@
 class User {
 
 	// Initialise variables
-	private static mysqli $conn;
+	public static mysqli $conn;
 
-	private int $id;
-	private string $firstName;
-	private string $lastName;
-	private string $emailAddress;
+	public int $id;
+	public string $firstName;
+	public string $lastName;
+	public string $emailAddress;
 
-	private string $username;
-	private string $password;
+	public string $username;
+	public string $password;
 
-	private int $accountStatus;
-	private string $accountStatusText;
+	public int $accountStatus;
+	public string $accountStatusText;
 
 
 
@@ -23,6 +23,7 @@ class User {
 	 * Sets the account status, both the integer and the text value
 	 * 
 	 * @param	int		The account status
+	 * @return	array	The account status in integer and text form
 	 */
 	private static function setAccountStatus(int $status) : array {
 		
@@ -37,7 +38,7 @@ class User {
 				$text = "Unknown";
 				break;
 		}
-		return ["status" => $status, "statusText" => $text];
+		return ["status" => $status, "status-text" => $text];
 
 	}
 
@@ -58,22 +59,39 @@ class User {
 
 
 	/**
+	 * User constructor
+	 */
+	public function __construct($firstName, $lastName, $username, $password, $emailAddress, $accountStatus) {
+
+		$this->firstName = $firstName;
+		$this->lastName = $lastName;
+		$this->username = $username;
+		$this->password = $password;
+		$this->emailAddress = $emailAddress;
+
+		$status = User::setAccountStatus($accountStatus);
+		$this->accountStatus = $status["status"];
+		$this->accountStatusText = $status["status-text"];
+
+	}
+
+
+
+
+
+	/**
 	 * Create the user with the given values
 	 * @param		array		the values to create the user with
 	 * @return		bool		whether it was successful or not
 	 */
 	public static function createUser(array $values) : bool {
 
-		// Set variables
-		$firstName = $values["FirstName"];
-		$lastName = $values["LastName"];
-		$username = $values["Username"];
-		$password = $values["Password"];
-		$emailAddress = $values["EmailAddress"];
-		$status = self::setAccountStatus(1);
+		// Create a user object
+		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
 
 
 		// TODO: check for duplicate values that should be unique (username, email address)
+		// $user->checkForDuplicates();
 
 
 		// Prepare SQL statement
@@ -89,15 +107,15 @@ class User {
 
 		
 		// Sanitize input and create password hash
-		$firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $firstName))));
-		$lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $lastName))));
-		$username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $username))));
-		$emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $emailAddress))));
-		$password = password_hash($password, PASSWORD_DEFAULT);
+		$user->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->firstName))));
+		$user->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->lastName))));
+		$user->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->username))));
+		$user->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->emailAddress))));
+		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
 		
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssi", $firstName, $lastName, $username, $emailAddress, $password, $status["status"]);
+		$stmt->bind_param("sssssi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
 
 
 		// Execute SQL statement and return the result
