@@ -31,6 +31,13 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 
 
+// Get the user(s)
+$id = (isset($_GET["user"]) ? $_GET["user"] : NULL);
+$user = User::get($id);
+
+print(json_encode($user));
+
+
 // // Set values of the payload
 // $values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
 // foreach($_POST as $key => $value) {
