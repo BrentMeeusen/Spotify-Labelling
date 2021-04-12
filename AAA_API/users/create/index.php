@@ -47,8 +47,8 @@ foreach($values as $key => $val) {
 
 
 // Create the entry in the user class
-$user = new User(Database::connect());
-$res = $user->createUser($values);
+User::setConnection(Database::connect());
+$res = User::createUser($values);
 
 // Check whether everything went right whilst adding to the database, set response headers and messages.
 ApiResponse::httpResponse(200, [ "message" => "Successfully registered!" ]);

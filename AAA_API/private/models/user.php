@@ -3,7 +3,7 @@
 class User {
 
 	// Initialise variables
-	private mysqli $conn;
+	private static mysqli $conn;
 
 	private int $id;
 	private string $firstName;
@@ -44,8 +44,8 @@ class User {
 	 * User constructor
 	 * @param		mysqli		connection
 	 */
-	public function __construct(mysqli $conn) {
-		$this->conn = $conn;
+	public static function setConnection(mysqli $conn) {
+		self::$conn = $conn;
 	}
 
 
@@ -71,7 +71,7 @@ class User {
 		// Prepare SQL statement
 		$query = "INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
 					VALUES ( ?, ?, ?, ?, ?, ? );";
-		$stmt = $this->conn->prepare($query);
+		$stmt = self::$conn->prepare($query);
 
 		// If something went wrong whilst preparing, throw an error
 		if($stmt === FALSE) {
@@ -81,10 +81,10 @@ class User {
 
 		
 		// Sanitize input and create password hash
-		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->firstName))));
-		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->lastName))));
-		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->username))));
-		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->emailAddress))));
+		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
+		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
+		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
+		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
 		$this->password = password_hash($this->password, PASSWORD_DEFAULT);
 		
 
