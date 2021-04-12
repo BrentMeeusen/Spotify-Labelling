@@ -66,7 +66,19 @@ class User {
 		$this->emailAddress = $values["EmailAddress"];
 		$this->setAccountStatus(1);
 
-		// TODO: Prepare SQL statement
+		// Prepare SQL statement
+		$query = "INSERT INTO USERS
+			(FirstName, LastName, Username, EmailAddress, Password, AccountStatus)
+			VALUES (':FirstName', ':LastName', ':Username', ':EmailAddress', ':Password', ':AccountStatus' );";
+		$stmt = $this->conn->prepare($query);
+
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing the registration statement." ]);
+			exit();
+		}
+
+		
+
 		// TODO: Sanitize input
 		// TODO: Insert input into SQL statement
 		// TODO: Execute SQL statement and return the result
