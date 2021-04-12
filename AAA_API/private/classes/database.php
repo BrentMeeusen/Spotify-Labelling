@@ -65,7 +65,7 @@ class Database {
 	 */
 	public static function connect() : mysqli {
 
-		self::$conn = new mysqli(self::$host, self::$username, self::$password, self::$database);
+		self::$conn = @new mysqli(self::$host, self::$username, self::$password, self::$database);
 		
 		if(self::$conn->connect_errno !== 0) {
 			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", 
