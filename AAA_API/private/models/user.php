@@ -67,24 +67,29 @@ class User {
 		$this->emailAddress = $values["EmailAddress"];
 		$this->setAccountStatus(1);
 
+
 		// Prepare SQL statement
 		$query = "INSERT INTO USERS
 			(FirstName, LastName, Username, EmailAddress, Password, AccountStatus)
-			VALUES (':FirstName', ':LastName', ':Username', ':EmailAddress', ':Password', ':AccountStatus' );";
+			VALUES ( ?, ?, ?, ?, ?, ? );";
 		$stmt = $this->conn->prepare($query);
 
+		// If something went wrong whilst preparing, throw an error
 		if($stmt === FALSE) {
 			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing the registration statement." ]);
 			exit();
 		}
 
+		
 		// Sanitize input
 		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->firstName))));
 		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->lastName))));
 		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->username))));
 		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->emailAddress))));
 		
-		// TODO: Insert input into SQL statement
+		// Insert input into SQL statement
+		$stmt->bind_param("sssssi", $this->firstName, $this->lastName, $this->username, $this->emailAddress, $this->password, $this->accountStatus);
+
 		// TODO: Execute SQL statement and return the result
 
 		return FALSE;
