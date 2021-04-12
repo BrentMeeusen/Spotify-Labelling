@@ -47,7 +47,6 @@ foreach($values as $key => $val) {
 
 
 // Create the entry in the user class
-Database::initialise(Database::connect());			// REMOVE ALL TABLES AND ITS ENTRIES AND RECREATE IT: ONLY FOR TESTING!
 $user = new User(Database::connect());
 $res = $user->createUser($values);
 
