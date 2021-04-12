@@ -81,22 +81,25 @@ class User {
 		}
 
 		
-		// Sanitize input
+		// Sanitize input and create password hash
 		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->firstName))));
 		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->lastName))));
 		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->username))));
 		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->emailAddress))));
+		$this->password = password_hash($this->password, PASSWORD_DEFAULT);
 		
 
 		// Insert input into SQL statement
 		$stmt->bind_param("sssssi", $this->firstName, $this->lastName, $this->username, $this->emailAddress, $this->password, $this->accountStatus);
 
 
-		// TODO: Execute SQL statement and return the result
+		// Execute SQL statement and return the result
 		$res = $stmt->execute();
-		print(json_encode($res));
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst registering." ]);
+		}
 
-		return FALSE;
+		return $res;
 
 	}
 
