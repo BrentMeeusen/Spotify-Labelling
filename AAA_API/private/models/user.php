@@ -59,6 +59,7 @@ class User {
 	 */
 	public function createUser(array $values) : bool {
 
+		// Set variables
 		$this->firstName = $values["FirstName"];
 		$this->lastName = $values["LastName"];
 		$this->username = $values["Username"];
@@ -77,9 +78,12 @@ class User {
 			exit();
 		}
 
+		// Sanitize input
+		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->firstName))));
+		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->lastName))));
+		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->username))));
+		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->emailAddress))));
 		
-
-		// TODO: Sanitize input
 		// TODO: Insert input into SQL statement
 		// TODO: Execute SQL statement and return the result
 
