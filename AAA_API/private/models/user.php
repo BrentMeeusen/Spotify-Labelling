@@ -72,6 +72,8 @@ class User {
 	 */
 	private function hasDuplicates() : mixed {
 
+		// TODO
+
 		// Find user by username		=> results? true
 		// Find user by email address	=> results? true
 		// Both no results? false
@@ -190,7 +192,7 @@ class User {
 	 * Get all the users
 	 */
 	public static function getAll() : array {
-
+		// TODO
 	}
 
 
@@ -203,7 +205,7 @@ class User {
 	 * @param	int		the user ID to search for
 	 */
 	public static function getByID(int $userID) : User {
-
+		// TODO
 	}
 
 
@@ -216,7 +218,7 @@ class User {
 	 * @param	string	the username to search for
 	 */
 	public static function getByUsername(string $username) : array {
-
+		// TODO
 	}
 
 
@@ -229,7 +231,7 @@ class User {
 	 * @param	string	the email address to search for
 	 */
 	public static function getByEmailAddress(string $emailAddress) : array {
-
+		// TODO
 	}
 
 
