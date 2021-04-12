@@ -19,6 +19,7 @@ class User {
 
 
 
+
 	/**
 	 * Sets the account status, both the integer and the text value
 	 * 
@@ -47,7 +48,8 @@ class User {
 
 
 	/**
-	 * User constructor
+	 * Set the connection for the user object
+	 * 
 	 * @param		mysqli		connection
 	 */
 	public static function setConnection(mysqli $conn) {
@@ -60,6 +62,13 @@ class User {
 
 	/**
 	 * User constructor
+	 * 
+	 * @param	string	First name
+	 * @param	string	Last name
+	 * @param	string	Username
+	 * @param	string	Password
+	 * @param	string	Email address
+	 * @param	int		Account status
 	 */
 	public function __construct($firstName, $lastName, $username, $password, $emailAddress, $accountStatus) {
 
@@ -107,7 +116,7 @@ class User {
 
 
 		// TODO: check for duplicate values that should be unique (username, email address)
-		// $user->checkForDuplicates();
+		$user->checkForDuplicates();
 
 
 		// Prepare SQL statement
@@ -138,6 +147,56 @@ class User {
 		}
 
 		return $user;
+
+	}
+
+
+
+
+
+	/**
+	 * Get all the users
+	 */
+	public static function getAll() : array {
+
+	}
+
+
+
+
+
+	/**
+	 * Get all the users by the given ID
+	 * 
+	 * @param	int		the user ID to search for
+	 */
+	public static function getByID(int $userID) : User {
+
+	}
+
+
+
+
+
+	/**
+	 * Get all the users by the given username
+	 * 
+	 * @param	string	the username to search for
+	 */
+	public static function getByUsername(string $username) : array {
+
+	}
+
+
+
+
+
+	/**
+	 * Get all the users by the given email address
+	 * 
+	 * @param	string	the email address to search for
+	 */
+	public static function getByEmail(string $emailAddress) : array {
 
 	}
 
