@@ -32,9 +32,7 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 
 // Get the user(s)
-$id = (isset($_GET["user"]) ? $_GET["user"] : NULL);
-$user = User::get($id);
-
+$user = User::get((isset($_GET["user"]) ? $_GET["user"] : NULL));
 print(json_encode($user));
 
 
