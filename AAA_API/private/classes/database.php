@@ -21,7 +21,7 @@ class Database {
 	 */
 	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
 
-		return FALSE;
+		// return FALSE;
 
 		// Drop the table if it exists
 		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
