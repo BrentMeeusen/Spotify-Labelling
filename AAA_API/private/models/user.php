@@ -21,46 +21,6 @@ class User {
 
 
 	/**
-	 * Sets the account status, both the integer and the text value
-	 * 
-	 * @param	int		The account status
-	 * @return	array	The account status in integer and text form
-	 */
-	private static function setAccountStatus(int $status) : array {
-		
-		switch($status) {
-			case 1:
-				$text = "Created";
-				break;
-			case 2:
-				$text = "Verified";
-				break;
-			default:
-				$text = "Unknown";
-				break;
-		}
-		return ["status" => $status, "status-text" => $text];
-
-	}
-
-
-
-
-
-	/**
-	 * Set the connection for the user object
-	 * 
-	 * @param		mysqli		connection
-	 */
-	public static function setConnection(mysqli $conn) {
-		self::$conn = $conn;
-	}
-
-
-
-
-
-	/**
 	 * User constructor
 	 * 
 	 * @param	string	First name
@@ -98,6 +58,56 @@ class User {
 		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
 		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
 
+	}
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	/**
+	 * Sets the account status, both the integer and the text value
+	 * 
+	 * @param	int		The account status
+	 * @return	array	The account status in integer and text form
+	 */
+	private static function setAccountStatus(int $status) : array {
+		
+		switch($status) {
+			case 1:
+				$text = "Created";
+				break;
+			case 2:
+				$text = "Verified";
+				break;
+			default:
+				$text = "Unknown";
+				break;
+		}
+		return ["status" => $status, "status-text" => $text];
+
+	}
+
+
+
+
+
+	/**
+	 * Set the connection for the user object
+	 * 
+	 * @param		mysqli		connection
+	 */
+	public static function setConnection(mysqli $conn) {
+		self::$conn = $conn;
 	}
 
 
