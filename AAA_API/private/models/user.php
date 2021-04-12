@@ -64,6 +64,23 @@ class User {
 
 
 
+	/**
+	 * Checks the user for any duplicate values
+	 * 
+	 * @return	bool	true if any unwanted duplicates are found, false if not
+	 */
+	private function hasDuplicates() {
+
+		// Find user by username		=> results? true
+		// Find user by email address	=> results? true
+		// Both no results? False
+
+	}
+
+
+
+
+
 
 
 
@@ -126,7 +143,7 @@ class User {
 
 
 		// TODO: check for duplicate values that should be unique (username, email address)
-		$user->checkForDuplicates();
+		$user->hasDuplicates();
 
 
 		// Prepare SQL statement
