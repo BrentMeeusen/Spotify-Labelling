@@ -7,14 +7,18 @@ if($_SERVER["REQUEST_METHOD"] !== "POST") {
 	ApiResponse::httpResponse(405);
 }
 
+
+
 // Get the cookie JWT and the Authorization header JWT
 $cookieJWT = (isset($_COOKIE["jwt"]) ? $_COOKIE["jwt"] : "");
 $headerJWT = (isset(getallheaders()["Authorization"]) ? explode("Bearer ", getallheaders()["Authorization"])[1] : "");
 
-// If they're different, or if neither of them exist, return an error
-if($cookieJWT !== $headerJWT || ($cookieJWT === "" && $headerJWT === "")) {
+// If they're different, or if either one of them doesn't exist, return an error
+if($cookieJWT !== $headerJWT || $cookieJWT === "" || $headerJWT === "") {
 	ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified."]);
 }
+
+
 
 // Verify the token and get the payload if it's valid
 JSONWebToken::validateToken($cookieJWT);
@@ -41,17 +45,13 @@ foreach($values as $key => $val) {
 }
 
 
+
 // Create the entry in the user class
 Database::initialise(Database::connect());			// REMOVE ALL TABLES AND ITS ENTRIES AND RECREATE IT: ONLY FOR TESTING!
 $user = new User(Database::connect());
 $res = $user->createUser($values);
 
-// TODO: check whether everything went right whilst adding to the database, set response headers and messages.
-
-
-
-
-$res = [ "message" => "Creating user...", "GET" => $_GET, "POST" => $_POST, "COOKIES" => $_COOKIE, "METHOD" => $_SERVER["REQUEST_METHOD"], "VALUES" => $values, "PAYLOAD" => $payload, "HEADERS" => getallheaders() ];
-print(json_encode($res));
+// Check whether everything went right whilst adding to the database, set response headers and messages.
+ApiResponse::httpResponse(200, [ "message" => "Successfully registered!" ]);
 
 ?>
