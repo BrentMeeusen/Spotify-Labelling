@@ -80,14 +80,14 @@ class User {
 
 
 	/**
-	 * Sanitises the inputs
+	 * Sanitizes the inputs
 	 */
 	private function sanitizeInputs() : void {
 
-		$user->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->firstName))));
-		$user->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->lastName))));
-		$user->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->username))));
-		$user->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->emailAddress))));
+		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
+		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
+		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
+		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
 
 	}
 
@@ -100,7 +100,7 @@ class User {
 	 * @param		array		the values to create the user with
 	 * @return		bool		whether it was successful or not
 	 */
-	public static function createUser(array $values) : bool {
+	public static function createUser(array $values) : User {
 
 		// Create a user object
 		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
@@ -137,7 +137,7 @@ class User {
 			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst registering." ]);
 		}
 
-		return $res;
+		return $user;
 
 	}
 
