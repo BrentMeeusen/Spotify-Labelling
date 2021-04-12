@@ -21,18 +21,23 @@ class User {
 
 	/**
 	 * Sets the account status, both the integer and the text value
+	 * 
+	 * @param	int		The account status
 	 */
-	private function setAccountStatus(int $status) : void {
+	private static function setAccountStatus(int $status) : array {
 		
-		$this->accountStatus = $status;
 		switch($status) {
 			case 1:
-				$accountStatusText = "Created";
+				$text = "Created";
 				break;
 			case 2:
-				$accountStatusText = "Verified";
+				$text = "Verified";
+				break;
+			default:
+				$text = "Unknown";
 				break;
 		}
+		return ["status" => $status, "statusText" => $text];
 
 	}
 
@@ -57,15 +62,15 @@ class User {
 	 * @param		array		the values to create the user with
 	 * @return		bool		whether it was successful or not
 	 */
-	public function createUser(array $values) : bool {
+	public static function createUser(array $values) : bool {
 
 		// Set variables
-		$this->firstName = $values["FirstName"];
-		$this->lastName = $values["LastName"];
-		$this->username = $values["Username"];
-		$this->password = $values["Password"];
-		$this->emailAddress = $values["EmailAddress"];
-		$this->setAccountStatus(1);
+		$firstName = $values["FirstName"];
+		$lastName = $values["LastName"];
+		$username = $values["Username"];
+		$password = $values["Password"];
+		$emailAddress = $values["EmailAddress"];
+		$status = self::setAccountStatus(1);
 
 
 		// Prepare SQL statement
@@ -81,15 +86,15 @@ class User {
 
 		
 		// Sanitize input and create password hash
-		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
-		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
-		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
-		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
-		$this->password = password_hash($this->password, PASSWORD_DEFAULT);
+		$firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $firstName))));
+		$lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $lastName))));
+		$username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $username))));
+		$emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $emailAddress))));
+		$password = password_hash($password, PASSWORD_DEFAULT);
 		
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssi", $this->firstName, $this->lastName, $this->username, $this->emailAddress, $this->password, $this->accountStatus);
+		$stmt->bind_param("sssssi", $firstName, $lastName, $username, $emailAddress, $password, $status["status"]);
 
 
 		// Execute SQL statement and return the result
