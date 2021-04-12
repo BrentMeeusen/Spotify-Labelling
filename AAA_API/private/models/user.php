@@ -80,6 +80,22 @@ class User {
 
 
 	/**
+	 * Sanitises the inputs
+	 */
+	private function sanitizeInputs() : void {
+
+		$user->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->firstName))));
+		$user->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->lastName))));
+		$user->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->username))));
+		$user->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->emailAddress))));
+
+	}
+
+
+
+
+
+	/**
 	 * Create the user with the given values
 	 * @param		array		the values to create the user with
 	 * @return		bool		whether it was successful or not
@@ -107,10 +123,7 @@ class User {
 
 		
 		// Sanitize input and create password hash
-		$user->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->firstName))));
-		$user->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->lastName))));
-		$user->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->username))));
-		$user->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $user->emailAddress))));
+		$user->sanitizeInputs();
 		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
 		
 
