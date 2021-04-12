@@ -4,7 +4,7 @@ include_once("../../private/include_all.php");
 
 // If the method is not POST
 if($_SERVER["REQUEST_METHOD"] !== "POST") {
-	ApiResponse::httpResponse(405);
+	ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 }
 
 
