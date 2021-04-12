@@ -31,31 +31,11 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 
 
-// Get the user(s)
-$user = User::get((isset($_GET["user"]) ? $_GET["user"] : NULL));
-print(json_encode($user));
 
+// TODO: write a selector that chooses whether to get all users, get  by ID, username, or email adddress (use GET properties)
 
-// // Set values of the payload
-// $values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
-// foreach($_POST as $key => $value) {
-// 	$values[$key] = $value;
-// }
+// TODO: properly return the results
 
-// // If the payload doesn't contain any of the required values, return an error
-// foreach($values as $key => $val) {
-// 	if($val === NULL) {
-// 		ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
-// 	}
-// }
-
-
-
-// // Create the entry in the user class
-// $user = new User(Database::connect());
-// $res = $user->createUser($values);
-
-// // Check whether everything went right whilst adding to the database, set response headers and messages.
-// ApiResponse::httpResponse(200, [ "message" => "Successfully registered!" ]);
+// ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "result" => RESULT_HERE ]);
 
 ?>
