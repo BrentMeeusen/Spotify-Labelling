@@ -26,30 +26,26 @@ class Database {
 		// Drop the table if it exists
 		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
 		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing table \"$table\"", 
-					"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
 		}
 
 		// Execute the statement and check whether nothing went wrong
 		$res = $stmt->execute();
 		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst creating table \"$table\"", 
-					"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
 		}
 
 
 		// Prepare the statement and check whether it's fine
 		$stmt = $conn->prepare($SQL);
 		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing table \"$table\"", 
-			"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
 		}
 
 		// Execute the statement and check whether nothing went wrong
 		$res = $stmt->execute();
 		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst creating table \"$table\"", 
-			"db_errno" => $conn->errno, "db_error" => $conn->error ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
 		}
 
 		// Return true, because nothing went wrong
@@ -68,8 +64,7 @@ class Database {
 		self::$conn = @new mysqli(self::$host, self::$username, self::$password, self::$database);
 		
 		if(self::$conn->connect_errno !== 0) {
-			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", 
-					"db_errno" => self::$conn->connect_errno, "db_error" => self::$conn->connect_error ]);
+			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", "db_errno" => self::$conn->connect_errno, "db_error" => self::$conn->connect_error ]);
 		}
 		
 		return self::$conn;

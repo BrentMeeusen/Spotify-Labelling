@@ -69,14 +69,13 @@ class User {
 
 
 		// Prepare SQL statement
-		$query = "INSERT INTO USERS
-			(FirstName, LastName, Username, EmailAddress, Password, AccountStatus)
-			VALUES ( ?, ?, ?, ?, ?, ? );";
+		$query = "INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
+					VALUES ( ?, ?, ?, ?, ?, ? );";
 		$stmt = $this->conn->prepare($query);
 
 		// If something went wrong whilst preparing, throw an error
 		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst preparing the registration statement." ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing the registration statement." ]);
 			exit();
 		}
 
@@ -96,7 +95,7 @@ class User {
 		// Execute SQL statement and return the result
 		$res = $stmt->execute();
 		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "message" => "Something went wrong whilst registering." ]);
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst registering." ]);
 		}
 
 		return $res;

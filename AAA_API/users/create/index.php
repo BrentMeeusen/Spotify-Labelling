@@ -13,7 +13,7 @@ $headerJWT = (isset(getallheaders()["Authorization"]) ? explode("Bearer ", getal
 
 // If they're different, or if neither of them exist, return an error
 if($cookieJWT !== $headerJWT || ($cookieJWT === "" && $headerJWT === "")) {
-	ApiResponse::httpResponse(401, ["message" => "JSON Web Token could not be verified."]);
+	ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified."]);
 }
 
 // Verify the token and get the payload if it's valid
@@ -22,7 +22,7 @@ $payload = JSONWebToken::getPayload($cookieJWT);
 
 // If the payload doesn't contain "register", return an error
 if(!isset($payload->register) || $payload->register !== TRUE) {
-	ApiResponse::httpResponse(401, ["message" => "The given JSON Web Token cannot be used to register an account."]);
+	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to register an account."]);
 }
 
 
@@ -36,13 +36,13 @@ foreach($_POST as $key => $value) {
 // If the payload doesn't contain any of the required values, return an error
 foreach($values as $key => $val) {
 	if($val === NULL) {
-		ApiResponse::httpResponse(400, ["message" => "Not all required fields were filled in."]);
+		ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 	}
 }
 
 
 // Create the entry in the user class
-Database::initialise(Database::connect());			// REMOVE ALL TABLES AND ITS ENTRIES AND RECREATE IT
+Database::initialise(Database::connect());			// REMOVE ALL TABLES AND ITS ENTRIES AND RECREATE IT: ONLY FOR TESTING!
 $user = new User(Database::connect());
 $res = $user->createUser($values);
 
