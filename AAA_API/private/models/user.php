@@ -87,10 +87,14 @@ class User {
 		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->username))));
 		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string($this->conn, $this->emailAddress))));
 		
+
 		// Insert input into SQL statement
 		$stmt->bind_param("sssssi", $this->firstName, $this->lastName, $this->username, $this->emailAddress, $this->password, $this->accountStatus);
 
+
 		// TODO: Execute SQL statement and return the result
+		$res = $stmt->execute();
+		print(json_encode($res));
 
 		return FALSE;
 
