@@ -73,6 +73,9 @@ class User {
 		$status = self::setAccountStatus(1);
 
 
+		// TODO: check for duplicate values that should be unique (username, email address)
+
+
 		// Prepare SQL statement
 		$query = "INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
 					VALUES ( ?, ?, ?, ?, ?, ? );";
