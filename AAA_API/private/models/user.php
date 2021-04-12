@@ -69,7 +69,7 @@ class User {
 
 
 
-	
+
 
 
 
@@ -206,7 +206,7 @@ class User {
 	 * 
 	 * @param	string	the email address to search for
 	 */
-	public static function getByEmail(string $emailAddress) : array {
+	public static function getByEmailAddress(string $emailAddress) : array {
 
 	}
 
