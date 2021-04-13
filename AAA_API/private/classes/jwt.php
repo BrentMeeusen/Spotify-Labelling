@@ -84,7 +84,7 @@ class JSONWebToken {
 	/**
 	 * Creates the token using the payload that the user passes
 	 * 
-	 * @param	string	$payload	the payload to send with the token
+	 * @param	array	$payload	the payload to send with the token
 	 * @param	int		$mins		the time in minutes after which the token expires
 	 * @return 	string				the JSON Web Token
 	 */
