@@ -228,9 +228,38 @@ class User {
 
 	/**
 	 * Get all the users
+	 * 
+	 * @return	array	of all users in User objects
 	 */
 	public static function getAll() : array {
-		// TODO
+
+		// Prepare the statement
+		$stmt = self::$conn->prepare("SELECT * FROM USERS;");
+
+		// Run the query and get the result if nothing went wrong
+		$stmt->execute();
+		
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
+		}
+		$res = $stmt->get_result();
+
+		// If there are no rows, return a 404
+		if($res->num_rows === 0) {
+			ApiResponse::httpResponse(404, ["error" => "No users were found."]);
+		}
+
+		// Create all users
+		$dbUsers = $res->fetch_all(1);
+
+		$users = [];
+		foreach($dbUsers as $user) {
+			array_push($users, User::construct($user));
+		}
+
+		// Return the user array
+		return $users;
+
 	}
 
 
