@@ -32,7 +32,19 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 
 
-// TODO: write a selector that chooses whether to get all users, get  by ID, username, or email adddress (use GET properties)
+// Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
+if(isset($_GET["id"])) {
+	User::getByID($_GET["id"]);
+}
+else if(isset($_GET["username"])) {
+	User::getByUsername($_GET["username"]);
+}
+else if(isset($_GET["email-address"])) {
+	User::getByEmailAddress($_GET["email-address"]);
+}
+else {
+	user::getAll();
+}
 
 // TODO: properly return the results
 
