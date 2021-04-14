@@ -47,6 +47,6 @@ else {
 }
 
 // Properly return the results
-ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "data" => $res ]);
+ApiResponse::httpResponse(200, [ "message" => "User found.", "data" => $res ]);
 
 ?>
