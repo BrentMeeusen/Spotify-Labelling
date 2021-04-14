@@ -38,7 +38,7 @@ class User {
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 
-		$status = User::setAccountStatus($accountStatus);
+		$status = $this->setAccountStatus($accountStatus);
 		$this->accountStatus = $status["status"];
 		$this->accountStatusText = $status["status-text"];
 
@@ -52,6 +52,7 @@ class User {
 	 * User constructor when the data comes from the database
 	 * 
 	 * @param	array	An associative array with the database values
+	 * @return	User	The created user
 	 */
 	public static function construct(array $values) : User {
 
@@ -61,6 +62,11 @@ class User {
 		return $user;
 
 	}
+
+
+
+
+
 
 
 
@@ -83,7 +89,7 @@ class User {
 
 
 	/**
-	 * Sanitizes the array
+	 * Sanitizes the given array
 	 * 
 	 * @param	array	All values to be sanitized
 	 * @return	array	Sanitized array
@@ -102,13 +108,18 @@ class User {
 
 
 
+
+
+
+
+
 	/**
-	 * Checks the user for any duplicate values
+	 * Checks the user for any duplicate values in the database
 	 * 
-	 * @return	bool	false if no errors are found
+	 * @return	bool	False if no errors are found
 	 * @return	array	[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates() : mixed {
+	private function hasDuplicates() {
 
 		// TODO
 
@@ -123,23 +134,13 @@ class User {
 
 
 
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * Sets the account status, both the integer and the text value
 	 * 
 	 * @param	int		The account status
 	 * @return	array	The account status in integer and text form
 	 */
-	private static function setAccountStatus(int $status) : array {
+	private function setAccountStatus(int $status) : array {
 		
 		switch($status) {
 			case 1:
@@ -163,7 +164,7 @@ class User {
 	/**
 	 * Set the connection for the user object
 	 * 
-	 * @param		mysqli		connection
+	 * @param		mysqli		The connection with the database
 	 */
 	public static function setConnection(mysqli $conn) {
 		self::$conn = $conn;
@@ -173,10 +174,15 @@ class User {
 
 
 
+
+
+
+
+
 	/**
 	 * Create the user with the given values
-	 * @param		array		the values to create the user with
-	 * @return		bool		whether it was successful or not
+	 * @param		array		The values to create the user with
+	 * @return		User		The user that was created
 	 */
 	public static function createUser(array $values) : User {
 
@@ -226,10 +232,15 @@ class User {
 
 
 
+
+
+
+
+
 	/**
 	 * Get all the users
 	 * 
-	 * @return	array	of all users in User objects
+	 * @return	array	All users as User objects
 	 */
 	public static function getAll() : array {
 
@@ -269,9 +280,9 @@ class User {
 	/**
 	 * Get all the users with the given ID
 	 * 
-	 * @param	int		the user ID to search for
-	 * @return	null	if the user was not found
-	 * @return	User	the user that was found
+	 * @param	int		The user ID to search for
+	 * @return	null	If the user was not found
+	 * @return	User	The user that was found
 	 */
 	public static function getByID(int $userID) : ?User {
 
@@ -312,9 +323,9 @@ class User {
 	/**
 	 * Get all the users by the given username
 	 * 
-	 * @param	string	the username to search for
-	 * @return	null	if the user was not found
-	 * @return	User	the user that was found
+	 * @param	string	The username to search for
+	 * @return	null	If the user was not found
+	 * @return	User	The user that was found
 	 */
 	public static function getByUsername(string $username) : ?User {
 
@@ -355,9 +366,9 @@ class User {
 	/**
 	 * Get all the users by the given email address
 	 * 
-	 * @param	string	the email address to search for
-	 * @return	null	if the user was not found
-	 * @param	User	the user that was found
+	 * @param	string	The email address to search for
+	 * @return	null	If the user was not found
+	 * @param	User	The user that was found
 	 */
 	public static function getByEmailAddress(string $emailAddress) : ?User {
 		// TODO
