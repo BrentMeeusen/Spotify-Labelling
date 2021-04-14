@@ -47,9 +47,7 @@ else {
 	$res = User::getAll();
 }
 
-// TODO: properly return the results
-print(json_encode(["Result" => $res]));
-
-// ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "result" => RESULT_HERE ]);
+// Properly return the results
+ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "data" => $res ]);
 
 ?>
