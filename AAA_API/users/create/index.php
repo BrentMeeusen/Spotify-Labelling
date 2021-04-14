@@ -31,16 +31,14 @@ $payload = JSONWebToken::getPayload($cookieJWT);
 
 
 
+// Check whether all required fields are filled in
+if($_POST["FirstName"] === NULL || $_POST["LastName"] === NULL || $_POST["Username"] === NULL || $_POST["Password"] === NULL || $_POST["EmailAddress"] === NULL) {
+	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
+}
+
+
 // Set values of the payload
 $values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
-
-// TODO: If the payload doesn't contain any of the required values, return an error
-// foreach($values as $key => $val) {
-// 	if($_POST["FirstName"] === NULL || $_POST["LastName"] === NULL || ...) {
-// 		ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
-// 	}
-// }
-
 foreach($_POST as $key => $value) {
 	$values[$key] = $value;
 }
