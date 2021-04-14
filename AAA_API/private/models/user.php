@@ -312,9 +312,37 @@ class User {
 	 * Get all the users by the given username
 	 * 
 	 * @param	string	the username to search for
+	 * @return	User	the user that was found
 	 */
-	public static function getByUsername(string $username) : array {
-		// TODO
+	public static function getByUsername(string $username) : User {
+
+		// Prepare the statement
+		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE Username = ?;");
+
+		// Sanitize the user ID that is requested
+		$username = self::sanitizeArray([$username])[0];
+
+		// Insert the ID into the statement
+		$stmt->bind_param("s", $username);
+
+		// Run the query and get the result if nothing went wrong
+		$stmt->execute();
+		
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
+		}
+		$res = $stmt->get_result();
+
+		// If there are no rows, return a 404
+		if($res->num_rows === 0) {
+			ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
+		}
+
+		// Create a user
+		$user = User::construct($res->fetch_assoc());
+
+		// Return the user
+		return $user;
 	}
 
 
