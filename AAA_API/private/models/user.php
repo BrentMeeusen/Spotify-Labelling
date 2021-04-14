@@ -262,7 +262,7 @@ class User {
 
 	}
 
-	
+
 
 
 
@@ -270,8 +270,7 @@ class User {
 	 * Get all the users with the given ID
 	 * 
 	 * @param	int		the user ID to search for
-	 * @return	User	if the user was found
-	 * @return	null	if the user wasn't found
+	 * @return	User	the user that was found
 	 */
 	public static function getByID(int $userID) : User {
 
