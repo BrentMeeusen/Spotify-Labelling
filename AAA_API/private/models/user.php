@@ -223,8 +223,10 @@ class User {
 	 * Get all the users by the given ID
 	 * 
 	 * @param	int		the user ID to search for
+	 * @return	User	if the user was found
+	 * @return	null	if the user wasn't found
 	 */
-	public static function getByID(int $userID) : User {
+	public static function getByID(int $userID) : ?User {
 
 		// Prepare the statement
 		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
@@ -235,13 +237,15 @@ class User {
 		// Insert the ID into the statement
 		$stmt->bind_param("i", $userID);
 
-		// Run the query and print the result
-		$res = $stmt->execute();
+		// Run the query
+		$stmt->execute();
+		$res = $stmt->get_result();
 
-		print(json_encode(["Result" => $res]));
-		exit();
+		// Create a user
+		$user = User::construct($res->fetch_assoc());
 
-
+		// Return the user
+		return $user;
 
 	}
 
