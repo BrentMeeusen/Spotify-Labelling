@@ -66,53 +66,12 @@ class User {
 
 
 
+	
 
 
 
 
-
-
-	/**
-	 * Sanitizes the inputs
-	 */
-	private function sanitizeInputs() : void {
-
-		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
-		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
-		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
-		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
-
-	}
-
-
-
-
-
-	/**
-	 * Sanitizes the given array
-	 * 
-	 * @param	array	All values to be sanitized
-	 * @return	array	Sanitized array
-	 */
-	private static function sanitizeArray(array $inputs) : array {
-
-		$sanitized = [];
-		foreach($inputs as $input) {
-			array_push($sanitized, htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $input)))));
-		}
-		return $sanitized;
-
-	}
-
-
-
-
-
-
-
-
-
-
+	
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
@@ -156,6 +115,52 @@ class User {
 		return ["status" => $status, "status-text" => $text];
 
 	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Sanitizes the inputs
+	 */
+	private function sanitizeInputs() : void {
+
+		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
+		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
+		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
+		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
+
+	}
+
+
+
+
+
+	/**
+	 * Sanitizes the given array
+	 * 
+	 * @param	array	All values to be sanitized
+	 * @return	array	Sanitized array
+	 */
+	private static function sanitizeArray(array $inputs) : array {
+
+		$sanitized = [];
+		foreach($inputs as $input) {
+			array_push($sanitized, htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $input)))));
+		}
+		return $sanitized;
+
+	}
+
+
+
+
+
 
 
 
