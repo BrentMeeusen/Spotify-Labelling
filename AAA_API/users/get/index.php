@@ -31,7 +31,6 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 
 
-
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
 User::setConnection(Database::connect());
 if(isset($_GET["id"])) {
