@@ -34,19 +34,20 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
 if(isset($_GET["id"])) {
-	User::getByID($_GET["id"]);
+	$res = User::getByID($_GET["id"]);
 }
 else if(isset($_GET["username"])) {
-	User::getByUsername($_GET["username"]);
+	$res = User::getByUsername($_GET["username"]);
 }
 else if(isset($_GET["email-address"])) {
-	User::getByEmailAddress($_GET["email-address"]);
+	$res = User::getByEmailAddress($_GET["email-address"]);
 }
 else {
-	user::getAll();
+	$res = User::getAll();
 }
 
 // TODO: properly return the results
+print(json_encode(["Result" => $res]));
 
 // ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "result" => RESULT_HERE ]);
 
