@@ -35,13 +35,13 @@ if(!isset($payload->users->get) || $payload->users->get !== TRUE) {
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
 User::setConnection(Database::connect());
 if(isset($_GET["id"])) {
-	$res = User::getByID($_GET["id"]);
+	$res = User::getByID(intval($_GET["id"]));
 }
 else if(isset($_GET["username"])) {
-	$res = User::getByUsername($_GET["username"]);
+	$res = User::getByUsername(strval($_GET["username"]));
 }
 else if(isset($_GET["email-address"])) {
-	$res = User::getByEmailAddress($_GET["email-address"]);
+	$res = User::getByEmailAddress(strval($_GET["email-address"]));
 }
 else {
 	$res = User::getAll();
