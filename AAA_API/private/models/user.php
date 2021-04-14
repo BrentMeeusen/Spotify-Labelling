@@ -244,7 +244,7 @@ class User {
 	 * @return	User	if the user was found
 	 * @return	null	if the user wasn't found
 	 */
-	public static function getByID(int $userID) : ?User {
+	public static function getByID(int $userID) : User {
 
 		// Prepare the statement
 		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
@@ -258,6 +258,11 @@ class User {
 		// Run the query
 		$stmt->execute();
 		$res = $stmt->get_result();
+
+		// If there are no rows, return a 404
+		if($res->num_rows === 0) {
+			ApiResponse::httpResponse(404, ["message" => "The requested user could not be found"]);
+		}
 
 		// Create a user
 		$user = User::construct($res->fetch_assoc());
