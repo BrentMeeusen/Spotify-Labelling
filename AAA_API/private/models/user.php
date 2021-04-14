@@ -353,8 +353,9 @@ class User {
 	 * Get all the users by the given email address
 	 * 
 	 * @param	string	the email address to search for
+	 * @param	User	the user that was found
 	 */
-	public static function getByEmailAddress(string $emailAddress) : array {
+	public static function getByEmailAddress(string $emailAddress) : User {
 		// TODO
 	}
 
