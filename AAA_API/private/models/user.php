@@ -255,13 +255,17 @@ class User {
 		// Insert the ID into the statement
 		$stmt->bind_param("i", $userID);
 
-		// Run the query
+		// Run the query and get the result if nothing went wrong
 		$stmt->execute();
+		
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
+		}
 		$res = $stmt->get_result();
 
 		// If there are no rows, return a 404
 		if($res->num_rows === 0) {
-			ApiResponse::httpResponse(404, ["message" => "The requested user could not be found"]);
+			ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
 		}
 
 		// Create a user
