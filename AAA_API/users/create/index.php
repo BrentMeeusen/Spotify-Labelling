@@ -36,7 +36,6 @@ if($_POST["FirstName"] === NULL || $_POST["LastName"] === NULL || $_POST["Userna
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
-
 // Set values of the payload
 $values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
 foreach($_POST as $key => $value) {
