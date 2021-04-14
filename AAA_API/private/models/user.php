@@ -30,7 +30,7 @@ class User {
 	 * @param	string	Email address
 	 * @param	int		Account status
 	 */
-	public function __construct($firstName, $lastName, $username, $password, $emailAddress, $accountStatus) {
+	public function __construct(string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus) {
 
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
@@ -42,6 +42,19 @@ class User {
 		$this->accountStatus = $status["status"];
 		$this->accountStatusText = $status["status-text"];
 
+	}
+
+
+
+
+
+	/**
+	 * User constructor when the data comes from the database
+	 * 
+	 * @param	array	An associative array with the database values
+	 */
+	public static function constructor(array $values) : User {
+		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
 	}
 
 
