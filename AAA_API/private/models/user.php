@@ -56,7 +56,7 @@ class User {
 	public static function construct(array $values) : User {
 
 		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
-		$user->password = NULL;
+		$user->password = "";
 		$user->id = $values["ID"];
 		return $user;
 
