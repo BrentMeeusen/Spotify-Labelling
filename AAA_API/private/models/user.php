@@ -54,7 +54,12 @@ class User {
 	 * @param	array	An associative array with the database values
 	 */
 	public static function constructor(array $values) : User {
+
 		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
+		$user->password = NULL;
+		$user->id = $values["ID"];
+		return $user;
+		
 	}
 
 
