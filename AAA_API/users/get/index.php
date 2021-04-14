@@ -46,6 +46,10 @@ else {
 	$res = User::getAll();
 }
 
+if($res === NULL) {
+	ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
+}
+
 // Properly return the results
 ApiResponse::httpResponse(200, [ "message" => "User found.", "data" => $res ]);
 

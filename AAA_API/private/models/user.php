@@ -270,9 +270,10 @@ class User {
 	 * Get all the users with the given ID
 	 * 
 	 * @param	int		the user ID to search for
+	 * @return	null	if the user was not found
 	 * @return	User	the user that was found
 	 */
-	public static function getByID(int $userID) : User {
+	public static function getByID(int $userID) : ?User {
 
 		// Prepare the statement
 		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
@@ -293,7 +294,7 @@ class User {
 
 		// If there are no rows, return a 404
 		if($res->num_rows === 0) {
-			ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
+			return NULL;
 		}
 
 		// Create a user
@@ -312,9 +313,10 @@ class User {
 	 * Get all the users by the given username
 	 * 
 	 * @param	string	the username to search for
+	 * @return	null	if the user was not found
 	 * @return	User	the user that was found
 	 */
-	public static function getByUsername(string $username) : User {
+	public static function getByUsername(string $username) : ?User {
 
 		// Prepare the statement
 		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE Username = ?;");
@@ -335,7 +337,7 @@ class User {
 
 		// If there are no rows, return a 404
 		if($res->num_rows === 0) {
-			ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
+			return NULL;
 		}
 
 		// Create a user
@@ -343,6 +345,7 @@ class User {
 
 		// Return the user
 		return $user;
+
 	}
 
 
@@ -353,9 +356,10 @@ class User {
 	 * Get all the users by the given email address
 	 * 
 	 * @param	string	the email address to search for
+	 * @return	null	if the user was not found
 	 * @param	User	the user that was found
 	 */
-	public static function getByEmailAddress(string $emailAddress) : User {
+	public static function getByEmailAddress(string $emailAddress) : ?User {
 		// TODO
 	}
 
