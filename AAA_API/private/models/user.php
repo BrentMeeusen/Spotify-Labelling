@@ -226,7 +226,22 @@ class User {
 	 */
 	public static function getByID(int $userID) : User {
 
+		// Prepare the statement
 		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
+
+		// Sanitize the user ID that is requested
+		$userID = self::sanitizeArray([$userID])[0];
+
+		// Insert the ID into the statement
+		$stmt->bind_param("i", $userID);
+
+		// Run the query and print the result
+		$res = $stmt->execute();
+
+		print(json_encode(["Result" => $res]));
+		exit();
+
+
 
 	}
 
