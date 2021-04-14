@@ -65,6 +65,26 @@ class User {
 
 
 	/**
+	 * Sanitizes the array
+	 * 
+	 * @param	array	All values to be sanitized
+	 * @return	array	Sanitized array
+	 */
+	private static function sanitizeArray(array $inputs) : array {
+
+		$sanitized = [];
+		foreach($inputs as $input) {
+			array_push($sanitized, htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $input)))));
+		}
+		return $sanitized;
+
+	}
+
+
+
+
+
+	/**
 	 * Checks the user for any duplicate values
 	 * 
 	 * @return	bool	false if no errors are found
@@ -205,7 +225,9 @@ class User {
 	 * @param	int		the user ID to search for
 	 */
 	public static function getByID(int $userID) : User {
-		// TODO
+
+		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
+
 	}
 
 
