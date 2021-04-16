@@ -360,9 +360,14 @@ class User extends Table {
 		$stmt->bind_param("s", $email);
 		$res = Table::getResults($stmt);
 
-		print(json_encode(["STMT" => $stmt, "RESULT" => $res]));
+		// If no user is found, return NULL
+		if(count($res) === 0) {
+			return NULL;
+		}
 
-		return null;
+		// Return the found user in an object
+		return User::construct($res[0]);
+		
 	}
 
 
