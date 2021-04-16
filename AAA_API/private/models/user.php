@@ -227,8 +227,8 @@ class User extends Table {
 	 */
 	public static function getAll() : array {
 
-		$stmt = Table::prepare("SELECT * FROM USERS;");
-		$res = Table::getResults($stmt);
+		$stmt = self::prepare("SELECT * FROM USERS;");
+		$res = self::getResults($stmt);
 
 		// Return an array of Users
 		$users = [];
@@ -251,10 +251,10 @@ class User extends Table {
 	 */
 	public static function getByID(int $userID) : ?User {
 
-		$stmt = Table::prepare("SELECT * FROM USERS WHERE ID = ?;");
-		$userID = Table::sanitizeArray([$userID])[0];
+		$stmt = self::prepare("SELECT * FROM USERS WHERE ID = ?;");
+		$userID = self::sanitizeArray([$userID])[0];
 		$stmt->bind_param("s", $userID);
-		$res = Table::getResults($stmt);
+		$res = self::getResults($stmt);
 
 		// If no user is found, return NULL
 		if(count($res) === 0) {
@@ -279,10 +279,10 @@ class User extends Table {
 	 */
 	public static function getByUsername(string $username) : ?User {
 
-		$stmt = Table::prepare("SELECT * FROM USERS WHERE Username = ?;");
-		$username = Table::sanitizeArray([$username])[0];
+		$stmt = self::prepare("SELECT * FROM USERS WHERE Username = ?;");
+		$username = self::sanitizeArray([$username])[0];
 		$stmt->bind_param("s", $username);
-		$res = Table::getResults($stmt);
+		$res = self::getResults($stmt);
 
 		// If no user is found, return NULL
 		if(count($res) === 0) {
@@ -307,10 +307,10 @@ class User extends Table {
 	 */
 	public static function getByEmailAddress(string $emailAddress) : ?User {
 
-		$stmt = Table::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
-		$email = Table::sanitizeArray([$emailAddress])[0];
+		$stmt = self::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
+		$email = self::sanitizeArray([$emailAddress])[0];
 		$stmt->bind_param("s", $email);
-		$res = Table::getResults($stmt);
+		$res = self::getResults($stmt);
 
 		// If no user is found, return NULL
 		if(count($res) === 0) {

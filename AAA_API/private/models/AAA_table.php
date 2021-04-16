@@ -35,7 +35,7 @@ class Table {
 	 * @param	string			SQL to prepare
 	 * @return	mysqli_stmt		Statement result
 	 */
-	public static function prepare(string $SQL) : mysqli_stmt {
+	protected static function prepare(string $SQL) : mysqli_stmt {
 
 		$res = self::$conn->prepare($SQL);
 		if($res === FALSE) {
@@ -54,7 +54,7 @@ class Table {
 	 * @param	mysqli_stmt		The statement to find the results of
 	 * @return	array			The results found in an associative array
 	 */
-	public static function getResults(mysqli_stmt $statement) : array {
+	protected static function getResults(mysqli_stmt $statement) : array {
 		
 		// If the execution fails, return an error
 		$exec = $statement->execute();
