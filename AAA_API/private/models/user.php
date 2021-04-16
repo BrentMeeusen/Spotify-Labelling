@@ -354,10 +354,14 @@ class User extends Table {
 	 * @param	User	The user that was found
 	 */
 	public static function getByEmailAddress(string $emailAddress) : ?User {
-		// TODO
+
 		$stmt = Table::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
 		$email = Table::sanitizeArray([$emailAddress])[0];
-		print(json_encode(["STMT" => $stmt, "MAIL" => $email]));
+		$stmt->bind_param("s", $email);
+		$res = Table::getResult();
+
+		print(json_encode(["STMT" => $stmt, "RESULT" => $res]));
+
 		return null;
 	}
 
