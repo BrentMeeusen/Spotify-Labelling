@@ -10,6 +10,26 @@ class Table {
 
 
 	/**
+	 * Sanitizes the given array
+	 * 
+	 * @param	array	All values to be sanitized
+	 * @return	array	Sanitized array
+	 */
+	private static function sanitizeArray(array $inputs) : array {
+
+		$sanitized = [];
+		foreach($inputs as $input) {
+			array_push($sanitized, htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $input)))));
+		}
+		return $sanitized;
+
+	}
+
+
+
+
+
+	/**
 	 * Prepares an SQL statement
 	 * 
 	 * @param	string			SQL to prepare
