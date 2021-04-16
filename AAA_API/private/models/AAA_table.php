@@ -48,6 +48,28 @@ class Table {
 
 
 
+
+	/**
+	 * Executes the given statement
+	 * 
+	 * @param	mysqli_stmt		The statement to execute
+	 * @return	mysqli_stmt		The same statement, but executed
+	 */
+	protected static function execute(mysqli_stmt $statement) : mysqli_stmt {
+
+		// If the execution fails, return an error
+		if(!$statement->execute()) {
+			ApiResponse::httpResponse(500, ["error" => "The given statement could not be executed."]);
+		}
+
+		return $statement;
+
+	}
+
+
+
+
+
 	/**
 	 * Returns the results of a given statement
 	 * 
@@ -55,12 +77,8 @@ class Table {
 	 * @return	array			The results found in an associative array
 	 */
 	protected static function getResults(mysqli_stmt $statement) : array {
-		
-		// If the execution fails, return an error
-		$exec = $statement->execute();
-		if($exec === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "The given statement could not be executed."]);
-		}
+
+		$statement = self::execute($statement);
 
 		// If getting the results fails, return an error
 		$res = $statement->get_result();
