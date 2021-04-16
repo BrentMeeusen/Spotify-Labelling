@@ -227,33 +227,15 @@ class User extends Table {
 	 */
 	public static function getAll() : array {
 
-		// Prepare the statement
-		$stmt = self::$conn->prepare("SELECT * FROM USERS;");
+		$stmt = Table::prepare("SELECT * FROM USERS;");
+		$res = Table::getResults($stmt);
 
-		// Run the query and get the result if nothing went wrong
-		$stmt->execute();
-		
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
-		}
-		$res = $stmt->get_result();
-
-		// If there are no rows, return a 404
-		if($res->num_rows === 0) {
-			ApiResponse::httpResponse(404, ["error" => "No users were found."]);
-		}
-
-		// Create all users
-		$dbUsers = $res->fetch_all(1);
-
+		// Return an array of Users
 		$users = [];
-		foreach($dbUsers as $user) {
+		foreach($res as $user) {
 			array_push($users, User::construct($user));
 		}
-
-		// Return the user array
 		return $users;
-
 	}
 
 
@@ -269,33 +251,18 @@ class User extends Table {
 	 */
 	public static function getByID(int $userID) : ?User {
 
-		// Prepare the statement
-		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE ID = ?;");
+		$stmt = Table::prepare("SELECT * FROM USERS WHERE ID = ?;");
+		$userID = Table::sanitizeArray([$userID])[0];
+		$stmt->bind_param("s", $userID);
+		$res = Table::getResults($stmt);
 
-		// Sanitize the user ID that is requested
-		$userID = self::sanitizeArray([$userID])[0];
-
-		// Insert the ID into the statement
-		$stmt->bind_param("i", $userID);
-
-		// Run the query and get the result if nothing went wrong
-		$stmt->execute();
-		
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
-		}
-		$res = $stmt->get_result();
-
-		// If there are no rows, return a 404
-		if($res->num_rows === 0) {
+		// If no user is found, return NULL
+		if(count($res) === 0) {
 			return NULL;
 		}
 
-		// Create a user
-		$user = User::construct($res->fetch_assoc());
-
-		// Return the user
-		return $user;
+		// Create and return the found user as an object
+		return User::construct($res[0]);
 
 	}
 
@@ -312,33 +279,18 @@ class User extends Table {
 	 */
 	public static function getByUsername(string $username) : ?User {
 
-		// Prepare the statement
-		$stmt = self::$conn->prepare("SELECT * FROM USERS WHERE Username = ?;");
-
-		// Sanitize the user ID that is requested
-		$username = self::sanitizeArray([$username])[0];
-
-		// Insert the ID into the statement
+		$stmt = Table::prepare("SELECT * FROM USERS WHERE Username = ?;");
+		$username = Table::sanitizeArray([$username])[0];
 		$stmt->bind_param("s", $username);
+		$res = Table::getResults($stmt);
 
-		// Run the query and get the result if nothing went wrong
-		$stmt->execute();
-		
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst requesting the user."]);
-		}
-		$res = $stmt->get_result();
-
-		// If there are no rows, return a 404
-		if($res->num_rows === 0) {
+		// If no user is found, return NULL
+		if(count($res) === 0) {
 			return NULL;
 		}
 
-		// Create a user
-		$user = User::construct($res->fetch_assoc());
-
-		// Return the user
-		return $user;
+		// Create and return the found user as an object
+		return User::construct($res[0]);
 
 	}
 
@@ -365,9 +317,9 @@ class User extends Table {
 			return NULL;
 		}
 
-		// Return the found user in an object
+		// Create and return the found user as an object
 		return User::construct($res[0]);
-		
+
 	}
 
 
