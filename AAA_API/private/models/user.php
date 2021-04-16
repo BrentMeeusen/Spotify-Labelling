@@ -375,7 +375,9 @@ class User extends Table {
 	 */
 	public static function getByEmailAddress(string $emailAddress) : ?User {
 		// TODO
-		Table::prepare();
+		$stmt = Table::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
+		$email = Table::sanitizeArray([$emailAddress])[0];
+		print(json_encode(["STMT" => $stmt, "MAIL" => $email]));
 		return null;
 	}
 
