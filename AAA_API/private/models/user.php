@@ -81,7 +81,13 @@ class User extends Table {
 		// TODO
 
 		// Find user by username		=> results? true
+		$res = self::findByUsername($this->username);
+		if($res !== NULL) { return TRUE; }
+
 		// Find user by email address	=> results? true
+		$res = self::findByEmailAddress($this->emailAddress);
+		if($res !== NULL) { return TRUE; }
+
 		// Both no results? false
 		return FALSE;
 
