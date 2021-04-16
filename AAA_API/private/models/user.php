@@ -358,7 +358,7 @@ class User extends Table {
 		$stmt = Table::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
 		$email = Table::sanitizeArray([$emailAddress])[0];
 		$stmt->bind_param("s", $email);
-		$res = Table::getResult($stmt);
+		$res = Table::getResults($stmt);
 
 		print(json_encode(["STMT" => $stmt, "RESULT" => $res]));
 
