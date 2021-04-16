@@ -1,9 +1,9 @@
 <?php
 
-class User {
+class User extends Table {
 
 	// Initialise variables
-	public static mysqli $conn;
+	// public static mysqli $conn;
 
 	public int $id;
 	public string $firstName;

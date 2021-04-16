@@ -9,6 +9,7 @@ include_once("classes/api-response.php");
 include_once("classes/database.php");
 include_once("classes/jwt.php");
 
+include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
 
