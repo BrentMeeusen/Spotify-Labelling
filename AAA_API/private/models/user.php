@@ -375,6 +375,8 @@ class User extends Table {
 	 */
 	public static function getByEmailAddress(string $emailAddress) : ?User {
 		// TODO
+		Table::prepare();
+		return null;
 	}
 
 
