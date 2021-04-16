@@ -78,8 +78,6 @@ class User extends Table {
 	 */
 	private function hasDuplicates() {
 
-		// TODO
-
 		// Find user by username		=> results? true
 		$res = self::findByUsername($this->username);
 		if($res !== NULL) { 
