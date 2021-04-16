@@ -15,7 +15,7 @@ class Table {
 	 * @param	array	All values to be sanitized
 	 * @return	array	Sanitized array
 	 */
-	private static function sanitizeArray(array $inputs) : array {
+	protected static function sanitizeArray(array $inputs) : array {
 
 		$sanitized = [];
 		foreach($inputs as $input) {
