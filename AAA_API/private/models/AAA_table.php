@@ -36,11 +36,41 @@ class Table {
 	 * @return	mysqli_stmt		Statement result
 	 */
 	public static function prepare(string $SQL) : mysqli_stmt {
+
 		$res = self::$conn->prepare($SQL);
 		if($res === FALSE) {
 			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst preparing the statement."]);
 		}
 		return $res;
+
+	}
+
+
+
+
+	/**
+	 * Returns the results of a given statement
+	 * 
+	 * @param	mysqli_stmt		The statement to find the results of
+	 * @return	array			The results found in an associative array
+	 */
+	public static function getResults(mysqli_stmt $statement) : array {
+		
+		// If the execution fails, return an error
+		$exec = $statement->execute();
+		if($exec === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "The given statement could not be executed."]);
+		}
+
+		// If getting the results fails, return an error
+		$res = $statement->get_result();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "The statement encountered an unknown issue whilst fetching the records."]);
+		}
+
+		// Return the result in an associative array
+		return $res->fetch_all(1);
+
 	}
 
 }
