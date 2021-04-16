@@ -181,32 +181,18 @@ class User extends Table {
 
 
 		// Prepare SQL statement
-		$query = "INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
-					VALUES ( ?, ?, ?, ?, ?, ? );";
-		$stmt = self::$conn->prepare($query);
+		$stmt = self::prepare("INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
+		VALUES ( ?, ?, ?, ?, ?, ? );");
 
-		// If something went wrong whilst preparing, throw an error
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing the registration statement." ]);
-			exit();
-		}
-
-		
 		// Sanitize input and create password hash
 		$user->sanitizeInputs();
 		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
 		
-
 		// Insert input into SQL statement
 		$stmt->bind_param("sssssi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
 
-
 		// Execute SQL statement and return the result
-		$res = $stmt->execute();
-		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst registering." ]);
-		}
-
+		self::execute($stmt);
 		return $user;
 
 	}
