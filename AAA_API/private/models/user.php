@@ -82,11 +82,15 @@ class User extends Table {
 
 		// Find user by username		=> results? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL) { return TRUE; }
+		if($res !== NULL) { 
+			return ["key" => "a username", "value" => $res->username];
+		}
 
 		// Find user by email address	=> results? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL) { return TRUE; }
+		if($res !== NULL) {
+			return ["key" => "an email address", "value" => $res->emailAddress];
+		}
 
 		// Both no results? false
 		return FALSE;
