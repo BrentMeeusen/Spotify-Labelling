@@ -217,7 +217,7 @@ class User extends Table {
 	 * 
 	 * @return	array	All users as User objects
 	 */
-	public static function getAll() : array {
+	public static function findAll() : array {
 
 		$stmt = self::prepare("SELECT * FROM USERS;");
 		$res = self::getResults($stmt);
@@ -241,7 +241,7 @@ class User extends Table {
 	 * @return	null	If the user was not found
 	 * @return	User	The user that was found
 	 */
-	public static function getByID(int $userID) : ?User {
+	public static function findByID(int $userID) : ?User {
 
 		$stmt = self::prepare("SELECT * FROM USERS WHERE ID = ?;");
 		$userID = self::sanitizeArray([$userID])[0];
@@ -269,7 +269,7 @@ class User extends Table {
 	 * @return	null	If the user was not found
 	 * @return	User	The user that was found
 	 */
-	public static function getByUsername(string $username) : ?User {
+	public static function findByUsername(string $username) : ?User {
 
 		$stmt = self::prepare("SELECT * FROM USERS WHERE Username = ?;");
 		$username = self::sanitizeArray([$username])[0];
@@ -297,7 +297,7 @@ class User extends Table {
 	 * @return	null	If the user was not found
 	 * @param	User	The user that was found
 	 */
-	public static function getByEmailAddress(string $emailAddress) : ?User {
+	public static function findByEmailAddress(string $emailAddress) : ?User {
 
 		$stmt = self::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
 		$email = self::sanitizeArray([$emailAddress])[0];
