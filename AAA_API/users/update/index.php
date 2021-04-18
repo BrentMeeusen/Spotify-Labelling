@@ -31,7 +31,7 @@ if(isset($_GET["id"])) {
 
 	// Check whether the current user (JWT) is allowed to update another user (ID)
 	if(!isset($payload->users->update)) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
 	}
 	$updateID = $_GET["id"];
 
@@ -61,6 +61,11 @@ if($res === NULL) {
 }
 
 ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
+
+
+
+
+
 
 
 
