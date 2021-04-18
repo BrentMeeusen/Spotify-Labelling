@@ -47,7 +47,7 @@ else {
 }
 
 if($res === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "The requested user could not be found"]);
+	ApiResponse::httpResponse(404, ["error" => "The requested user could not be found."]);
 }
 
 // Properly return the results
