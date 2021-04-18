@@ -31,7 +31,7 @@ if(isset($_GET["id"])) {
 
 	// Check whether the current user (JWT) is allowed to update another user (ID)
 	if(!isset($payload->users->update)) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
+		// ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
 	}
 	$updateID = $_GET["id"];
 
@@ -52,23 +52,11 @@ else {
 
 // If the user isn't found, return an error
 User::setConnection(Database::connect());
-$res = User::findByID($updateID);
+$user = User::findByID($updateID);
 
-if($res === NULL) {
+if($user === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 }
-
-
-
-// If the user is found, update it
-User::updateUser($updateID, $res);
-
-ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
-
-
-
-
-
 
 
 
@@ -83,11 +71,11 @@ foreach($_POST as $key => $value) {
 	$values[$key] = $value;
 }
 
+// Update the user
+$res = User::updateUser($updateID, $user);
 
-
-// Create the entry in the user class
-User::setConnection(Database::connect());
-$res = User::createUser($values);
+// Properly return the results
+ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
 
 
 ?>
