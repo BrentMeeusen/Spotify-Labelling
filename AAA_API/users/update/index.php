@@ -51,9 +51,7 @@ else {
 
 
 // If the user isn't found, return an error
-User::setConnection(Database::connect());
 $user = User::findByID($updateID);
-
 if($user === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 }
