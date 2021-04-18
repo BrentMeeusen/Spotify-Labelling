@@ -48,6 +48,6 @@ foreach($_POST as $key => $value) {
 $res = User::createUser($values);
 
 // Check whether everything went right whilst adding to the database, set response headers and messages.
-ApiResponse::httpResponse(200, [ "message" => "Successfully registered!" ]);
+ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "data" => $res ]);
 
 ?>
