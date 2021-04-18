@@ -196,20 +196,20 @@ class User extends Table {
 	 * Updates the user with the given ID
 	 * 
 	 * @param	int		ID of the user to update
-	 * @param	User	User object to update
+	 * @param	array	User object to update
 	 * @return	User	The updated user
 	 */
-	public static function updateUser(int $id, User $values) : User {
+	public static function updateUser(int $id, array $values) : User {
 
 		// Get the current user
 		$user = self::findByID($id);
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
-			$user["key"] = $value;
+			$user->{lcfirst($key)} = $value;
 		}
 
-		print(json_encode($user));
+		print(json_encode(["VALUES" => $values, "USER" => $user]));
 		exit();
 
 	}
