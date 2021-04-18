@@ -55,7 +55,6 @@ class User extends Table {
 	public static function construct(array $values) : User {
 
 		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
-		$user->password = "";
 		$user->id = $values["ID"];
 		return $user;
 
@@ -64,7 +63,7 @@ class User extends Table {
 
 
 
-	
+
 
 
 
@@ -73,20 +72,21 @@ class User extends Table {
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
+	 * @param	User	An override user that is an exception instead of self
 	 * @return	bool	False if no errors are found
 	 * @return	array	[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates() {
+	private function hasDuplicates(User $user = NULL) {
 
-		// Find user by username		=> results? true
+		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL) { 
+		if($res !== NULL && !$res->equals($this)) { 
 			return ["key" => "a username", "value" => $res->username];
 		}
 
-		// Find user by email address	=> results? true
+		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL) {
+		if($res !== NULL && !$res->equals($this)) {
 			return ["key" => "an email address", "value" => $res->emailAddress];
 		}
 
@@ -94,6 +94,35 @@ class User extends Table {
 		return FALSE;
 
 	}
+
+
+
+
+	
+	/**
+	 * Checks whether the found duplicate is the current user
+	 * 
+	 * @param	User	The found user
+	 * @param	User	The exception user if set
+	 * @return	bool	True if it is this user, false if it is not
+	 */
+	private function duplicateIsSelf(User $user, User $exception = NULL) {
+
+		if(!isset($this->id)) {
+			return FALSE;
+		}
+		if($exception === NULL) {
+			if($user->username === $this->username) {
+				return TRUE;
+			}
+		}
+
+	}
+
+
+
+
+
 
 
 
@@ -202,15 +231,44 @@ class User extends Table {
 	public static function updateUser(int $id, array $values) : User {
 
 		// Get the current user
-		$user = self::findByID($id);
+		$currentUser = self::findByID($id);
+		$newUser = self::findByID($id);
+		if($currentUser === NULL) {
+			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
+		}
+
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
-			$user->{lcfirst($key)} = $value;
+			$newUser->{lcfirst($key)} = $value;
 		}
 
-		print(json_encode(["VALUES" => $values, "USER" => $user]));
-		exit();
+		// Check for duplicate values that should be unique BUT don't error on the current user
+		$dupes = $newUser->hasDuplicates($currentUser);
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
+		
+		
+		
+		// Prepare SQL statement
+		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ? WHERE ID = ?;");
+
+		// Sanitize input
+		$user->sanitizeInputs();
+
+		// Hash password if it is updated
+		if(array_key_exists("Password", $values)) {
+			$user->password = password_hash($user->password, PASSWORD_DEFAULT);
+		}
+
+		// Insert input into SQL statement
+		$stmt->bind_param("sssssii", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $id);
+
+		// Execute SQL statement and return the result
+		self::execute($stmt);
+		return $user;
+
 
 	}
 
