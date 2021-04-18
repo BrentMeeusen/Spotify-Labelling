@@ -72,21 +72,21 @@ class User extends Table {
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
-	 * @param	User	An override user that is an exception instead of self
+	 * @param	int		User ID that may not be unique (because it's this entry)
 	 * @return	bool	False if no errors are found
 	 * @return	array	[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates(User $user = NULL) {
+	private function hasDuplicates(int $userID = NULL) {
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL) { 
+		if($res !== NULL && $res->id !== $userID) { 
 			return ["key" => "a username", "value" => $res->username];
 		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL) {
+		if($res !== NULL && $res->id !== $userID) {
 			return ["key" => "an email address", "value" => $res->emailAddress];
 		}
 
@@ -207,20 +207,19 @@ class User extends Table {
 	public static function updateUser(int $id, array $values) : User {
 
 		// Get the current user
-		$currentUser = self::findByID($id);
-		$newUser = self::findByID($id);
-		if($currentUser === NULL) {
+		$user = self::findByID($id);
+		if($user === NULL) {
 			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 		}
 
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
-			$newUser->{lcfirst($key)} = $value;
+			$user->{lcfirst($key)} = $value;
 		}
 
 		// Check for duplicate values that should be unique BUT don't error on the current user
-		$dupes = $newUser->hasDuplicates($currentUser);
+		$dupes = $user->hasDuplicates($id);
 		if($dupes !== FALSE) {
 			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
 		}
