@@ -60,19 +60,14 @@ if($user === NULL) {
 
 
 
-// Check whether all required fields are filled in
-if(!isset($_POST["FirstName"])|| !isset($_POST["LastName"]) || !isset($_POST["Username"]) || !isset($_POST["Password"]) || !isset($_POST["EmailAddress"])) {
-	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
-}
-
 // Set values of the payload
-$values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
+$values = [];
 foreach($_POST as $key => $value) {
 	$values[$key] = $value;
 }
 
 // Update the user
-$res = User::updateUser($updateID, $user);
+$res = User::updateUser($updateID, $values);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
