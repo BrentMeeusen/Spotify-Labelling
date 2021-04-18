@@ -154,6 +154,7 @@ class User extends Table {
 
 	/**
 	 * Create the user with the given values
+	 * 
 	 * @param		array		The values to create the user with
 	 * @return		User		The user that was created
 	 */
@@ -184,6 +185,32 @@ class User extends Table {
 		// Execute SQL statement and return the result
 		self::execute($stmt);
 		return $user;
+
+	}
+
+
+
+
+
+	/**
+	 * Updates the user with the given ID
+	 * 
+	 * @param	int		ID of the user to update
+	 * @param	User	User object to update
+	 * @return	User	The updated user
+	 */
+	public static function updateUser(int $id, User $values) : User {
+
+		// Get the current user
+		$user = self::findByID($id);
+
+		// Update its values with the newest values
+		foreach($values as $key => $value) {
+			$user["key"] = $value;
+		}
+
+		print(json_encode($user));
+		exit();
 
 	}
 
