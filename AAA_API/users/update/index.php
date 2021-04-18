@@ -61,7 +61,7 @@ if($user === NULL) {
 
 
 // Check whether all required fields are filled in
-if($_POST["FirstName"] === NULL || $_POST["LastName"] === NULL || $_POST["Username"] === NULL || $_POST["Password"] === NULL || $_POST["EmailAddress"] === NULL) {
+if(!isset($_POST["FirstName"])|| !isset($_POST["LastName"]) || !isset($_POST["Username"]) || !isset($_POST["Password"]) || !isset($_POST["EmailAddress"])) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
