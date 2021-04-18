@@ -7,6 +7,9 @@ if($_SERVER["REQUEST_METHOD"] !== "POST") {
 	ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 }
 
+// Set the database connection
+Table::setConnection(Database::connect());
+
 
 
 // Get the cookie JWT and the Authorization header JWT
@@ -45,7 +48,6 @@ foreach($_POST as $key => $value) {
 
 
 // Create the entry in the user class
-User::setConnection(Database::connect());
 $res = User::createUser($values);
 
 // Check whether everything went right whilst adding to the database, set response headers and messages.

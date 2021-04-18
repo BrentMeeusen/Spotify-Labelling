@@ -153,24 +153,6 @@ class User extends Table {
 
 
 	/**
-	 * Set the connection for the user object
-	 * 
-	 * @param		mysqli		The connection with the database
-	 */
-	public static function setConnection(mysqli $conn) {
-		self::$conn = $conn;
-	}
-
-
-
-
-
-
-
-
-
-
-	/**
 	 * Create the user with the given values
 	 * @param		array		The values to create the user with
 	 * @return		User		The user that was created

@@ -9,6 +9,29 @@ class Table {
 
 
 
+
+
+
+
+
+	/**
+	 * Set the connection for the user object
+	 * 
+	 * @param		mysqli		The connection with the database
+	 */
+	public static function setConnection(mysqli $conn) {
+		self::$conn = $conn;
+	}
+
+
+
+
+
+
+
+
+
+	
 	/**
 	 * Sanitizes the given array
 	 * 
