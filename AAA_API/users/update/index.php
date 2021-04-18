@@ -26,14 +26,35 @@ $payload = JSONWebToken::getPayload($cookieJWT);
 
 
 
-// If the payload doesn't contain "user.id", return an error
-if(!isset($payload->user->id)) {
-	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
+// If the ID is set, update ID
+if(isset($_GET["id"])) {
+
+	// Check whether the current user (JWT) is allowed to update another user (ID)
+	if(!isset($payload->users->update)) {
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
+	}
+	$updateID = $_GET["id"];
+
 }
+
+// If the ID is not set, update self
+else {
+
+	// If the payload doesn't contain "user.id", return an error
+	if(!isset($payload->user->id)) {
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
+	}
+	$updateID = $payload->user->id;
+
+}
+
+
 
 // If the user isn't found, return an error
 User::setConnection(Database::connect());
-$res = User::findByID($payload->user->id);
+$res = User::findByID($updateID);
+
+
 
 if($res === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
