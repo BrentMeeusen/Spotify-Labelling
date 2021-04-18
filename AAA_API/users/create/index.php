@@ -7,9 +7,6 @@ if($_SERVER["REQUEST_METHOD"] !== "POST") {
 	ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 }
 
-// Set the database connection
-Table::setConnection(Database::connect());
-
 
 
 // Get the cookie JWT and the Authorization header JWT

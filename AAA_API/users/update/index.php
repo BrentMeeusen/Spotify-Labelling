@@ -54,11 +54,14 @@ else {
 User::setConnection(Database::connect());
 $res = User::findByID($updateID);
 
-
-
 if($res === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 }
+
+
+
+// If the user is found, update it
+User::updateUser($updateID, $res);
 
 ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
 

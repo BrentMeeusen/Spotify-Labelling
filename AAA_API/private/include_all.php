@@ -13,4 +13,7 @@ include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
 
+// Set the database connection
+Table::setConnection(Database::connect());
+
 ?>
