@@ -9,7 +9,7 @@ $token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 24 * 6
 
 // Gets a token that allows getting users
 if(isset($_GET["TESTING"])) {
-	$token = JSONWebToken::createToken(["users" => ["get" => TRUE], "labels" => FALSE ], 24 * 60);
+	$token = JSONWebToken::createToken(["user" => ["id" => 1], "users" => ["get" => TRUE], "labels" => FALSE ], 24 * 60);
 }
 
 
