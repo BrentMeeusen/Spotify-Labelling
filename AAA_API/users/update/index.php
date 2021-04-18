@@ -68,7 +68,7 @@ foreach($_POST as $key => $value) {
 $res = User::updateUser($updateID, $values);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "Found user.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "Updated user.", "data" => $res]);
 
 
 ?>
