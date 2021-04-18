@@ -80,42 +80,18 @@ class User extends Table {
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL && !$res->equals($this)) { 
+		if($res !== NULL) { 
 			return ["key" => "a username", "value" => $res->username];
 		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL && !$res->equals($this)) {
+		if($res !== NULL) {
 			return ["key" => "an email address", "value" => $res->emailAddress];
 		}
 
 		// Both no results? false
 		return FALSE;
-
-	}
-
-
-
-
-	
-	/**
-	 * Checks whether the found duplicate is the current user
-	 * 
-	 * @param	User	The found user
-	 * @param	User	The exception user if set
-	 * @return	bool	True if it is this user, false if it is not
-	 */
-	private function duplicateIsSelf(User $user, User $exception = NULL) {
-
-		if(!isset($this->id)) {
-			return FALSE;
-		}
-		if($exception === NULL) {
-			if($user->username === $this->username) {
-				return TRUE;
-			}
-		}
 
 	}
 
