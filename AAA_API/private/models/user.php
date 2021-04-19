@@ -164,7 +164,7 @@ class User extends Table {
 	 * @param	string	User password
 	 * @return	User	The user found with the given credentials
 	 */
-	public static function login(string $identifier, string $password) : ?User {
+	public static function login(string $identifier, string $password) : User {
 
 		// Find the user by username and by email if necessary
 		$user = self::findByUsername($identifier);
@@ -175,8 +175,14 @@ class User extends Table {
 			ApiResponse::httpResponse(400, ["error" => "Login credentials are incorrect."]);
 		}
 
-		print(json_encode($user));
-		exit();
+		// If a user is found, check whether the password is correct
+		$passCheck = password_verify($password, $user->password);
+		if($passCheck !== TRUE) {
+			ApiResponse::httpResponse(400, ["error" => "Login credentials are incorrect."]);
+		}
+
+		// If the password is correct, return the user
+		return $user;
 
 	}
 
