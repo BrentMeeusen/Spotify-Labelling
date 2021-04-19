@@ -30,7 +30,7 @@ $payload = JSONWebToken::getPayload($cookieJWT);
 if(isset($_GET["id"])) {
 
 	// Check whether the current user (JWT) is allowed to update another user (ID)
-	if(!isset($payload->users->update)) {
+	if(!isset($payload->rights->users->update) || $payload->rights->users->update !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
 	}
 	$updateID = $_GET["id"];
@@ -41,7 +41,7 @@ if(isset($_GET["id"])) {
 else {
 
 	// If the payload doesn't contain "user.id", return an error
-	if(!isset($payload->user->id)) {
+	if(!isset($payload->user->id) || !isset($payload->rights->user->update) || $payload->rights->user->update !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
 	}
 	$updateID = $payload->user->id;

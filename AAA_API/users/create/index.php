@@ -25,7 +25,7 @@ JSONWebToken::validateToken($cookieJWT);
 $payload = JSONWebToken::getPayload($cookieJWT);
 
 // If the payload doesn't contain "register", return an error
-if(!isset($payload->register) || $payload->register !== TRUE) {
+if(!isset($payload->rights->register) || $payload->rights->register !== TRUE) {
 	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to register an account."]);
 }
 
