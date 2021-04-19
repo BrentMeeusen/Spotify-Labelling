@@ -26,7 +26,7 @@ RewriteRule		api/v1/login							jwt/generate/?login=true	[L,QSA]
 RewriteRule		api/v1/logout							jwt/generate/?logout=true	[L,QSA]
 
 ############	api/v1/jwt/generate						jwt/generate/
-RewriteRule		api/v1/jwt/generate						jwt/generate/				[L,QSA]
+RewriteRule		api/v1/jwt/generate						jwt/generate/?testing=true	[L,QSA]
 
 
 
