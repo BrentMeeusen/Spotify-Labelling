@@ -164,9 +164,10 @@ class User extends Table {
 	 * @param	string	User password
 	 * @return	User	The user found with the given credentials
 	 */
-	public static function login(string $usernameOrEmailAddress, string $password) : ?User {
+	public static function login(string $identifier, string $password) : ?User {
 
-		$user = findByUsername($usernameOrEmailAddress) || findByEmailAddress($usernameOrEmailAddress);
+		$user = self::findByUsername($identifier);
+		$user = ($user ? $user : self::findByEmailAddress($identifier));
 		print(json_encode($user));
 		exit();
 
