@@ -158,6 +158,29 @@ class User extends Table {
 
 
 	/**
+	 * Logs the user in 
+	 * 
+	 * @param	string	Either username or email address
+	 * @param	string	User password
+	 * @return	User	The user found with the given credentials
+	 */
+	public static function login(string $usernameOrEmailAddress, string $password) : ?User {
+
+		$user = findByUsername($usernameOrEmailAddress) || findByEmailAddress($usernameOrEmailAddress);
+		print(json_encode($user));
+		exit();
+
+	}
+
+
+
+
+
+
+
+
+
+	/**
 	 * Create the user with the given values
 	 * 
 	 * @param		array		The values to create the user with
