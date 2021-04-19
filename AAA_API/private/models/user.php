@@ -165,8 +165,12 @@ class User extends Table {
 	public function createPayload() : array {
 
 		// Every user is allowed to find all users, but not to find by ID, by email, or by username
-		$userActions = ["FIND" => ["ALL" => TRUE, "ID" => FALSE, "EMAIL" => FALSE, "USERNAME" => FALSE]];
-		return ["USERS" => $userActions];
+		$users = ["FIND" => ["ALL" => TRUE, "ID" => FALSE, "EMAIL" => FALSE, "USERNAME" => FALSE]];
+
+		return [
+			"USER" => ["ID" => $this->id, "FIRSTNAME" => $this->firstName, "LASTNAME" => $this->lastName, "EMAILADDRESS" => $this->emailAddress, "USERNAME" => $this->username, "ACCOUNTSTATUS" => $this->accountStatus, "ACCOUNTSTATUSTEXT" => $this->accountStatusText],
+			"RIGHTS" => ["USERS" => $users]
+		];
 
 	}
 
