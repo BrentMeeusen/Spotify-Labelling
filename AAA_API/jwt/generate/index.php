@@ -4,7 +4,7 @@ include_once("../../private/include_all.php");
 
 
 // If the user wants to login
-if(isset($_GET["login"]) && $_GET["login"] === TRUE) {
+if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 
 	// Try to log the user in
 	if(!isset($_POST["identifier"]) || !isset($_POST["password"])) {
@@ -25,7 +25,7 @@ if(isset($_GET["login"]) && $_GET["login"] === TRUE) {
 }
 
 // If the user wants to logout
-else if(isset($_GET["logout"]) && $_GET["logout"] === TRUE) {
+else if(isset($_GET["logout"]) && $_GET["logout"] == TRUE) {
 
 	// Clear cookie and return
 	setcookie("jwt", "", time() - 60);
