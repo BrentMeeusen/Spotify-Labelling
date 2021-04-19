@@ -7,7 +7,7 @@ include_once("../../private/include_all.php");
 if(isset($_GET["login"]) && $_GET["login"] === TRUE) {
 
 	// Try to log the user in
-	// $user = User::login();
+	$user = User::login();
 
 	// Create a payload
 	// $payload = User::createPayload();
