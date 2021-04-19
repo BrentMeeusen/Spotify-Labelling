@@ -7,7 +7,10 @@ include_once("../../private/include_all.php");
 if(isset($_GET["login"]) && $_GET["login"] === TRUE) {
 
 	// Try to log the user in
-	$user = User::login();
+	if(!isset($_POST["identifier"]) || !isset($_POST["password"])) {
+		ApiResponse::httpResponse(400, ["error" => "Not all fields were filled in."]);
+	}
+	$user = User::login($_POST["identifier"], $_POST["password"]);
 
 	// Create a payload
 	// $payload = User::createPayload();
