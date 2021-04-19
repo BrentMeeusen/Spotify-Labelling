@@ -8,7 +8,7 @@ $token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 24 * 6
 
 
 // Gets a token that allows getting users
-if(isset($_GET["TESTING"])) {
+if(isset($_GET["testing"]) && $_GET["testing"] === TRUE) {
 	$token = JSONWebToken::createToken(["user" => ["id" => 1], "users" => ["get" => TRUE], "labels" => FALSE ], 24 * 60);
 }
 
@@ -16,7 +16,7 @@ if(isset($_GET["TESTING"])) {
 
 // Clear cookie and store new cookie
 setcookie("jwt", "", time() - 60);
-setcookie("jwt", $token, time() + 15, "/", "", false, true);
+setcookie("jwt", $token, time() + 15, "/", "", FALSE, TRUE);
 
 // Return the cookie so that the client can store it and send it on a request
 ApiResponse::httpResponse(200, ["jwt" => $token, "message" => "Successfully created JSON Web Token."]);
