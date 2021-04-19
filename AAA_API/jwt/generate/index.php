@@ -2,6 +2,36 @@
 
 include_once("../../private/include_all.php");
 
+
+// If the user wants to login
+if(isset($_GET["login"]) && $_GET["login"] === TRUE) {
+
+	// Try to log the user in
+	// $user = User::login();
+
+	// Create a payload
+	// $payload = User::createPayload();
+
+	// TODO Get the rights the user has
+	
+	// TODO Add the rights the user has
+
+	// Create token
+	// $token = JSONWebToken::createToken($payload, 60);
+
+}
+
+// If the user wants to logout
+else if(isset($_GET["logout"]) && $_GET["logout"] === TRUE) {
+
+	// TODO Clear cookie
+
+}
+
+
+
+
+
 // Create token
 $token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 15);
 $token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 24 * 60); // Make the token expire after 24hrs (for testing purposes)
