@@ -164,8 +164,8 @@ class User extends Table {
 	 */
 	public function createPayload() : array {
 
-		// Every user is allowed to find all users, but not to find by ID, by email, or by username
-		$users = ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE]];
+		// Every user is allowed to find all users, but not to find by ID, by email, or by username, nor can he update or delete other accounts
+		$users = ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE];
 
 		// Every user is allowed to update and delete himself
 		$user = ["update" => TRUE, "delete" => TRUE];
