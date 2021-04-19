@@ -25,7 +25,11 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	// TODO Add the rights the user has
 
 	// Create token
-	// $token = JSONWebToken::createToken($payload, 60);
+	$token = JSONWebToken::createToken($payload, 60);
+	setcookie("jwt", $token, time() + 60, "/", "", FALSE, TRUE);
+	
+	// Return the cookie so that the client can store it and send it on a request
+	ApiResponse::httpResponse(200, ["jwt" => $token, "message" => "Successfully created JSON Web Token (login)."]);
 
 }
 
