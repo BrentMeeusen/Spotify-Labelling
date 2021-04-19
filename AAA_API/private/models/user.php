@@ -167,9 +167,12 @@ class User extends Table {
 		// Every user is allowed to find all users, but not to find by ID, by email, or by username
 		$users = ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE]];
 
+		// Every user is allowed to update and delete himself
+		$user = ["update" => TRUE, "delete" => TRUE];
+
 		return [
 			"user" => ["id" => $this->id, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
-			"rights" => ["users" => $users]
+			"rights" => ["users" => $users, "user" => $user]
 		];
 
 	}
