@@ -158,6 +158,33 @@ class User extends Table {
 
 
 	/**
+	 * Creates the payload given on the values in the user
+	 * 
+	 * @return	array	Associative array of what a user can do
+	 */
+	public function createPayload() : array {
+
+		// Every user is allowed to find all users, but not to find by ID, by email, or by username
+		$userActions = ["FIND" => ["ALL" => TRUE, "ID" => FALSE, "EMAIL" => FALSE, "USERNAME" => FALSE], []];
+		return ["USERS" => $userActions];
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Logs the user in 
 	 * 
 	 * @param	string	Either username or email address
