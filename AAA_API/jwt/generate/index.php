@@ -20,16 +20,17 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	// Create a payload
 	$payload = $user->createPayload();
 
-	// TODO Get the rights the user has
+
+
+	// TODO Get the additional rights the user has
 	
-	// TODO Add the rights the user has
+	// TODO Add the additional rights the user has
+
+
 
 	// Create token
-	$token = JSONWebToken::createToken($payload, 60);
-	setcookie("jwt", $token, time() + 60, "/", "", FALSE, TRUE);
-	
-	// Return the cookie so that the client can store it and send it on a request
-	ApiResponse::httpResponse(200, ["jwt" => $token, "message" => "Successfully created JSON Web Token (login)."]);
+	$timeValid = 60;
+	$token = JSONWebToken::createToken($payload, $timeValid);
 
 }
 
@@ -46,21 +47,18 @@ else if(isset($_GET["logout"]) && $_GET["logout"] == TRUE) {
 
 
 
-// Create token
-$token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 15);
-$token = JSONWebToken::createToken(["login" => TRUE, "register" => TRUE], 24 * 60); // Make the token expire after 24hrs (for testing purposes)
-
-
-// Gets a token that allows getting users
+// IF THE DEVELOPER NEEDS TO TEST AND WANTS A SPECIFIC TOKEN
 if(isset($_GET["testing"]) && $_GET["testing"] === TRUE) {
 	$token = JSONWebToken::createToken(["user" => ["id" => 1], "users" => ["get" => TRUE], "labels" => FALSE ], 24 * 60);
 }
 
 
 
-// Clear cookie and store new cookie
+
+
+// Clear old cookie and store new cookie
 setcookie("jwt", "", time() - 60);
-setcookie("jwt", $token, time() + 15, "/", "", FALSE, TRUE);
+setcookie("jwt", $token, time() + $timeValid, "/", "", FALSE, TRUE);
 
 // Return the cookie so that the client can store it and send it on a request
 ApiResponse::httpResponse(200, ["jwt" => $token, "message" => "Successfully created JSON Web Token."]);
