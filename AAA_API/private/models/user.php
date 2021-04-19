@@ -166,8 +166,15 @@ class User extends Table {
 	 */
 	public static function login(string $identifier, string $password) : ?User {
 
+		// Find the user by username and by email if necessary
 		$user = self::findByUsername($identifier);
 		$user = ($user ? $user : self::findByEmailAddress($identifier));
+
+		// If no user is found, throw an error
+		if($user === NULL) {
+			ApiResponse::httpResponse(400, ["error" => "Login credentials are incorrect."]);
+		}
+
 		print(json_encode($user));
 		exit();
 
