@@ -18,7 +18,7 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	$user = User::login($_POST["identifier"], $_POST["password"]);
 
 	// Create a payload
-	// $payload = User::createPayload();
+	$payload = $user->createPayload();
 
 	// TODO Get the rights the user has
 	
