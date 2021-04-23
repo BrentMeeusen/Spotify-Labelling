@@ -14,6 +14,9 @@ function changeTheme() {
 
 
 
+
+var IMAGES = [];
+
 /**
  * When the website loads
  */
@@ -46,8 +49,101 @@ window.addEventListener("load", () => {
 		});
 		
 	}
+
+
+	// Initialise lazy loading
+	const ALL_IMAGES = document.getElementsByClassName("lazy");
+    var neverLoadMax = (window.innerWidth < 992 ? true : false);
+
+	// Get all images
+    for(let i = 0; i < ALL_IMAGES.length; i++) {
+        if(neverLoadMax) { ALL_IMAGES[i].dataset.loadMax = "false"; }
+        IMAGES[i] = ALL_IMAGES[i];
+    }
+
+	// Load images
+    loadImages();
 	
 });
+
+
+
+
+
+
+/**
+ * When the user scrolls
+ */
+window.addEventListener("scroll", function() {
+    loadImages();
+});
+
+
+
+/**
+ * Loads all the images and stores them in a variable
+ */
+function loadImages() {
+
+    var d = document.documentElement;
+    var top = (window.pageYOffset || d.scrollTop)  - (d.clientTop || 0);
+    
+    for(let i = 0; i < IMAGES.length; i++) {
+        var imgTop = IMAGES[i].offsetTop;
+        if(imgTop < top + window.innerHeight  * 1.1) {
+            loadImage(IMAGES[i], i);
+        }
+    }
+
+}
+
+
+/**
+ * Loads the image in the correct size
+ * 
+ * @param {HTMLElement} img 
+ */
+function loadImage(img) {
+
+    if(img.dataset.loadedMedium && img.dataset.loadMax === "true") {
+        img.src = img.dataset.src + "." + img.dataset.extension;     // Load small image
+        img.addEventListener("load", function() {   // When image is loaded
+            img.dataset.loaded = true;        // Set loaded to true
+        });
+    }
+
+    else if(img.dataset.loadedSmall) {
+        img.src = img.dataset.src + "-medium." + img.dataset.extension;     // Load small image
+        img.addEventListener("load", function() {   // When image is loaded
+            if(img.dataset.loadedMedium) { return false; }
+            img.classList.remove("lazy--small");     // Remove blurry effect
+            img.dataset.loadedMedium = true;        // Set loadedMedium to true
+            if(img.dataset.loadMax === "true") {    // If it should load the biggest
+                loadImage(img);                     // Load the biggest
+            }
+        });
+    }
+
+    else if(!img.src) {
+        img.src = img.dataset.src + "-small." + img.dataset.extension;     // Load small image
+        img.addEventListener("load", function() {   // When image is loaded
+            if(img.dataset.loadedSmall) { return false; }
+            img.classList.add("lazy--small");    // Add blurry effect
+            img.dataset.loadedSmall = true;     // Set loadedSmall to true
+            loadImage(img);                     // Load again for loading the big image
+        });
+    }
+	
+}
+
+
+
+
+
+
+
+
+
 
 
 

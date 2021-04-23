@@ -113,3 +113,19 @@ p.footer a {
 }
 
 
+
+
+
+/**
+ * Lazy loading
+ */
+.lazy {
+    filter: blur(0);
+    transition: filter .25s linear;
+}
+
+.lazy--small {
+    filter: blur(8px);
+    transition-duration: 0s;
+}
+
