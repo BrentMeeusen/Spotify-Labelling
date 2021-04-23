@@ -91,7 +91,7 @@ function loadImages() {
     for(let i = 0; i < IMAGES.length; i++) {
         var imgTop = IMAGES[i].offsetTop;
         if(imgTop < top + window.innerHeight  * 1.1) {
-            loadImage(IMAGES[i], i);
+            loadImage(IMAGES[i]);
         }
     }
 
