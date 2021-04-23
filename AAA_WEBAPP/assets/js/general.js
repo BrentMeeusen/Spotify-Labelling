@@ -106,31 +106,31 @@ function loadImages() {
 function loadImage(img) {
 
     if(img.dataset.loadedMedium && img.dataset.loadMax === "true") {
-        img.src = img.dataset.src + "." + img.dataset.extension;     // Load small image
-        img.addEventListener("load", function() {   // When image is loaded
-            img.dataset.loaded = true;        // Set loaded to true
+        img.src = img.dataset.src + "." + img.dataset.extension;
+        img.addEventListener("load", function() {
+            img.dataset.loaded = true;
         });
     }
 
     else if(img.dataset.loadedSmall) {
-        img.src = img.dataset.src + "-medium." + img.dataset.extension;     // Load small image
-        img.addEventListener("load", function() {   // When image is loaded
+        img.src = img.dataset.src + "-medium." + img.dataset.extension;
+        img.addEventListener("load", function() {
             if(img.dataset.loadedMedium) { return false; }
-            img.classList.remove("lazy--small");     // Remove blurry effect
-            img.dataset.loadedMedium = true;        // Set loadedMedium to true
-            if(img.dataset.loadMax === "true") {    // If it should load the biggest
-                loadImage(img);                     // Load the biggest
+            img.classList.remove("lazy--small");
+            img.dataset.loadedMedium = true;
+            if(img.dataset.loadMax === "true") {
+                loadImage(img);
             }
         });
     }
 
     else if(!img.src) {
-        img.src = img.dataset.src + "-small." + img.dataset.extension;     // Load small image
-        img.addEventListener("load", function() {   // When image is loaded
+        img.src = img.dataset.src + "-small." + img.dataset.extension;
+        img.addEventListener("load", function() {
             if(img.dataset.loadedSmall) { return false; }
-            img.classList.add("lazy--small");    // Add blurry effect
-            img.dataset.loadedSmall = true;     // Set loadedSmall to true
-            loadImage(img);                     // Load again for loading the big image
+            img.classList.add("lazy--small");
+            img.dataset.loadedSmall = true;
+            loadImage(img);
         });
     }
 	
