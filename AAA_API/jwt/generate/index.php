@@ -48,8 +48,8 @@ else if(isset($_GET["logout"]) && $_GET["logout"] == TRUE) {
 
 
 // IF THE DEVELOPER NEEDS TO TEST AND WANTS A SPECIFIC TOKEN
-if(isset($_GET["testing"]) && $_GET["testing"] === TRUE) {
-	$token = JSONWebToken::createToken(["user" => ["id" => 1], "users" => ["get" => TRUE], "labels" => FALSE ], 24 * 60);
+if(isset($_GET["testing"]) && $_GET["testing"] == TRUE) {
+	$token = JSONWebToken::createToken(["rights" => ["login" => TRUE, "register" => TRUE]], 24 * 60);
 }
 
 
