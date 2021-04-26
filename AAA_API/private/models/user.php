@@ -362,7 +362,7 @@ class User extends Table {
 	 */
 	public static function findByPublicID(string $userID) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE ID = ?;");
+		$stmt = self::prepare("SELECT * FROM USERS WHERE PublicID = ?;");
 		$userID = self::sanitizeArray([$userID])[0];
 		$stmt->bind_param("s", $userID);
 		$res = self::getResults($stmt);
