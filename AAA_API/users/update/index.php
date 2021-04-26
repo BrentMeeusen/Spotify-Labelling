@@ -51,7 +51,7 @@ else {
 
 
 // If the user isn't found, return an error
-$user = User::findByID($updateID);
+$user = User::findByPublicID($updateID);
 if($user === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 }

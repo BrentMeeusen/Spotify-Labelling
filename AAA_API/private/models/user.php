@@ -76,21 +76,21 @@ class User extends Table {
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
-	 * @param	int		User ID that may not be unique (because it's this entry)
+	 * @param	string	Public user ID that may not be unique (because it's this entry)
 	 * @return	bool	False if no errors are found
 	 * @return	array	[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates(int $userID = NULL) {
+	private function hasDuplicates(string $userID = NULL) {
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL && $res->id !== $userID) { 
+		if($res !== NULL && $res->publicID !== $userID) { 
 			return ["key" => "a username", "value" => $res->username];
 		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL && $res->id !== $userID) {
+		if($res !== NULL && $res->publicID !== $userID) {
 			return ["key" => "an email address", "value" => $res->emailAddress];
 		}
 
