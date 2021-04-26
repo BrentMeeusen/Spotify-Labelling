@@ -31,6 +31,41 @@ class Table {
 
 
 
+
+	/**
+	 * Creates a unique, randomly generated ID
+	 * 
+	 * @param	string	The name of the table to check whether it's unique
+	 * @return	string	The randomly generated ID
+	 * @return	null	If something went wrong
+	 */
+	protected static function generateRandomID(string $tableName) : ?string {
+
+		// If connection is not set, return null
+		if(!isset(self::$conn)) {
+			return NULL;
+		}
+
+		// Generate the random ID 
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		$randomID = "";
+		for($i = 0; $i < 32; $i++) {
+			$randomID .= $chars[rand(0, strlen($chars) - 1)];		
+		}
+
+		// Check if it already exists in the database
+
+
+	}
+
+
+
+
+
+
+
+
+
 	
 	/**
 	 * Sanitizes the given array
