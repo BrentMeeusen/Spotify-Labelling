@@ -4,6 +4,8 @@ class User extends Table {
 
 	// Initialise variables
 	public int $id;
+	public string $publicID;
+
 	public string $firstName;
 	public string $lastName;
 	public string $emailAddress;
@@ -21,6 +23,7 @@ class User extends Table {
 	/**
 	 * User constructor
 	 * 
+	 * @param	string	Public ID
 	 * @param	string	First name
 	 * @param	string	Last name
 	 * @param	string	Username
@@ -28,8 +31,9 @@ class User extends Table {
 	 * @param	string	Email address
 	 * @param	int		Account status
 	 */
-	public function __construct(string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus) {
+	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus) {
 
+		$this->publicID = $publicID;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
 		$this->username = $username;
@@ -54,7 +58,7 @@ class User extends Table {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
+		$user = new User($values["PublicID"], $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -171,7 +175,7 @@ class User extends Table {
 		$user = ["update" => TRUE, "delete" => TRUE];
 
 		return [
-			"user" => ["id" => $this->id, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
+			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
 			"rights" => ["users" => $users, "user" => $user]
 		];
 
@@ -237,7 +241,7 @@ class User extends Table {
 	public static function createUser(array $values) : User {
 
 		// Create a user object
-		$user = new User($values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
+		$user = new User(self::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
 
 
 		// Check for duplicate values that should be unique (username, email address)
@@ -248,15 +252,15 @@ class User extends Table {
 
 
 		// Prepare SQL statement
-		$stmt = self::prepare("INSERT INTO USERS (FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
-		VALUES ( ?, ?, ?, ?, ?, ? );");
+		$stmt = self::prepare("INSERT INTO USERS (PublicID, FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
+		VALUES ( ?, ?, ?, ?, ?, ?, ? );");
 
 		// Sanitize input and create password hash
 		$user->sanitizeInputs();
 		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
 		
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
+		$stmt->bind_param("ssssssi", $user->publicID, $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
@@ -271,14 +275,14 @@ class User extends Table {
 	/**
 	 * Updates the user with the given ID
 	 * 
-	 * @param	int		ID of the user to update
+	 * @param	string	Public ID of the user to update
 	 * @param	array	User object to update
 	 * @return	User	The updated user
 	 */
-	public static function updateUser(int $id, array $values) : User {
+	public static function updateUser(string $id, array $values) : User {
 
 		// Get the current user
-		$user = self::findByID($id);
+		$user = self::findByPublicID($id);
 		if($user === NULL) {
 			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
 		}
@@ -298,7 +302,7 @@ class User extends Table {
 		
 		
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ? WHERE ID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ? WHERE PublicID = ?;");
 
 		// Sanitize input
 		$user->sanitizeInputs();
@@ -352,11 +356,11 @@ class User extends Table {
 	/**
 	 * Get all the users with the given ID
 	 * 
-	 * @param	int		The user ID to search for
+	 * @param	string	The public user ID to search for
 	 * @return	null	If the user was not found
 	 * @return	User	The user that was found
 	 */
-	public static function findByID(int $userID) : ?User {
+	public static function findByPublicID(string $userID) : ?User {
 
 		$stmt = self::prepare("SELECT * FROM USERS WHERE ID = ?;");
 		$userID = self::sanitizeArray([$userID])[0];
