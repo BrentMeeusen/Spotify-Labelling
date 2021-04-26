@@ -46,14 +46,28 @@ class Table {
 			return NULL;
 		}
 
-		// Generate the random ID 
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		$randomID = "";
-		for($i = 0; $i < 32; $i++) {
-			$randomID .= $chars[rand(0, strlen($chars) - 1)];		
-		}
+		// As long as it's not unique, keep doing this
+		do {
 
-		// Check if it already exists in the database
+			// Generate the random ID 
+			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			$randomID = "";
+			for($i = 0; $i < 32; $i++) {
+				$randomID .= $chars[rand(0, strlen($chars) - 1)];		
+			}
+
+			// Check if it already exists in the database
+			$tableName = self::sanitizeArray([$tableName])[0];
+			
+			$stmt = self::prepare("SELECT ID FROM $tableName WHERE PublicID = ?");
+			$stmt->bind_param("s", $randomID);
+			$res = self::execute($stmt);
+			$data = self::getResults($stmt);
+
+		}
+		while(count($data) !== 0);
+
+		return $randomID;
 
 
 	}
