@@ -50,7 +50,7 @@ class Table {
 		do {
 
 			// Generate the random ID 
-			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+			$chars = "0123456789";
 			$randomID = "";
 			for($i = 0; $i < 32; $i++) {
 				$randomID .= $chars[rand(0, strlen($chars) - 1)];		
