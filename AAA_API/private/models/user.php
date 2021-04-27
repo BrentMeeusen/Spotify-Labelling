@@ -326,6 +326,30 @@ class User extends Table {
 
 
 
+	/**
+	 * Deletes the user with the given ID
+	 * 
+	 * @param	string	The ID of the user to delete
+	 * @return	bool	Whether it was a success deleting
+	 */
+	public static function deleteUser(string $id) : bool {
+
+		// Get the user
+		$user = self::findByPublicID($id);
+		if($user === NULL) {
+			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
+		}
+
+		// Delete the user
+
+		// Return the result
+
+	}
+
+
+
+
+
 
 
 
