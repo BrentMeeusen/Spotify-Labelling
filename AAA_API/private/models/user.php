@@ -343,9 +343,10 @@ class User extends Table {
 		// Delete the user
 		$stmt = self::prepare("DELETE FROM USERS WHERE PublicID = ?");
 		$stmt->bind_param("s", $id);
+		self::execute($stmt);
 
-		// Return the result
-		return self::execute($stmt);
+		// Return TRUE because everything went right
+		return TRUE;
 
 	}
 
