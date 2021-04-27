@@ -35,10 +35,6 @@
 			</div>
 
 
-			<button onclick="changeTheme()">
-				Toggle theme!
-			</button>
-
 
 
 			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>

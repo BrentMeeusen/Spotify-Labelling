@@ -1,20 +1,3 @@
-let _THEME = "dark";
-
-function changeTheme() {
-
-	const variables = ["background", "text", "placeholder", "link", "background-highlight", "highlight"];
-	_THEME = (_THEME === "dark" ? "light" : "dark");
-
-	for(let i = 0 ; i < variables.length; i++) {
-		document.documentElement.style.setProperty("--current--" + variables[i], 
-				getComputedStyle(document.documentElement).getPropertyValue("--" + _THEME + "--" + variables[i]));
-	}
-
-}
-
-
-
-
 var IMAGES = [];
 
 /**
@@ -22,6 +5,7 @@ var IMAGES = [];
  */
 window.addEventListener("load", () => {
 
+	// HTML JAVASCRIPT FORMS ===================================================================
 	// Load all the HTML/JavaScript
 	const forms = document.getElementsByName("html-js-form");
 	let index = 0;
@@ -51,6 +35,7 @@ window.addEventListener("load", () => {
 	}
 
 
+	//J LAZY LOADING ===================================================================
 	// Initialise lazy loading
 	const ALL_IMAGES = document.getElementsByClassName("lazy");
     var neverLoadMax = (window.innerWidth < 992 ? true : false);
@@ -63,6 +48,18 @@ window.addEventListener("load", () => {
 
 	// Load images
     loadImages();
+
+
+
+	// DARK THEME ===================================================================
+	// Set the variables to update
+	const variables = ["background", "text", "placeholder", "link", "background-highlight", "highlight"];
+	themeButton.dataset.theme = (themeButton.dataset.theme === "dark" ? "light" : "dark");
+
+	// Loop over all variables and change their values
+	for(let i = 0 ; i < variables.length; i++) {
+		document.documentElement.style.setProperty("--current--" + variables[i], getComputedStyle(document.documentElement).getPropertyValue("--" + themeButton.dataset.theme + "--" + variables[i]));
+	}
 	
 });
 
