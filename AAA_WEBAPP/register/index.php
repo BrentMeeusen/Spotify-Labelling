@@ -19,6 +19,10 @@
 
 		<div class="main-wrapper">
 
+			<div class="popup" id="popup">
+				<p id="popup-text"></p>
+			</div>
+
 			<h1>Spotify Labelling</h1>
 
 			<div class="form register-form" name="html-js-form" data-action="users/create" data-method="POST">

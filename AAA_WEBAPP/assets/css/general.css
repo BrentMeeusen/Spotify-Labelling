@@ -24,6 +24,10 @@
 	--current--link: #06D;
 	--current--highlight: #700;
 
+	--current--error: #C00;
+	--current--success: #0C0;
+	--current--info: #00C;
+
 }
 
 
@@ -110,6 +114,25 @@ p.footer {
 }
 p.footer a {
 	color: var(--current--link);
+}
+
+
+
+
+/**
+ * Popup
+ */
+.popup {
+	position: fixed;
+	width: 100vw;
+	min-height: 2em;
+	top: 0;
+	padding: 0.5em 1em;
+
+	color: var(--current--text);
+	background: var(--current--background-highlight);
+	border-bottom: 2px solid var(--current--error);
+	transition: 0.25s top ease;
 }
 
 
