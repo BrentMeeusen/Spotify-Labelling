@@ -3,6 +3,10 @@ class LazyLoading {
 	allImages = [];
 	loadBiggest = !(window.innerWidth < 992);
 
+
+
+
+
 	/**
 	 * LazyLoading constructor
 	 *  
@@ -47,29 +51,51 @@ class LazyLoading {
 	 */
 	loadImages() {
 
+		// Get the current page offset
 		const d = document.documentElement;
 		const top = (window.pageYOffset || d.scrollTop)  - (d.clientTop || 0);
 		
-		for(let i = 0; i < allImages.length; i++) {
-			var imgTop = allImages[i].offsetTop;
+		// Check for every image if it's (almost) in view
+		for(let i = 0; i < this.allImages.length; i++) {
+
+			var imgTop = allImages[i].image.offsetTop;
 			if(imgTop < top + window.innerHeight  * 1.1) {
-				loadImage(allImages[i]);
+				allImages[i].load();
 			}
+
 		}
 
-	}
+	}	// loadImages()
 
-}
+}	// class LazyLoading
 
 
 class LazyImage {
 
+	/**
+	 * LazyImage constructor
+	 * 
+	 * @param {HTMLElement} image The image element
+	 */
 	constructor(image) {
 
-		this.domElement = image;
+		this.image = image;
 		this.src = image.dataset.mainSrc;
 		this.extension = image.dataset.extension;
 		
+	}
+
+
+
+
+
+	/**
+	 * Lazy load image
+	 */
+	load() {
+
+		// Check from big to small whether it's loaded
+
 	}
 
 }
