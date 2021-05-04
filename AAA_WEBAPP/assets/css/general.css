@@ -92,6 +92,11 @@ h1 {
 	background-color: var(--current--background-highlight);
 	border-color: var(--current--highlight);
 }
+.form > button:disabled {
+	opacity: 0.5;
+	background-color: var(--current--background-highlight) !important;
+	border-color: var(--current--text) !important;
+}
 
 
 .register-form {

@@ -31,10 +31,10 @@
 				<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
 				<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
 				<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
-				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD">
-				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD">
+				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
+				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
 
-				<button type="submit" name="html-js-form-submit" value="submit">REGISTER</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="register-btn" disabled>REGISTER</button>
 
 			</div>
 
