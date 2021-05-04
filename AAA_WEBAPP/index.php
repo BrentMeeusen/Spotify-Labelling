@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +18,10 @@
 		<div class="main-wrapper">
 		
 			<h1>Spotify Labelling</h1>
+
+			<?php
+			// Add session message and code to the popup
+			?>
 		
 		</div>
 
