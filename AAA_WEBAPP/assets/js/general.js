@@ -175,4 +175,23 @@ function requestLabellingApiEndpoint(action, method, values = null) {
 }
 
 
+/**
+ * 
+ * 	const http = new XMLHttpRequest();
+	http.open("POST", "../AAA_FILES/php/meal-unpay.php");
+	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	let parameters = "myCID=" + myID + "&mealID=" + dinnerID;
+
+	http.addEventListener("load", function() {
+		showDatabaseResult(JSON.parse(this.responseText));
+		loadMealsBefore(true);
+	});
+
+	http.send(encodeURI(parameters));
+ * 
+ * 
+ */
+
+
 
