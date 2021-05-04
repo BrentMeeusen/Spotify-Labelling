@@ -165,11 +165,21 @@ async function requestLabellingApiEndpoint(action, method, values = null) {
 		body: ((values && method !== "GET") ? JSON.stringify(values) : null)
 	});
 
+	// Get the response
 	const res = await response.json();
-	TOKEN = (res.jwt ? res.jwt : TOKEN);
 
-	console.log(res);
-	return res;
+
+	console.log(res, TOKEN);
+
+	// If the response has a token, set it
+	if(res.jwt) {
+		TOKEN = res.jwt;
+	}
+	
+	// If the response doesn't have a token, show the popup
+	else {
+		Popup.show(res.message, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+	}
 
 }
 
