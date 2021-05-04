@@ -69,6 +69,14 @@ class LazyLoading {
 }	// class LazyLoading
 
 
+
+
+
+
+
+
+
+
 class LazyImage {
 
 	loadBig = !(window.innerWidth < 992);
