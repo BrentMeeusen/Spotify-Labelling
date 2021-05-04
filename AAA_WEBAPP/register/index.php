@@ -39,10 +39,6 @@
 			</div>
 
 
-			
-			<img class="lazy-image" data-src="../assets/images/test-image", data-extension="png">
-
-
 
 			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
 
