@@ -1,9 +1,65 @@
 class HtmlJsForm {
 
+	/**
+	 * HtmlJsForm constructor
+	 * 
+	 * @param {HTMLElement} form The form element
+	 * @param {HTMLElement} submit The submit button
+	 */
+	constructor(form, submit) {
 
-	constructor(form, inputs, submit) {
+		// Set parameters
+		this.form = form;
+		this.inputs = form.children;
+		this.submit = submit;
 
-		console.log("HTML JS FORM", form, inputs, submit);
+		// Set parameters based on HTMLElements
+		this.action = this.form.dataset.action;
+		this.method = this.form.dataset.method;
+		this.redirect = this.form.dataset.redirect;
+
+
+		// Set the submit button action
+		this.submit.addEventListener("click", async () => {
+
+			// Send the request
+			const res = await Api.sendRequest(this.action, this.method, this.getValues());
+
+			// Redirect if necessary
+			if(res.code === 200 && this.redirect !== undefined) {
+				window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(this.redirect);
+			}
+			// Show the popup otherwise
+			else {
+				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+			}
+
+			console.log(res, this.inputs);
+			
+		});
+
+	}	// constructor()
+
+
+
+
+
+	/**
+	 * Gets the values from the form children
+	 * 
+	 * @returns An object with the input names as keys, and the values as the values (that's not too surprising, is it?)
+	 */
+	getValues() {
+
+		let values = {};
+
+		for(const input of this.inputs) {
+			if(input.name && input.name.includes("input")) {
+				values[input.name.split(" ")[1]] = input.value;
+			}
+		}
+
+		return values;
 
 	}
 
@@ -33,17 +89,10 @@ HtmlJsForm.getForms = () => {
 
 		// Get the submit button...
 		const submitButton = document.getElementsByName("html-js-form-submit")[index++];
-		let inputs = {};
-
-		// ...get all inputs...
-		for(const input of form.children) {
-			if(input.name && input.name.includes("input")) {
-				inputs[input.name.split(" ")[1]] = input.value;
-			}
-		}
+		
 
 		// ...and create the form
-		HtmlJsForm.FORMS.push(new HtmlJsForm(form, inputs, submitButton));
+		HtmlJsForm.FORMS.push(new HtmlJsForm(form, submitButton));
 
 	}
 
@@ -59,48 +108,3 @@ HtmlJsForm.getForms = () => {
 window.addEventListener("load", () => {
 	HtmlJsForm.getForms();
 });
-
-
-
-
-/*
-	// Load all the HTML/JavaScript
-	const forms = document.getElementsByName("html-js-form");
-	let index = 0;
-
-	// For each form
-	for(form of forms) {
-
-		// When the corresponding submit button is clicked
-		const submit = document.getElementsByName("html-js-form-submit")[index++];
-		submit.addEventListener("click", async () => {
-
-			// Get all inputs and values
-			let inputs = {};
-			for(input of form.childNodes) {
-				if(input.name) {
-					if(input.name.includes("input")) {
-						inputs[input.name.split(" ")[1]] = input.value;
-					}
-				}
-			}
-
-			// Create an XMLHttpResponse
-			const res = await Api.sendRequest(form.dataset.action, form.dataset.method, inputs);
-			const redirect = form.dataset.redirect;
-			
-			if(res.code !== 200 && redirect !== undefined) {
-				window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(redirect);
-			}
-			else {
-				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-			}
-			
-			
-			console.log(res);
-
-		});
-		
-	}
-
-*/
