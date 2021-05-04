@@ -151,9 +151,9 @@ function loadImage(img) {
  * 
  * @param {string} action What address the form is going to call
  * @param {string} method Request method
- * @param {array[string]} values The values to send to the address
+ * @param {array[string]} values The POST values to send to the address
  */
-function requestLabellingApiEndpoint(action, method, values) {
+function requestLabellingApiEndpoint(action, method, values = null) {
 	console.log("action", action);
 	console.log("method", method);
 	console.log("values", values);
