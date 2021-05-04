@@ -165,7 +165,7 @@ function requestLabellingApiEndpoint(action, method, values = null) {
 
 	const xml = new XMLHttpRequest();
 	xml.addEventListener("load", () => {
-		console.log(this);
+		console.log(this.response, this.responseText, this.status, this.statusText, this.responseType);
 	});
 	xml.open(method, endpoint);
 	xml.send(postParameters);
