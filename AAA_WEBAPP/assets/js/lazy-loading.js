@@ -127,7 +127,7 @@ class LazyImage {
 			this.image.src = this.src + "-medium." + this.extension;
 			this.image.addEventListener("load", () => {
 				if(this.loaded.medium) { return false; }
-				this.image.classList.remove("lazy--small");
+				this.image.classList.remove("small");
 				this.loaded.medium = true;
 				if(this.loadBig) { this.load(); }
 			});
@@ -140,7 +140,7 @@ class LazyImage {
 			this.image.src = this.src + "-small." + this.extension;
 			this.image.addEventListener("load", () => {
 				if(this.loaded.small) { return false; }
-				this.image.classList.add("lazy--small");
+				this.image.classList.add("small");
 				this.loaded.small = true;
 				this.load();
 			});

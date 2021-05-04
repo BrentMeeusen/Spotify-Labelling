@@ -148,12 +148,12 @@ p.footer a {
 /**
  * Lazy loading
  */
-.lazy {
+.lazy-image {
     filter: blur(0);
     transition: filter .25s linear;
 }
 
-.lazy--small {
+.lazy-image.small {
     filter: blur(8px);
     transition-duration: 0s;
 }

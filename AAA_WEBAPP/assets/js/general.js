@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
 	// REFACTORING ====
 
 
-	const lazy = new LazyLoading("lazy-img");
+	const lazy = new LazyLoading("lazy-image");
 
 
 	// END REFACTORING ==== 

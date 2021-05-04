@@ -40,7 +40,7 @@
 
 
 			
-			<img class="lazy-img" data-src="../assets/images/test-image", data-extension="png">
+			<img class="lazy-image" data-src="../assets/images/test-image", data-extension="png">
 
 
 
