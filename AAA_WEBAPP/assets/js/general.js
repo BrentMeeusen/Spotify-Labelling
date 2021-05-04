@@ -159,7 +159,7 @@ function requestLabellingApiEndpoint(action, method, values = null) {
 	console.log("method", method);
 	console.log("values", values);
 
-	const endpoint = "localhost/Spotify Labelling/AAA_API/" + action;
+	const endpoint = "http://localhost/Spotify Labelling/AAA_API/" + action;
 	const postParameters = "";
 	let toReturn = {};
 
