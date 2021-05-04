@@ -4,7 +4,7 @@ var TOKEN;
 /**
  * When the website loads
  */
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
 
 
 	// REFACTORING ====
@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
 
 		// When the corresponding submit button is clicked
 		const submit = document.getElementsByName("html-js-form-submit")[index++];
-		submit.addEventListener("click", () => {
+		submit.addEventListener("click", async () => {
 
 			// Get all inputs and values
 			let inputs = {};
@@ -40,27 +40,12 @@ window.addEventListener("load", () => {
 			}
 
 			// Create an XMLHttpResponse
-			requestLabellingApiEndpoint(form.dataset.action, form.dataset.method, inputs, form.dataset.redirect);
+			const res = await Api.sendRequest(form.dataset.action, form.dataset.method, inputs);
+			console.log(res);
 
 		});
 		
 	}
-
-
-	// LAZY LOADING ===================================================================
-	// Initialise lazy loading
-	const ALL_IMAGES = document.getElementsByClassName("lazy");
-    var neverLoadMax = (window.innerWidth < 992 ? true : false);
-
-	// Get all images
-    for(let i = 0; i < ALL_IMAGES.length; i++) {
-        if(neverLoadMax) { ALL_IMAGES[i].dataset.loadMax = "false"; }
-        IMAGES[i] = ALL_IMAGES[i];
-    }
-
-	// Load images
-    loadImages();
-
 
 
 	// DARK THEME ===================================================================
@@ -76,141 +61,4 @@ window.addEventListener("load", () => {
 });
 
 
-
-
-
-
-/**
- * When the user scrolls
- */
-window.addEventListener("scroll", function() {
-    loadImages();
-});
-
-
-
-/**
- * Loads all the images and stores them in a variable
- */
-function loadImages() {
-
-    var d = document.documentElement;
-    var top = (window.pageYOffset || d.scrollTop)  - (d.clientTop || 0);
-    
-    for(let i = 0; i < IMAGES.length; i++) {
-        var imgTop = IMAGES[i].offsetTop;
-        if(imgTop < top + window.innerHeight  * 1.1) {
-            loadImage(IMAGES[i]);
-        }
-    }
-
-}
-
-
-/**
- * Loads the image in the correct size
- * 
- * @param {HTMLElement} img 
- */
-function loadImage(img) {
-
-    if(img.dataset.loadedMedium && img.dataset.loadMax === "true") {
-        img.src = img.dataset.src + "." + img.dataset.extension;
-        img.addEventListener("load", function() {
-            img.dataset.loaded = true;
-        });
-    }
-
-    else if(img.dataset.loadedSmall) {
-        img.src = img.dataset.src + "-medium." + img.dataset.extension;
-        img.addEventListener("load", function() {
-            if(img.dataset.loadedMedium) { return false; }
-            img.classList.remove("lazy--small");
-            img.dataset.loadedMedium = true;
-            if(img.dataset.loadMax === "true") {
-                loadImage(img);
-            }
-        });
-    }
-
-    else if(!img.src) {
-        img.src = img.dataset.src + "-small." + img.dataset.extension;
-        img.addEventListener("load", function() {
-            if(img.dataset.loadedSmall) { return false; }
-            img.classList.add("lazy--small");
-            img.dataset.loadedSmall = true;
-            loadImage(img);
-        });
-    }
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Requests an endpoint from the Spotify Labelling API
- * 
- * @param {string} action What address the form is going to call
- * @param {string} method Request method
- * @param {array[string]} values The POST values to send to the address
- * @param {string} redirect The redirect to a new page
- */
-async function requestLabellingApiEndpoint(action, method, values = null, redirect = null) {
-
-	const response = await fetch(encodeURI("http://localhost/Spotify Labelling/AAA_API/" + action), {
-		method,
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": (TOKEN ? "Bearer " + TOKEN : "")
-		},
-		body: ((values && method !== "GET") ? JSON.stringify(values) : null)
-	});
-
-	// Get the response
-	const res = await response.json();
-
-
-	// If the response was successful AND the redirect is set, redirect
-	if(res.code === 200 && redirect !== null) {
-		window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURI(res.message) + "&redirect=" + redirect;
-		return;
-	}
-
-
-	// If the response has a token, set it
-	if(res.jwt) {
-		TOKEN = res.jwt;
-	}
-
-	// If the response doesn't have a token, show the popup
-	else {
-		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-	}
-
-
-
-
-	console.log(res, TOKEN);
-
-}
 
