@@ -29,7 +29,7 @@ window.addEventListener("load", () => {
 			}
 
 			// Create an XMLHttpResponse
-			requestLabellingApiEndpoint(form.dataset.action, form.dataset.method, inputs);
+			requestLabellingApiEndpoint(form.dataset.action, form.dataset.method, inputs, form.dataset.redirect);
 
 		});
 		
@@ -186,8 +186,9 @@ Popup.show = (message, type, dur) => {
  * @param {string} action What address the form is going to call
  * @param {string} method Request method
  * @param {array[string]} values The POST values to send to the address
+ * @param {string} redirect The redirect to a new page
  */
-async function requestLabellingApiEndpoint(action, method, values = null) {
+async function requestLabellingApiEndpoint(action, method, values = null, redirect = null) {
 
 	const response = await fetch(encodeURI("http://localhost/Spotify Labelling/AAA_API/" + action), {
 		method,
@@ -202,7 +203,11 @@ async function requestLabellingApiEndpoint(action, method, values = null) {
 	const res = await response.json();
 
 
-	console.log(res, TOKEN);
+	// If the response was successful AND the redirect is set, redirect
+	if(res.code !== 200 && redirect !== null) {
+		window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURI(res.message) + "&redirect=" + redirect;
+	}
+
 
 	// If the response has a token, set it
 	if(res.jwt) {
@@ -213,6 +218,11 @@ async function requestLabellingApiEndpoint(action, method, values = null) {
 	else {
 		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 	}
+
+
+
+
+	console.log(res, TOKEN);
 
 }
 
