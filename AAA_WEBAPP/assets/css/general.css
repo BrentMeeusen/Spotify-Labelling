@@ -132,7 +132,8 @@ p.footer a {
 	color: var(--current--text);
 	background: var(--current--background-highlight);
 	border-bottom: 2px solid var(--current--error);
-	transition: 0.25s top ease;
+	transition: 0.25s top ease-out;
+	box-shadow: 0 3px 6px -1px var(--current--background-highlight);
 }
 
 
