@@ -204,8 +204,9 @@ async function requestLabellingApiEndpoint(action, method, values = null, redire
 
 
 	// If the response was successful AND the redirect is set, redirect
-	if(res.code !== 200 && redirect !== null) {
+	if(res.code === 200 && redirect !== null) {
 		window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURI(res.message) + "&redirect=" + redirect;
+		return;
 	}
 
 
