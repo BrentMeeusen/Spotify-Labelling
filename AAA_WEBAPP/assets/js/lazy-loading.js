@@ -40,7 +40,6 @@ class LazyLoading {
 		for(const img of images) {
 			list.push(new LazyImage(img));
 		}
-
 		return list;
 
 	}
@@ -61,9 +60,9 @@ class LazyLoading {
 		// Check for every image if it's (almost) in view
 		for(let i = 0; i < this.allImages.length; i++) {
 
-			var imgTop = allImages[i].image.offsetTop;
+			var imgTop = this.allImages[i].image.offsetTop;
 			if(imgTop < top + window.innerHeight  * 1.1) {
-				allImages[i].load();
+				this.allImages[i].load();
 			}
 
 		}
