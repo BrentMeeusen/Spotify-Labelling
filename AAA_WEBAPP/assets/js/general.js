@@ -41,6 +41,16 @@ window.addEventListener("load", async () => {
 
 			// Create an XMLHttpResponse
 			const res = await Api.sendRequest(form.dataset.action, form.dataset.method, inputs);
+			const redirect = form.dataset.redirect;
+			
+			if(res.code !== 200 && redirect !== undefined) {
+				window.location.href = "../assets/php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(redirect);
+			}
+			else {
+				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+			}
+			
+			
 			console.log(res);
 
 		});
