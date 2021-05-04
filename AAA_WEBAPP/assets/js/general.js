@@ -149,52 +149,25 @@ function loadImage(img) {
 /**
  * Requests an endpoint from the Spotify Labelling API
  * 
+ * @param {function} callback What method is called after the response is received
  * @param {string} action What address the form is going to call
  * @param {string} method Request method
  * @param {array[string]} values The POST values to send to the address
- * @return {Object} The response of the endpoint
  */
-function requestLabellingApiEndpoint(action, method, values = null) {
-	console.log("action", action);
-	console.log("method", method);
-	console.log("values", values);
+function requestLabellingApiEndpoint(callback, action, method, values = null) {
 
 	const endpoint = encodeURI("http://localhost/Spotify Labelling/AAA_API/" + action);
 	const postParameters = "";
-	let toReturn = {};
-
-	console.log(endpoint, method);
 
 	const xml = new XMLHttpRequest();
-	xml.addEventListener("load", () => {
-		console.log("Loaded.");
-		console.log(this.response, this.responseText, this.status, this.statusText, this.responseType);
+	xml.addEventListener("load", function() {
+		callback(JSON.parse(this.responseText));
 	});
-	xml.open(method, endpoint);
-	xml.send(postParameters);
 
-	return toReturn;
+	xml.open(method, endpoint);
+	xml.send(encodeURI(postParameters));
 
 }
-
-
-/**
- * 
- * 	const http = new XMLHttpRequest();
-	http.open("POST", "../AAA_FILES/php/meal-unpay.php");
-	http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-	let parameters = "myCID=" + myID + "&mealID=" + dinnerID;
-
-	http.addEventListener("load", function() {
-		showDatabaseResult(JSON.parse(this.responseText));
-		loadMealsBefore(true);
-	});
-
-	http.send(encodeURI(parameters));
- * 
- * 
- */
 
 
 
