@@ -45,6 +45,7 @@
 		</div>
 
 
+		<script src="../assets/js/api.js"></script>
 		<script src="../assets/js/general.js"></script>
 		<script src="../assets/js/register.js"></script>
 		
