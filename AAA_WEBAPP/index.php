@@ -21,6 +21,7 @@ session_start();
 
 			<?php
 			// Add session message and code to the popup
+			session_destroy();
 			?>
 		
 		</div>
