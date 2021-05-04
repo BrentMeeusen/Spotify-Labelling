@@ -7,10 +7,6 @@ include_once("../../private/include_all.php");
 
 
 
-// Verify the token and get the payload if it's valid
-JSONWebToken::validateToken($cookieJWT);
-$payload = JSONWebToken::getPayload($cookieJWT);
-
 // If the payload doesn't contain "register", return an error
 if(!isset($payload->rights->users->find)) {
 	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);

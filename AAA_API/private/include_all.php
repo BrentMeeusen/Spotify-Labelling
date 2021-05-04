@@ -13,11 +13,13 @@ include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
 
+
 // Set the database connection
 Table::setConnection(Database::connect());
 
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
+
 
 // If we require a token, check it
 if(isset($REQUIRE_TOKEN)) {
@@ -30,6 +32,10 @@ if(isset($REQUIRE_TOKEN)) {
 	if($cookieJWT !== $headerJWT || $cookieJWT === "" || $headerJWT === "") {
 		ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified.", "COOKIE" => $cookieJWT, "HEADER" => $headerJWT]);
 	}
+
+	// Verify the token and get the payload if it's valid
+	JSONWebToken::validateToken($cookieJWT);
+	$payload = JSONWebToken::getPayload($cookieJWT);
 
 }
 

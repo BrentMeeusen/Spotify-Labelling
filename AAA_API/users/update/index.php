@@ -7,12 +7,6 @@ include_once("../../private/include_all.php");
 
 
 
-// Verify the token and get the payload if it's valid
-JSONWebToken::validateToken($cookieJWT);
-$payload = JSONWebToken::getPayload($cookieJWT);
-
-
-
 // If the ID is set, update ID
 if(isset($_GET["id"])) {
 
