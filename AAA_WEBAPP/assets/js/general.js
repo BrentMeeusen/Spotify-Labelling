@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
 	}
 
 
-	//J LAZY LOADING ===================================================================
+	// LAZY LOADING ===================================================================
 	// Initialise lazy loading
 	const ALL_IMAGES = document.getElementsByClassName("lazy");
     var neverLoadMax = (window.innerWidth < 992 ? true : false);
@@ -149,9 +149,9 @@ function loadImage(img) {
 /**
  * Requests an endpoint from the Spotify Labelling API
  * 
- * @param {string} action 
- * @param {string} method 
- * @param {array[string]} values 
+ * @param {string} action What address the form is going to call
+ * @param {string} method Request method
+ * @param {array[string]} values The values to send to the address
  */
 function requestLabellingApiEndpoint(action, method, values) {
 	console.log("action", action);
