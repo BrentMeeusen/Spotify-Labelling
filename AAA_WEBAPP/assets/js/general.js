@@ -11,7 +11,9 @@ window.addEventListener("load", async () => {
 
 
 	const lazy = new LazyLoading("lazy-image");
-	const forms = HtmlJsForm.getForms();
+
+
+	return true;
 
 
 	// END REFACTORING ==== 
@@ -20,7 +22,7 @@ window.addEventListener("load", async () => {
 
 	// HTML JAVASCRIPT FORMS ===================================================================
 	// Load all the HTML/JavaScript
-	const forms = document.getElementsByName("html-js-form");
+	// let forms = document.getElementsByName("html-js-form");
 	let index = 0;
 
 	// For each form
