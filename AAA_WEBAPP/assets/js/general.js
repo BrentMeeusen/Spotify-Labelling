@@ -19,11 +19,11 @@ window.addEventListener("load", () => {
 		submit.addEventListener("click", () => {
 
 			// Get all inputs and values
-			let inputs = [];
+			let inputs = {};
 			for(input of form.childNodes) {
 				if(input.name) {
 					if(input.name.includes("input")) {
-						inputs.push({ name: input.name.replace("input ", ""), value: input.value });
+						inputs[input.name.split(" ")[1]] = input.value;
 					}
 				}
 			}
@@ -162,11 +162,13 @@ async function requestLabellingApiEndpoint(action, method, values = null) {
 			"Content-Type": "application/json",
 			"Authorization": (TOKEN ? "Bearer " + TOKEN : "")
 		},
-		body: ((values && method !== "GET") ? JSON.stringify(values.join(",")) : null)
+		body: ((values && method !== "GET") ? JSON.stringify(values) : null)
 	});
 
 	const res = await response.json();
 	TOKEN = (res.jwt ? res.jwt : TOKEN);
+
+	console.log(res);
 	return res;
 
 }
