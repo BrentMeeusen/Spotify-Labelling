@@ -157,7 +157,8 @@ Popup.show = (message, type, dur) => {
 	Popup.container.style.top = 0;
 	Popup.container.style.borderBottomColor = getComputedStyle(document.documentElement).getPropertyValue("--current--" + type);
 
-	setTimeout(() => {
+	clearTimeout(Popup.timeout);
+	Popup.timeout = setTimeout(() => {
 		Popup.container.style.top = -1 * Popup.container.offsetHeight + "px";
 	}, dur);
 
