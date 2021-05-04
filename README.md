@@ -20,4 +20,9 @@ Elaborate on the following features:
 
 
 ## Endpoints
+<!-- 
+
+A list of all endpoints, including its specifications
+
+ -->
 
