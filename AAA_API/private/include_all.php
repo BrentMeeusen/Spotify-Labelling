@@ -28,7 +28,7 @@ if(isset($REQUIRE_TOKEN)) {
 
 	// If they're different, or if either one of them doesn't exist, return an error
 	if($cookieJWT !== $headerJWT || $cookieJWT === "" || $headerJWT === "") {
-		ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified."]);
+		ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified.", "COOKIE" => $cookieJWT, "HEADER" => $headerJWT]);
 	}
 
 }
