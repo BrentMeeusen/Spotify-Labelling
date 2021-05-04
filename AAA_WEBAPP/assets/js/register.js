@@ -1,3 +1,4 @@
 window.addEventListener("load", () => {
-	requestLabellingApiEndpoint("register", "POST");
+	const res = requestLabellingApiEndpoint("api/v1/register/", "POST");
+	console.log(res);
 });
