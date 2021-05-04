@@ -40,7 +40,7 @@
 
 
 			
-			<img dataset-src="../assets/images/test-image", dataset-extension="png">
+			<img class="lazy-img" dataset-src="../assets/images/test-image", dataset-extension="png">
 
 
 
