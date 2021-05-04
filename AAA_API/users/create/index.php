@@ -32,13 +32,13 @@ if(!isset($payload->rights->register) || $payload->rights->register !== TRUE) {
 
 
 // Check whether all required fields are filled in
-if(!isset($_POST["FirstName"])|| !isset($_POST["LastName"]) || !isset($_POST["Username"]) || !isset($_POST["Password"]) || !isset($_POST["EmailAddress"])) {
+if(empty($body["FirstName"])|| empty($body["LastName"]) || empty($body["Username"]) || empty($body["Password"]) || empty($body["EmailAddress"])) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
 // Set values of the payload
 $values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
-foreach($_POST as $key => $value) {
+foreach($body as $key => $value) {
 	$values[$key] = $value;
 }
 

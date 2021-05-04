@@ -16,4 +16,7 @@ include_once("models/user.php");
 // Set the database connection
 Table::setConnection(Database::connect());
 
+// Read the input
+$body = (array) json_decode(file_get_contents("php://input"));
+
 ?>
