@@ -18,11 +18,11 @@ window.addEventListener("load", () => {
 		submit.addEventListener("click", () => {
 
 			// Get all inputs and values
-			let inputs = { GET: [], POST: [] };
+			let inputs = [];
 			for(input of form.childNodes) {
 				if(input.name) {
 					if(input.name.includes("input")) {
-						inputs.POST.push({ name: input.name.replace("input ", ""), value: input.value });
+						inputs.push({ name: input.name.replace("input ", ""), value: input.value });
 					}
 				}
 			}
