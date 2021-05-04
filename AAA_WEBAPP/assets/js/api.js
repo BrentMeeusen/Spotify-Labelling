@@ -32,4 +32,7 @@ Api.sendRequest = (location, method, values) => {
 	// Set the token if it's provided
 	if(res.jwt) { Api.TOKEN = res.jwt; }
 
+	// Return the result
+	return res;
+
 }
