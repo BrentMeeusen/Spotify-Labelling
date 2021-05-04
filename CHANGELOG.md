@@ -34,6 +34,9 @@ This version mostly includes adding the UI.
 ### Added
 - Register account UI.
 
+### Fixed
+- Refactored JavaScript code.
+
 
 
 ## 0.1.0 - 2021/04/27
