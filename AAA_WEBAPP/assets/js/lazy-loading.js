@@ -94,7 +94,7 @@ class LazyImage {
 	constructor(image) {
 
 		this.image = image;
-		this.src = image.dataset.mainSrc;
+		this.src = image.dataset.src;
 		this.extension = image.dataset.extension;
 		
 	}
