@@ -25,7 +25,7 @@
 
 			<h1>Spotify Labelling</h1>
 
-			<div class="form register-form" name="html-js-form" data-action="api/v1/users/create" data-method="POST" data-redirect="/">
+			<div class="form register-form" name="html-js-form" data-action="api/v1/users/create" data-method="POST" data-redirect="">
 
 				<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
 				<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
