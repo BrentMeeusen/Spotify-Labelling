@@ -9,7 +9,7 @@
 		<title>Spotify Labelling | Register</title>
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
 		<link rel="stylesheet" type="text/css" href="../assets/css/general.css">
 
 	</head>
