@@ -39,6 +39,10 @@
 			</div>
 
 
+			
+			<img dataset-src="../assets/images/test-image", dataset-extension="png">
+
+
 
 			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
 
