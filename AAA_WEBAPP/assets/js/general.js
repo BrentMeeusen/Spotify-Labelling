@@ -143,6 +143,35 @@ function loadImage(img) {
 
 
 
+// POPUP CLASS
+class Popup {}
+Popup.container = document.getElementById("popup");
+Popup.text = document.getElementById("popup-text");
+
+/**
+ * Show the popup
+ */
+Popup.show = (message, type, dur) => {
+
+	Popup.text.innerHTML = message;
+	Popup.container.style.top = 0;
+
+	Popup.container.style.borderBottomColor = getComputedStyle(document.documentElement).getPropertyValue("--current--" + type);
+
+	setTimeout(() => {
+		Popup.container.style.top = -1 * Popup.container.offsetHeight + "px";
+	}, dur);
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -175,10 +204,10 @@ async function requestLabellingApiEndpoint(action, method, values = null) {
 	if(res.jwt) {
 		TOKEN = res.jwt;
 	}
-	
+
 	// If the response doesn't have a token, show the popup
 	else {
-		Popup.show(res.message, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 	}
 
 }
