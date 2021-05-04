@@ -87,11 +87,8 @@ HtmlJsForm.getForms = () => {
 	// For all forms
 	for(const form of forms) {
 
-		// Get the submit button...
+		// Get the submit button and create the form
 		const submitButton = document.getElementsByName("html-js-form-submit")[index++];
-		
-
-		// ...and create the form
 		HtmlJsForm.FORMS.push(new HtmlJsForm(form, submitButton));
 
 	}
