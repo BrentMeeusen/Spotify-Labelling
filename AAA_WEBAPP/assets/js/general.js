@@ -6,6 +6,17 @@ var TOKEN;
  */
 window.addEventListener("load", () => {
 
+
+	// REFACTORING ====
+
+
+	const lazy = new LazyLoading("lazy-img");
+
+
+	// END REFACTORING ==== 
+
+
+
 	// HTML JAVASCRIPT FORMS ===================================================================
 	// Load all the HTML/JavaScript
 	const forms = document.getElementsByName("html-js-form");
