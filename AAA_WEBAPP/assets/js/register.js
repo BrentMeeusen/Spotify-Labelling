@@ -22,16 +22,13 @@ window.addEventListener("load", async () => {
 
 	try {
 		password.addEventListener("input", () => {
-			try {
-				setRegisterButton(password.value, passwordRepeat.value);
-			} catch(e) {}
+			try { setRegisterButton(password.value, passwordRepeat.value); } 
+			catch(e) {}
 		});
 		passwordRepeat.addEventListener("input", () => {
-			setRegisterButton(password.value, passwordRepeat.value);
-		})
-	}
-	catch(err) {
-		console.warn(err);
-	}
+			try { setRegisterButton(password.value, passwordRepeat.value); }
+			catch(e) {}
+		});
+	} catch(e) {}
 
 });
