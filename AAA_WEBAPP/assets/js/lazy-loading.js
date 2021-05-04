@@ -18,6 +18,7 @@ class LazyLoading {
 		this.allImages = this.getAllImagesByClassName();
 
 		// Add scroll EventListener
+		this.loadImages();
 		window.addEventListener("scroll", () => {
 			this.loadImages();
 		});
@@ -34,10 +35,13 @@ class LazyLoading {
 	getAllImagesByClassName() {
 
 		const images = document.getElementsByClassName(this.name);
+		const list = [];
 		
 		for(const img of images) {
-			this.allImages.push(new LazyImage(img));
+			list.push(new LazyImage(img));
 		}
+
+		return list;
 
 	}
 
