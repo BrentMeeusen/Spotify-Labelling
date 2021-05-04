@@ -43,6 +43,15 @@ else if(isset($_GET["logout"]) && $_GET["logout"] == TRUE) {
 
 }
 
+// If the user wants to be able to login
+else {
+	
+	$payload = ["rights" => ["login" => TRUE, "register" => TRUE]];
+	$timeValid = 15;
+	$token = JSONWebToken::createToken($payload, $timeValid);
+
+}
+
 
 
 
