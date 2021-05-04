@@ -10,12 +10,13 @@ class LazyLoading {
 	 */
 	constructor(name) {
 		
+		// Set the name and allImages
 		this.name = name;
 		this.allImages = this.getAllImagesByClassName();
 
+		// Add scroll EventListener
 		window.addEventListener("scroll", () => {
-			console.log(this);
-			return;
+			this.loadImages();
 		});
 
 	}
