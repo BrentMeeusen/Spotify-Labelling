@@ -163,7 +163,7 @@ Popup.show = (message, type, dur) => {
 
 	clearTimeout(Popup.timeout);
 	Popup.timeout = setTimeout(() => {
-		Popup.container.style.top = (-1 * Popup.container.offsetHeight) + 10 + "px";
+		Popup.container.style.top = (-1 * Popup.container.offsetHeight) - 10 + "px";
 	}, dur);
 
 }
