@@ -1,22 +1,9 @@
 <?php
 
+$ALLOWED_METHOD = "DELETE";
+$REQUIRE_TOKEN = TRUE;
+
 include_once("../../private/include_all.php");
-
-// If the method is not DELETE
-if($_SERVER["REQUEST_METHOD"] !== "DELETE") {
-	ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
-}
-
-
-
-// Get the cookie JWT and the Authorization header JWT
-$cookieJWT = (isset($_COOKIE["jwt"]) ? $_COOKIE["jwt"] : "");
-$headerJWT = (isset(getallheaders()["Authorization"]) ? explode("Bearer ", getallheaders()["Authorization"])[1] : "");
-
-// If they're different, or if either one of them doesn't exist, return an error
-if($cookieJWT !== $headerJWT || $cookieJWT === "" || $headerJWT === "") {
-	ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified."]);
-}
 
 
 

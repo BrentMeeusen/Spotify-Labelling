@@ -19,4 +19,25 @@ Table::setConnection(Database::connect());
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
 
+// If we require a token, check it
+if(isset($REQUIRE_TOKEN)) {
+
+	// Get the cookie JWT and the Authorization header JWT
+	$cookieJWT = (isset($_COOKIE["jwt"]) ? $_COOKIE["jwt"] : "");
+	$headerJWT = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
+
+	// If they're different, or if either one of them doesn't exist, return an error
+	if($cookieJWT !== $headerJWT || $cookieJWT === "" || $headerJWT === "") {
+		ApiResponse::httpResponse(401, ["error" => "JSON Web Token could not be verified."]);
+	}
+
+}
+
+// Check whether the method is correct
+if(isset($ALLOWED_METHOD)) {
+	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD) {
+		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
+	}
+}
+
 ?>
