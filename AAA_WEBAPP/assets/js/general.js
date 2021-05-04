@@ -1,4 +1,5 @@
 var IMAGES = [];
+var TOKEN;
 
 /**
  * When the website loads
@@ -149,25 +150,24 @@ function loadImage(img) {
 /**
  * Requests an endpoint from the Spotify Labelling API
  * 
- * @param {function} callback What method is called after the response is received
  * @param {string} action What address the form is going to call
  * @param {string} method Request method
  * @param {array[string]} values The POST values to send to the address
  */
-function requestLabellingApiEndpoint(callback, action, method, values = null) {
+async function requestLabellingApiEndpoint(action, method, values = null) {
 
-	const endpoint = encodeURI("http://localhost/Spotify Labelling/AAA_API/" + action);
-	const postParameters = "";
-
-	const xml = new XMLHttpRequest();
-	xml.addEventListener("load", function() {
-		callback(JSON.parse(this.responseText));
+	const response = await fetch(encodeURI("http://localhost/Spotify Labelling/AAA_API/" + action), {
+		method,
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": (TOKEN ? "Bearer " + TOKEN : "")
+		},
+		body: ((values && method !== "GET") ? JSON.stringify(values.join(",")) : null)
 	});
 
-	xml.open(method, endpoint);
-	xml.send(encodeURI(postParameters));
+	const res = await response.json();
+	TOKEN = (res.jwt ? res.jwt : TOKEN);
+	return res;
 
 }
-
-
 
