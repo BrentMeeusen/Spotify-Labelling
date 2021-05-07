@@ -34,6 +34,7 @@ This version mostly includes adding the UI.
 ### Added
 - Register account UI.
 - Login account UI.
+- Dashboard page.
 
 ### Fixed
 - Refactored JavaScript code.
