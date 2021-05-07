@@ -27,7 +27,7 @@ class HtmlJsForm {
 
 			// Redirect if necessary
 			if(res.code === 200 && this.redirect !== undefined) {
-				// WARNING: HARDCODED LOCATION
+				// WARNING: HARDCODED LOCATION; CHANGE TO "/assets/..."
 				window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(this.redirect);
 			}
 			// Show the popup otherwise

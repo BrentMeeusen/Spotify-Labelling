@@ -17,6 +17,7 @@ class Api {
 Api.sendRequest = async (location, method, values) => {
 
 	// Send a request and return the result
+	// WARNING: HARDCODED VALUE; CHANGE TO "http://spotify-labelling-api.21webb.nl/" + ...
 	const response = await fetch(encodeURI("http://localhost/Spotify Labelling/AAA_API/" + location), {
 		method,
 		headers: {
