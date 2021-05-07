@@ -61,5 +61,9 @@ session_start();
 		include_once("../assets/snippets/show-redirect-result.php");
 		?>
 
+		<script>
+		PageProtect.protect({ verifiedLevel: 1 } });
+		</script>
+
 	</body>
 </html>
