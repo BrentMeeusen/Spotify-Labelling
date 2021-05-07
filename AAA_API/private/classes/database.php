@@ -100,7 +100,7 @@ class Database {
 			PRIMARY KEY (ID)
 		);";
 
-		// $res = self::createTable($conn, $SQL, $tableName);
+		$res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create LABELS table
