@@ -8,3 +8,6 @@
 
 <!-- Load general file (which will be a minified version of all the files above that are general) -->
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/general.js"></script>
+
+<!-- Set JWT -->
+<?php if(isset($_SESSION["jwt"])) { print('<script>Api.TOKEN = "' . $_SESSION["jwt"] . '";</script>'); } ?>
