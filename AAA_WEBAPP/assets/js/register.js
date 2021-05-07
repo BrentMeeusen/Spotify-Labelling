@@ -1,7 +1,7 @@
 window.addEventListener("load", async () => {
 	
 	// Get JWT for registering an account
-	const res = await Api.sendRequest("api/v1/register", "POST");
+	const res = new JWT(await Api.sendRequest("api/v1/register", "POST"));
 
 	// Passwords must match
 	const password = document.getElementById("password");
