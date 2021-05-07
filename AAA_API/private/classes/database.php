@@ -12,6 +12,7 @@ class Database {
 
 
 	/*
+	WARNING: HARDCODED VALUES; MAKE SURE TO UPDATE THEM!
 	private static string $host = "localhost";
 	private static string $username = "u236549530_BrentSpotify";
 	private static string $password = "MySp0t1fy!";
