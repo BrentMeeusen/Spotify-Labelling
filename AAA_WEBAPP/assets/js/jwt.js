@@ -59,8 +59,12 @@ class JWT {
 
 
 
-
-
+/**
+ * Decodes a JWT Base64 string
+ * 
+ * @param {string} str The string to decode
+ * @returns The decoded string
+ */
 JWT.base64ToString = (str) => {
 
 	const remainder = str.length % 4;
@@ -69,7 +73,6 @@ JWT.base64ToString = (str) => {
 	}
 
 	str = str.replace("+", "-").replace("/", "_");
-	console.log(str);
 	return atob(str);
 
 }
