@@ -7,6 +7,8 @@ class JWT {
 	validate() {
 
 		// Split into header and payload
+		const parts = this.jwt.split(".");
+		if(parts.length !== 3) { return false; }
 
 		// Check if the token is still valid
 
