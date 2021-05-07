@@ -31,7 +31,7 @@ Api.sendRequest = async (location, method, values) => {
 	const res = await response.json();
 
 	// Set the token if it's provided
-	if(res.jwt) { Api.TOKEN = res.jwt; }
+	if(res.jwt) { Api.TOKEN = new JWT(res.jwt); }
 
 	// Return the result
 	return res;
