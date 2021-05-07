@@ -29,6 +29,7 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	// Create token
 	$timeValid = 60;
 	$token = JSONWebToken::createToken($payload, $timeValid);
+	$message = "Successfully logged in.";
 
 }
 
@@ -68,6 +69,6 @@ setcookie("jwt", "", time() - 60);
 setcookie("jwt", $token, time() + ($timeValid * 60), "/", "", FALSE, TRUE);
 
 // Return the cookie so that the client can store it and send it on a request
-ApiResponse::httpResponse(200, ["jwt" => $token, "message" => "Successfully created JSON Web Token."]);
+ApiResponse::httpResponse(200, ["jwt" => $token, "message" => ($message ? $message : "Successfully created JSON Web Token.")]);
 
 ?>
