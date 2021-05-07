@@ -22,7 +22,7 @@ Api.sendRequest = async (location, method, values) => {
 		method,
 		headers: {
 			"Content-Type": "application/json",
-			"Authorization": (Api.TOKEN ? "Bearer " + Api.TOKEN : "")
+			"Authorization": (Api.TOKEN && Api.TOKEN.jwt ? "Bearer " + Api.TOKEN.jwt : "")
 		},
 		body: ((values && method !== "GET") ? JSON.stringify(values) : null)
 	});
