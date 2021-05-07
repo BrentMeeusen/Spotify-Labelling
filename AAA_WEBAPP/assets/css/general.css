@@ -158,3 +158,23 @@ p.footer a {
     transition-duration: 0s;
 }
 
+
+
+
+
+/**
+ * Navigation
+ */
+
+.nav ul {
+	list-style-type: none;
+}
+.nav a {
+	font-size: 1.1em;
+}
+
+
+
+
+
+
