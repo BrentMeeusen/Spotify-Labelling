@@ -2,6 +2,8 @@
 
 // Headers here because this file is added to all endpoints
 header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization');
 header("Content-Type: application/json; charset=UTF-8");
 
 // Include all the files here so that all the other files only need one include
@@ -41,7 +43,7 @@ if(isset($REQUIRE_TOKEN)) {
 
 // Check whether the method is correct
 if(isset($ALLOWED_METHOD)) {
-	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD) {
+	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD && $_SERVER["REQUEST_METHOD"] !== "OPTIONS") {
 		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 	}
 }
