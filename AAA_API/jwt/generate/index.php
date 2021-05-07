@@ -5,6 +5,7 @@ $ALLOWED_METHOD = "POST";
 include_once("../../private/include_all.php");
 
 
+$message = NULL;
 
 // If the user wants to login
 if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
