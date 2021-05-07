@@ -20,13 +20,12 @@ session_start();
 	<body>
 
 		<div class="main-wrapper">
+
+			<div class="popup" id="popup">
+				<p id="popup-text"></p>
+			</div>
 		
 			<h1>Spotify Labelling</h1>
-
-			<?php
-			// Add session message and code to the popup
-			session_destroy();
-			?>
 		
 		</div>
 
@@ -41,6 +40,9 @@ session_start();
 
 		<!-- Load general file (which will be a minified version of all the files above that are general) -->
 		<script src="assets/js/general.js"></script>
+
+		<!-- Load code for showing result of the action of the previous page (due to redirect) -->
+		<?php include_once("assets/php/show-redirect-result.php"); ?>
 
 	</body>
 </html>
