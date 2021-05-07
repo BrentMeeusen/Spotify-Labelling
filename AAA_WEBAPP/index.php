@@ -44,25 +44,22 @@ session_start();
 
 			<p class="footer">Don't have an account yet? Click <a href="register">here</a>!</p>
 
-
-		
 		</div>
 
+		
+		
+		<?php
+		// Load JavaScript
+		include_once("assets/snippets/javascript-files.php"); 
+		?>
 
-		<!-- Load all files -->
-		<script src="assets/js/api.js"></script>
-		<script src="assets/js/jwt.js"></script>
-		<script src="assets/js/html-js-form.js"></script>
-		<script src="assets/js/lazy-loading.js"></script>
-		<script src="assets/js/popup.js"></script>
+		<!-- Load register/login file -->
 		<script src="assets/js/register.js"></script>
-		<script src="assets/js/theme.js"></script>
 
-		<!-- Load general file (which will be a minified version of all the files above that are general) -->
-		<script src="assets/js/general.js"></script>
-
-		<!-- Load code for showing result of the action of the previous page (due to redirect) -->
-		<?php include_once("assets/php/show-redirect-result.php"); ?>
+		<?php 
+		// Load showing result after redirect
+		include_once("assets/snippets/show-redirect-result.php");
+		?>
 
 	</body>
 </html>
