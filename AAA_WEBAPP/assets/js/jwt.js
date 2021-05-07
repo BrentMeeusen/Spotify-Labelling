@@ -48,6 +48,15 @@ class JWT {
 
 	}
 
+
+
+
+
+	/**
+	 * Gets the payload if it's valid
+	 * 
+	 * @returns The payload of the token, given that it's valid
+	 */
 	getPayload() {
 
 		// Validate token
@@ -56,7 +65,7 @@ class JWT {
 		}
 
 		// Return the payload as an object
-
+		return JSON.parse(JWT.base64ToString(this.jwt.split(".")[1]));
 
 	}
 
