@@ -10,7 +10,7 @@ class JWT {
 	}
 
 
-	
+
 
 
 	/**
@@ -31,13 +31,20 @@ class JWT {
 		// If it's not a JWT OR if it's not encoded as HS256, not valid
 		if(header.typ !== "JWT" || header.alg !== "HS256") { return false; }
 
+
+		const now = Math.floor(Date.now() / 1000);
+		
 		// If the token is not valid yet, return false
+		if(now < payload.nbf) { return false; }
 
 		// If we're before the issued at date, return false
+		if(now < payload.iat) { return false; }
 
 		// If the token has expired, return false
+		if(now > payload.exp) { return false; }
 
-		// Return whether it's valid
+		// Return that it's valid
+		return true;
 
 	}
 
