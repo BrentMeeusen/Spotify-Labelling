@@ -51,6 +51,7 @@ session_start();
 
 		<!-- Load all files -->
 		<script src="assets/js/api.js"></script>
+		<script src="assets/js/jwt.js"></script>
 		<script src="assets/js/html-js-form.js"></script>
 		<script src="assets/js/lazy-loading.js"></script>
 		<script src="assets/js/popup.js"></script>
