@@ -10,4 +10,4 @@
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/general.js"></script>
 
 <!-- Set JWT -->
-<?php if(isset($_SESSION["jwt"])) { print('<script>Api.TOKEN = "' . $_SESSION["jwt"] . '";</script>'); } ?>
+<?php if(isset($_SESSION["jwt"])) { print('<script>Api.TOKEN = new JWT("' . $_SESSION["jwt"] . '"); </script>'); } ?>
