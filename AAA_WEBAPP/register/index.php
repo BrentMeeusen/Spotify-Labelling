@@ -51,11 +51,11 @@
 
 		<?php
 		// Load JavaScript
-		include_once("assets/snippets/javascript-files.php"); 
+		include_once("../assets/snippets/javascript-files.php"); 
 		?>
 
 		<!-- Load register/login file -->
-		<script src="assets/js/register.js"></script>
+		<script src="../assets/js/register.js"></script>
 		
 	</body>
 </html>
