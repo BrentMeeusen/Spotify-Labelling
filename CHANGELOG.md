@@ -28,6 +28,16 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.3.0 - 2021/05/x
+
+### Added
+- Client JSON Web Token validation, not allowing the user to view the dashboard without a valid token
+
+### Fixed
+- Database USERS scheme.
+
+
+
 ## 0.2.0 - 2021/05/04
 This version mostly includes adding the UI.
 
