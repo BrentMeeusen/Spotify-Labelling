@@ -16,5 +16,7 @@ if(isset($_SESSION["code"])) {
 } 
 
 // Remove the message
-session_destroy(); 
+unset($_SESSION["message"]);
+unset($_SESSION["error"]);
+unset($_SESSION["code"]);
 ?>
