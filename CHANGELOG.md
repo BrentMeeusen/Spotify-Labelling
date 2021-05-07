@@ -33,6 +33,7 @@ This version mostly includes adding the UI.
 
 ### Added
 - Register account UI.
+- Login account UI.
 
 ### Fixed
 - Refactored JavaScript code.
