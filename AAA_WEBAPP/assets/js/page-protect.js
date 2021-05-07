@@ -12,11 +12,13 @@ class PageProtect {}
 PageProtect.protect = (options) => {
 
 	const payload = Api.TOKEN.getPayload();
-	console.log(payload);
 
-	if(options.verified && payload.user) {
-
+	// If the user needs to be verified AND if the required level 
+	if(options.verifiedLevel && payload.user.accountStatus < options.verifiedLevel) {
+		window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
 	}
+
+	return true;
 
 }
 
