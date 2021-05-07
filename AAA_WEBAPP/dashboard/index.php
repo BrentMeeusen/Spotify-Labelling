@@ -26,7 +26,7 @@ session_start();
 				<p id="popup-text"></p>
 			</div>
 		
-			<h1>Spotify Labelling</h1>
+			<h1>Dashboard</h1>
 
 			<div class="nav dashboard-nav">
 			
