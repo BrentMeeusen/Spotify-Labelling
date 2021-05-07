@@ -28,7 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.3.0 - 2021/05/x
+## 0.3.0-alpha - 2021/05/x
 
 ### Added
 - Client JSON Web Token validation, not allowing the user to view the dashboard without a valid token
@@ -38,7 +38,7 @@ STANDARD NEW VERSION:
 
 
 
-## 0.2.0 - 2021/05/04
+## 0.2.0-alpha - 2021/05/04
 This version mostly includes adding the UI.
 
 ### Added
@@ -51,7 +51,7 @@ This version mostly includes adding the UI.
 
 
 
-## 0.1.0 - 2021/04/27
+## 0.1.0-alpha - 2021/04/27
 Note: I only started writing this changelog after I created the accounts system, which is why this version includes a lot of features. Every feature in here can only be used through software like Postman when it comes to any not GET request since I do not have created the UI yet.
 
 ### Added
