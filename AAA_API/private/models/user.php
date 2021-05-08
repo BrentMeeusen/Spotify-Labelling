@@ -277,8 +277,27 @@ class User extends Table {
 		// Insert input into SQL statement
 		$stmt->bind_param("ssssssi", $user->publicID, $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
 
-		// Execute SQL statement and return the result
+		// Execute SQL statement
 		self::execute($stmt);
+
+		// Send an email to the user to verify their account
+		$subject = "Verify Your Account";
+		
+		$body = "<html><head></head><body>";
+		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
+		$body .= "</body></html>";
+
+		$headers = "Return-Path: Spotify Labelling <no-reply@spotify-labelling.21webb.nl\r\n" . 
+				"From: Spotify Labelling <no-reply@spotify-labelling.21webb.nl>\r\n" .
+				"Organization: Spotify Labelling\r\n" . 
+				"MIME-Version: 1.0\r\n" . 
+				"Content-type: text/html; charset: utf8\r\n" . 
+				"X-Priority: 3\r\n" . 
+				"X-Mailer: PHP" . phpversion() ." \r\n";
+
+		mail($user->emailAddress, $subject, $body, $headers);
+
+		// Return the result
 		return $user;
 
 	}
