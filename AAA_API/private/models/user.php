@@ -135,6 +135,21 @@ class User extends Table {
 
 
 
+	/**
+	 * Verifies the user account by setting the account status
+	 * 
+	 * @return	User	The new user object
+	 */
+	public function verify() : User {
+
+		return self::updateUser($this->publicID, ["accountStatus" => 2]);
+
+	}
+
+
+
+
+
 
 
 
