@@ -19,8 +19,8 @@ PageProtect.protect = (options) => {
 	// Get the token
 	const payload = Api.TOKEN.getPayload();
 
-	// If the user needs to be verified AND if the account status is less than the required level, redirect to login 
-	if(options.verifiedLevel && payload.user.accountStatus < options.verifiedLevel) {
+	// If verifiedLevel is set AND (payload.user isn't set OR verifiedLevel is higher than accountStatus)
+	if(options.verifiedLevel && (!payload.user || options.verifiedLevel > payload.user.accountStatus)) {
 		window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
 	}
 
