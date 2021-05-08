@@ -32,7 +32,7 @@ class JWT {
 		if(header.typ !== "JWT" || header.alg !== "HS256") { return false; }
 
 
-		const now = Math.floor(Date.now() / 1000);
+		const now = Math.floor(Date.now() / 1000) + 5;
 		
 		// If the token is not valid yet, return false
 		if(now < payload.nbf) { return false; }
