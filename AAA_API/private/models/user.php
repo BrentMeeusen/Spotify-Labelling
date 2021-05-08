@@ -281,7 +281,7 @@ class User extends Table {
 		self::execute($stmt);
 
 		// Send an email to the user to verify their account
-		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $user->publicID . "&email=" + $user->emailAddress;
+		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $user->publicID . "&email=" . $user->emailAddress;
 
 		$subject = "Verify Your Account";
 		
@@ -289,8 +289,8 @@ class User extends Table {
 		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
 		$body .= "</body></html>";
 
-		$headers = "Return-Path: Spotify Labelling <no-reply@spotify-labelling.21webb.nl\r\n" . 
-				"From: Spotify Labelling <no-reply@spotify-labelling.21webb.nl>\r\n" .
+		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
+				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
 				"Organization: Spotify Labelling\r\n" . 
 				"MIME-Version: 1.0\r\n" . 
 				"Content-type: text/html; charset: utf8\r\n" . 
