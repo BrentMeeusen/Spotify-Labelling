@@ -35,7 +35,7 @@ Api.sendRequest = async (location, method, values) => {
 	// Set the token if it's provided
 	if(res.jwt) {
 		Api.TOKEN = new JWT(res.jwt);
-		await fetch(encodeURI("/Spotify Labelling/AAA_WEBAPP/assets/php/set-jwt-cookie.php?jwt=" + res.jwt));
+		document.cookie = "jwt=" + res.jwt + "; Expires=" + Date.now() + 3600 + "; Path=/";
 	}
 
 	// Return the result
