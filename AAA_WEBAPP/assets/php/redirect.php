@@ -15,7 +15,6 @@ if(!empty($_GET["jwt"]) && $_GET["jwt"] != "undefined") {
 	setcookie("jwt", "", 1, "/");
 	setcookie("jwt", $_GET["jwt"], time() + (60 * 60), "/", "", FALSE, TRUE);
 
-
 }
 
 header("Location: $redirect");
