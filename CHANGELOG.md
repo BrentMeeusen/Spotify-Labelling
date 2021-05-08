@@ -35,6 +35,7 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Database USERS scheme.
+<!-- - Fixed bug where cookie set on "localhost" made it seem like everything worked -->
 
 
 
