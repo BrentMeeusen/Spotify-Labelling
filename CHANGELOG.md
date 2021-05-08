@@ -28,6 +28,14 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.4.1-alpha - 2021/05/08
+
+### Fixed
+- Page protection where payload.user was not set.
+- JSON Web Token set in JavaScript from the cookie instead of the session.
+
+
+
 ## 0.4.0-alpha - 2021/05/08
 
 ### Added
