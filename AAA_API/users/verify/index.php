@@ -13,7 +13,7 @@ if(!isset($_GET["id"]) || !isset($_GET["email"])) {
 
 // Verify the user
 $user = User::findByPublicID($_GET["id"]);
-if($user === NULL || $user->email === $_GET["email"]) {
+if($user === NULL || $user->emailAddress === $_GET["email"]) {
 	ApiResponse::httpResponse(400, ["error" => "The requested user wasn't found."]);
 }
 
