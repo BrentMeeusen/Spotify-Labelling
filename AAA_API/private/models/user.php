@@ -281,6 +281,8 @@ class User extends Table {
 		self::execute($stmt);
 
 		// Send an email to the user to verify their account
+		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $user->publicID . "&email=" + $user->emailAddress;
+
 		$subject = "Verify Your Account";
 		
 		$body = "<html><head></head><body>";
