@@ -28,7 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.3.0-alpha - 2021/05/x
+## 0.3.0-alpha - 2021/05/08
 
 ### Added
 - Client JSON Web Token validation, not allowing the user to view the dashboard without a valid token
