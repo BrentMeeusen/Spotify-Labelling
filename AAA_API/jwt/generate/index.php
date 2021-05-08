@@ -34,15 +34,6 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 
 }
 
-// If the user wants to logout
-else if(isset($_GET["logout"]) && $_GET["logout"] == TRUE) {
-
-	// Clear cookie and return
-	setcookie("jwt", "", time() - 60);
-	ApiResponse::httpResponse(200, ["message" => "Logged out successfully."]);
-
-}
-
 // If the user wants to be able to login
 else if(isset($_GET["register"]) && $_GET["register"] == TRUE) {
 	
