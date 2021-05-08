@@ -62,7 +62,7 @@ session_start();
 		?>
 
 		<script>
-		PageProtect.protect({ verifiedLevel: 1 });
+		PageProtect.protect({ verifiedLevel: 2 });
 		</script>
 
 	</body>
