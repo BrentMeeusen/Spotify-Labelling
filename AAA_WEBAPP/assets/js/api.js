@@ -18,7 +18,9 @@ Api.sendRequest = async (location, method, values) => {
 
 	// Send a request and return the result
 	// WARNING: HARDCODED VALUE; CHANGE TO "http://spotify-labelling-api.21webb.nl/" + ...
-	const response = await fetch(encodeURI("http://localhost/Spotify Labelling/AAA_API/" + location), {
+	const base = "http://localhost/Spotify Labelling/AAA_API/";
+
+	const response = await fetch(encodeURI(base + location), {
 		method,
 		headers: {
 			"Content-Type": "application/json",
@@ -31,7 +33,10 @@ Api.sendRequest = async (location, method, values) => {
 	const res = await response.json();
 
 	// Set the token if it's provided
-	if(res.jwt) { Api.TOKEN = new JWT(res.jwt); }
+	if(res.jwt) {
+		Api.TOKEN = new JWT(res.jwt);
+		await fetch(encodeURI("/Spotify Labelling/AAA_WEBAPP/assets/php/set-jwt-cookie.php?jwt=" + res.jwt));
+	}
 
 	// Return the result
 	return res;
