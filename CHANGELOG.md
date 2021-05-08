@@ -28,6 +28,13 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.4.2-alpha - 2021/05/08
+
+### Fixed
+- Made JWT only accessible in cookie instead of the session too
+
+
+
 ## 0.4.1-alpha - 2021/05/08
 
 ### Fixed
