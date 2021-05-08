@@ -13,8 +13,8 @@ session_start();
 		
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
-		<link rel="stylesheet" type="text/css" href="../assets/css/general.css">
-		<link rel="stylesheet" type="text/css" href="../assets/css/dashboard.css">
+		<link rel="stylesheet" type="text/css" href="../../assets/css/general.css">
+		<link rel="stylesheet" type="text/css" href="../../assets/css/dashboard.css">
 	</head>
 
 
@@ -49,7 +49,7 @@ session_start();
 
 		<?php
 		// Load JavaScript
-		include_once("../assets/snippets/javascript-files.php");
+		include_once("../../assets/snippets/javascript-files.php");
 		?>
 
 		<script>
