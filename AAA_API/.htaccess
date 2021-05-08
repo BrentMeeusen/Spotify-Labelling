@@ -31,19 +31,19 @@ RewriteRule		api/v1/jwt/generate						jwt/generate/?testing=true	[L,QSA]
 
 
 ############	api/v1/users/[action]					users/[action]/
-RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1/					[L,QSA]
+RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1/								[L,QSA]
 
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
+RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1							[L,QSA]
 
 ############	api/v1/users/[id]						users/get/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)					users/get/?id=$1			[L,QSA]
+RewriteRule 	api/v1/users/([0-9]+)					users/get/?id=$1						[L,QSA]
 
-############	api/v1/users/[id]/verify				users/verify/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)/verify			users/verify/?id=$1			[L,QSA]
+############	api/v1/users/[id]/[email]/verify		users/verify/?id=[id]&email=[email]
+RewriteRule 	api/v1/users/([0-9]+)/([\w\W]+)/verify	users/verify/?id=$1&email=$2			[L,QSA]
 
 ############	api/v1/users							users/get/
-RewriteRule 	api/v1/users							users/get/					[L,QSA]
+RewriteRule 	api/v1/users							users/get/								[L,QSA]
 
 
 
