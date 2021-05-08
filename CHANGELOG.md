@@ -28,6 +28,13 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.4.0-alpha - 2021/05/08
+
+### Added
+- Account verification through an email.
+
+
+
 ## 0.3.0-alpha - 2021/05/08
 
 ### Added
