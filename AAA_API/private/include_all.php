@@ -16,6 +16,14 @@ include_once("models/label.php");
 include_once("models/user.php");
 
 
+
+// If it's a preflight check, return 200
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+	ApiResponse::httpResponse(200);
+}
+
+
+
 // Set the database connection
 Table::setConnection(Database::connect());
 
@@ -30,8 +38,8 @@ if(isset($REQUIRE_TOKEN)) {
 	$headerJWT = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
 
 	// Verify the token and get the payload if it's valid
-	JSONWebToken::validateToken($cookieJWT);
-	$payload = JSONWebToken::getPayload($cookieJWT);
+	JSONWebToken::validateToken($headerJWT);
+	$payload = JSONWebToken::getPayload($headerJWT);
 
 }
 
