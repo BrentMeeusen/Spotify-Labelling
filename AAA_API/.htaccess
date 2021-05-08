@@ -22,9 +22,6 @@ RewriteEngine On
 ############	api/v1/login							jwt/generate/
 RewriteRule		api/v1/login							jwt/generate/?login=true	[L,QSA]
 
-############	api/v1/logout							jwt/generate/?logout=true
-RewriteRule		api/v1/logout							jwt/generate/?logout=true	[L,QSA]
-
 ############	api/v1/register							jwt/generate/?register=true
 RewriteRule		api/v1/register							jwt/generate/?register=true	[L,QSA]
 
@@ -41,6 +38,9 @@ RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1				[L,QSA]
 
 ############	api/v1/users/[id]						users/get/?id=[id]
 RewriteRule 	api/v1/users/([0-9]+)					users/get/?id=$1			[L,QSA]
+
+############	api/v1/users/[id]/verify				users/verify/?id=[id]
+RewriteRule 	api/v1/users/([0-9]+)/verify			users/verify/?id=$1			[L,QSA]
 
 ############	api/v1/users							users/get/
 RewriteRule 	api/v1/users							users/get/					[L,QSA]
