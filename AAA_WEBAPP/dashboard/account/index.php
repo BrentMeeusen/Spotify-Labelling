@@ -48,7 +48,7 @@ session_start();
 			
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-clear-fields="true">
 
 					<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 					<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
