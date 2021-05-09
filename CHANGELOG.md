@@ -28,8 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- 
-## 0.5.0-alpha - 2021/05/xx
+## 0.5.0-alpha - 2021/05/09
 
 ### Added
 - values.js
@@ -37,7 +36,6 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Refactored register.js 
--->
 
 
 
