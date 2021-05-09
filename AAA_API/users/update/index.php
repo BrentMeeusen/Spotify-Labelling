@@ -41,9 +41,12 @@ if($user === NULL) {
 
 // Set values of the payload
 $values = [];
-foreach($_POST as $key => $value) {
-	$values[$key] = $value;
+foreach($body as $key => $value) {
+	if(!empty($value)) {
+		$values[$key] = $value;
+	}
 }
+
 
 // Update the user
 $res = User::updateUser($updateID, $values);
