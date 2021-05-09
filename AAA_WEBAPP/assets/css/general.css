@@ -180,4 +180,14 @@ p.footer a {
 
 
 
+/**
+ * Standard styling
+ */
+.border--red {
+	border-color: #700 !important;
+}
+
+
+
+
 
