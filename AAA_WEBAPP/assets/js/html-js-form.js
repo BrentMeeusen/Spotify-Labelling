@@ -109,6 +109,28 @@ HtmlJsForm.getForms = () => {
 
 
 /**
+ * Finds the form by ID if it exists
+ * 
+ * @param {string} id The data-id of the form to find
+ * @returns HtmlJsForm object if found, false if none found
+ */
+HtmlJsForm.findById = (id) => {
+
+	for(const form of HtmlJsForm.FORMS) {
+		if(form.dataset.id === id) {
+			return form;
+		}
+	}
+
+	return false;
+
+}
+
+
+
+
+
+/**
  * When the page loads, get all the custom forms
  */
 window.addEventListener("load", () => {
