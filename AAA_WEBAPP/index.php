@@ -50,13 +50,8 @@ session_start();
 		
 		<?php
 		// Load JavaScript
-		include_once("assets/snippets/javascript-files.php"); 
-		?>
-
-		<!-- Load register/login file -->
-		<script src="assets/js/register.js"></script>
-
-		<?php 
+		include_once("assets/snippets/javascript-files.php");
+		
 		// Load showing result after redirect
 		include_once("assets/snippets/show-redirect-result.php");
 		?>
