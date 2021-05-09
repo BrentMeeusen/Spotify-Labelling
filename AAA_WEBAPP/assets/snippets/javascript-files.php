@@ -4,6 +4,7 @@
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/jwt.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/lazy-loading.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/page-protect.js"></script>
+<script src="/Spotify Labelling/AAA_WEBAPP/assets/js/password-verifier.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/popup.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/theme.js"></script>
 
