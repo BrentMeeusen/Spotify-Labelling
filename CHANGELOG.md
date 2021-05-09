@@ -28,12 +28,15 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- ## 0.5.0-alpha - 2021/05/xx
+<!-- 
+## 0.5.0-alpha - 2021/05/xx
 
 ### Added
+- values.js
 
 ### Fixed
-- Refactored register.js -->
+- Refactored register.js 
+-->
 
 
 
