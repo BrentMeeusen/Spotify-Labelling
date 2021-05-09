@@ -1,11 +1,17 @@
 <?php
 
+session_start();
+
 // Unset cookie
 setcookie("jwt", "", 1, "/");
 
 // Set variables
-if(!isset($_GET["code"])) { $_GET["code"] = 200; }
-if(!isset($_GET["message"])) { $_GET["message"] = "You have been successfully logged out."; }
+if(!isset($_SESSION["code"])) { $_GET["code"] = 200; }
+else { $_GET["code"] = $_SESSION["code"]; }
+
+if(!isset($_SESSION["message"])) { $_GET["message"] = "You have been successfully logged out."; }
+else { $_GET["message"] = $_SESSION["message"]; }
+
 $_GET["redirect"] = "";
 
 // Redirect to login
