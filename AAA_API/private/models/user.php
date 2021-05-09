@@ -297,7 +297,7 @@ class User extends Table {
 				"X-Priority: 3\r\n" . 
 				"X-Mailer: PHP" . phpversion() ." \r\n";
 
-		mail($user->emailAddress, $subject, $body, $headers);
+		@mail($user->emailAddress, $subject, $body, $headers);
 
 		// Return the result
 		return $user;
