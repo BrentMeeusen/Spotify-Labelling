@@ -1,3 +1,29 @@
+class PasswordVerifier {
+
+	/**
+	 * If both are given, check whether the two passwords are valid and enable the submit button accordingly
+	 * 
+	 * @param {HTMLElement} pwd The <input> of the password field
+	 * @param {HTMLElement} pwdRep The <input> of the password-repeat field
+	 * @param {HTMLElement} submit The <button> of the submit button
+	 */
+	constructor(pwd, pwdRep, submit) {
+
+		// Set variables
+		this.password = pwd;
+		this.passwordRepeat = pwdRep;
+		this.submit = submit;
+
+		// Set the EventListeners
+		
+	}
+
+}
+
+
+
+
+
 window.addEventListener("load", async () => {
 	
 	// Get JWT for registering an account
