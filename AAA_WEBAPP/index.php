@@ -59,7 +59,9 @@ session_start();
 		<script>
 		
 		// Create a token
-		await Api.sendRequest("api/v1/register", "POST");
+		window.addEventListener("load", async () => {
+			await Api.sendRequest("api/v1/register", "POST");
+		});
 		
 		</script>
 

@@ -58,7 +58,9 @@
 		<script>
 
 		// Get a token
-		await Api.sendRequest("api/v1/register", "POST");
+		window.addEventListener("load", async () => {
+			await Api.sendRequest("api/v1/register", "POST");
+		});
 
 		// Create a password verifier
 		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("register-btn"));
