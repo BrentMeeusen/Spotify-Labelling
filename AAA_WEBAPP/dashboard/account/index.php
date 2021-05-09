@@ -77,7 +77,10 @@ session_start();
 		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("update-password-btn"));
 
 		// Fill the "account" form with current values
-		HtmlJsForm.findById("account-values").fillValues(Api.TOKEN.getPayload().user);
+		window.addEventListener("load", () => {
+			console.log(HtmlJsForm.findById("account-values"));
+			HtmlJsForm.findById("account-values").fillValues(Api.TOKEN.getPayload().user);
+		});
 
 		</script>
 
