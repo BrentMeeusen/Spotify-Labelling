@@ -37,7 +37,7 @@ session_start();
 				<!-- <input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat"> -->
 
-				<button type="submit" name="html-js-form-submit" value="submit" disabled>REGISTER</button>
+				<button type="submit" name="html-js-form-submit" value="submit" disabled>UPDATE ACCOUNT INFORMATION</button>
 
 			</div>
 
@@ -48,7 +48,7 @@ session_start();
 				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
 
-				<button type="submit" name="html-js-form-submit" value="submit" id="update-password-btn" disabled>REGISTER</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="update-password-btn" disabled>UPDATE PASSWORD</button>
 
 			</div>
 
