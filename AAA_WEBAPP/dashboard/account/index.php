@@ -28,32 +28,40 @@ session_start();
 		
 			<h1>Your Account</h1>
 			
-			<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
 
-				<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
-				<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
-				<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
-				<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
-				<!-- <input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
-				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat"> -->
+			<div class="module">
 
-				<button type="submit" name="html-js-form-submit" value="submit" disabled>UPDATE ACCOUNT INFORMATION</button>
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
+
+					<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
+					<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
+					<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
+					<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
+					<!-- <input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
+					<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat"> -->
+
+					<button type="submit" name="html-js-form-submit" value="submit" disabled>UPDATE ACCOUNT INFORMATION</button>
+
+				</div>
 
 			</div>
 
 
 			
-			<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
+			<div class="module">
 
-				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
-				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
 
-				<button type="submit" name="html-js-form-submit" value="submit" id="update-password-btn" disabled>UPDATE PASSWORD</button>
+					<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
+					<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
 
-			</div>
+					<button type="submit" name="html-js-form-submit" value="submit" id="update-password-btn" disabled>UPDATE PASSWORD</button>
 
+				</div>
 
-		</div>
+			</div>	<!-- .module -->
+
+		</div>	<!-- .main-wrapper -->
 
 
 
