@@ -6,7 +6,7 @@
 	--light--text: #333;
 	--light--placeholder: #AAA;
 	--light--link: #02B;
-	--light--highlight: #D00;
+	--light--highlight: #1DB954;
 
 	/* Dark theme variables */
 	--dark--background: #111;
@@ -14,7 +14,7 @@
 	--dark--text: #FFFD;
 	--dark--placeholder: #888;
 	--dark--link: #06D;
-	--dark--highlight: #700;
+	--dark--highlight: #1DB954;
 
 	/* Current theme variables (initially dark theme) */
 	--current--background: #111;
@@ -22,7 +22,7 @@
 	--current--text: #FFFD;
 	--current--placeholder: #888;
 	--current--link: #06D;
-	--current--highlight: #700;
+	--current--highlight: #1DB954;
 
 	--current--error: #C00;
 	--current--success: #0C0;
