@@ -78,7 +78,6 @@ session_start();
 
 		// Fill the "account" form with current values
 		window.addEventListener("load", () => {
-			console.log(HtmlJsForm.findById("account-values"));
 			HtmlJsForm.findById("account-values").fillValues(Api.TOKEN.getPayload().user);
 		});
 
