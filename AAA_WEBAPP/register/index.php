@@ -49,12 +49,12 @@
 		</div>
 
 
+
 		<?php
 		// Load JavaScript
 		include_once("../assets/snippets/javascript-files.php"); 
 		?>
 
-		<!-- Create a PasswordVerifier for the submit button -->
 		<script>
 
 		// Get a token
@@ -62,7 +62,7 @@
 
 		// Create a password verifier
 		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("register-btn"));
-		
+
 		</script>
 		
 	</body>
