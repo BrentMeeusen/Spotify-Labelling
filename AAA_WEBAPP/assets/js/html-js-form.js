@@ -76,9 +76,30 @@ class HtmlJsForm {
 
 
 
-	fillValues() {
+	/**
+	 * Fills the inputs with the values given
+	 * 
+	 * @param {object} values The values to fill in
+	 */
+	fillValues(values) {
 
-	}
+		// For every entry
+		for(const [key, value] of Object.entries(values)) {
+
+			// For every input
+			for(const input of this.inputs) {
+
+				// If the key is the input name
+				const names = input.name.split(" ");
+				if(names[1] && names[1].toLowerCase() === key.toLowerCase()) {
+					input.value = value;		// Set the value
+				}
+
+			}	// For every input
+
+		}	// For every value
+
+	}	// fillValues()
 
 }
 
