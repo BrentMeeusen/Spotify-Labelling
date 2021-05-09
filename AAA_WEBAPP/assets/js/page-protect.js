@@ -13,7 +13,7 @@ PageProtect.protect = (options) => {
 
 	// If there's no token, or if the token is invalid, redirect to login
 	if(!Api.TOKEN || !Api.TOKEN.validate()) {
-		window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
+		window.location.href = VALUES.assets + "php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
 	}
 	
 	// Get the token
@@ -21,7 +21,7 @@ PageProtect.protect = (options) => {
 
 	// If verifiedLevel is set AND (payload.user isn't set OR verifiedLevel is higher than accountStatus)
 	if(options.verifiedLevel && (!payload.user || options.verifiedLevel > payload.user.accountStatus)) {
-		window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
+		window.location.href = VALUES.assets + "php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
 	}
 
 	// If all page protection went fine, return true

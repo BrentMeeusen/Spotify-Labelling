@@ -7,6 +7,7 @@
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/password-verifier.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/popup.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/theme.js"></script>
+<script src="/Spotify Labelling/AAA_WEBAPP/assets/js/values.js"></script>
 
 <!-- Load general file (which will be a minified version of all the files above that are general) -->
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/general.js"></script>
