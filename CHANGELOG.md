@@ -33,6 +33,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - values.js
+- Your Account page
 
 ### Fixed
 - Refactored register.js 
