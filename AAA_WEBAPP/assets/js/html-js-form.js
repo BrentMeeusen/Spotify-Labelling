@@ -72,6 +72,14 @@ class HtmlJsForm {
 
 	}
 
+
+
+
+
+	fillValues() {
+
+	}
+
 }
 
 
@@ -112,7 +120,7 @@ HtmlJsForm.getForms = () => {
  * Finds the form by ID if it exists
  * 
  * @param {string} id The data-id of the form to find
- * @returns HtmlJsForm object if found, false if none found
+ * @returns HtmlJsForm object if found, null if none found
  */
 HtmlJsForm.findById = (id) => {
 
@@ -122,7 +130,7 @@ HtmlJsForm.findById = (id) => {
 		}
 	}
 
-	return false;
+	return null;
 
 }
 
