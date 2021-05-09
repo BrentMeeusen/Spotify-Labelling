@@ -39,11 +39,24 @@ class PasswordVerifier {
 
 		// Logics
 		if(p1 !== "" && p2 !== "" && p1 === p2) {
-			this.enable();
+			this.enableButton(true);
 		} else {
-			this.disable();
+			this.enableButton(false);
 		}
 
+	}
+
+
+
+
+
+	/**
+	 * Enables the submit button
+	 * 
+	 * @param {boolean} enable Whether the button should be enabled or disable
+	 */
+	enableButton(enable) {
+		this.submit.disabled = !enable;
 	}
 
 }
@@ -52,36 +65,16 @@ class PasswordVerifier {
 
 
 
-window.addEventListener("load", async () => {
+// window.addEventListener("load", async () => {
 	
-	// Get JWT for registering an account
-	const res = await Api.sendRequest("api/v1/register", "POST");
+// 	// Get JWT for registering an account
+// 	const res = await Api.sendRequest("api/v1/register", "POST");
 
-	// Passwords must match
-	const password = document.getElementById("password");
-	const passwordRepeat = document.getElementById("password-repeat");
-	const button = document.getElementById("register-btn");
+// 	// Passwords must match
+// 	const password = document.getElementById("password");
+// 	const passwordRepeat = document.getElementById("password-repeat");
+// 	const button = document.getElementById("register-btn");
 
+// 	const pv = new PasswordVerifier(password, passwordRepeat, button);
 
-	// Password match checking method
-	const setRegisterButton = (p1, p2) => {
-		if(p1 === p2 && p1 !== "" && p2 !== "") {
-			button.disabled = false;
-		} else {
-			button.disabled = true;
-		}
-	}
-
-	// Try to check the passwords
-	try {
-		password.addEventListener("input", () => {
-			try { setRegisterButton(password.value, passwordRepeat.value); } 
-			catch(e) {}
-		});
-		passwordRepeat.addEventListener("input", () => {
-			try { setRegisterButton(password.value, passwordRepeat.value); }
-			catch(e) {}
-		});
-	} catch(e) {}
-
-});
+// });
