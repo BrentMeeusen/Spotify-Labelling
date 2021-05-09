@@ -68,8 +68,8 @@ h1 {
 	border: 2px solid var(--current--text);
 	padding: 10px;
 	flex: 1 1 100%;
-	font-size: 1rem;
-	margin-bottom: 1rem;
+	font-size: 1em;
+	margin-bottom: 1em;
 	transition: 0.25s ease border, 0.25s;
 }
 .form > *::placeholder {
@@ -84,7 +84,6 @@ h1 {
 	flex: 0 1 calc(50% - 0.5rem);
 }
 .form > *:last-child {
-	margin-top: 2rem;
 	margin-bottom: 0;
 }
 
