@@ -16,6 +16,8 @@ if(isset($_GET["id"])) {
 	}
 	$userID = $_GET["id"];
 
+	$prefix = "The";
+
 }
 
 // If the ID is not set, update self
@@ -26,6 +28,8 @@ else {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to delete your account."]);
 	}
 	$userID = $payload->user->id;
+
+	$prefix = "Your";
 
 }
 
@@ -39,17 +43,11 @@ if($user === NULL) {
 
 
 
-// Set values of the payload
-$values = [];
-foreach($_POST as $key => $value) {
-	$values[$key] = $value;
-}
-
 // Update the user
 $res = User::deleteUser($userID);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "Deleted user.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
 
 
 ?>
