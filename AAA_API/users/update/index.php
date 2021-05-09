@@ -15,6 +15,8 @@ if(isset($_GET["id"])) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
 	}
 	$updateID = $_GET["id"];
+	
+	$prefix = "The";
 
 }
 
@@ -27,6 +29,8 @@ else {
 	}
 	$updateID = $payload->user->id;
 
+	$prefix = "Your";
+
 }
 
 
@@ -34,7 +38,7 @@ else {
 // If the user isn't found, return an error
 $user = User::findByPublicID($updateID);
 if($user === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
+	ApiResponse::httpResponse(404, ["error" => "We couldn't find " . strtolower($prefix) . "account."]);
 }
 
 
@@ -52,7 +56,7 @@ foreach($body as $key => $value) {
 $res = User::updateUser($updateID, $values);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "Updated user.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully updated.", "data" => $res]);
 
 
 ?>

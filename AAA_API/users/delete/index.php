@@ -16,6 +16,8 @@ if(isset($_GET["id"])) {
 	}
 	$userID = $_GET["id"];
 
+	$prefix = "The";
+
 }
 
 // If the ID is not set, update self
@@ -26,6 +28,8 @@ else {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to delete your account."]);
 	}
 	$userID = $payload->user->id;
+	
+	$prefix = "Your";
 
 }
 
@@ -34,7 +38,7 @@ else {
 // If the user isn't found, return an error
 $user = User::findByPublicID($userID);
 if($user === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
+	ApiResponse::httpResponse(404, ["error" => "$prefix account was not found."]);
 }
 
 
@@ -49,7 +53,7 @@ foreach($_POST as $key => $value) {
 $res = User::deleteUser($userID);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "Deleted user.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "$prefix account was successfully deleted.", "data" => $res]);
 
 
 ?>

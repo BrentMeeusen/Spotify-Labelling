@@ -31,6 +31,6 @@ foreach($body as $key => $value) {
 $res = User::createUser($values);
 
 // Check whether everything went right whilst adding to the database, set response headers and messages.
-ApiResponse::httpResponse(200, [ "message" => "Successfully registered!", "data" => $res ]);
+ApiResponse::httpResponse(200, [ "message" => "Successfully registered. You can login after you have verified your account.", "data" => $res ]);
 
 ?>
