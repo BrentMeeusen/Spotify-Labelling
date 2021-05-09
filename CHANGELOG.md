@@ -28,6 +28,17 @@ STANDARD NEW VERSION:
 
 -->
 
+
+<!-- 
+## 0.6.0-alpha - 2021/05/xx
+
+### Added
+- Delete your account
+- Logout mechanism 
+-->
+
+
+
 ## 0.5.1-alpha - 2021/05/09
 
 ### Changed
@@ -40,6 +51,7 @@ STANDARD NEW VERSION:
 ### Added
 - values.js
 - Your Account page
+- Update your account
 
 ### Fixed
 - Refactored register.js 
