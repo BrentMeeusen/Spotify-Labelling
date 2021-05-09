@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-$redirect = "../../" . $_GET["redirect"];
+
+// WARNING: HARDCODED LOCATION; CHANGE TO "/"
+$redirect = "/Spotify Labelling/AAA_WEBAPP/" . $_GET["redirect"];
 
 // Get the code and message
 $_SESSION["code"] = $_GET["code"];
