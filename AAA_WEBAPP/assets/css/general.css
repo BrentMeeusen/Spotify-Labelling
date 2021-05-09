@@ -87,14 +87,17 @@ h1 {
 	margin-bottom: 0;
 }
 
+.form > button {
+	border-color: var(--current--highlight);
+}
 .form > button:hover, .form > button:active {
 	background-color: var(--current--background-highlight);
-	border-color: var(--current--highlight);
+	color: var(--current--highlight);
 }
 .form > button:disabled {
 	opacity: 0.5;
-	background-color: var(--current--background-highlight) !important;
-	border-color: var(--current--text) !important;
+	background-color: var(--current--background) !important;
+	color: var(--current--text);
 }
 
 
