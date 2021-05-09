@@ -30,9 +30,17 @@ class HtmlJsForm {
 				// WARNING: HARDCODED LOCATION; CHANGE TO "/assets/..."
 				window.location.href = "/Spotify Labelling/AAA_WEBAPP/assets/php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(this.redirect) + "&jwt=" + encodeURIComponent(res.jwt);
 			}
-			// Show the popup otherwise
+
+			// Show the popup with the result of the API otherwise
 			else {
 				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+			}
+
+			// If the form should be cleared, clear all values
+			if(this.form.dataset.clearFields == "true") {
+				for(const field of this.inputs) {
+					field.value = "";
+				}
 			}
 
 			console.log(res, this.inputs);
