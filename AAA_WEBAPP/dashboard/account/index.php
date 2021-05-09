@@ -65,7 +65,7 @@ session_start();
 			
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE">
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout">
 
 					<button class="border--red" type="submit" name="html-js-form-submit" value="submit" id="update-password-btn">DELETE ACCOUNT</button>
 
