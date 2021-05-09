@@ -60,21 +60,3 @@ class PasswordVerifier {
 	}
 
 }
-
-
-
-
-
-// window.addEventListener("load", async () => {
-	
-// 	// Get JWT for registering an account
-// 	const res = await Api.sendRequest("api/v1/register", "POST");
-
-// 	// Passwords must match
-// 	const password = document.getElementById("password");
-// 	const passwordRepeat = document.getElementById("password-repeat");
-// 	const button = document.getElementById("register-btn");
-
-// 	const pv = new PasswordVerifier(password, passwordRepeat, button);
-
-// });
