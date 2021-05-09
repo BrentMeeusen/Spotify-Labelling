@@ -186,6 +186,9 @@ p.footer a {
 .border--red {
 	border-color: #700 !important;
 }
+.border--red:hover {
+	color: #FFF !important;
+}
 
 
 
