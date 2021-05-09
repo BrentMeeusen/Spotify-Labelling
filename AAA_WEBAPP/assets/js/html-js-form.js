@@ -125,7 +125,7 @@ HtmlJsForm.getForms = () => {
 HtmlJsForm.findById = (id) => {
 
 	for(const form of HtmlJsForm.FORMS) {
-		if(form.dataset.id === id) {
+		if(form.form.dataset.id === id) {
 			return form;
 		}
 	}
