@@ -24,6 +24,28 @@ class PasswordVerifier {
 		
 	}
 
+
+
+	
+
+	/**
+	 * Verifies whether the passwords are fine
+	 */
+	verify() {
+
+		// Set variables
+		const p1 = this.password.value;
+		const p2 = this.passwordRepeat.value;
+
+		// Logics
+		if(p1 !== "" && p2 !== "" && p1 === p2) {
+			this.enable();
+		} else {
+			this.disable();
+		}
+
+	}
+
 }
 
 
