@@ -31,7 +31,7 @@ session_start();
 
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-id="account-values">
 
 					<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
 					<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
@@ -75,6 +75,9 @@ session_start();
 
 		// Create a password verifier
 		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("update-password-btn"));
+
+		// Fill the "account" form with current values
+		HtmlJsForm.findById("account-values").fillValues(Api.TOKEN.getPayload().user);
 
 		</script>
 
