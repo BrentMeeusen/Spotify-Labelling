@@ -48,7 +48,7 @@ session_start();
 				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
 
-				<button type="submit" name="html-js-form-submit" value="submit" id="register-btn" disabled>REGISTER</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="update-password-btn" disabled>REGISTER</button>
 
 			</div>
 
@@ -62,10 +62,14 @@ session_start();
 		include_once("../../assets/snippets/javascript-files.php");
 		?>
 
-		<script src="../../assets/js/register.js"></script>
-
 		<script>
+
+		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
+
+		// Create a password verifier
+		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("update-password-btn"));
+
 		</script>
 
 	</body>

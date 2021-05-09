@@ -56,5 +56,12 @@ session_start();
 		include_once("assets/snippets/show-redirect-result.php");
 		?>
 
+		<script>
+		
+		// Create a token
+		await Api.sendRequest("api/v1/register", "POST");
+		
+		</script>
+
 	</body>
 </html>

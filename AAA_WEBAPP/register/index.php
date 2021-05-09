@@ -54,8 +54,16 @@
 		include_once("../assets/snippets/javascript-files.php"); 
 		?>
 
-		<!-- Load register/login file -->
-		<script src="../assets/js/register.js"></script>
+		<!-- Create a PasswordVerifier for the submit button -->
+		<script>
+
+		// Get a token
+		await Api.sendRequest("api/v1/register", "POST");
+
+		// Create a password verifier
+		const pv = new PasswordVerifier(document.getElementById("password"), document.getElementById("password-repeat"), document.getElementById("register-btn"));
+		
+		</script>
 		
 	</body>
 </html>
