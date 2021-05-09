@@ -28,20 +28,30 @@ session_start();
 		
 			<h1>Your Account</h1>
 			
+			<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
+
+				<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
+				<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
+				<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
+				<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
+				<!-- <input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
+				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat"> -->
+
+				<button type="submit" name="html-js-form-submit" value="submit" disabled>REGISTER</button>
+
+			</div>
 
 
-			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
+			
+			<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST">
 
-			<input name="input Identifier"		type="text"			placeholder="USERNAME OR EMAIL ADDRESS">
-			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
+				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
+				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
 
-			<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="register-btn" disabled>REGISTER</button>
 
-			</div> -->
+			</div>
 
-
-
-			<!-- <img class="lazy-image" style="margin-top: 100vh;" data-src="../assets/images/test-image", data-extension="png"> -->
 
 		</div>
 
@@ -51,6 +61,8 @@ session_start();
 		// Load JavaScript
 		include_once("../../assets/snippets/javascript-files.php");
 		?>
+
+		<script src="../../assets/js/register.js"></script>
 
 		<script>
 		PageProtect.protect({ verifiedLevel: 2 });
