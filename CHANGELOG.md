@@ -28,6 +28,15 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.5.0-alpha - 2021/05/xx
+
+### Added
+
+### Fixed
+- Refactored register.js
+
+
+
 ## 0.4.2-alpha - 2021/05/08
 
 ### Fixed
