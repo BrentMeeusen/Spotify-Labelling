@@ -15,6 +15,12 @@ class PasswordVerifier {
 		this.submit = submit;
 
 		// Set the EventListeners
+		this.password.addEventListener("input", () => {
+			this.verify();
+		});
+		this.passwordRepeat.addEventListener("input", () => {
+			this.verify();
+		});
 		
 	}
 
