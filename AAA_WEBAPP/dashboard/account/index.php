@@ -65,7 +65,7 @@ session_start();
 			
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout">
+				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout" data-clear-fields="true">
 
 					<input name="input Password"	type="password"		placeholder="TYPE PASSWORD TO CONFIRM">
 
