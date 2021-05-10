@@ -29,7 +29,18 @@ STANDARD NEW VERSION:
 -->
 
 
-## 0.6.0-alpha - 2021/05/xx
+## 0.6.1-alpha - 2021/05/10
+
+### Added
+- Waits for response before the next request can be made
+
+### Changed
+- Registering password login rules
+- Must insert account password in order to delete account
+
+
+
+## 0.6.0-alpha - 2021/05/10
 
 ### Added
 - Delete your account
@@ -40,7 +51,7 @@ STANDARD NEW VERSION:
 ## 0.5.1-alpha - 2021/05/09
 
 ### Changed
-- Return messages from the database.
+- Return messages from the database
 
 
 
@@ -66,15 +77,15 @@ STANDARD NEW VERSION:
 ## 0.4.1-alpha - 2021/05/08
 
 ### Fixed
-- Page protection where payload.user was not set.
-- JSON Web Token set in JavaScript from the cookie instead of the session.
+- Page protection where payload.user was not set
+- JSON Web Token set in JavaScript from the cookie instead of the session
 
 
 
 ## 0.4.0-alpha - 2021/05/08
 
 ### Added
-- Account verification through an email.
+- Account verification through an email
 
 
 
@@ -84,7 +95,7 @@ STANDARD NEW VERSION:
 - Client JSON Web Token validation, not allowing the user to view the dashboard without a valid token
 
 ### Fixed
-- Database USERS scheme.
+- Database USERS scheme
 - Fixed bug where cookie set on "localhost" made it seem like everything worked
 
 
@@ -93,12 +104,12 @@ STANDARD NEW VERSION:
 This version mostly includes adding the UI.
 
 ### Added
-- Register account UI.
-- Login account UI.
-- Dashboard page.
+- Register account UI
+- Login account UI
+- Dashboard page
 
 ### Fixed
-- Refactored JavaScript code.
+- Refactored JavaScript code
 
 
 
@@ -106,8 +117,8 @@ This version mostly includes adding the UI.
 Note: I only started writing this changelog after I created the accounts system, which is why this version includes a lot of features. Every feature in here can only be used through software like Postman when it comes to any not GET request since I do not have created the UI yet.
 
 ### Added
-- One can create an account.
-- One can login to a created account.
-- One can update and delete their own account.
-- One can read all users (not a separate user, but all users in one request).
-- JSON Web Tokens are generated on login.
+- One can create an account
+- One can login to a created account
+- One can update and delete their own account
+- One can read all users (not a separate user, but all users in one request)
+- JSON Web Tokens are generated on login
