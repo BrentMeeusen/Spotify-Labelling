@@ -18,7 +18,6 @@ class HtmlJsForm {
 		this.method = this.form.dataset.method;
 		this.redirect = this.form.dataset.redirect;
 
-
 		// Set the submit button action
 		this.submit.addEventListener("click", async () => {
 			this.sendForm();
