@@ -21,32 +21,43 @@ class HtmlJsForm {
 
 		// Set the submit button action
 		this.submit.addEventListener("click", async () => {
-
-			// Send the request
-			const res = await Api.sendRequest(this.action, this.method, this.getValues());
-
-			// Redirect if necessary
-			if(res.code === 200 && this.redirect !== undefined) {
-				window.location.href = VALUES.assets + "php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(this.redirect) + "&jwt=" + encodeURIComponent(res.jwt);
-			}
-
-			// Show the popup with the result of the API otherwise
-			else {
-				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-			}
-
-			// If the form should be cleared, clear all values
-			if(this.form.dataset.clearFields == "true") {
-				for(const field of this.inputs) {
-					field.value = "";
-				}
-			}
-
-			console.log(res, this.inputs);
-			
+			this.sendForm();
 		});
 
 	}	// constructor()
+
+
+
+
+
+	/**
+	 * Sends the form using the action, method, and values provided
+	 */
+	async sendForm() {
+
+		// Send the request
+		const res = await Api.sendRequest(this.action, this.method, this.getValues());
+
+		// Redirect if necessary
+		if(res.code === 200 && this.redirect !== undefined) {
+			window.location.href = VALUES.assets + "php/redirect.php?code=200&message=" + encodeURIComponent(res.message) + "&redirect=" + encodeURIComponent(this.redirect) + "&jwt=" + encodeURIComponent(res.jwt);
+		}
+
+		// Show the popup with the result of the API otherwise
+		else {
+			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+		}
+
+		// If the form should be cleared, clear all values
+		if(this.form.dataset.clearFields == "true") {
+			for(const field of this.inputs) {
+				field.value = "";
+			}
+		}
+
+		console.log(res, this.inputs);
+		
+	}
 
 
 
