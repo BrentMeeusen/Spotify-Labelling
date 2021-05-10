@@ -43,17 +43,11 @@ if($user === NULL) {
 
 
 
-// Set values of the payload
-$values = [];
-foreach($_POST as $key => $value) {
-	$values[$key] = $value;
-}
-
 // Update the user
 $res = User::deleteUser($userID);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "$prefix account was successfully deleted.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
 
 
 ?>
