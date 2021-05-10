@@ -34,6 +34,9 @@ class HtmlJsForm {
 	 */
 	async sendForm() {
 
+		// Disable the button so the user can't send the same request over and over
+		this.submit.disabled = true;
+
 		// Send the request
 		const res = await Api.sendRequest(this.action, this.method, this.getValues());
 
@@ -46,6 +49,9 @@ class HtmlJsForm {
 		else {
 			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 		}
+
+		// Enable submit button again
+		this.submit.disabled = false;
 
 		// If the form should be cleared, clear all values
 		if(this.form.dataset.clearFields == "true") {
