@@ -29,13 +29,11 @@ STANDARD NEW VERSION:
 -->
 
 
-<!-- 
 ## 0.6.0-alpha - 2021/05/xx
 
 ### Added
 - Delete your account
-- Logout mechanism 
--->
+- Logout mechanism
 
 
 
