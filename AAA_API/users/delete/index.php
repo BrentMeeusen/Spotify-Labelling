@@ -42,6 +42,12 @@ if($user === NULL) {
 }
 
 
+// If the password isn't correct, return an error
+if(!password_verify($body["Password"], $user->password)) {
+	ApiResponse::httpResponse(400, ["error" => "The given password is incorrect."]);
+}
+
+
 
 // Update the user
 $res = User::deleteUser($userID);
