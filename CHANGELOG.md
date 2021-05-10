@@ -29,6 +29,16 @@ STANDARD NEW VERSION:
 -->
 
 
+
+<!-- 
+
+TODO:
+- Apply unique password rule also to changing the password
+- Make forms autofill on request (pass HtmlJsForm as a parameter to the Api.sendRequest())
+
+ -->
+
+
 ## 0.6.1-alpha - 2021/05/10
 
 ### Added
