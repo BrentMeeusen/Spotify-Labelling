@@ -41,6 +41,7 @@ h1 {
 }
 .nav li {
 	width: 100%;
+	transition: .2s ease-out;
 }
 .nav a {
 	display: block;
@@ -48,6 +49,9 @@ h1 {
 	padding: 0.5em;
 	font-size: 1.25em;
 	text-decoration: none;
+}
+.nav li:hover {
+	margin-left: 0.5em;
 }
 .nav a:hover, .nav a:active, .nav a:focus {
 	color: var(--current--highlight);
