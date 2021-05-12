@@ -38,6 +38,7 @@ STANDARD NEW VERSION:
 - How it works page
 - Navigation menu
 - Autofills form when new data is received if it's set
+- Logout button
 
 ### Changed
 - Additional password rule on password update
