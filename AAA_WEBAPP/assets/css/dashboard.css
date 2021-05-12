@@ -67,12 +67,35 @@ h1 {
  */
 .module {
 	margin: 3em 0;
+	padding: 0 1em;
 }
 .module.text {
 	padding: 0 2em;
 }
 .module.text p + p {
 	margin-top: 1em;
+}
+
+.module {
+	width: 100%;
+}
+.table-container {
+	overflow: scroll;
+	width: 100%;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+table * {
+	white-space: nowrap;
+	font-size: 1.1rem;
+}
+table td {
+	padding: 0.625em;
+}
+table tr:nth-child(2n + 1) {
+	background: var(--current--background-highlight);
 }
 
 
