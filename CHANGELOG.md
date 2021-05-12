@@ -29,17 +29,7 @@ STANDARD NEW VERSION:
 -->
 
 
-
-<!-- 
-
-TODO:
-- Apply unique password rule also to changing the password
-- Make forms autofill on request (pass HtmlJsForm as a parameter to the Api.sendRequest())
-
- -->
-
-<!--
-## 0.7.0-alpha - 2021/05/xx
+## 0.7.0-alpha - 2021/05/12
 
 ### Added
 - Your songs page
@@ -53,9 +43,6 @@ TODO:
 - Additional password rule on password update
 - Additional input check on account update
 - Create a new JWT on updating account
-
-
--->
 
 
 
