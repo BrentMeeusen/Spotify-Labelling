@@ -4,6 +4,6 @@
 	</div>
 	
 	<ul>
-		<li><a href="account">Your Account</a></li>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/account/">Your Account</a></li>
 	</ul>
 </div>
