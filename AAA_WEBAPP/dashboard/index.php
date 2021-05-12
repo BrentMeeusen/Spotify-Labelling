@@ -28,7 +28,7 @@ session_start();
 			</div>
 
 			<!-- Menu -->
-			<div class="nav-open-btn" id="nav-open">
+			<div class="nav-btn" id="nav-open">
 				<img src="../assets/icons/menu/menu-open.png">
 			</div>
 
