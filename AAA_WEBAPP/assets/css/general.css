@@ -42,6 +42,15 @@
 	transition: 0.25s ease background, 0.25s ease color;
 }
 
+
+@media screen and (max-width: 768px) {
+	* {
+		cursor: none;
+	}
+}
+
+
+
 html {
 	background-color: var(--current--background);
 }
