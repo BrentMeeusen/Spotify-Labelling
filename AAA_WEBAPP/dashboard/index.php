@@ -34,8 +34,10 @@ session_start();
 
 			<?php include_once("../assets/snippets/navigation.php"); ?>
 
-			<!-- Content -->
+			<!-- Title -->
 			<h1><a href="">Spotify Labelling</a></h1>
+
+			<!-- Content -->
 
 			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
 
