@@ -48,6 +48,12 @@ TODO:
 - How it works page
 - Navigation menu
 
+### Changed
+- Additional password rule on password update
+- Additional input check on account update
+- Create a new JWT on updating account
+
+
 -->
 
 
