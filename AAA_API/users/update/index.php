@@ -12,7 +12,7 @@ if(isset($_GET["id"])) {
 
 	// Check whether the current user (JWT) is allowed to update another user (ID)
 	if(!isset($payload->rights->users->update) || $payload->rights->users->update !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account.", "data" => $payload->user]);
 	}
 	$updateID = $_GET["id"];
 	
@@ -25,7 +25,7 @@ else {
 
 	// If the payload doesn't contain "user.id", return an error
 	if(!isset($payload->user->id) || !isset($payload->rights->user->update) || $payload->rights->user->update !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account.", "data" => $payload->user]);
 	}
 	$updateID = $payload->user->id;
 
@@ -37,14 +37,14 @@ else {
 
 // Check if inputs are set and not empty
 if(setAndEmpty($body, "FirstName") || setAndEmpty($body, "LastName") || setAndEmpty($body, "Username") || setAndEmpty($body, "EmailAddress")) {
-	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
+	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
 }
 
 
 
 // Check if the password is the same as another value
 if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname || $body["Password"] == $payload->user->lastname || $body["Password"] == $payload->user->username || $body["Password"] == $payload->user->emailAddress)) {
-	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value."]);
+	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value.", "data" => $payload->user]);
 }
 
 
@@ -52,7 +52,7 @@ if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname |
 // If the user isn't found, return an error
 $user = User::findByPublicID($updateID);
 if($user === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "We couldn't find " . strtolower($prefix) . "account."]);
+	ApiResponse::httpResponse(404, ["error" => "We couldn't find " . strtolower($prefix) . "account.", "data" => $payload->user]);
 }
 
 
@@ -72,14 +72,9 @@ $res = User::updateUser($updateID, $values);
 
 
 // Create a new token
-	$user = User::findByPublicID($payload->user->id);
-
-	// Create a payload
-	$payload = $user->createPayload();
-
-	// Create token
-	$timeValid = 60;
-	$token = JSONWebToken::createToken($payload, $timeValid);
+$user = User::findByPublicID($payload->user->id);
+$payload = $user->createPayload();
+$token = JSONWebToken::createToken($payload, 60);
 
 
 	
