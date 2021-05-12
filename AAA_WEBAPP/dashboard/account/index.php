@@ -30,7 +30,7 @@ session_start();
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
-			<h1><a href="">Spotify Labelling</a></h1>
+			<h1><a href="../">Spotify Labelling</a></h1>
 			
 
 
