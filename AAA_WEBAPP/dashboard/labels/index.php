@@ -31,8 +31,26 @@ session_start();
 
 			<!-- Title -->
 			<h1><a href="../">Spotify Labelling</a></h1>
-			
-			<p>LABELS GO HERE</p>
+
+			<!-- Content -->
+			<div class="module">
+
+				<div class="table-container">
+					<table>
+						<tr>
+							<th>Label Name</th>
+						</tr>
+						<tr>
+							<td>Rock</td>
+							<td>Edit button</td>
+							<td>Remove button</td>
+							<td>public/private button</td>
+							<td>additional test</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
 
 		</div>	<!-- .main-wrapper -->
 
