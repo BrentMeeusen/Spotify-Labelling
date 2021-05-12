@@ -1,0 +1,30 @@
+class Navigation {
+
+	/**
+	 * Constructor for navigation
+	 * 
+	 * @param {HTMLElement} nav The navigation menu
+	 * @param {HTMLElement} open The opening button
+	 * @param {HTMLElement} close The closing button
+	 */
+	constructor(nav, open, close) {
+
+		// Set variables
+		this.nav = nav;
+		this.openBtn = open;
+		this.closeBtn = close;
+
+		// Set events
+		this.openBtn.addEventListener("click", () => {
+			this.open();
+		});
+		this.closeBtn.addEventListener("click", () => {
+			this.close();
+		});
+
+	}
+
+
+
+
+}
