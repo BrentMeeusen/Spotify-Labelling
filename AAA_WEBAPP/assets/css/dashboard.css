@@ -1,5 +1,6 @@
 h1 {
-	margin: 0.5em 0 1.5em 0;
+	font-size: 1.8rem;
+	margin: 1rem 0 3rem 0;
 }
 
 .nav {
@@ -15,8 +16,8 @@ h1 {
  */
 .nav-btn {
 	position: absolute;
-	top: 1.15em;
-	left: 0.2em;
+	top: 1em;
+	left: 0.5em;
 }
 
 .nav ul {
