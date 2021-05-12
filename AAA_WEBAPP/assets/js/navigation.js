@@ -27,4 +27,23 @@ class Navigation {
 
 
 
+
+	/**
+	 * Opens the navigation menu
+	 */
+	open() {
+		this.nav.classList.add("open");
+	}
+
+
+
+
+
+	/**
+	 * Closes the menu
+	 */
+	close() {
+		this.nav.classList.remove("open");
+	}
+
 }
