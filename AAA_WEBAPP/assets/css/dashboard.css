@@ -11,6 +11,26 @@ h1 {
 
 
 /**
+ * Navigation
+ */
+.nav-btn {
+	position: absolute;
+	top: 1.15em;
+	left: 0.2em;
+}
+
+.nav ul {
+	list-style-type: none;
+}
+.nav a {
+	font-size: 1.1em;
+}
+
+
+
+
+
+/**
  * Modules
  */
 .module {

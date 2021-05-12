@@ -166,21 +166,6 @@ p.footer a {
 
 
 /**
- * Navigation
- */
-
-.nav ul {
-	list-style-type: none;
-}
-.nav a {
-	font-size: 1.1em;
-}
-
-
-
-
-
-/**
  * Standard styling
  */
 .border--red {
