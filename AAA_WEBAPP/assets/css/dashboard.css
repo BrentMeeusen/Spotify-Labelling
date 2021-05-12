@@ -15,6 +15,10 @@ h1 {
 	top: 1em;
 	left: 0.5em;
 }
+.nav .nav-btn {
+	right: 1em;
+	left: auto;
+}
 
 
 .nav {
