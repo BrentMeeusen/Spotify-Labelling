@@ -44,7 +44,7 @@ if(isset($REQUIRE_TOKEN)) {
 	// Check if this user actually exists
 	$user = User::findByPublicID($payload->user->id);
 	if($user === NULL) {
-		ApiResponse::httpResponse(404, ["error" => "Could not validate your account."]);
+		ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
 	}
 
 }
