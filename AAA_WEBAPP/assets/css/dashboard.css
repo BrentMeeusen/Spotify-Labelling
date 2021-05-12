@@ -66,7 +66,13 @@ h1 {
  * Modules
  */
 .module {
-	margin-top: 3em;
+	margin: 3em 0;
+}
+.module.text {
+	padding: 0 2em;
+}
+.module.text p + p {
+	margin-top: 1em;
 }
 
 
