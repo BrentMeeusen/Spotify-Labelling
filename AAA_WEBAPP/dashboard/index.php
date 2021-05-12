@@ -32,6 +32,8 @@ session_start();
 				<img src="../assets/icons/menu/menu-open.png">
 			</div>
 
+			<?php include_once("../assets/snippets/navigation.php"); ?>
+
 			<!-- Content -->
 			<h1><a href="">Spotify Labelling</a></h1>
 
