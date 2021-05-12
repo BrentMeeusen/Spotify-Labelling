@@ -4,6 +4,10 @@
 	</div>
 	
 	<ul>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/how-it-works/">How It Works</a></li>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/songs/">Your Songs</a></li>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/labels/">Your Labels</a></li>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/playlists/">Your Playlists</a></li>
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/account/">Your Account</a></li>
 	</ul>
 </div>
