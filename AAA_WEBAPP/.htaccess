@@ -3,3 +3,6 @@ DirectorySlash On
 
 # Disallow users to access file directories
 Options -Indexes
+
+# Don't allow any access
+# RewriteRule .* - [R=503,L]
