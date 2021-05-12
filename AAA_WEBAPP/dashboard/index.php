@@ -28,14 +28,6 @@ session_start();
 		
 			<h1>Dashboard</h1>
 
-			<div class="nav dashboard-nav">
-			
-				<ul>
-					<li><a href="account">Your Account</a></li>
-				</ul>
-
-			</div>
-
 			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
 
 			<input name="input Identifier"		type="text"			placeholder="USERNAME OR EMAIL ADDRESS">
