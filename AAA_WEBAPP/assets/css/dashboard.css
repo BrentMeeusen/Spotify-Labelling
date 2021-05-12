@@ -94,7 +94,7 @@ table * {
 table td {
 	padding: 0.625em;
 }
-table tr:nth-child(2n + 1) {
+table tr:nth-child(2n) {
 	background: var(--current--background-highlight);
 }
 
