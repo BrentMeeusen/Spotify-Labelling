@@ -15,6 +15,8 @@ include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
 
+include_once("methods.php");
+
 
 
 // If it's a preflight check, return 200
