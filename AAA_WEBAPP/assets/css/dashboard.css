@@ -41,12 +41,11 @@ h1 {
 }
 .nav li {
 	width: 100%;
-	padding: 0.5em;
-	background: var(--current--background);
 }
 .nav a {
 	display: block;
 	width: 100%;
+	padding: 0.5em;
 	font-size: 1.25em;
 	text-decoration: none;
 }
