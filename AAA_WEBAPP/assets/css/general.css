@@ -55,6 +55,9 @@ h1 {
 	text-transform: uppercase;
 	margin: 2.5em 0;
 }
+h1 * {
+	text-decoration: none;
+}
 
 
 .form {
