@@ -38,6 +38,19 @@ TODO:
 
  -->
 
+<!--
+## 0.7.0-alpha - 2021/05/xx
+
+### Added
+- Your songs page
+- Your labels page
+- Your playlists page
+- How it works page
+- Navigation menu
+
+-->
+
+
 
 ## 0.6.1-alpha - 2021/05/10
 
