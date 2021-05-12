@@ -47,6 +47,7 @@ TODO:
 - Your playlists page
 - How it works page
 - Navigation menu
+- Autofills form when new data is received if it's set
 
 ### Changed
 - Additional password rule on password update
