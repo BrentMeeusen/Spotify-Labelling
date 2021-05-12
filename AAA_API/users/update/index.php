@@ -75,6 +75,7 @@ $res = User::updateUser($updateID, $values);
 	$token = JSONWebToken::createToken($payload, $timeValid);
 
 
+	
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully updated.", "data" => $res, "jwt" => $token]);
 
