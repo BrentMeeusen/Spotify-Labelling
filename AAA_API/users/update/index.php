@@ -35,13 +35,8 @@ else {
 
 
 
-// Check whether all required fields are filled in
-if(empty($body["FirstName"])|| empty($body["LastName"]) || empty($body["Username"]) || empty($body["EmailAddress"])) {
-	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
-}
-
 // Check if the password is the same as another value
-if($body["Password"] == $payload->user->firstname || $body["Password"] == $payload->user->lastname || $body["Password"] == $payload->user->username || $body["Password"] == $payload->user->emailAddress) {
+if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname || $body["Password"] == $payload->user->lastname || $body["Password"] == $payload->user->username || $body["Password"] == $payload->user->emailAddress)) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value."]);
 }
 
