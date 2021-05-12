@@ -41,6 +41,12 @@ if(isset($REQUIRE_TOKEN)) {
 	JSONWebToken::validateToken($headerJWT);
 	$payload = JSONWebToken::getPayload($headerJWT);
 
+	// Check if this user actually exists
+	$user = User::findByPublicID($payload->user->id);
+	if($user === NULL) {
+		ApiResponse::httpResponse(404, ["error" => "Could not validate your account."]);
+	}
+
 }
 
 // Check whether the method is correct
