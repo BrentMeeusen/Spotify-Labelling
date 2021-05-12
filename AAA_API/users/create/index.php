@@ -15,7 +15,7 @@ if(!isset($payload->rights->register) || $payload->rights->register !== TRUE) {
 
 
 // Check whether all required fields are filled in
-if(empty($body["FirstName"])|| empty($body["LastName"]) || empty($body["Username"]) || empty($body["Password"]) || empty($body["EmailAddress"])) {
+if(empty($body["FirstName"]) || empty($body["LastName"]) || empty($body["Username"]) || empty($body["Password"]) || empty($body["EmailAddress"])) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
