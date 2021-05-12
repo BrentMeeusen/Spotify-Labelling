@@ -60,6 +60,11 @@ class HtmlJsForm {
 			}
 		}
 
+		// If there's an autofill method set, use it
+		if(this.autofill) {
+			this.autofill(res);
+		}
+
 		console.log(res, this.inputs);
 		
 	}
@@ -95,8 +100,9 @@ class HtmlJsForm {
 	 * Fills the inputs with the values given
 	 * 
 	 * @param {object} values The values to fill in
+	 * @param {array} path The path as to what part of the result should be filled in 
 	 */
-	fillValues(values) {
+	fillValues(values, ...path) {
 
 		// For every entry
 		for(const [key, value] of Object.entries(values)) {
@@ -113,6 +119,23 @@ class HtmlJsForm {
 			}	// For every input
 
 		}	// For every value
+
+
+		// Redo this every time a request is found
+		this.autofill = (res) => {
+
+			// Get the field
+			let obj = res;
+			for(const p of path) {
+				if(!obj[p]) { break; }
+				obj = obj[p];
+			}
+			
+			// Fill the values
+			this.fillValues(obj, path);
+
+		}
+
 
 	}	// fillValues()
 
