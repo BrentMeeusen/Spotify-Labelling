@@ -22,10 +22,17 @@ session_start();
 
 		<div class="main-wrapper">
 
+			<!-- Popup -->
 			<div class="popup" id="popup">
 				<p id="popup-text"></p>
 			</div>
-		
+
+			<!-- Menu -->
+			<div class="nav-open-btn" id="nav-open">
+				<img src="../assets/icons/menu/menu-open.png">
+			</div>
+
+			<!-- Content -->
 			<h1>Dashboard</h1>
 
 			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
