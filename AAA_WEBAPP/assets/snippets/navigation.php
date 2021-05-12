@@ -1,3 +1,8 @@
+<!-- Menu -->
+<div class="nav-btn" id="nav-open">
+	<img src="/Spotify Labelling/AAA_WEBAPP/assets/icons/menu/menu-open.png">
+</div>
+			
 <div class="nav" id="nav-menu">
 	<div class="nav-btn" id="nav-close">
 		<img src="/Spotify Labelling/AAA_WEBAPP/assets/icons/menu/menu-close.png">

@@ -27,11 +27,6 @@ session_start();
 				<p id="popup-text"></p>
 			</div>
 
-			<!-- Menu -->
-			<div class="nav-btn" id="nav-open">
-				<img src="../../assets/icons/menu/menu-open.png">
-			</div>
-
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
