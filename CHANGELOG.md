@@ -31,9 +31,6 @@ STANDARD NEW VERSION:
 
 ## 0.7.1-alpha - 2021/05/12
 
-### Added
-- 
-
 ### Changed
 - Clicking on title now redirects to dashboard instead of the current page
 
