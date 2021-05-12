@@ -24,7 +24,10 @@ h1 {
 	background: var(--current--background-highlight);
 	height: 110vh;
 	width: 90vw;
-	transition: .4 ease-out left;
+	transition: .3s ease-out;
+}
+.nav.open {
+	left: 0;
 }
 
 .nav ul {
