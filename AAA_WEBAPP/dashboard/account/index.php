@@ -22,13 +22,24 @@ session_start();
 
 		<div class="main-wrapper">
 
+			<!-- Popup -->
 			<div class="popup" id="popup">
 				<p id="popup-text"></p>
 			</div>
-		
-			<h1>Your Account</h1>
+
+			<!-- Menu -->
+			<div class="nav-btn" id="nav-open">
+				<img src="../../assets/icons/menu/menu-open.png">
+			</div>
+
+			<?php include_once("../../assets/snippets/navigation.php"); ?>
+
+			<!-- Title -->
+			<h1><a href="">Spotify Labelling</a></h1>
 			
 
+
+			<!-- Update user info -->
 			<div class="module">
 
 				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-id="account-values">
@@ -46,6 +57,7 @@ session_start();
 
 
 			
+			<!-- Update password -->
 			<div class="module">
 
 				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-clear-fields="true">
@@ -60,9 +72,8 @@ session_start();
 			</div>	<!-- .module -->
 
 			
-
-
 			
+			<!-- Delete account -->
 			<div class="module">
 
 				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout" data-clear-fields="true">
