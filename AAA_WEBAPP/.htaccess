@@ -1,0 +1,5 @@
+# Disallow users to access a page without a slash
+DirectorySlash On
+
+# Disallow users to access file directories
+Options -Indexes
