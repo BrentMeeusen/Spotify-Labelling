@@ -33,7 +33,7 @@ session_start();
 			</div>
 
 			<!-- Content -->
-			<h1>Dashboard</h1>
+			<h1>Spotify Labelling</h1>
 
 			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
 
