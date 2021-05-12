@@ -15,5 +15,6 @@
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/labels/">Your Labels</a></li>
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/playlists/">Your Playlists</a></li>
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/account/">Your Account</a></li>
+		<li><a href="/Spotify Labelling/AAA_WEBAPP/logout/">Logout</a></li>
 	</ul>
 </div>
