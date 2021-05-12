@@ -28,6 +28,19 @@ STANDARD NEW VERSION:
 
 -->
 
+<!-- 
+
+## 0.8.0-alpha - 2021/05/xx
+
+### Added
+- 
+
+### Changed
+- Clicking on title now redirects to dashboard instead of the current page
+
+ -->
+
+
 
 ## 0.7.0-alpha - 2021/05/12
 
