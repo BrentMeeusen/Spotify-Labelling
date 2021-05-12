@@ -62,15 +62,17 @@ foreach($body as $key => $value) {
 // Update the user
 $res = User::updateUser($updateID, $values);
 
+
+
 // Create a new token
-$user = User::findByPublicID($payload->user->id);
+	$user = User::findByPublicID($payload->user->id);
 
-// Create a payload
-$payload = $user->createPayload();
+	// Create a payload
+	$payload = $user->createPayload();
 
-// Create token
-$timeValid = 60;
-$token = JSONWebToken::createToken($payload, $timeValid);
+	// Create token
+	$timeValid = 60;
+	$token = JSONWebToken::createToken($payload, $timeValid);
 
 
 // Properly return the results
