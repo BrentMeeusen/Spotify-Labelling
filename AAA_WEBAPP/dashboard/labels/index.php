@@ -40,9 +40,9 @@ session_start();
 						<tr>
 							<td>Rock</td>
 							<td>xx songs</td>
-							<td><button>Edit</button></td>
-							<td><button>Remove</button></td>
-							<td><button>public/private</button></td>
+							<td><button class="icon">Edit</button></td>
+							<td><button class="icon">Remove</button></td>
+							<td><button class="icon">public/private</button></td>
 						</tr>
 					</table>
 				</div>
