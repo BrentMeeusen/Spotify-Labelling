@@ -37,7 +37,7 @@ session_start();
 			<!-- Update user info -->
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-id="account-values">
+				<div class="form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-id="account-values">
 
 					<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
 					<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
@@ -55,7 +55,7 @@ session_start();
 			<!-- Update password -->
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-clear-fields="true">
+				<div class="form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-clear-fields="true">
 
 					<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 					<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
@@ -71,7 +71,7 @@ session_start();
 			<!-- Delete account -->
 			<div class="module">
 
-				<div class="form register-form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout" data-clear-fields="true">
+				<div class="form" name="html-js-form" data-action="api/v1/users/delete" data-method="DELETE" data-redirect="logout" data-clear-fields="true">
 
 					<input name="input Password"	type="password"		placeholder="TYPE PASSWORD TO CONFIRM">
 
