@@ -24,8 +24,9 @@
 	--current--link: #06D;
 	--current--highlight: #1DB954;
 
-	--current--error: #C00;
 	--current--success: #0C0;
+	--current--warning: #D87E07;
+	--current--error: #C00;
 	--current--info: #00C;
 
 }
