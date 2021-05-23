@@ -8,6 +8,25 @@ h1 {
 
 
 /**
+ * Tables
+ */
+button.icon {
+	border: none;
+	background: none;
+	height: 100%;
+}
+button.icon > img {
+	height: 100%;
+	width: auto;
+	border: 1px solid white;
+}
+
+
+
+
+
+
+/**
  * Navigation
  */
 .nav-btn {
