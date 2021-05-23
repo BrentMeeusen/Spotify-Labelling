@@ -13,12 +13,16 @@ h1 {
 button.icon {
 	border: none;
 	background: none;
-	height: 100%;
+	transition: .25s ease-out;
 }
 button.icon > img {
-	height: 100%;
+	display: block;
+	height: 28px;
 	width: auto;
-	border: 1px solid white;
+}
+button.icon:active {
+	transition: 0s;
+	background: #FFF4;
 }
 
 
