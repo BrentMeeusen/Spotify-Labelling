@@ -22,7 +22,7 @@ button.icon > img {
 }
 button.icon:active {
 	transition: 0s;
-	background: #FFF4;
+	background: var(--current--background-highlight);
 }
 
 
