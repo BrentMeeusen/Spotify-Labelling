@@ -17,12 +17,8 @@ button.icon {
 }
 button.icon > img {
 	display: block;
-	height: 28px;
+	height: 24px;
 	width: auto;
-}
-button.icon:active {
-	transition: 0s;
-	background: var(--current--background-highlight);
 }
 
 
@@ -115,7 +111,7 @@ table * {
 	font-size: 1.1rem;
 }
 table td {
-	padding: 0.625em;
+	padding: 0.5em;
 }
 table tr:nth-child(2n) {
 	background: var(--current--background-highlight);
