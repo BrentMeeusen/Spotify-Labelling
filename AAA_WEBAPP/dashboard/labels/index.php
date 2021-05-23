@@ -39,6 +39,7 @@ session_start();
 					<table>
 						<tr>
 							<td>Rock</td>
+							<td>xx songs</td>
 							<td>Edit button</td>
 							<td>Remove button</td>
 							<td>public/private button</td>
