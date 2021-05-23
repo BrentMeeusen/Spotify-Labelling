@@ -43,54 +43,6 @@ session_start();
 							<td>Remove button</td>
 							<td>public/private button</td>
 						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
-						<tr>
-							<td>Rock</td>
-							<td>Edit button</td>
-							<td>Remove button</td>
-							<td>public/private button</td>
-						</tr>
 					</table>
 				</div>
 
