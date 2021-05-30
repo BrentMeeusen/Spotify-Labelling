@@ -106,6 +106,17 @@ class Database {
 
 
 		// Create LABELS table
+		$tableName = "LABELS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT				NOT NULL	AUTO_INCREMENT,
+			PublicID		VARCHAR(32)		NOT NULL,
+			Name			VARCHAR(100)	NOT NULL,
+			IsPublic		INT(1)			NOT NULL,
+
+			PRIMARY KEY (ID)
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create RIGHTS table
