@@ -96,9 +96,6 @@ h1 * {
 	width: 0;
 	flex: 0 1 calc(50% - 0.5rem);
 }
-.form > *:last-child {
-	margin-bottom: 0;
-}
 
 button.wide, .form button {
 	width: 100%;
