@@ -20,4 +20,4 @@
 </div>
 
 <!-- Popup -->
-<div class="popup-big"></div>
+<div class="popup-big" id="popup-big"></div>
