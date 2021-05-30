@@ -64,6 +64,8 @@ class BigPopup {
 
 	/**
 	 * Shows the popup
+	 * 
+	 * @param {string} success The text on the success button
 	 */
 	show(success) {
 
@@ -110,4 +112,3 @@ class BigPopup {
 }
 
 const bp = new BigPopup("abc", [], "api/v1/labels/create", "POST");
-bp.show("Save");
