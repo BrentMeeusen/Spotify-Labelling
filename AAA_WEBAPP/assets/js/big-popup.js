@@ -85,12 +85,16 @@ class BigPopup {
 
 
 		// Add elements
+		form.appendChild(this.createElement("p", { innerHTML: "Test" }));
+
 
 		// Add buttons
-		const button = this.createElement("button", { innerHTML: success, type: "submit", value: "submit" });
-		button.setAttribute("name", "html-js-form-submit");
-		console.log(button);
-		form.appendChild(button);
+		const buttonCancel = this.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
+		form.appendChild(buttonCancel);
+
+		const buttonSave = this.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
+		buttonSave.setAttribute("name", "html-js-form-submit");
+		form.appendChild(buttonSave);
 
 
 
@@ -112,3 +116,4 @@ class BigPopup {
 }
 
 const bp = new BigPopup("abc", [], "api/v1/labels/create", "POST");
+bp.show("TEST");
