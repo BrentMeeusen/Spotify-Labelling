@@ -100,9 +100,9 @@ h1 * {
 	margin-bottom: 0;
 }
 
-button.wide {
+button.wide, .form button {
 	width: 100%;
-	border-color: var(--current--highlight) !important;
+	border-color: var(--current--highlight);
 }
 button.wide:hover, button.wide:active {
 	background-color: var(--current--background-highlight);
