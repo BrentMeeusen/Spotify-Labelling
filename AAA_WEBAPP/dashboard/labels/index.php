@@ -40,6 +40,7 @@ session_start();
 						<tr>
 							<td>Rock</td>
 							<td>xx songs</td>
+							<td>Public</td>
 							<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
@@ -47,6 +48,7 @@ session_start();
 						<tr>
 							<td>Rock</td>
 							<td>xx songs</td>
+							<td>Public</td>
 							<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
@@ -54,6 +56,7 @@ session_start();
 						<tr>
 							<td>Rock</td>
 							<td>xx songs</td>
+							<td>Private</td>
 							<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
 							<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
