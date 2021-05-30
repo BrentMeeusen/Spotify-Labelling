@@ -5,19 +5,17 @@ class BigPopup {
 	 * Constructor
 	 * 
 	 * @param {string} title The title of the popup
-	 * @param {Array<HTMLElement>} elements The elements to add
 	 * @param {string} action The resulting action of a successful submission
 	 * @param {string} method The method of that action
 	 */
-	constructor(title, elements, action, method) {
+	constructor(title, action, method) {
 
 		this.title = title;
-		this.elements = elements;
-
 		this.action = action;
 		this.method = method;
 
 		this.popup = document.getElementById("popup-big");
+		this.elements = [];
 
 	}
 
