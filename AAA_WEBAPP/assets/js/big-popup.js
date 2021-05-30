@@ -66,7 +66,7 @@ class BigPopup {
 		this.popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
 
 		// Add elements
-
+		this.popup.appendChild(this.createElement("div", { classList: "form", name: "html-js-form", "data-action": this.action, "data-method": this.method, "data-clear-fields": "true" }));
 		
 		// Open popup
 		this.popup.style.display = "block";
@@ -80,3 +80,4 @@ class BigPopup {
 }
 
 const bp = new BigPopup("abc", []);
+bp.show();
