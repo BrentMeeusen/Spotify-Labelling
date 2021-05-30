@@ -104,7 +104,7 @@ button.wide, .form button {
 	width: 100%;
 	border-color: var(--current--highlight);
 }
-button.wide:hover, button.wide:active .form button:hover, .form button:active {
+button.wide:hover, button.wide:active, .form button:hover, .form button:active {
 	background-color: var(--current--background-highlight);
 	color: var(--current--highlight);
 }

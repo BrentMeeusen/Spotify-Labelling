@@ -82,6 +82,11 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
+		// Add label functionality
+		document.getElementById("add-label").addEventListener("click", () => {
+			console.log(this);
+		});
+
 		</script>
 
 	</body>
