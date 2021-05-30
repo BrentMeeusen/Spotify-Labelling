@@ -27,8 +27,9 @@ class BigPopup {
 
 		const elem = document.createElement(el);
 		for(const [key, value] of Object.entries(options)) {
-			elem.key = value;
+			elem[key] = value;
 		}
+		return elem;
 
 	}
 
@@ -42,7 +43,7 @@ class BigPopup {
 	show() {
 		
 		const popup = document.getElementById("popup-big");
-		this.createElement("h2", { innerHTML: "xyz", id: "69" });
+		popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
 
 	}
 
