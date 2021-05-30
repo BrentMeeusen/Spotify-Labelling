@@ -59,6 +59,9 @@ class BigPopup {
 	 */
 	show() {
 
+		// Clear everything first
+		this.popup.innerHTML = "";
+
 		// Add title
 		this.popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
 
