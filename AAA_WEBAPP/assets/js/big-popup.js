@@ -13,6 +13,16 @@ class BigPopup {
 	}
 
 
+
+
+
+	/**
+	 * Creates an element
+	 * 
+	 * @param {string} el Element type
+	 * @param {object} options The values to add to the element
+	 * @returns {HTMLElement} The element that was created
+	 */
 	createElement(el, options) {
 
 		const elem = document.createElement(el);
@@ -23,6 +33,12 @@ class BigPopup {
 	}
 
 
+
+
+
+	/**
+	 * Shows the popup
+	 */
 	show() {
 		
 		const popup = document.getElementById("popup-big");
