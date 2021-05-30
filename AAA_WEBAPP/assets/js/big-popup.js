@@ -68,10 +68,14 @@ class BigPopup {
 	 */
 	hide() {
 
+		// Close popup
 		this.popup.classList.remove("opened");
 		setTimeout(() => {
 			this.popup.style.display = "none";
 		}, 200);
+
+		// Tell the program that it's no longer opened
+		BigPopup.isOpen = false;
 
 	}
 
@@ -85,6 +89,12 @@ class BigPopup {
 	 * @param {string} success The text on the success button
 	 */
 	show(success) {
+
+		// If it's already open, don't let it open another one
+		if(BigPopup.isOpen) {
+			return false;
+		}
+		BigPopup.isOpen = true;
 
 		// Clear everything first
 		this.popup.innerHTML = "";
