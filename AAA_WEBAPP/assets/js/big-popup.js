@@ -107,7 +107,6 @@ class BigPopup {
 		}
 		
 
-
 		// Add buttons
 		const buttonCancel = this.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
 		buttonCancel.addEventListener("click", () => {
@@ -118,7 +117,6 @@ class BigPopup {
 		const buttonSave = this.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
 		buttonSave.setAttribute("name", "html-js-form-submit");
 		form.appendChild(buttonSave);
-
 
 
 		// Add form to popup
@@ -134,6 +132,5 @@ class BigPopup {
 		}, 1);
 
 	}
-
 
 }
