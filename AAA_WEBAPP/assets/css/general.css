@@ -104,11 +104,11 @@ button.wide, .form button {
 	width: 100%;
 	border-color: var(--current--highlight);
 }
-button.wide:hover, button.wide:active {
+button.wide:hover, button.wide:active .form button:hover, .form button:active {
 	background-color: var(--current--background-highlight);
 	color: var(--current--highlight);
 }
-button.wide:disabled {
+button.wide:disabled, .form button:disabled {
 	opacity: 0.5;
 	background-color: var(--current--background) !important;
 	color: var(--current--text);
@@ -167,6 +167,7 @@ p.footer a {
 	height: 80vh;
 	left: 5vw;
 	top: 10vh;
+	z-index: 99;
 
 	border: 3px solid var(--current--text);
 	background: var(--current--background);
