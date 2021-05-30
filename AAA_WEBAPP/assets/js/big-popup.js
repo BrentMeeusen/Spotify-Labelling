@@ -34,6 +34,7 @@ class BigPopup {
 
 		const el = this.createElement(element, options);
 		el.setAttribute("name", element + " " + name);
+		this.elements.push(el);
 
 	}
 
@@ -101,7 +102,10 @@ class BigPopup {
 
 
 		// Add elements
-		form.appendChild(this.createElement("p", { innerHTML: "Test" }));
+		for(const el of this.elements) {
+			form.appendChild(el);
+		}
+		
 
 
 		// Add buttons
@@ -117,7 +121,7 @@ class BigPopup {
 
 
 
-
+		// Add form to popup
 		this.popup.appendChild(form);
 
 		// Create the forms
