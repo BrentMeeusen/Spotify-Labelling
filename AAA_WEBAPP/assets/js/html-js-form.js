@@ -156,6 +156,9 @@ HtmlJsForm.FORMS = [];
  */
 HtmlJsForm.getForms = () => {
 
+	// Clear array
+	HtmlJsForm.FORMS = [];
+
 	// Get forms
 	let forms = document.getElementsByName("html-js-form");
 	let index = 0;
