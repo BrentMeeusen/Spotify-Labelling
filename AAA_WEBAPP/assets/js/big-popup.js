@@ -32,7 +32,7 @@ class BigPopup {
 	 * @param {object} options The values to add to the element
 	 * @returns {HTMLElement} The element that was created
 	 */
-	createElement(el, options) {
+	createElement(el, options = {}) {
 
 		const elem = document.createElement(el);
 		for(const [key, value] of Object.entries(options)) {
@@ -65,7 +65,7 @@ class BigPopup {
 	/**
 	 * Shows the popup
 	 */
-	show() {
+	show(success) {
 
 		// Clear everything first
 		this.popup.innerHTML = "";
@@ -73,8 +73,30 @@ class BigPopup {
 		// Add title
 		this.popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
 
+		// Create form
+		const form = this.createElement("div");
+		form.classList.add("form");
+		form.dataset.action = this.action;
+		form.dataset.method = this.method;
+		form.dataset.clearFields = true;
+		form.setAttribute("name", "html-js-form");
+
+
 		// Add elements
-		this.popup.appendChild(this.createElement("div", { classList: "form", name: "html-js-form", "data-action": this.action, "data-method": this.method, "data-clear-fields": "true" }));
+
+		// Add buttons
+		const button = this.createElement("button", { innerHTML: success, type: "submit", value: "submit" });
+		button.setAttribute("name", "html-js-form-submit");
+		console.log(button);
+		form.appendChild(button);
+
+
+
+
+		this.popup.appendChild(form);
+
+		// Create the forms
+		HtmlJsForm.getForms();
 		
 		// Open popup
 		this.popup.style.display = "block";
@@ -88,4 +110,4 @@ class BigPopup {
 }
 
 const bp = new BigPopup("abc", [], "api/v1/labels/create", "POST");
-bp.show();
+bp.show("Save");
