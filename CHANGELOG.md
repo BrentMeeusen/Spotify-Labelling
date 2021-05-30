@@ -28,6 +28,12 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.8.0-alpha - 2021/x/y
+
+### Added
+- Your labels layout
+
+
 
 ## 0.7.1-alpha - 2021/05/12
 
