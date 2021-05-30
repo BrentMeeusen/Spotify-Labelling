@@ -35,7 +35,7 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<button class="wide">BUTTON</button>
+				<button class="wide" id="add-label">ADD LABEL</button>
 
 				<div class="table-container">
 					<table>
