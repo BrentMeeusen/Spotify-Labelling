@@ -104,6 +104,7 @@ button.icon > img {
 }
 table {
 	border-collapse: collapse;
+	border: 2px solid var(--current--background-highlight);
 	width: 100%;
 }
 table * {
@@ -114,7 +115,7 @@ table td {
 	padding: 0.5em;
 }
 table tr:nth-child(2n) {
-	background: var(--current--background-highlight);
+	border: 2px solid var(--current--background-highlight);
 }
 
 
