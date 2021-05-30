@@ -161,6 +161,19 @@ p.footer a {
 
 
 
+.popup-big {
+	position: fixed;
+	width: 90vw;
+	height: 80vh;
+	left: 5vw;
+	top: 10vh;
+
+	border: 3px solid var(--current--text);
+	background: var(--current--background);
+}
+
+
+
 
 
 /**
