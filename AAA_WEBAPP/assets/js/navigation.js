@@ -29,10 +29,12 @@ class Navigation {
 
 
 	/**
-	 * Opens the navigation menu
+	 * Opens the navigation menu given that no popup is opened
 	 */
 	open() {
-		this.nav.classList.add("open");
+		if(!BigPopup.isOpen) {
+			this.nav.classList.add("open");
+		}
 	}
 
 
