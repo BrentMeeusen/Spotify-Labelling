@@ -18,3 +18,6 @@
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/logout/">Logout</a></li>
 	</ul>
 </div>
+
+<!-- Popup -->
+<div class="popup-big"></div>
