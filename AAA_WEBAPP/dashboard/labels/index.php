@@ -86,7 +86,7 @@ session_start();
 		document.getElementById("add-label").addEventListener("click", () => {
 
 			const addLabel = new BigPopup("Add Label", "api/v1/labels/add", "POST");
-			addLabel.add("input", "LabelName", { classList: "small", placeholder: "LABEL NAME" });
+			addLabel.add("input", "LabelName", { placeholder: "LABEL NAME" });
 			addLabel.show("ADD");
 
 		});
