@@ -6,6 +6,7 @@ class Theme {}
 
 /**
  * Setting the theme of the website
+ * 
  * @param {string} theme The theme to set (light or dark)
  */
 Theme.setTheme = (theme) => {
