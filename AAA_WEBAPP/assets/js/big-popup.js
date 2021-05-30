@@ -117,6 +117,3 @@ class BigPopup {
 
 
 }
-
-const bp = new BigPopup("abc", [], "api/v1/labels/create", "POST");
-bp.show("TEST");
