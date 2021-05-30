@@ -75,7 +75,7 @@ h1 * {
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-.form > * {
+.form > *, button.wide {
 	color: var(--current--text);
 	background-color: var(--current--background);
 	border: 2px solid var(--current--text);
@@ -100,14 +100,15 @@ h1 * {
 	margin-bottom: 0;
 }
 
-.form > button {
-	border-color: var(--current--highlight);
+button.wide {
+	width: 100%;
+	border-color: var(--current--highlight) !important;
 }
-.form > button:hover, .form > button:active {
+button.wide:hover, button.wide:active {
 	background-color: var(--current--background-highlight);
 	color: var(--current--highlight);
 }
-.form > button:disabled {
+button.wide:disabled {
 	opacity: 0.5;
 	background-color: var(--current--background) !important;
 	color: var(--current--text);
