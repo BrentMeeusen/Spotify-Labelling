@@ -24,6 +24,24 @@ class BigPopup {
 
 
 	/**
+ 	 * Adds an element to the popup
+	 * 
+	 * @param {string} element The element type
+	 * @param {string} name The name of the input field
+	 * @param {object} options The options 
+	 */
+	add(element, name, options) {
+
+		const el = this.createElement(element, options);
+		el.setAttribute("name", element + " " + name);
+
+	}
+
+
+
+
+
+	/**
 	 * Creates an element
 	 * 
 	 * @param {string} el Element type
