@@ -84,7 +84,8 @@ session_start();
 
 		// Add label functionality
 		document.getElementById("add-label").addEventListener("click", () => {
-			console.log(this);
+			const addLabel = new BigPopup("Add Label", [], "api/v1/labels/add", "POST");
+			addLabel.show("ADD ");
 		});
 
 		</script>
