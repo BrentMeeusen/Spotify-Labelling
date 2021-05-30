@@ -171,6 +171,12 @@ p.footer a {
 	border: 3px solid var(--current--text);
 	background: var(--current--background);
 	padding: 0.625em;
+	display: none;
+	opacity: 0;
+	transition: 0.2s ease;
+}
+.popup-big.opened {
+	opacity: 1;
 }
 
 
