@@ -10,6 +10,7 @@ class BigPopup {
 	constructor(title, elements) {
 		this.title = title;
 		this.elements = elements;
+		this.popup = document.getElementById("popup-big");
 	}
 
 
@@ -38,12 +39,37 @@ class BigPopup {
 
 
 	/**
+	 * Hides the popup again
+	 */
+	hide() {
+
+		this.popup.classList.remove("opened");
+		setTimeout(() => {
+			this.popup.style.display = "none";
+		}, 200);
+
+	}
+
+
+
+
+
+	/**
 	 * Shows the popup
 	 */
 	show() {
+
+		// Add title
+		this.popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
+
+		// Add elements
+
 		
-		const popup = document.getElementById("popup-big");
-		popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
+		// Open popup
+		this.popup.style.display = "block";
+		setTimeout(() => {
+			this.popup.classList.add("opened");
+		}, 1);
 
 	}
 
@@ -51,4 +77,3 @@ class BigPopup {
 }
 
 const bp = new BigPopup("abc", []);
-bp.show();
