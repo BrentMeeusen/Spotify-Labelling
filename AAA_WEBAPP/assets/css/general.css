@@ -163,7 +163,7 @@ p.footer a {
 	width: 90vw;
 	height: 80vh;
 	left: 5vw;
-	top: 10vh;
+	top: 5vh;
 	z-index: 99;
 
 	border: 3px solid var(--current--text);
@@ -175,6 +175,7 @@ p.footer a {
 }
 .popup-big.opened {
 	opacity: 1;
+	top: 10vh;
 }
 
 .popup-big h2 {
