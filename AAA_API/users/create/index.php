@@ -1,9 +1,17 @@
 <?php
 
 $ALLOWED_METHOD = "POST";
-$REQUIRE_TOKEN = TRUE;
 
 include_once("../../private/include_all.php");
+
+
+
+// Get the JWT from the Authorization header
+$headerJWT = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
+
+// Verify the token and get the payload if it's valid
+JSONWebToken::validateToken($headerJWT);
+$payload = JSONWebToken::getPayload($headerJWT);
 
 
 
