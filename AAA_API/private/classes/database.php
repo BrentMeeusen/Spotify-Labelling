@@ -116,7 +116,8 @@ class Database {
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
-			FOREIGN KEY (Creator) REFERENCES USERS (PublicID)
+			FOREIGN KEY (Creator) REFERENCES USERS (PublicID),
+			UNIQUE (PublicID)
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
