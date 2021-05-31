@@ -43,7 +43,7 @@ if(isset($REQUIRE_TOKEN)) {
 	JSONWebToken::validateToken($headerJWT);
 	$payload = JSONWebToken::getPayload($headerJWT);
 
-	if($payload === NULL || $payload->user === NULL) {
+	if($payload === NULL || !isset($payload->user)) {
 		ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
 	}
 
