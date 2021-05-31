@@ -99,7 +99,8 @@ class Database {
 			Password		VARCHAR(256)	NOT NULL,
 			AccountStatus	INT(1)			NOT NULL,
 			
-			PRIMARY KEY (ID)
+			PRIMARY KEY (ID),
+            UNIQUE(PublicID)
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
@@ -110,12 +111,12 @@ class Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT				NOT NULL	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
-			Owner			VARCHAR(32)		NOT NULL,
+			Creator			VARCHAR(32)		NOT NULL,
 			Name			VARCHAR(100)	NOT NULL,
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
-			FOREIGN KEY (Owner) REFERENCES USERS (PublicID)
+			FOREIGN KEY (Creator) REFERENCES USERS (PublicID)
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
