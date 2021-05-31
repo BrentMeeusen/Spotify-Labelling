@@ -83,7 +83,7 @@ class User extends Table {
 	private function hasDuplicates(string $userID = NULL) {
 
 		// If the userID is not set, set it to this public ID
-		$userID = ($userID === NULL ? $this->publicID, $userID);
+		$userID = ($userID === NULL ? $this->publicID : $userID);
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
