@@ -66,8 +66,6 @@ class Label extends Table {
 		// Create a label object
 		$label = new Label(self::generateRandomID("LABELS"), $userID, $values["Name"], $values["IsPublic"]);
 
-
-
 		// Prepare SQL statement
 		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Creator, Name, IsPublic) 
 		VALUES ( ?, ?, ?, ? );");
