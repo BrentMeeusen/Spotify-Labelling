@@ -29,7 +29,7 @@ foreach($body as $key => $value) {
 $res = Label::createLabel($payload->user->id, $values);
 
 // Properly return the results
-ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
+ApiResponse::httpResponse(200, ["message" => "The label was successfully created.", "data" => $res]);
 
 
 ?>
