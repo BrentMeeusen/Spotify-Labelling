@@ -20,10 +20,27 @@ class Label extends Table {
 	 * @param		string		Label name
 	 * @param		bool		Whether the label is public or not
 	 */
-	public function __construct(string $name, bool $isPublic) {
+	public function __construct(string $publicID, string $creator, string $name, bool $isPublic) {
 
 		$this->name = $name;
 		$this->isPublic = $isPublic;
+
+	}
+
+
+
+
+
+	/**
+	 * Label constructor when the data comes from the database
+	 * 
+	 * @param		array		An associative array with the database values
+	 * @return		Label		The created user
+	 */
+	public static function construct(array $values) : Label {
+
+		$label = new Label($values["PublicID"], $values["Creator"], $values["Name"], $values["IsPublic"]);
+		return $label;
 
 	}
 
