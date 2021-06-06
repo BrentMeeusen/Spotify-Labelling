@@ -192,9 +192,12 @@ class User extends Table {
 		// Every user is allowed to update and delete himself
 		$user = ["update" => TRUE, "delete" => TRUE];
 
+		// Every user can create, read, update, delete his own labels
+		$label = ["create" => TRUE, "get" => TRUE, "update" => TRUE, "delete" => TRUE];
+
 		return [
 			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
-			"rights" => ["users" => $users, "user" => $user]
+			"rights" => ["users" => $users, "user" => $user, "label" => $label]
 		];
 
 	}
