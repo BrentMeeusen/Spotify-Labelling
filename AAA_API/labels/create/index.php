@@ -17,8 +17,16 @@ if(Label::findByName($body["Name"]) !== NULL) {
 	ApiResonse::httpResponse(400, ["error" => "You already have a label with the name \"" . $body["Name"] . "\"."]);
 }
 
+
+
+// Set values of the payload
+$values = ["Name" => NULL, "IsPublic" => FALSE];
+foreach($body as $key => $value) {
+	$values[$key] = $value;
+}
+
 // Create the label
-$res = Label::createLabel($payload->user->id, $body["Name"]);
+$res = Label::createLabel($payload->user->id, $values);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
