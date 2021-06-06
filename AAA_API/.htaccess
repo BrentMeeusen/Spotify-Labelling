@@ -47,6 +47,14 @@ RewriteRule 	api/v1/users							users/get/								[L,QSA]
 
 
 
+############	api/v1/labels/[action]					labels/[action]
+RewriteRule		api/v1/labels/([a-zA-Z]+)				labels/$1/								[L,QSA]
+
+############	api/v1/labels							labels/get/
+RewriteRule		api/v1/labels							labels/get/								[L,QSA]
+
+
+
 
 
 ###############################
