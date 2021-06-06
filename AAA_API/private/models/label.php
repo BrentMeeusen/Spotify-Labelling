@@ -23,6 +23,8 @@ class Label extends Table {
 	 */
 	public function __construct(string $publicID, string $creator, string $name, bool $isPublic) {
 
+		$this->publicID = $publicID;
+		$this->creator = $creator;
 		$this->name = $name;
 		$this->isPublic = $isPublic;
 
