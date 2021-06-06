@@ -250,6 +250,7 @@ class User extends Table {
 
 
 
+
 	/**
 	 * Create the user with the given values
 	 * 
