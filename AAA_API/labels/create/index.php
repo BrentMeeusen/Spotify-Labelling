@@ -18,7 +18,7 @@ if(Label::findByName($body["Name"]) !== NULL) {
 }
 
 // Create the label
-$res = Label::createLabel($payload->user->publicID, $body["Name"]);
+$res = Label::createLabel($payload->user->id, $body["Name"]);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
