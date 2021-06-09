@@ -142,6 +142,39 @@ class Label extends Table {
 
 
 	/**
+	 * Finds a label by public ID
+	 * 
+	 * @param		string		The ID of the owner
+	 * @return		array		If any labels were found
+	 * @return		null		If no label was found
+	 */
+	public static function findAvailable(string $ownerID) : ?array {
+
+		$stmt = self::prepare("SELECT * FROM LABELS WHERE PublicID = ? OR IsPublic = 1;");
+		$ownerID = self::sanitizeArray([$ownerID])[0];
+		$stmt->bind_param("s", $ownerID);
+		$res = self::getResults($stmt);
+
+		// If no label is found, return NULL
+		if(count($res) === 0) {
+			return NULL;
+		}
+
+		// Loop over all labels and return the array
+		$return = [];
+		foreach($res as $row) {
+			array_push($return, Label::construct($row));
+		}
+
+		return $return;
+
+	}
+
+
+
+
+
+	/**
 	 * Finds the label by name
 	 * 
 	 * @param		string		The name of the label
