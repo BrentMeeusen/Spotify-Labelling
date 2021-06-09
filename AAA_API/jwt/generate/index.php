@@ -16,6 +16,11 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	}
 	$user = User::login($body["Identifier"], $body["Password"]);
 
+	// If the user has not verified their account yet, throw an error
+	if($user->accountStatus !== 2) {
+		ApiResponse::httpResponse(401, ["error" => "You have to verify your account before you can login."]);
+	}
+
 	// Create a payload
 	$payload = $user->createPayload();
 
