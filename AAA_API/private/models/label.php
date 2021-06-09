@@ -114,6 +114,34 @@ class Label extends Table {
 
 
 	/**
+	 * Finds a label by public ID
+	 * 
+	 * @param		string		The ID of the label
+	 * @return		Label		If it was found
+	 * @return		null		If no label was found
+	 */
+	public static function findByPublicID(string $publicID) : ?Label {
+
+		$stmt = self::prepare("SELECT * FROM LABELS WHERE PublicID = ?;");
+		$publicID = self::sanitizeArray([$publicID])[0];
+		$stmt->bind_param("s", $publicID);
+		$res = self::getResults($stmt);
+
+		// If no label is found, return NULL
+		if(count($res) === 0) {
+			return NULL;
+		}
+
+		// Create and return the found label as an object
+		return Label::construct($res[0]);
+
+	}
+
+
+
+
+
+	/**
 	 * Finds the label by name
 	 * 
 	 * @param		string		The name of the label
