@@ -127,13 +127,46 @@ class Label extends Table {
 		$stmt->bind_param("s", $name);
 		$res = self::getResults($stmt);
 
-		// If no user is found, return NULL
+		// If no label is found, return NULL
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found label as an object
 		return Label::construct($res[0]);
+
+	}
+
+
+
+
+
+	/**
+	 * Finds all labels from the owner
+	 * 
+	 * @param		string		The owner ID
+	 * @return		array		If at least one label is found
+	 * @return		null		If no labels are found
+	 */
+	public static function findByOwner(string $ownerID) : ?array {
+
+		$stmt = self::prepare("SELECT * FROM LABELS WHERE Creator = ?;");
+		$id = self::sanitizeArray($ownerID)[0];
+		$stmt->bind_param("s", $id);
+		$res = self::getResults($stmt);
+
+		// If no labels are found, return null
+		if(count($res) === 0) {
+			return NULL;
+		}
+
+		// Loop over all labels and return the array
+		$return = [];
+		foreach($res as $row) {
+			array_push($return, Label::construct($row));
+		}
+
+		return $return;
 
 	}
 
