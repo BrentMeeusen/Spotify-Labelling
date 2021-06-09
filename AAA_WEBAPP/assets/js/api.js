@@ -74,7 +74,7 @@ Api.showLabels = (result) => {
 		tr.appendChild(remove);
 
 		// If the user can set it to public/private
-		if(Api.TOKEN.getPayload().rights.label.public) {
+		if(Api.TOKEN.getPayload().rights.label.public === true) {
 
 			// If it's public, create private button
 			if(row.isPublic) {
