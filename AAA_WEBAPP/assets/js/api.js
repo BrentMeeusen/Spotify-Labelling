@@ -14,7 +14,7 @@ class Api {
  * @param {object} values The values in an object so it will be received as an associative array
  * @returns {object} The return object
  */
-Api.sendRequest = async (location, method, values) => {
+Api.sendRequest = async (location, method, values = {}) => {
 
 	// Send a request and return the result
 	const response = await fetch(encodeURI(VALUES.api + location), {
