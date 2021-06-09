@@ -28,14 +28,12 @@ STANDARD NEW VERSION:
 
 -->
 
-<!--
 ## 0.8.0-alpha - 2021/06/09
 
 ### Added
 - Your labels layout
 - Create label
 - Can add labels through the user interface
- -->
 
 
 
