@@ -94,7 +94,7 @@ session_start();
 		// Load labels
 		window.addEventListener("load", async () => {
 			const res = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
-			console.log(res);
+			Api.showLabels(res);
 		});
 
 		</script>
