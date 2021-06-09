@@ -32,7 +32,7 @@ class BigPopup {
 	 */
 	add(element, name, options) {
 
-		const el = BigPopup.createElement(element, options);
+		const el = Api.createElement(element, options);
 		el.setAttribute("name", element + " " + name);
 		this.elements.push(el);
 
@@ -79,10 +79,10 @@ class BigPopup {
 		this.popup.innerHTML = "";
 
 		// Add title
-		this.popup.appendChild(BigPopup.createElement("h2", { innerHTML: this.title }));
+		this.popup.appendChild(Api.createElement("h2", { innerHTML: this.title }));
 
 		// Create form
-		const form = BigPopup.createElement("div");
+		const form = Api.createElement("div");
 		form.classList.add("form");
 		form.dataset.action = this.action;
 		form.dataset.method = this.method;
@@ -97,13 +97,13 @@ class BigPopup {
 		
 
 		// Add buttons
-		const buttonCancel = BigPopup.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
+		const buttonCancel = Api.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
 		buttonCancel.addEventListener("click", () => {
 			this.hide();
 		});
 		form.appendChild(buttonCancel);
 
-		const buttonSave = BigPopup.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
+		const buttonSave = Api.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
 		buttonSave.addEventListener("click", () => {
 			this.hide();
 		});
@@ -124,26 +124,5 @@ class BigPopup {
 		}, 1);
 
 	}
-
-}
-
-
-
-
-
-/**
- * Creates an element
- * 
- * @param {string} el Element type
- * @param {object} options The values to add to the element
- * @returns {HTMLElement} The element that was created
- */
-BigPopup.createElement = (el, options = {}) => {
-
-	const elem = document.createElement(el);
-	for(const [key, value] of Object.entries(options)) {
-		elem[key] = value;
-	}
-	return elem;
 
 }

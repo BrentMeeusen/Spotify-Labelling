@@ -61,12 +61,33 @@ Api.showLabels = (result) => {
 		
 		// Create the row
 		const tr = document.createElement("tr");
-		tr.appendChild(BigPopup.createElement("td", { innerHTML: row.name }));
-		tr.appendChild(BigPopup.createElement("td", { innerHTML: "xx songs" }));
-		tr.appendChild(BigPopup.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
+		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
+		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
+		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
 
 		output.appendChild(tr);
 
 	}
+
+}
+
+
+
+
+
+/**
+ * Creates an element
+ * 
+ * @param {string} el Element type
+ * @param {object} options The values to add to the element
+ * @returns {HTMLElement} The element that was created
+ */
+ Api.createElement = (el, options = {}) => {
+
+	const elem = document.createElement(el);
+	for(const [key, value] of Object.entries(options)) {
+		elem[key] = value;
+	}
+	return elem;
 
 }
