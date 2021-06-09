@@ -84,6 +84,45 @@ class Database {
 
 
 	/**
+	 * Updates constraints
+	 */
+	public static function updateConstraint() {
+
+		$table = "LABELS";
+		
+
+		
+		$stmt = $conn->prepare("ALTER TABLE $table DROP FOREIGN KEY Creator;");
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+		// Execute the statement and check whether nothing went wrong
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+
+
+		$stmt = $conn->prepare("ALTER TABLE $table ADD CONSTRAINT owner_account FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE;");
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+
+		// Execute the statement and check whether nothing went wrong
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+		
+	}
+
+
+
+
+
+	/**
 	 * Creates the tables needed
 	 * 
 	 * @param	mysqli 	database to create the tables in
