@@ -31,10 +31,10 @@ else if(isset($_GET["available"])) {
 
 // If there's no result, return an error
 if($res === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "The requested user could not be found."]);
+	ApiResponse::httpResponse(404, ["error" => "The requested label could not be found."]);
 }
 
 // Properly return the results
-ApiResponse::httpResponse(200, [ "message" => "User found.", "data" => $res ]);
+ApiResponse::httpResponse(200, [ "message" => "Label(s) found.", "data" => $res ]);
 
 ?>
