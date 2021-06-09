@@ -114,7 +114,7 @@ Api.createIcon = (icon, event) => {
 	});
 
 	// Add icon to the button
-	const iconElement = Api.createElement("img", { src: VALUES.assets + "icons/" + icon });
+	const iconElement = Api.createElement("img", { src: VALUES.assets + "icons/" + icon + ".png" });
 	button.appendChild(iconElement);
 	return button;
 
