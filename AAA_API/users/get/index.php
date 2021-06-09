@@ -15,7 +15,6 @@ if(!isset($payload->rights->users->find)) {
 
 
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
-User::setConnection(Database::connect());
 if(isset($_GET["id"])) {
 	if(!isset($payload->rights->users->find->id) || $payload->rights->users->find->id !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);
