@@ -125,6 +125,9 @@ class BigPopup {
 		form.appendChild(buttonCancel);
 
 		const buttonSave = this.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
+		buttonSave.addEventListener("click", () => {
+			this.hide();
+		});
 		buttonSave.setAttribute("name", "html-js-form-submit");
 		form.appendChild(buttonSave);
 
