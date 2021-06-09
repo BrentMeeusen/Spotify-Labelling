@@ -28,6 +28,22 @@ STANDARD NEW VERSION:
 
 -->
 
+<!-- 
+
+## 0.x.x-alpha - 2021/06/xx
+
+### Added
+
+### Changed
+- Allowed deleting accounts when labels are created
+
+### Fixed
+- Logging in, even when account is not verified yet
+
+ -->
+
+
+
 ## 0.8.0-alpha - 2021/06/09
 
 ### Added
