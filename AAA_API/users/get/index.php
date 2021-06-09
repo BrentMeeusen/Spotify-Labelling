@@ -17,26 +17,26 @@ if(!isset($payload->rights->users->find)) {
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
 if(isset($_GET["id"])) {
 	if(!isset($payload->rights->users->find->id) || $payload->rights->users->find->id !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users by ID."]);
 	}
 	$res = User::findByPublicID(intval($_GET["id"]));
 }
 
 else if(isset($_GET["username"])) {
 	if(!isset($payload->rights->users->find->username) || $payload->rights->users->find->username !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users by username."]);
 	}
 	$res = User::findByUsername(strval($_GET["username"]));
 }
 else if(isset($_GET["email-address"])) {
 	if(!isset($payload->rights->users->find->emailAddress) || $payload->rights->users->find->emailAddress !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users by email address."]);
 	}
 	$res = User::findByEmailAddress(strval($_GET["email-address"]));
 }
 else {
 	if(!isset($payload->rights->users->find->all) || $payload->rights->users->find->all !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users."]);
+		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get all users."]);
 	}
 	$res = User::findAll();
 }
