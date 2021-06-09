@@ -125,16 +125,16 @@ class Table {
 	 * Executes the given statement
 	 * 
 	 * @param	mysqli_stmt		The statement to execute
-	 * @return	mysqli_stmt		The same statement, but executed
+	 * @return	bool			Whether it was a success or not
 	 */
-	protected static function execute(mysqli_stmt $statement) : mysqli_stmt {
+	protected static function execute(mysqli_stmt $statement) : bool {
 
 		// If the execution fails, return an error
 		if(!$statement->execute()) {
 			ApiResponse::httpResponse(500, ["error" => "The given statement could not be executed."]);
 		}
 
-		return $statement;
+		return TRUE;
 
 	}
 
