@@ -91,6 +91,12 @@ session_start();
 
 		});
 
+		// Load labels
+		window.addEventListener("load", () => {
+			const res = Api.sendRequest("api/v1/labels/all/" + Api.TOKEN, "GET");
+			console.log(res);
+		});
+
 		</script>
 
 	</body>
