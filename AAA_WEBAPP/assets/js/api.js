@@ -54,8 +54,6 @@ Api.showLabels = (result) => {
 	// Sets output element
 	const output = document.getElementById("labels");
 
-	console.log(result);
-
 	// For every row
 	for(const row of result) {
 		
@@ -64,7 +62,35 @@ Api.showLabels = (result) => {
 		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
 		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
 		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
-		tr.appendChild(Api.createIcon("edit", () => { console.log("Hey there, sexy ;)"); }));
+
+		// Create edit button
+		const edit = Api.createElement("td");
+		edit.appendChild(Api.createIcon("edit", () => { console.log("Editing..."); }));
+		tr.appendChild(edit);
+
+		// Create remove button
+		const remove = Api.createElement("td");
+		remove.appendChild(Api.createIcon("delete", () => { console.log("Removing..."); }));
+		tr.appendChild(remove);
+
+		// If the user can set it to public/private
+		if(Api.TOKEN.getPayload().rights.label.public) {
+
+			// If it's public, create private button
+			if(row.isPublic) {
+				const makePrivate = Api.createElement("td");
+				makePrivate.appendChild(Api.createIcon("eye-crossed", () => { console.log("Making row private..."); }));
+				tr.appendChild(makePrivate);
+			}
+
+			// Else, create make public button
+			else {
+				const makePublic = Api.createElement("td");
+				makePublic.appendChild(Api.createIcon("eye", () => { console.log("Making row public..."); }));
+				tr.appendChild(makePublic);
+			}
+
+		}
 
 		output.appendChild(tr);
 
