@@ -64,6 +64,7 @@ Api.showLabels = (result) => {
 		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
 		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
 		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
+		tr.appendChild(Api.createIcon("edit", () => { console.log("Hey there, sexy ;)"); }));
 
 		output.appendChild(tr);
 
