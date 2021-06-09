@@ -91,3 +91,30 @@ Api.showLabels = (result) => {
 	return elem;
 
 }
+
+
+
+
+
+/**
+ * Creates a button with an icon inside
+ * 
+ * @param {string} icon The icon name
+ * @param {Function} event The click event
+ * @returns {HTMLElement} The button with icon
+ */
+Api.createIcon = (icon, event) => {
+
+	// Create button
+	const button = Api.createElement("button");
+	button.classList.add("icon");
+	button.addEventListener("click", () => {
+		event();
+	});
+
+	// Add icon to the button
+	const icon = Api.createElement("img", { src: VALUES.assets + "icons/" + icon });
+	button.appendChild(icon);
+	return button;
+
+}
