@@ -85,8 +85,10 @@ class Database {
 
 	/**
 	 * Updates constraints
+	 * 
+	 * @param	mysqli 	database to create the tables in
 	 */
-	public static function updateConstraint() {
+	public static function updateConstraint(mysqli $conn) {
 
 		$table = "LABELS";
 		
