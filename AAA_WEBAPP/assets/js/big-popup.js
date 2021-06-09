@@ -32,30 +32,9 @@ class BigPopup {
 	 */
 	add(element, name, options) {
 
-		const el = this.createElement(element, options);
+		const el = BigPopup.createElement(element, options);
 		el.setAttribute("name", element + " " + name);
 		this.elements.push(el);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates an element
-	 * 
-	 * @param {string} el Element type
-	 * @param {object} options The values to add to the element
-	 * @returns {HTMLElement} The element that was created
-	 */
-	createElement(el, options = {}) {
-
-		const elem = document.createElement(el);
-		for(const [key, value] of Object.entries(options)) {
-			elem[key] = value;
-		}
-		return elem;
 
 	}
 
@@ -100,10 +79,10 @@ class BigPopup {
 		this.popup.innerHTML = "";
 
 		// Add title
-		this.popup.appendChild(this.createElement("h2", { innerHTML: this.title }));
+		this.popup.appendChild(BigPopup.createElement("h2", { innerHTML: this.title }));
 
 		// Create form
-		const form = this.createElement("div");
+		const form = BigPopup.createElement("div");
 		form.classList.add("form");
 		form.dataset.action = this.action;
 		form.dataset.method = this.method;
@@ -118,13 +97,13 @@ class BigPopup {
 		
 
 		// Add buttons
-		const buttonCancel = this.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
+		const buttonCancel = BigPopup.createElement("button", { innerHTML: "CANCEL", type: "submit", value: "submit", classList: "border--red small" });
 		buttonCancel.addEventListener("click", () => {
 			this.hide();
 		});
 		form.appendChild(buttonCancel);
 
-		const buttonSave = this.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
+		const buttonSave = BigPopup.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
 		buttonSave.addEventListener("click", () => {
 			this.hide();
 		});
@@ -145,5 +124,26 @@ class BigPopup {
 		}, 1);
 
 	}
+
+}
+
+
+
+
+
+/**
+ * Creates an element
+ * 
+ * @param {string} el Element type
+ * @param {object} options The values to add to the element
+ * @returns {HTMLElement} The element that was created
+ */
+BigPopup.createElement = (el, options = {}) => {
+
+	const elem = document.createElement(el);
+	for(const [key, value] of Object.entries(options)) {
+		elem[key] = value;
+	}
+	return elem;
 
 }
