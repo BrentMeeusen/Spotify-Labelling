@@ -80,6 +80,9 @@ class Database {
 	}
 
 
+
+
+
 	/**
 	 * Creates the tables needed
 	 * 
