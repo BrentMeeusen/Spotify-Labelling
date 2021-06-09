@@ -103,7 +103,7 @@ class Database {
             UNIQUE(PublicID)
 		);";
 
-		$res = self::createTable($conn, $SQL, $tableName);
+		// $res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create LABELS table
@@ -120,7 +120,7 @@ class Database {
 			UNIQUE (PublicID)
 		);";
 
-		$res = self::createTable($conn, $SQL, $tableName);
+		// $res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create RIGHTS table
