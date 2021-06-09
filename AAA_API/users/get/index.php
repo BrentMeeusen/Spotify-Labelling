@@ -19,7 +19,7 @@ if(isset($_GET["id"])) {
 	if(!isset($payload->rights->users->find->id) || $payload->rights->users->find->id !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to get users by ID."]);
 	}
-	$res = User::findByPublicID(intval($_GET["id"]));
+	$res = User::findByPublicID(strval($_GET["id"]));
 }
 
 else if(isset($_GET["username"])) {
