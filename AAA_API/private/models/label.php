@@ -150,7 +150,7 @@ class Label extends Table {
 	 */
 	public static function findAvailable(string $ownerID) : ?array {
 
-		$stmt = self::prepare("SELECT * FROM LABELS WHERE Owner = ? OR IsPublic = 1;");
+		$stmt = self::prepare("SELECT * FROM LABELS WHERE Creator = ? OR IsPublic = 1;");
 		$ownerID = self::sanitizeArray([$ownerID])[0];
 		$stmt->bind_param("s", $ownerID);
 		$res = self::getResults($stmt);
