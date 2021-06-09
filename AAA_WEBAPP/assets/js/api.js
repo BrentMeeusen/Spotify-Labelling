@@ -39,3 +39,34 @@ Api.sendRequest = async (location, method, values = {}) => {
 	return res;
 
 }
+
+
+
+
+
+/**
+ * Shows the labels
+ * 
+ * @param {object[]} result 
+ */
+Api.showLabels = (result) => {
+
+	// Sets output element
+	const output = document.getElementById("labels");
+
+	console.log(result);
+
+	// For every row
+	for(const row of result) {
+		
+		// Create the row
+		const tr = document.createElement("tr");
+		tr.appendChild(BigPopup.createElement("td", { innerHTML: row.name }));
+		tr.appendChild(BigPopup.createElement("td", { innerHTML: "xx songs" }));
+		tr.appendChild(BigPopup.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
+
+		output.appendChild(tr);
+
+	}
+
+}
