@@ -37,8 +37,8 @@ session_start();
 
 				<button class="wide" id="add-label">ADD LABEL</button>
 
-				<div class="table-container" id="labels">
-					<table>
+				<div class="table-container">
+					<table id="labels">
 						<tr>
 							<td>Rock</td>
 							<td>xx songs</td>
