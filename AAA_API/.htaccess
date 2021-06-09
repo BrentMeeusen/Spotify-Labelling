@@ -47,8 +47,14 @@ RewriteRule 	api/v1/users							users/get/								[L,QSA]
 
 
 
+############	api/v1/labels/all/[id]					labels/get/?available=[id]
+RewriteRule		api/v1/labels/all/([0-9]+)				labels/get/?available=$1				[L,QSA]
+
 ############	api/v1/labels/[action]					labels/[action]
 RewriteRule		api/v1/labels/([a-zA-Z]+)				labels/$1/								[L,QSA]
+
+############	api/v1/labels/[id]						labels/get/?id=[id]
+RewriteRule		api/v1/labels/([0-9]+)					labels/get/?id=$1						[L,QSA]
 
 ############	api/v1/labels							labels/get/
 RewriteRule		api/v1/labels							labels/get/								[L,QSA]
