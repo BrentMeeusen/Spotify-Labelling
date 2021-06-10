@@ -66,7 +66,7 @@ Api.showLabels = async () => {
 		const edit = Api.createElement("td");
 		edit.appendChild(Api.createIcon("edit", () => {
 
-			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST", () => { Api.showLabels(); });
+			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST", "edit-label-form");
 			popup.add("input", "Name", { value: row.name });
 			popup.show("EDIT");
 
