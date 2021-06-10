@@ -7,12 +7,14 @@ class BigPopup {
 	 * @param {string} title The title of the popup
 	 * @param {string} action The resulting action of a successful submission
 	 * @param {string} method The method of that action
+	 * @param {Function} callback A method to run after the response is received
 	 */
-	constructor(title, action, method) {
+	constructor(title, action, method, callback = null) {
 
 		this.title = title;
 		this.action = action;
 		this.method = method;
+		this.callback = callback;
 
 		this.popup = document.getElementById("popup-big");
 		this.elements = [];
