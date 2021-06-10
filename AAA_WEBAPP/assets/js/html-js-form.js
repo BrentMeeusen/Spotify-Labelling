@@ -30,6 +30,19 @@ class HtmlJsForm {
 
 
 	/**
+	 * Adds a callback method to run after the response is received
+	 * 
+	 * @param {Function} callback The method to run
+	 */
+	addCallback(callback) {
+		this.callback = callback;
+	}
+
+
+
+
+
+	/**
 	 * Sends the form using the action, method, and values provided
 	 */
 	async sendForm() {
