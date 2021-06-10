@@ -40,30 +40,6 @@ session_start();
 				<div class="table-container">
 					<table>
 						<tbody id="labels">
-							<tr>
-								<td>Rock</td>
-								<td>xx songs</td>
-								<td>Public</td>
-								<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
-							</tr>
-							<tr>
-								<td>Rock</td>
-								<td>xx songs</td>
-								<td>Public</td>
-								<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
-							</tr>
-							<tr>
-								<td>Rock</td>
-								<td>xx songs</td>
-								<td>Private</td>
-								<td><button class="icon"><img src="../../assets/icons/edit.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/delete.png"></button></td>
-								<td><button class="icon"><img src="../../assets/icons/eye.png"></button></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
