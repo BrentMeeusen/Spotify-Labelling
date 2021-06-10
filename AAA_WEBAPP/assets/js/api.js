@@ -69,7 +69,7 @@ Api.showLabels = async () => {
 		const edit = Api.createElement("td");
 		edit.appendChild(Api.createIcon("edit", () => {
 
-			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST", "edit-label-form");
+			const popup = new BigPopup("Edit Label", "api/v1/labels/" + row.publicID + "/edit", "POST", "edit-label-form");
 			popup.add("input", "Name", { value: row.name });
 			popup.show("EDIT");
 			HtmlJsForm.findById("edit-label-form").addCallback(() => { Api.showLabels(); });
@@ -81,7 +81,7 @@ Api.showLabels = async () => {
 		const remove = Api.createElement("td");
 		remove.appendChild(Api.createIcon("delete", () => {
 
-			const popup = new BigPopup("Remove Label", "api/v1/labels/remove/" + row.publicID, "DELETE", "remove-label-form");
+			const popup = new BigPopup("Remove Label", "api/v1/labels/" + row.publicID + "/remove", "DELETE", "remove-label-form");
 			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
 			popup.show("REMOVE");
 			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
@@ -96,7 +96,7 @@ Api.showLabels = async () => {
 			if(row.isPublic) {
 				const makePrivate = Api.createElement("td");
 				makePrivate.appendChild(Api.createIcon("eye-crossed", async () => {
-					await Api.sendRequest("api/v1/labels/private/" + row.publicID, "POST");
+					await Api.sendRequest("api/v1/labels/" + row.publicID + "/private", "POST");
 					Api.showLabels();
 				}));
 				tr.appendChild(makePrivate);
@@ -106,7 +106,7 @@ Api.showLabels = async () => {
 			else {
 				const makePublic = Api.createElement("td");
 				makePublic.appendChild(Api.createIcon("eye", async () => {
-					await Api.sendRequest("api/v1/labels/public/" + row.publicID, "POST");
+					await Api.sendRequest("api/v1/labels/" + row.publicID + "/public", "POST");
 					Api.showLabels();
 				}));
 				tr.appendChild(makePublic);
