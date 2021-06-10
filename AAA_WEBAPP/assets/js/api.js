@@ -53,6 +53,9 @@ Api.showLabels = async () => {
 	const output = document.getElementById("labels");
 	const result = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
 
+	// Clear the output
+	output.innerHTML = "";
+
 	// For every row
 	for(const row of result.data) {
 		
