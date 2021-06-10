@@ -69,6 +69,7 @@ Api.showLabels = async () => {
 			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST", "edit-label-form");
 			popup.add("input", "Name", { value: row.name });
 			popup.show("EDIT");
+			HtmlJsForm.findById("edit-label-form").addCallback(() => { Api.showLabels(); });
 
 		}));
 		tr.appendChild(edit);
