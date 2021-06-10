@@ -90,7 +90,7 @@ class BigPopup {
 		form.dataset.method = this.method;
 		form.dataset.clearFields = true;
 		form.setAttribute("name", "html-js-form");
-		(this.id !== null ? form.id = this.id : true);
+		(this.id !== null ? form.dataset.id = this.id : true);
 
 
 		// Add elements
