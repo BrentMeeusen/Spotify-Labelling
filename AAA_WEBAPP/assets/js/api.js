@@ -79,7 +79,14 @@ Api.showLabels = async () => {
 
 		// Create remove button
 		const remove = Api.createElement("td");
-		remove.appendChild(Api.createIcon("delete", () => { console.log("Removing..."); }));
+		remove.appendChild(Api.createIcon("delete", () => {
+
+			const popup = new BigPopup("Remove Label", "api/v1/labels/remove/" + row.publicID, "DELETE", "remove-label-form");
+			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
+			popup.show("REMOVE");
+			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
+			
+		}));
 		tr.appendChild(remove);
 
 		// If the user can set it to public/private
@@ -88,14 +95,18 @@ Api.showLabels = async () => {
 			// If it's public, create private button
 			if(row.isPublic) {
 				const makePrivate = Api.createElement("td");
-				makePrivate.appendChild(Api.createIcon("eye-crossed", () => { console.log("Making row private..."); }));
+				makePrivate.appendChild(Api.createIcon("eye-crossed", () => {
+					Api.sendRequest("api/v1/labels/private/" + row.publicID, "POST");
+				}));
 				tr.appendChild(makePrivate);
 			}
 
 			// Else, create make public button
 			else {
 				const makePublic = Api.createElement("td");
-				makePublic.appendChild(Api.createIcon("eye", () => { console.log("Making row public..."); }));
+				makePublic.appendChild(Api.createIcon("eye", () => {
+					Api.sendRequest("api/v1/labels/public/" + row.publicID, "POST");
+				}));
 				tr.appendChild(makePublic);
 			}
 
