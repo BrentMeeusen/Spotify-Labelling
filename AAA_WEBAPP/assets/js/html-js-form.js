@@ -52,7 +52,7 @@ class HtmlJsForm {
 
 		// Send the request
 		const res = await Api.sendRequest(this.action, this.method, this.getValues());
-		this.callback();
+		(this.callback ? this.callback() : true);
 
 		// Redirect if necessary
 		if(res.code === 200 && this.redirect !== undefined) {
