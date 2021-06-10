@@ -46,16 +46,15 @@ Api.sendRequest = async (location, method, values = {}) => {
 
 /**
  * Shows the labels
- * 
- * @param {object[]} result 
  */
-Api.showLabels = (result) => {
+Api.showLabels = async () => {
 
-	// Sets output element
+	// Sets output element and get the data
 	const output = document.getElementById("labels");
+	const result = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
 
 	// For every row
-	for(const row of result) {
+	for(const row of result.data) {
 		
 		// Create the row
 		const tr = document.createElement("tr");
