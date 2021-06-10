@@ -84,7 +84,7 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
-		// Add label functionality
+		// Add "Add label" button functionality
 		document.getElementById("add-label").addEventListener("click", () => {
 
 			const addLabel = new BigPopup("Add Label", "api/v1/labels/create", "POST");
