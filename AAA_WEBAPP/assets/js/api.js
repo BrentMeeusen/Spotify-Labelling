@@ -66,10 +66,10 @@ Api.showLabels = async () => {
 		const edit = Api.createElement("td");
 		edit.appendChild(Api.createIcon("edit", () => {
 
-			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST");
+			const popup = new BigPopup("Edit Label", "api/v1/labels/edit/" + row.publicID, "POST", () => { Api.showLabels(); });
 			popup.add("input", "Name", { value: row.name });
 			popup.show("EDIT");
-		
+
 		}));
 		tr.appendChild(edit);
 
