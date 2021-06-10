@@ -95,8 +95,9 @@ Api.showLabels = async () => {
 			// If it's public, create private button
 			if(row.isPublic) {
 				const makePrivate = Api.createElement("td");
-				makePrivate.appendChild(Api.createIcon("eye-crossed", () => {
-					Api.sendRequest("api/v1/labels/private/" + row.publicID, "POST");
+				makePrivate.appendChild(Api.createIcon("eye-crossed", async () => {
+					await Api.sendRequest("api/v1/labels/private/" + row.publicID, "POST");
+					Api.showLabels();
 				}));
 				tr.appendChild(makePrivate);
 			}
@@ -104,8 +105,9 @@ Api.showLabels = async () => {
 			// Else, create make public button
 			else {
 				const makePublic = Api.createElement("td");
-				makePublic.appendChild(Api.createIcon("eye", () => {
-					Api.sendRequest("api/v1/labels/public/" + row.publicID, "POST");
+				makePublic.appendChild(Api.createIcon("eye", async () => {
+					await Api.sendRequest("api/v1/labels/public/" + row.publicID, "POST");
+					Api.showLabels();
 				}));
 				tr.appendChild(makePublic);
 			}
