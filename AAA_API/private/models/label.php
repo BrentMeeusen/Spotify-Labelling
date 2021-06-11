@@ -86,14 +86,13 @@ class Label extends Table implements TableInterface {
 	/**
 	 * Create the user with the given values
 	 * 
-	 * @param		string		The public ID of the user
 	 * @param		array		The values to create the user with
 	 * @return		Label		The user that was created
 	 */
-	public static function create(string $userID, array $values) : Label {
+	public static function create(array $values) : Label {
 
 		// Create a label object
-		$label = new Label(self::generateRandomID("LABELS"), $userID, $values["Name"], $values["IsPublic"]);
+		$label = new Label(self::generateRandomID("LABELS"), $values["Creator"], $values["Name"], $values["IsPublic"]);
 
 		// Prepare SQL statement
 		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Creator, Name, IsPublic) 
