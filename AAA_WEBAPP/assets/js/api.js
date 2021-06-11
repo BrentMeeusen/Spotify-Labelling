@@ -49,17 +49,17 @@ Api.sendRequest = async (location, method, values = {}) => {
  */
 Api.showLabels = async () => {
 
-	// Sets output element and get the data
+	// Clears the output and gets the data
 	const output = document.getElementById("labels");
+	output.innerHTML = "";
+
 	const result = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
+
 
 	// If no labels are found, return
 	if(result.data === undefined || result.data === null) {
 		return;
 	}
-
-	// Clear the output
-	output.innerHTML = "";
 
 	// For every row
 	for(const row of result.data) {
