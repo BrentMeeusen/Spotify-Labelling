@@ -319,7 +319,7 @@ class User extends Table {
 	 * Updates the user with the given ID
 	 * 
 	 * @param		User		The user to update
-	 * @param		array		User object to update
+	 * @param		array		The new values in an associative array
 	 * @return		User		The updated user
 	 */
 	public static function updateUser(User $user, array $values) : User {
