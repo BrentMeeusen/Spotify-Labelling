@@ -219,4 +219,42 @@ class Table {
 }
 
 
+
+
+
+interface TableInterface {
+
+	/**
+	 * Static constructor
+	 */
+	public static function construct() : Table;
+
+	/**
+	 * Checks for duplicates
+	 */
+	public function hasDuplicates() : void;
+
+	/**
+	 * Sanitizes the inputs
+	 */
+	public function sanitizeInputs() : void;
+
+	/**
+	 * Creates an entry
+	 */
+	public static function create() : Table;
+
+	/**
+	 * Updates an entry
+	 */
+	public static function update() : Table;
+
+	/**
+	 * Deletes an entry
+	 */
+	public static function delete() : bool;
+
+}
+
+
 ?>
