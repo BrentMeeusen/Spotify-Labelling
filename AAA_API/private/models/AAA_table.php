@@ -27,6 +27,19 @@ class Table {
 
 
 
+	/**
+	 * Default method for duplicates check
+	 * 
+	 * @return		bool		Whether it has duplicates or not
+	 */
+	public function hasDuplicates() : bool {
+		return FALSE;
+	}
+
+
+
+
+
 
 
 
