@@ -2,6 +2,7 @@
 ## Introduction
 In my personal opinion, Spotify is a great platform for streaming music. However, it has one big downside: you cannot create "smart playlists" which create playlists based on one or multiple conditions. But that is no longer a limitation as that is exactly what Spotify Labelling offers us!
 
+
 ## The application
 The goal of the project was to make it as intuitive as possible to use, but if you happen to be unsure how you should use the application, you can read the explanation below. If you have an account, you can also [log in](http://spotify-labelling.21webb.nl/) and visit [this page](http://spotify-labelling.21webb.nl/how-it-works).
 
