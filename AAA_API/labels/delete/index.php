@@ -15,6 +15,14 @@ if(!isset($payload->rights->label->delete) || $payload->rights->label->delete !=
 	ApiResponse::httpResponse(401, ["error" => "You are not allowed to delete this label."]);
 }
 
+// If the label isn't found, return an error
+
+// Delete the label
+
+// Properly return the results
+
+
+
 
 
 // If the ID is set, update ID
