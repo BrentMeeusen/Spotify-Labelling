@@ -112,7 +112,7 @@ class Label extends Table {
 	 * Updates the label
 	 * 
 	 * @param		Label		The label to update
-	 * @param		array		The new values
+	 * @param		array		The new values in an associative array
 	 * @param		Label		The updated label
 	 */
 	public static function updateLabel(Label $label, array $values) : Label {
