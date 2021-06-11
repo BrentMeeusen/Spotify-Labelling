@@ -116,6 +116,19 @@ class Label extends Table {
 	 * @param		Label		The updated label
 	 */
 	public static function updateLabel(Label $label, array $values) : Label {
+		
+		// Prepare the update process
+		$label = parent::prepareUpdate($user, $values);
+
+		// Prepare SQL statement
+		$stmt = self::prepare("UPDATE LABELS SET Name = ?, IsPublic = ?;");
+
+		// Insert input into SQL statement
+		$stmt->bind_param("si", $label->name, $label->isPublic);
+
+		// Execute SQL statement and return the result
+		self::execute($stmt);
+		return $label;
 
 	}
 
