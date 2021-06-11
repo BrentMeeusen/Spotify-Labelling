@@ -61,6 +61,9 @@ if(isset($REQUIRE_TOKEN)) {
 		ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
 	}
 
+	// Get the newest payload from the user so that it is up-to-date with the info in the database
+	$payload = $user->createPayload();
+
 }
 
 ?>
