@@ -109,6 +109,21 @@ class Label extends Table {
 
 
 	/**
+	 * Updates the label
+	 * 
+	 * @param		Label		The label to update
+	 * @param		array		The new values
+	 * @param		Label		The updated label
+	 */
+	public static function updateLabel(Label $label, array $values) : Label {
+
+	}
+
+
+
+
+
+	/**
 	 * Deletes the given label from the database
 	 * 
 	 * @param		Label		The label to delete
