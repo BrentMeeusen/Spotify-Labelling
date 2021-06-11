@@ -1,6 +1,6 @@
 <?php
 
-class User extends Table {
+class User extends Table implements TableInterface {
 
 
 	// Initialise variables
@@ -259,7 +259,7 @@ class User extends Table {
 	 * @param		array		The values to create the user with
 	 * @return		User		The user that was created
 	 */
-	public static function createUser(array $values) : User {
+	public static function create(array $values) : User {
 
 		// Create a user object
 		$user = new User(self::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
@@ -321,7 +321,7 @@ class User extends Table {
 	 * @param		array		The new values in an associative array
 	 * @return		User		The updated user
 	 */
-	public static function updateUser(User $user, array $values) : User {
+	public static function update(User $user, array $values) : User {
 		
 		// Prepare the update process
 		$user = parent::prepareUpdate($user, $values);
@@ -353,7 +353,7 @@ class User extends Table {
 	 * @param		Label		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
-	public static function deleteUser(User $user) : bool {
+	public static function delete(User $user) : bool {
 		return parent::deleteEntry($user, "USERS");
 	}
 

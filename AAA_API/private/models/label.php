@@ -1,6 +1,6 @@
 <?php
 
-class Label extends Table {
+class Label extends Table implements TableInterface {
 
 
 	// Initialise variables
@@ -59,8 +59,19 @@ class Label extends Table {
 	/**
 	 * Sanitizes the inputs
 	 */
-	private function sanitizeInputs() : void {
+	public function sanitizeInputs() : void {
 		$this->name = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->name))));
+	}
+
+
+
+
+
+	/**
+	 * Checks whether there are duplicates
+	 */
+	public function hasDuplicates() : bool {
+
 	}
 
 
@@ -79,7 +90,7 @@ class Label extends Table {
 	 * @param		array		The values to create the user with
 	 * @return		Label		The user that was created
 	 */
-	public static function createLabel(string $userID, array $values) : Label {
+	public static function create(string $userID, array $values) : Label {
 
 		// Create a label object
 		$label = new Label(self::generateRandomID("LABELS"), $userID, $values["Name"], $values["IsPublic"]);
@@ -113,7 +124,7 @@ class Label extends Table {
 	 * @param		array		The new values in an associative array
 	 * @param		Label		The updated label
 	 */
-	public static function updateLabel(Label $label, array $values) : Label {
+	public static function update(Label $label, array $values) : Label {
 		
 		// Prepare the update process
 		$label = parent::prepareUpdate($user, $values);
@@ -140,7 +151,7 @@ class Label extends Table {
 	 * @param		Label		The label to delete
 	 * @return		bool		Whether it was deleted successfully or not
 	 */
-	public static function deleteLabel(Label $label) : bool {
+	public static function delete(Label $label) : bool {
 		return parent::deleteEntry($label, "LABELS");
 	}
 
