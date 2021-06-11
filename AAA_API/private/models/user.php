@@ -2,6 +2,7 @@
 
 class User extends Table {
 
+
 	// Initialise variables
 	public int $id;
 	public string $publicID;
@@ -339,7 +340,6 @@ class User extends Table {
 		// Execute SQL statement and return the result
 		self::execute($stmt);
 		return $user;
-
 
 	}
 
