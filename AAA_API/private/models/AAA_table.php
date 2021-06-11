@@ -80,6 +80,34 @@ class Table {
 
 
 
+
+	/**
+	 * Deletes an entry from the given table
+	 * 
+	 * @param		Table		A table child to delete
+	 * @param		string		The table to delete data from
+	 * @param		bool		Whether the entry was deleted successfully or not
+	 */
+	protected static function deleteEntry(Table $entry, string $table) {
+
+		// Delete the entry
+		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
+		$stmt->bind_param("s", $entry->publicID);
+		self::execute($stmt);
+
+		// Return TRUE because everything went right
+		return TRUE;
+
+	}
+
+
+
+
+
+
+
+
+
 	
 	/**
 	 * Sanitizes the given array
