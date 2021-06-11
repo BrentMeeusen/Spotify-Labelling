@@ -7,6 +7,16 @@ include_once("../../private/include_all.php");
 
 
 
+// Get the ID
+$labelID = $_GET["id"];
+
+// Check whether the current user (JWT) is allowed to delete a label
+if(!isset($payload->rights->label->delete) || $payload->rights->label->delete !== TRUE) {
+	ApiResponse::httpResponse(401, ["error" => "You are not allowed to delete this label."]);
+}
+
+
+
 // If the ID is set, update ID
 // if(isset($_GET["id"])) {
 
