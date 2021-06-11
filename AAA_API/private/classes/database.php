@@ -144,7 +144,7 @@ class Database {
 			AccountStatus	INT(1)			NOT NULL,
 			
 			PRIMARY KEY (ID),
-            UNIQUE(PublicID)
+			UNIQUE(PublicID)
 		);";
 
 		// $res = self::createTable($conn, $SQL, $tableName);
