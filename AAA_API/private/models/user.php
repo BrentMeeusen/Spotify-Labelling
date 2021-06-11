@@ -334,7 +334,7 @@ class User extends Table {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssii", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $id);
+		$stmt->bind_param("sssssii", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
