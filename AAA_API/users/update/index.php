@@ -15,7 +15,6 @@ if(isset($_GET["id"])) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update someone else's account.", "data" => $payload->user]);
 	}
 	$updateID = $_GET["id"];
-	
 	$prefix = "The";
 
 }
@@ -28,7 +27,6 @@ else {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update your account.", "data" => $payload->user]);
 	}
 	$updateID = $payload->user->id;
-
 	$prefix = "Your";
 
 }
@@ -39,8 +37,6 @@ else {
 if(setAndEmpty($body, "FirstName") || setAndEmpty($body, "LastName") || setAndEmpty($body, "Username") || setAndEmpty($body, "EmailAddress")) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
 }
-
-
 
 // Check if the password is the same as another value
 if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname || $body["Password"] == $payload->user->lastname || $body["Password"] == $payload->user->username || $body["Password"] == $payload->user->emailAddress)) {
@@ -68,15 +64,11 @@ foreach($body as $key => $value) {
 // Update the user
 $res = User::updateUser($user, $values);
 
-
-
 // Create a new token
 $user = User::findByPublicID($payload->user->id);
 $payload = $user->createPayload();
 $token = JSONWebToken::createToken($payload, 60);
 
-
-	
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully updated.", "data" => $res, "jwt" => $token]);
 
