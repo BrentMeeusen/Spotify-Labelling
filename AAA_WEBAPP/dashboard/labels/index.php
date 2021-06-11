@@ -63,9 +63,10 @@ session_start();
 		// Add "Add label" button functionality
 		document.getElementById("add-label").addEventListener("click", () => {
 
-			const addLabel = new BigPopup("Add Label", "api/v1/labels/create", "POST");
+			const addLabel = new BigPopup("Add Label", "api/v1/labels/create", "POST", "create-label-form");
 			addLabel.add("input", "Name", { placeholder: "LABEL NAME" });
 			addLabel.show("ADD");
+			HtmlJsForm.findById("create-label-form").addCallback(() => { Api.showLabels(); });
 
 		});
 
