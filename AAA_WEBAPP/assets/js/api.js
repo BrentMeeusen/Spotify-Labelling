@@ -65,6 +65,16 @@ Api.showLabels = async () => {
 		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
 		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
 
+
+
+		// If the label is not ours, do not show the buttons
+		if(row.creator !== Api.TOKEN.getPayload().user.id) {
+			output.appendChild(tr);
+			return;
+		}
+
+
+
 		// Create edit button
 		const edit = Api.createElement("td");
 		edit.appendChild(Api.createIcon("edit", () => {
