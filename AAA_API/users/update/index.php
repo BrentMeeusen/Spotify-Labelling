@@ -62,7 +62,7 @@ foreach($body as $key => $value) {
 }
 
 // Update the user
-$res = User::updateUser($user, $values);
+$res = User::update($user, $values);
 
 // Create a new token
 $user = User::findByPublicID($payload->user->id);

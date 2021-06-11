@@ -26,7 +26,7 @@ foreach($body as $key => $value) {
 }
 
 // Create the label
-$res = Label::createLabel($values);
+$res = Label::create($values);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The label was successfully created.", "data" => $res]);
