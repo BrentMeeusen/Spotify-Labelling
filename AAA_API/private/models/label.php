@@ -74,7 +74,15 @@ class Label extends Table implements TableInterface {
 	 * @return		array		[key => Property, value => Duplicate value]
 	 */
 	public function hasDuplicates() {
-		return FALSE;
+		
+		// Get all entries that are from this creator with this name
+		$stmt = self::prepare("SELECT * FROM LABELS WHERE Creator = ? AND Name = ?;");
+		$stmt->bind_param("ss", $this->creator, $this->label);
+		$res = self::getResults($stmt);
+
+		// Return whether it has found a duplicate or not
+		return (count($res) === 0 ? FALSE : TRUE);
+
 	}
 
 
