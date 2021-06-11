@@ -106,7 +106,7 @@ Api.showLabels = async () => {
 
 		// If the user can set it to public/private
 		const maySetPublic = Api.TOKEN.getPayload().rights.label.public;
-		if(maySetPublic === true || maySetPublic === 1) {
+		if(maySetPublic == true) {
 
 			// If it's public, create private button
 			if(row.isPublic) {

@@ -12,7 +12,7 @@ $labelID = $_GET["id"];
 $newState = (isset($_GET["state"]) ? "private" : "public");
 
 // Check whether the current user (JWT) is allowed to make a label public/private
-if(!isset($payload->rights->label->public) || $payload->rights->label->public !== TRUE) {
+if(!isset($payload->rights->label->public) || $payload->rights->label->public != TRUE) {
 	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to make a label $newState."]);
 }
 
