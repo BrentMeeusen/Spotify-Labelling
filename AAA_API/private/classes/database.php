@@ -168,6 +168,26 @@ class Database {
 
 
 		// Create RIGHTS table
+		$tableName = "RIGHTS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT				NOT NULL	AUTO_INCREMENT,
+			Name			VARCHAR(64)		NOT NULL,
+			Value			INT(1)			NOT NULL
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+		// Insert special rights into table
+		$stmt = $conn->prepare("INSERT INTO RIGHTS Name, Value VALUES (?, ?);");
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing insert", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+		$res->bind_param("si", "label.public", 1);
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst executing insert", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
+		}
+		
 
 
 		// Create SONGS table
