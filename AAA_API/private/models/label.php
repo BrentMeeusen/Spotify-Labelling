@@ -129,7 +129,7 @@ class Label extends Table implements TableInterface {
 		if(!($label instanceof Label)) { throw new InvalidArgumentException; }
 		
 		// Prepare the update process
-		$label = parent::prepareUpdate($user, $values);
+		$label = parent::prepareUpdate($label, $values);
 
 		// Prepare SQL statement
 		$stmt = self::prepare("UPDATE LABELS SET Name = ?, IsPublic = ?;");
