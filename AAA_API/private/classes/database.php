@@ -181,7 +181,7 @@ class Database {
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS Name, Value VALUES (?, ?);");
-		$res->bind_param("si", "label.public", 1);
+		$stmt->bind_param("si", "label.public", 1);
 		$res = $stmt->execute();
 
 		// Create RIGHTS_TO_USERS table
