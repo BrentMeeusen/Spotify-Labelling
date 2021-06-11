@@ -134,7 +134,7 @@ class Database {
 		// Create USERS table
 		$tableName = "USERS";
 		$SQL = "CREATE TABLE $tableName (
-			ID				INT 			NOT NULL 	AUTO_INCREMENT,
+			ID				INT(11)			NOT NULL 	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
 			FirstName		VARCHAR(50) 	NOT NULL,
 			LastName		VARCHAR(50)		NOT NULL,
@@ -153,7 +153,7 @@ class Database {
 		// Create LABELS table
 		$tableName = "LABELS";
 		$SQL = "CREATE TABLE $tableName (
-			ID				INT				NOT NULL	AUTO_INCREMENT,
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
 			Creator			VARCHAR(32)		NOT NULL,
 			Name			VARCHAR(100)	NOT NULL,
@@ -170,7 +170,7 @@ class Database {
 		// Create RIGHTS table
 		$tableName = "RIGHTS";
 		$SQL = "CREATE TABLE $tableName (
-			ID				INT				NOT NULL	AUTO_INCREMENT,
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			Name			VARCHAR(64)		NOT NULL,
 			Value			INT(1)			NOT NULL
 		);";
@@ -179,16 +179,21 @@ class Database {
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS Name, Value VALUES (?, ?);");
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing insert", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
 		$res->bind_param("si", "label.public", 1);
 		$res = $stmt->execute();
-		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst executing insert", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
-		
 
+		// Create RIGHTS_TO_USERS table
+		$tableName = "RIGHTS_TO_USERS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT				NOT NULL	AUTO_INCREMENT,
+			User			VARCHAR(32)		NOT NULL,
+			Right			INT(11)			NOT NULL,
+			
+			FOREIGN KEY (User) REFERENCES USERS (PublicID),
+			FOREIGN KEY (Right) REFERENCES RIGHTS (ID)
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
 
 		// Create SONGS table
 
