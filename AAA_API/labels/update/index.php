@@ -7,6 +7,9 @@ include_once("../../private/include_all.php");
 
 
 
+// Get the ID
+$labelID = $_GET["id"];
+
 // Check whether the current user (JWT) is allowed to update a label
 if(!isset($payload->rights->label->update) || $payload->rights->label->update !== TRUE) {
 	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update a label."]);
@@ -22,7 +25,7 @@ if(setAndEmpty($body, "Name")) {
 
 
 // If the label isn't found, return an error
-$label = Label::findByPublicID($updateID);
+$label = Label::findByPublicID($labelID);
 if($label === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "We couldn't find the label."]);
 }
