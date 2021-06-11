@@ -21,11 +21,3 @@ At this point, you have imported your songs and given them a rating, created lab
 ### Updating your songs
 It is of course very possible that you gave a song a label, but you do not find it fitting anymore, or you like the song less so you want to lower its rating. All you have to do then is make your changes and click the "Update Playlists" button again. This will update the already existing playlists to match the new values!
 
-
-## Endpoints
-<!-- 
-
-A list of all endpoints, including its specifications
-
- -->
-
