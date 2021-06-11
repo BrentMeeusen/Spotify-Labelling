@@ -50,6 +50,9 @@ RewriteRule 	api/v1/users							users/get/								[L,QSA]
 ############	api/v1/labels/all/[id]					labels/get/?available=[id]
 RewriteRule		api/v1/labels/all/([0-9]+)				labels/get/?available=$1				[L,QSA]
 
+############	api/v1/labels/[id]/private				labels/public/?state=public
+RewriteRule		api/v1/labels/([0-9]+)/private			labels/public/?id=$1&state=public		[L,QSA]
+
 ############	api/v1/labels/[id]/[action]				labels/[action]?id=[id]
 RewriteRule		api/v1/labels/([0-9]+)/([a-zA-Z]+)		labels/$2/?id=$1						[L,QSA]
 
