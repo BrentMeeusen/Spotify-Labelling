@@ -108,6 +108,34 @@ class Label extends Table {
 
 
 
+	/**
+	 * Deletes the given label from the database
+	 * 
+	 * @param		string		The label ID to delete
+	 * @return		bool		Whether it was deleted successfully or not
+	 */
+	public static function deleteLabel(string $labelID) : bool {
+		
+		// Get the label
+		$label = self::findByPublicID($labelID);
+		if($label === NULL) {
+			ApiResponse::httpResponse(404, ["error" => "The requested label was not found."]);
+		}
+
+		// Delete the label
+		$stmt = self::prepare("DELETE FROM LABELS WHERE PublicID = ?");
+		$stmt->bind_param("s", $id);
+		self::execute($stmt);
+
+		// Return TRUE because everything went right
+		return TRUE;
+		
+	}
+
+
+
+
+
 
 
 
