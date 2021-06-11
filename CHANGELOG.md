@@ -28,6 +28,14 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.9.1-alpha - 2021/06/11
+
+### Fixed
+- Verifying method that did not work with the new interface yet
+- Errors on verifying will now be returned to the user
+
+
+
 ## 0.9.0-alpha - 2021/06/11
 
 ### Added
