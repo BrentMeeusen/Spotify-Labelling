@@ -144,9 +144,7 @@ class User extends Table {
 	 * @return		User		The new user object
 	 */
 	public function verify() : User {
-
 		return self::updateUser($this->publicID, ["accountStatus" => 2]);
-
 	}
 
 
