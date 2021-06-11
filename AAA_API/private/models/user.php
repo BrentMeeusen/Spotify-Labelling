@@ -84,13 +84,13 @@ class User extends Table implements TableInterface {
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
-		if($res !== NULL && $res->publicID !== $this->id) { 
+		if($res !== NULL && $res->publicID !== $this->publicID) { 
 			return ["key" => "a username", "value" => $res->username];
 		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
-		if($res !== NULL && $res->publicID !== $this->id) {
+		if($res !== NULL && $res->publicID !== $this->publicID) {
 			return ["key" => "an email address", "value" => $res->emailAddress];
 		}
 
