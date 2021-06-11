@@ -53,6 +53,11 @@ Api.showLabels = async () => {
 	const output = document.getElementById("labels");
 	const result = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
 
+	// If no labels are found, return
+	if(result.data === undefined || result.data === null) {
+		return;
+	}
+
 	// Clear the output
 	output.innerHTML = "";
 
