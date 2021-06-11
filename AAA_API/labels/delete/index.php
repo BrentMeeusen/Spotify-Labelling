@@ -27,7 +27,7 @@ if($label->creator !== $payload->user->id && TRUE) {
 }
 
 // Delete the label
-$res = Label::deleteLabel($labelID);
+$res = Label::delete($label);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The label was successfully deleted.", "data" => $res]);
