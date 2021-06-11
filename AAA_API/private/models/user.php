@@ -321,25 +321,12 @@ class User extends Table {
 	 * @return		User		The updated user
 	 */
 	public static function updateUser(User $user, array $values) : User {
-
-		// Update its values with the newest values
-		foreach($values as $key => $value) {
-			$user->{lcfirst($key)} = $value;
-		}
-
-		// Check for duplicate values that should be unique BUT don't error on the current user
-		$dupes = $user->hasDuplicates($id);
-		if($dupes !== FALSE) {
-			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
-		}
 		
-		
+		// Prepare the update process
+		$user = parent::prepareUpdate($user, $values);
 		
 		// Prepare SQL statement
 		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ? WHERE PublicID = ?;");
-
-		// Sanitize input
-		$user->sanitizeInputs();
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
