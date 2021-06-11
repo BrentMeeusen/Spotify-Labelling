@@ -109,22 +109,32 @@ Api.showLabels = async () => {
 
 			// If it's public, create private button
 			if(row.isPublic) {
+
 				const makePrivate = Api.createElement("td");
+
 				makePrivate.appendChild(Api.createIcon("eye-crossed", async () => {
-					await Api.sendRequest("api/v1/labels/" + row.publicID + "/private", "POST");
+					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/private", "POST");
+					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 					Api.showLabels();
 				}));
+
 				tr.appendChild(makePrivate);
+
 			}
 
 			// Else, create make public button
 			else {
+
 				const makePublic = Api.createElement("td");
+
 				makePublic.appendChild(Api.createIcon("eye", async () => {
-					await Api.sendRequest("api/v1/labels/" + row.publicID + "/public", "POST");
+					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/public", "POST");
+					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 					Api.showLabels();
 				}));
+				
 				tr.appendChild(makePublic);
+
 			}
 
 		}
