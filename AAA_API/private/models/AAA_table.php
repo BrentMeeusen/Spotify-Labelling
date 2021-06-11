@@ -91,7 +91,7 @@ class Table {
 		}
 
 		// Check for duplicate values that should be unique
-		$dupes = $entry->hasDuplicates($id);
+		$dupes = $entry->hasDuplicates();
 		if($dupes !== FALSE) {
 			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
 		}
