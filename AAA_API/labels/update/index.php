@@ -12,7 +12,7 @@ $labelID = $_GET["id"];
 
 // Check whether the current user (JWT) is allowed to update a label
 if(!isset($payload->rights->label->update) || $payload->rights->label->update !== TRUE) {
-	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to update a label."]);
+	ApiResponse::httpResponse(401, ["error" => "You are not allowed to update a label."]);
 }
 
 

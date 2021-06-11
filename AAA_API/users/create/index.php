@@ -17,7 +17,7 @@ $payload = JSONWebToken::getPayload($headerJWT);
 
 // If the payload doesn't contain "register", return an error
 if(!isset($payload->rights->register) || $payload->rights->register !== TRUE) {
-	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to register an account."]);
+	ApiResponse::httpResponse(401, ["error" => "You are not allowed to register an account."]);
 }
 
 

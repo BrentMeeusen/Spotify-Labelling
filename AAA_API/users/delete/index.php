@@ -12,7 +12,7 @@ if(isset($_GET["id"])) {
 
 	// Check whether the current user (JWT) is allowed to delete another user (ID)
 	if(!isset($payload->rights->users->delete) || $payload->rights->users->delete !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to delete someone else's account."]);
+		ApiResponse::httpResponse(401, ["error" => "You are not allowed to delete someone else's account."]);
 	}
 	$userID = $_GET["id"];
 
@@ -25,7 +25,7 @@ else {
 
 	// If the payload doesn't contain "user.id", return an error
 	if(!isset($payload->user->id) || !isset($payload->rights->user->delete) || $payload->rights->user->delete !== TRUE) {
-		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to delete your account."]);
+		ApiResponse::httpResponse(401, ["error" => "You are not allowed to delete your account."]);
 	}
 	$userID = $payload->user->id;
 	

@@ -9,7 +9,7 @@ include_once("../../private/include_all.php");
 
 // Check whether the current user (JWT) is allowed to create a label
 if(!isset($payload->rights->label->create) || $payload->rights->label->create !== TRUE) {
-	ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to create a label."]);
+	ApiResponse::httpResponse(401, ["error" => "You are not allowed to create a label."]);
 }
 
 // If a label already exists, return an error
