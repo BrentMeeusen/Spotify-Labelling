@@ -30,9 +30,10 @@ class Table {
 	/**
 	 * Default method for duplicates check
 	 * 
-	 * @return		bool		Whether it has duplicates or not
+	 * @return		bool		False if no duplicates are found
+	 * @return		array		[key => Property, value => Duplicate value]
 	 */
-	public function hasDuplicates() : bool {
+	public function hasDuplicates() {
 		return FALSE;
 	}
 
