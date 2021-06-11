@@ -72,7 +72,7 @@ class User extends Table {
 
 
 
-	
+
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
@@ -80,7 +80,7 @@ class User extends Table {
 	 * @return		bool		False if no errors are found
 	 * @return		array		[key => Property, value => Duplicate value]
 	 */
-	private function hasDuplicates(string $userID = NULL) {
+	public function hasDuplicates(string $userID = NULL) {
 
 		// If the userID is not set, set it to this public ID
 		$userID = ($userID === NULL ? $this->publicID : $userID);
