@@ -30,7 +30,7 @@ STANDARD NEW VERSION:
 
 <!-- 
 
-## 0.x.x-alpha - 2021/06/xx
+## 0.9.x-alpha - 2021/06/xx
 
 ### Added
 - Showing labels on the page
