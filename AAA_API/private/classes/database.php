@@ -172,7 +172,9 @@ class Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			Name			VARCHAR(64)		NOT NULL,
-			Value			INT(1)			NOT NULL
+			Value			INT(1)			NOT NULL,
+			
+			PRIMARY KEY (ID)
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
@@ -189,6 +191,7 @@ class Database {
 			User			VARCHAR(32)		NOT NULL,
 			Right			INT(11)			NOT NULL,
 			
+			PRIMARY KEY (ID),
 			FOREIGN KEY (User) REFERENCES USERS (PublicID),
 			FOREIGN KEY (Right) REFERENCES RIGHTS (ID)
 		);";
