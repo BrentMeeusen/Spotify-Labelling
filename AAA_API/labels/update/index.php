@@ -41,7 +41,7 @@ foreach($body as $key => $value) {
 }
 
 // Update the user
-$res = Label::update($user, $values);
+$res = Label::update($label, $values);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The label has been successfully updated.", "data" => $res]);
