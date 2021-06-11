@@ -226,13 +226,11 @@ interface TableInterface {
 
 	/**
 	 * Static constructor
+	 * 
+	 * @param		array		The values to create an entry from
+	 * @return		Table		The created entry
 	 */
-	public static function construct() : Table;
-
-	/**
-	 * Checks for duplicates
-	 */
-	public function hasDuplicates() : void;
+	public static function construct(array $values) : Table;
 
 	/**
 	 * Sanitizes the inputs
@@ -240,19 +238,29 @@ interface TableInterface {
 	public function sanitizeInputs() : void;
 
 	/**
-	 * Creates an entry
+	 * Creates an entry in the database
+	 * 
+	 * @param		array		The values to create an entry from
+	 * @return		Table		The created entry
 	 */
-	public static function create() : Table;
+	public static function create(array $values) : Table;
 
 	/**
-	 * Updates an entry
+	 * Updates an entry in the database
+	 * 
+	 * @param		Table		The entry to update
+	 * @param		array		The values to set
+	 * @return		Table		The updated entry
 	 */
-	public static function update() : Table;
+	public static function update(Table $entry, array $values) : Table;
 
 	/**
-	 * Deletes an entry
+	 * Deletes an entry in the database
+	 * 
+	 * @param		Table		The entry to delete
+	 * @return		bool		Whether it was deleted successfully or not
 	 */
-	public static function delete() : bool;
+	public static function delete(Table $entry) : bool;
 
 }
 
