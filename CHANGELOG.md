@@ -28,6 +28,21 @@ STANDARD NEW VERSION:
 
 -->
 
+
+<!-- 
+
+## 0.x.x-alpha - 2021/06/xx
+
+### Added
+- Creating a new payload from the database values as soon as the token is required so we are up-to-date
+
+### Fixed
+- Conditions for TRUE being too strict (as 1 may also work in some specific situations)
+
+ -->
+
+
+
 ## 0.9.1-alpha - 2021/06/11
 
 ### Fixed
