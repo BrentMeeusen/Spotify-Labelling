@@ -372,25 +372,11 @@ class User extends Table {
 	/**
 	 * Deletes the user with the given ID
 	 * 
-	 * @param		string		The ID of the user to delete
+	 * @param		Label		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
-	public static function deleteUser(string $id) : bool {
-
-		// Get the user
-		$user = self::findByPublicID($id);
-		if($user === NULL) {
-			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
-		}
-
-		// Delete the user
-		$stmt = self::prepare("DELETE FROM USERS WHERE PublicID = ?");
-		$stmt->bind_param("s", $id);
-		self::execute($stmt);
-
-		// Return TRUE because everything went right
-		return TRUE;
-
+	public static function deleteUser(User $user) : bool {
+		return parent::deleteEntry($user, "USERS");
 	}
 
 

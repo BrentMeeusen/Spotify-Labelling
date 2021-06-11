@@ -50,7 +50,7 @@ if(!password_verify($body["Password"], $user->password)) {
 
 
 // Delete the user
-$res = User::deleteUser($userID);
+$res = User::deleteUser($user);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "$prefix account has been successfully deleted.", "data" => $res]);
