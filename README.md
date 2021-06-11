@@ -3,6 +3,12 @@
 In my personal opinion, Spotify is a great platform for streaming music. However, it has one big downside: you cannot create "smart playlists" which create playlists based on one or multiple conditions. But that is no longer a limitation as that is exactly what Spotify Labelling offers us!
 
 
+
+## Status
+At this point, the project is still in the alpha phase (v0.9.1-alpha), where a few people are invited to test the application. The goal is to have a working application that can be released as beta in August or September. You can follow the progress by viewing the [changelog](https://github.com/BrentMeeusen/Spotify-Labelling/blob/master/CHANGELOG.md).
+
+
+
 ## The application
 The goal of the project was to make it as intuitive as possible to use, but if you happen to be unsure how you should use the application, you can read the explanation below. If you have an account, you can also [log in](http://spotify-labelling.21webb.nl/) and visit [this page](http://spotify-labelling.21webb.nl/how-it-works).
 
@@ -20,4 +26,24 @@ At this point, you have imported your songs and given them a rating, created lab
 
 ### Updating your songs
 It is of course very possible that you gave a song a label, but you do not find it fitting anymore, or you like the song less so you want to lower its rating. All you have to do then is make your changes and click the "Update Playlists" button again. This will update the already existing playlists to match the new values!
+
+
+
+## Dependencies
+If you want to run this on your local machine, you will need a database (MariaDB) and a program that allows you to run PHP scripts. I used XAMPP 7.4.9 for developing this project.
+
+
+
+<!-- ## Test the software -->
+
+
+
+## Known issues
+At this point, I am not aware of any issues in v0.9.1-alpha.
+
+
+
+## Getting help
+If you encounter problems with using the program, please create an issue with the tag `help`.
+
 
