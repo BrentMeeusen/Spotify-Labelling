@@ -38,6 +38,14 @@ If you want to run this on your local machine, you will need a database (MariaDB
 
 
 
+## Roadmap
+There are multiple ideas that may be implemented at some point.
+
+* [ ] Automated tests
+* [ ] Share playlists with other users
+
+
+
 ## Known issues
 At this point, I am not aware of any issues in v0.9.1-alpha.
 
