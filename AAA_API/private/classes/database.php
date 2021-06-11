@@ -186,13 +186,13 @@ class Database {
 		// Create RIGHTS_TO_USERS table
 		$tableName = "RIGHTS_TO_USERS";
 		$SQL = "CREATE TABLE $tableName (
-			ID				INT				NOT NULL	AUTO_INCREMENT,
-			User			VARCHAR(32)		NOT NULL,
-			Right			INT(11)			NOT NULL,
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			UserID			VARCHAR(32)		NOT NULL,
+			RightID			INT(11)			NOT NULL,
 			
 			PRIMARY KEY (ID),
 			FOREIGN KEY (User) REFERENCES USERS (PublicID),
-			FOREIGN KEY (Right) REFERENCES RIGHTS (ID)
+			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID)
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
