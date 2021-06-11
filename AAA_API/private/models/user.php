@@ -77,14 +77,10 @@ class User extends Table implements TableInterface {
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
-	 * @param		string		Public user ID that may not be unique (because it's this entry)
 	 * @return		bool		False if no errors are found
 	 * @return		array		[key => Property, value => Duplicate value]
 	 */
-	public function hasDuplicates(string $userID = NULL) {
-
-		// If the userID is not set, set it to this public ID
-		$userID = ($userID === NULL ? $this->publicID : $userID);
+	public function hasDuplicates() {
 
 		// Find user by username		=> results that's not this? true
 		$res = self::findByUsername($this->username);
@@ -321,7 +317,10 @@ class User extends Table implements TableInterface {
 	 * @param		array		The new values in an associative array
 	 * @return		User		The updated user
 	 */
-	public static function update(User $user, array $values) : User {
+	public static function update(Table $user, array $values) : User {
+
+		// Check whether object is of type Label
+		if(!($user instanceof User)) { throw new InvalidArgumentException; }
 		
 		// Prepare the update process
 		$user = parent::prepareUpdate($user, $values);
@@ -350,11 +349,17 @@ class User extends Table implements TableInterface {
 	/**
 	 * Deletes the user with the given ID
 	 * 
-	 * @param		Label		The user to delete
+	 * @param		User		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
 	public static function delete(User $user) : bool {
+
+		// Check whether object is of type Label
+		if(!($user instanceof User)) { throw new InvalidArgumentException; }
+		
+		// Delete the user
 		return parent::deleteEntry($user, "USERS");
+
 	}
 
 
