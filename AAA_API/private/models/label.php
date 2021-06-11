@@ -60,9 +60,7 @@ class Label extends Table {
 	 * Sanitizes the inputs
 	 */
 	private function sanitizeInputs() : void {
-
 		$this->name = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->name))));
-
 	}
 
 
