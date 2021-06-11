@@ -76,6 +76,31 @@ class Table {
 
 
 
+	/**
+	 * Prepares the update method
+	 * 
+	 * @param		Table		The entry to update
+	 * @param		array		The new values in an associative array
+	 * @return		Table		The updated entry
+	 */
+	protected static function prepareUpdate(Table $entry, array $values) : Table {
+
+		// Update its values with the newest values
+		foreach($values as $key => $value) {
+			$entry->{lcfirst($key)} = $value;
+		}
+
+		// Check for duplicate values that should be unique BUT don't error on the current user
+		$dupes = $user->hasDuplicates($id);
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
+
+		// Sanitize input and return the entry
+		$entry->sanitizeInputs();
+		return $entry;
+
+	}
 
 
 
