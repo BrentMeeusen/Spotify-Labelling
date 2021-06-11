@@ -62,7 +62,7 @@ if(isset($REQUIRE_TOKEN)) {
 	}
 
 	// Get the newest payload from the user so that it is up-to-date with the info in the database
-	$payload = $user->createPayload();
+	$payload = json_decode(json_encode($user->createPayload()));
 
 }
 
