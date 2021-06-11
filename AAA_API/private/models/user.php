@@ -23,13 +23,13 @@ class User extends Table {
 	/**
 	 * User constructor
 	 * 
-	 * @param	string	Public ID
-	 * @param	string	First name
-	 * @param	string	Last name
-	 * @param	string	Username
-	 * @param	string	Password
-	 * @param	string	Email address
-	 * @param	int		Account status
+	 * @param		string		Public ID
+	 * @param		string		First name
+	 * @param		string		Last name
+	 * @param		string		Username
+	 * @param		string		Password
+	 * @param		string		Email address
+	 * @param		int			Account status
 	 */
 	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus) {
 
@@ -53,8 +53,8 @@ class User extends Table {
 	/**
 	 * User constructor when the data comes from the database
 	 * 
-	 * @param	array	An associative array with the database values
-	 * @return	User	The created user
+	 * @param		array		An associative array with the database values
+	 * @return		User		The created user
 	 */
 	public static function construct(array $values) : User {
 
@@ -76,9 +76,9 @@ class User extends Table {
 	/**
 	 * Checks the user for any duplicate values in the database
 	 * 
-	 * @param	string	Public user ID that may not be unique (because it's this entry)
-	 * @return	bool	False if no errors are found
-	 * @return	array	[key => Property, value => Duplicate value]
+	 * @param		string		Public user ID that may not be unique (because it's this entry)
+	 * @return		bool		False if no errors are found
+	 * @return		array		[key => Property, value => Duplicate value]
 	 */
 	private function hasDuplicates(string $userID = NULL) {
 
@@ -114,8 +114,8 @@ class User extends Table {
 	/**
 	 * Sets the account status, both the integer and the text value
 	 * 
-	 * @param	int		The account status
-	 * @return	array	The account status in integer and text form
+	 * @param		int			The account status
+	 * @return		array		The account status in integer and text form
 	 */
 	private function setAccountStatus(int $status) : array {
 		
@@ -141,7 +141,7 @@ class User extends Table {
 	/**
 	 * Verifies the user account by setting the account status
 	 * 
-	 * @return	User	The new user object
+	 * @return		User		The new user object
 	 */
 	public function verify() : User {
 
@@ -182,7 +182,7 @@ class User extends Table {
 	/**
 	 * Creates the payload given on the values in the user
 	 * 
-	 * @return	array	Associative array of what a user can do
+	 * @return		array		Associative array of what a user can do
 	 */
 	public function createPayload() : array {
 
@@ -219,9 +219,9 @@ class User extends Table {
 	/**
 	 * Logs the user in 
 	 * 
-	 * @param	string	Either username or email address
-	 * @param	string	User password
-	 * @return	User	The user found with the given credentials
+	 * @param		string		Either username or email address
+	 * @param		string		User password
+	 * @return		User		The user found with the given credentials
 	 */
 	public static function login(string $identifier, string $password) : User {
 
@@ -318,9 +318,9 @@ class User extends Table {
 	/**
 	 * Updates the user with the given ID
 	 * 
-	 * @param	string	Public ID of the user to update
-	 * @param	array	User object to update
-	 * @return	User	The updated user
+	 * @param		string		Public ID of the user to update
+	 * @param		array		User object to update
+	 * @return		User		The updated user
 	 */
 	public static function updateUser(string $id, array $values) : User {
 
@@ -372,8 +372,8 @@ class User extends Table {
 	/**
 	 * Deletes the user with the given ID
 	 * 
-	 * @param	string	The ID of the user to delete
-	 * @return	bool	Whether it was a success deleting
+	 * @param		string		The ID of the user to delete
+	 * @return		bool		Whether it was a success deleting
 	 */
 	public static function deleteUser(string $id) : bool {
 
@@ -405,7 +405,7 @@ class User extends Table {
 	/**
 	 * Get all the users
 	 * 
-	 * @return	array	All users as User objects
+	 * @return		array		All users as User objects
 	 */
 	public static function findAll() : array {
 
@@ -427,9 +427,9 @@ class User extends Table {
 	/**
 	 * Get all the users with the given ID
 	 * 
-	 * @param	string	The public user ID to search for
-	 * @return	null	If the user was not found
-	 * @return	User	The user that was found
+	 * @param		string		The public user ID to search for
+	 * @return		null		If the user was not found
+	 * @return		User		The user that was found
 	 */
 	public static function findByPublicID(string $userID) : ?User {
 
@@ -455,9 +455,9 @@ class User extends Table {
 	/**
 	 * Get all the users by the given username
 	 * 
-	 * @param	string	The username to search for
-	 * @return	null	If the user was not found
-	 * @return	User	The user that was found
+	 * @param		string		The username to search for
+	 * @return		null		If the user was not found
+	 * @return		User		The user that was found
 	 */
 	public static function findByUsername(string $username) : ?User {
 
@@ -483,9 +483,9 @@ class User extends Table {
 	/**
 	 * Get all the users by the given email address
 	 * 
-	 * @param	string	The email address to search for
-	 * @return	null	If the user was not found
-	 * @param	User	The user that was found
+	 * @param		string		The email address to search for
+	 * @return		null		If the user was not found
+	 * @param		User		The user that was found
 	 */
 	public static function findByEmailAddress(string $emailAddress) : ?User {
 
