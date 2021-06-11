@@ -141,7 +141,7 @@ class User extends Table implements TableInterface {
 	 * @return		User		The new user object
 	 */
 	public function verify() : User {
-		return self::updateUser($this->publicID, ["accountStatus" => 2]);
+		return self::update($this, ["accountStatus" => 2]);
 	}
 
 
