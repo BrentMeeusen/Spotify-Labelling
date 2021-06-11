@@ -180,8 +180,7 @@ class Database {
 		$res = self::createTable($conn, $SQL, $tableName);
 
 		// Insert special rights into table
-		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES (?, ?);");
-		$stmt->bind_param("si", "label.public", 1);
+		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', 1);");
 		$res = $stmt->execute();
 
 		// Create RIGHTS_TO_USERS table
