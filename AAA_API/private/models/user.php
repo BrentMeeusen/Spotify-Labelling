@@ -468,9 +468,7 @@ class User extends Table {
 
 	}
 
-
 }
-
 
 
 
