@@ -160,7 +160,7 @@ class Database {
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
-			FOREIGN KEY (Creator) REFERENCES USERS (PublicID),
+			FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			UNIQUE (PublicID)
 		);";
 
@@ -172,7 +172,7 @@ class Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			Name			VARCHAR(64)		NOT NULL,
-			Value			INT(1)			NOT NULL,
+			Value			BOOLEAN			NOT NULL,
 			
 			PRIMARY KEY (ID)
 		);";
@@ -180,7 +180,7 @@ class Database {
 		$res = self::createTable($conn, $SQL, $tableName);
 
 		// Insert special rights into table
-		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', 1);");
+		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
 		$res = $stmt->execute();
 
 		// Create RIGHTS_TO_USERS table
@@ -191,8 +191,8 @@ class Database {
 			RightID			INT(11)			NOT NULL,
 			
 			PRIMARY KEY (ID),
-			FOREIGN KEY (UserID) REFERENCES USERS (PublicID),
-			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID)
+			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID) ON DELETE CASCADE
 		);";
 
 		$res = self::createTable($conn, $SQL, $tableName);
