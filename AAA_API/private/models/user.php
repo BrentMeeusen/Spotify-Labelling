@@ -159,7 +159,7 @@ class User extends Table {
 	/**
 	 * Sanitizes the inputs
 	 */
-	private function sanitizeInputs() : void {
+	public function sanitizeInputs() : void {
 
 		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
 		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
