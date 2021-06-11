@@ -20,13 +20,13 @@ if(Label::findByName($body["Name"]) !== NULL) {
 
 
 // Set values of the payload
-$values = ["Name" => NULL, "IsPublic" => FALSE];
+$values = ["Name" => NULL, "IsPublic" => FALSE, "Creator" => $payload->user->id];
 foreach($body as $key => $value) {
 	$values[$key] = $value;
 }
 
 // Create the label
-$res = Label::createLabel($payload->user->id, $values);
+$res = Label::createLabel($values);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The label was successfully created.", "data" => $res]);
