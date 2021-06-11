@@ -124,7 +124,7 @@ class Label extends Table {
 
 		// Delete the label
 		$stmt = self::prepare("DELETE FROM LABELS WHERE PublicID = ?");
-		$stmt->bind_param("s", $id);
+		$stmt->bind_param("s", $labelID);
 		self::execute($stmt);
 
 		// Return TRUE because everything went right
