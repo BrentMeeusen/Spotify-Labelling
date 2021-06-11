@@ -34,6 +34,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Showing labels on the page
+- Edit labels
 - Delete labels
 
 ### Changed
