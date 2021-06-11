@@ -68,10 +68,13 @@ class Label extends Table implements TableInterface {
 
 
 	/**
-	 * Checks whether there are duplicates
+	 * Default method for duplicates check
+	 * 
+	 * @return		bool		False if no duplicates are found
+	 * @return		array		[key => Property, value => Duplicate value]
 	 */
-	public function hasDuplicates() : bool {
-
+	public function hasDuplicates() {
+		return FALSE;
 	}
 
 
