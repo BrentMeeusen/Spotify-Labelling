@@ -33,6 +33,14 @@ Table::setConnection(Database::connect());
 $body = (array) json_decode(file_get_contents("php://input"));
 
 
+
+// Check whether the method is correct
+if(isset($ALLOWED_METHOD)) {
+	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD && $_SERVER["REQUEST_METHOD"] !== "OPTIONS") {
+		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
+	}
+}
+
 // If we require a token, check it
 if(isset($REQUIRE_TOKEN)) {
 
@@ -53,13 +61,6 @@ if(isset($REQUIRE_TOKEN)) {
 		ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
 	}
 
-}
-
-// Check whether the method is correct
-if(isset($ALLOWED_METHOD)) {
-	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD && $_SERVER["REQUEST_METHOD"] !== "OPTIONS") {
-		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
-	}
 }
 
 ?>
