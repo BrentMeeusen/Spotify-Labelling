@@ -28,8 +28,6 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- 
-
 ## 0.9.0-alpha - 2021/06/11
 
 ### Added
@@ -42,8 +40,6 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Logging in, even when account is not verified yet
-
- -->
 
 
 
