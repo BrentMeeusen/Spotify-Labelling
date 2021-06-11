@@ -34,6 +34,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Showing labels on the page
+- Delete labels
 
 ### Changed
 - Allowed deleting accounts when labels are created
