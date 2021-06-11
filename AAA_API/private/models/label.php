@@ -114,7 +114,7 @@ class Label extends Table {
 	 * @param		Label		The label to delete
 	 * @return		bool		Whether it was deleted successfully or not
 	 */
-	public static function deleteLabel(Label $label) {
+	public static function deleteLabel(Label $label) : bool {
 		return parent::deleteEntry($label, "LABELS");
 	}
 
