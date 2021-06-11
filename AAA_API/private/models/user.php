@@ -352,7 +352,7 @@ class User extends Table implements TableInterface {
 	 * @param		User		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
-	public static function delete(User $user) : bool {
+	public static function delete(Table $user) : bool {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
