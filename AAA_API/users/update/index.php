@@ -65,9 +65,8 @@ foreach($body as $key => $value) {
 	}
 }
 
-
 // Update the user
-$res = User::updateUser($updateID, $values);
+$res = User::updateUser($user, $values);
 
 
 

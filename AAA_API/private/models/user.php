@@ -318,18 +318,11 @@ class User extends Table {
 	/**
 	 * Updates the user with the given ID
 	 * 
-	 * @param		string		Public ID of the user to update
+	 * @param		User		The user to update
 	 * @param		array		User object to update
 	 * @return		User		The updated user
 	 */
-	public static function updateUser(string $id, array $values) : User {
-
-		// Get the current user
-		$user = self::findByPublicID($id);
-		if($user === NULL) {
-			ApiResponse::httpResponse(404, ["error" => "The requested user was not found."]);
-		}
-
+	public static function updateUser(User $user, array $values) : User {
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
