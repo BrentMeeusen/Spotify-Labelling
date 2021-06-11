@@ -146,7 +146,7 @@ class Label extends Table implements TableInterface {
 		$stmt = self::prepare("UPDATE LABELS SET Name = ?, IsPublic = ? WHERE PublicID = ?;");
 
 		// Insert input into SQL statement
-		$stmt->bind_param("si", $label->name, $label->isPublic, $label->publicID);
+		$stmt->bind_param("sis", $label->name, $label->isPublic, $label->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
