@@ -190,10 +190,32 @@ class User extends Table implements TableInterface {
 		// Every user can create, read, update, delete his own labels
 		$label = ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE, "public" => FALSE];
 
-		return [
+		// Set the current payload
+		$payload = [
 			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
 			"rights" => ["users" => $users, "user" => $user, "label" => $label]
 		];
+
+		// Get all the additional rights of the user
+		$stmt = self::prepare("SELECT r.Name, r.Value FROM RIGHTS_TO_USERS AS rtu JOIN RIGHTS AS r ON r.ID = rtu.RightID WHERE rtu.UserID = " . $this->publicID . ";");
+		$data = self::getResults($stmt);
+
+		// Loop over all data
+		foreach($data as $row) {
+
+			// Get the value to change
+			$pos = &$payload["rights"];
+			foreach(explode(".", $row["Name"]) as $cat) {
+				if(!isset($pos[$cat])) { $pos[$cat] = []; }
+				$pos = &$pos[$cat];
+			}
+
+			// Set the new value
+			$pos = $row["Value"];
+
+		}
+
+		return $payload;
 
 	}
 
