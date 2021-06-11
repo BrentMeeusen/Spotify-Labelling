@@ -90,8 +90,8 @@ class Table {
 			$entry->{lcfirst($key)} = $value;
 		}
 
-		// Check for duplicate values that should be unique BUT don't error on the current user
-		$dupes = $user->hasDuplicates($id);
+		// Check for duplicate values that should be unique
+		$dupes = $entry->hasDuplicates($id);
 		if($dupes !== FALSE) {
 			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
 		}
