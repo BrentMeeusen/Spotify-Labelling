@@ -191,7 +191,7 @@ class Database {
 			RightID			INT(11)			NOT NULL,
 			
 			PRIMARY KEY (ID),
-			FOREIGN KEY (User) REFERENCES USERS (PublicID),
+			FOREIGN KEY (UserID) REFERENCES USERS (PublicID),
 			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID)
 		);";
 
