@@ -111,6 +111,20 @@ class Label extends Table {
 	/**
 	 * Deletes the given label from the database
 	 * 
+	 * @param		Label		The label to delete
+	 * @return		bool		Whether it was deleted successfully or not
+	 */
+	public static function delete(Label $label) {
+		return parent::deleteEntry($label);
+	}
+
+
+
+
+
+	/**
+	 * Deletes the given label from the database
+	 * 
 	 * @param		string		The label ID to delete
 	 * @return		bool		Whether it was deleted successfully or not
 	 */
