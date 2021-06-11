@@ -7,10 +7,10 @@ include_once("../../private/include_all.php");
 
 
 
-// If the ID is set, update ID
+// If the ID is set, delete ID
 if(isset($_GET["id"])) {
 
-	// Check whether the current user (JWT) is allowed to update another user (ID)
+	// Check whether the current user (JWT) is allowed to delete another user (ID)
 	if(!isset($payload->rights->users->delete) || $payload->rights->users->delete !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "The given JSON Web Token cannot be used to delete someone else's account."]);
 	}
@@ -20,7 +20,7 @@ if(isset($_GET["id"])) {
 
 }
 
-// If the ID is not set, update self
+// If the ID is not set, delete self
 else {
 
 	// If the payload doesn't contain "user.id", return an error
@@ -49,7 +49,7 @@ if(!password_verify($body["Password"], $user->password)) {
 
 
 
-// Update the user
+// Delete the user
 $res = User::deleteUser($userID);
 
 // Properly return the results
