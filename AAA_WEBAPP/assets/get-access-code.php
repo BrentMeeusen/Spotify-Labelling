@@ -10,7 +10,10 @@ if(!isset($_GET["code"])) {
 	header("Location: php/redirect.php?redirect=&code=001&message=Something%20went%20wrong%20whilst%20getting%20an%20authorisation%20code.");
 }
 
+// If we have a code, redirect to the dashboard
+session_start();
+$_SESSION["code"] = $_GET["code"];
+header("Location: ../dashboard");
+exit();
 
-print("<pre>");
-print_r($_GET);
 ?>
