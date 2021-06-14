@@ -12,7 +12,7 @@ if(!isset($_GET["code"])) {
 
 // If we have a code, redirect to the dashboard
 session_start();
-$_SESSION["code"] = $_GET["code"];
+$_SESSION["spotify-access-code"] = $_GET["code"];
 header("Location: php/redirect.php?redirect=dashboard&code=200&message=Logged%20in%20successfully.");
 exit();
 
