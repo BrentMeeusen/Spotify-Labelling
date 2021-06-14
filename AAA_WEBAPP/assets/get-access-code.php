@@ -12,6 +12,13 @@ if(!isset($_GET["code"])) {
 	exit();
 }
 
+// TODO
+// If we have a code
+// - Make a call to the correct Spotify endpoint (https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow)
+// - Get the actual, correct authorisation token
+// - Add that to the user in the database using the cookie JWT (that I should be able to get here if I'm not mistaken)
+// - Redirect to the dashboard
+
 // If we have a code, redirect to the dashboard
 session_start();
 $_SESSION["spotify-access-code"] = $_GET["code"];
