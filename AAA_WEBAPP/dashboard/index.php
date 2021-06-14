@@ -54,15 +54,32 @@ session_start();
 		<?php
 		// Load JavaScript
 		include_once("../assets/snippets/javascript-files.php");
+		?>
+		
+		<script>
 
+		// Protect the page
+		PageProtect.protect({ verifiedLevel: 2 });
+
+		// Force login
+		window.location.href = (`https://accounts.spotify.com/authorize?response_type=code
+		&client_id=a209cbda1aaa4f408bd6ae2efc2264fb&redirect_uri=http%3A%2F%2Flocalhost%2FSpotify%20Labelling%2FAAA_WEBAPP%2Fdashboard
+		&scope=user-read-email
+		%20user-read-private
+		%20playlist-modify-public
+		%20playlist-modify-private
+		%20playlist-read-private
+		%20playlist-read-collaborative
+		%20user-library-read
+		&show_dialog=true`);
+		</script>
+
+		<?php
 		// Load showing result after redirect
 		include_once("../assets/snippets/show-redirect-result.php");
 		?>
 
 		<script>
-
-		// Protect the page
-		PageProtect.protect({ verifiedLevel: 2 });
 		
 		</script>
 
