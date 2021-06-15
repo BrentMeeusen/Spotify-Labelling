@@ -48,7 +48,7 @@ if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname |
 // If the user isn't found, return an error
 $user = User::findByPublicID($updateID);
 if($user === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "We couldn't find " . strtolower($prefix) . "account.", "data" => $payload->user]);
+	ApiResponse::httpResponse(404, ["error" => "We couldn't find " . strtolower($prefix) . " account.", "data" => $payload->user]);
 }
 
 
