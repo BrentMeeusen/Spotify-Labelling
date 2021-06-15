@@ -67,7 +67,7 @@ session_start();
 			// Create popup
 			const importSongs = new BigPopup("Import Songs", "api/v1/spotify/import", "POST", "import-songs-form");
 
-			const tableContainer = Api.createElement("div", {classList: "table-container"});
+			const tableContainer = Api.createElement("div", {classList: "table-container limit-height"});
 			const table = Api.createElement("table");
 			
 			// Show all playlists for the user to choose from
