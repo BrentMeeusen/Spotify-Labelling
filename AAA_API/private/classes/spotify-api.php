@@ -56,7 +56,7 @@ class SpotifyApi {
 		$parameters = http_build_query($parameters);
 		$context = stream_context_create([
 			"http" => [
-				"ignore_errors" => "true"
+				"ignore_errors" => "true",
 				"method" => $method,
 				"header" => [
 					"Content-Type: application/x-www-form-urlencoded",
