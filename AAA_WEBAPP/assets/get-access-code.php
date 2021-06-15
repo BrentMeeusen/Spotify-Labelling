@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$VARIABLES = json_decode(file_get_contents("../../../SpotifyLabelling.json"));
 
 // If we get an "Access denied" error, return to the user
 if(isset($_GET["error"])) {
@@ -21,14 +22,14 @@ if(!isset($_GET["code"])) {
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],
-	"redirect_uri" => "http://localhost/Spotify Labelling/AAA_WEBAPP/assets/get-access-code.php"
+	"redirect_uri" => $VARIABLES->BASE->APP . "assets/get-access-code.php"
 ]);
 $context = stream_context_create([
 	"http" => [
 		"method" => "POST",
 		"header" => [
 			"Content-Type: application/x-www-form-urlencoded",
-			"Authorization: Basic " . base64_encode("a209cbda1aaa4f408bd6ae2efc2264fb:" . json_decode(file_get_contents("../../../SpotifyLabelling.json"))->CLIENT_SECRET)
+			"Authorization: Basic " . base64_encode($VARIABLES->SPOTIFY->CLIENT . ":" . $VARIABLES->SPOTIFY->SECRET)
 		],
 		"content" => $parameters
 	]
@@ -58,7 +59,7 @@ $context = stream_context_create([
 ]);
 
 // WARNING: HARDCODED
-$res = @file_get_contents("http://localhost/Spotify%20Labelling/AAA_API/api/v1/users/add-token/", false, $context);
+$res = @file_get_contents($VARIABLES->BASE->API . "api/v1/users/add-token/", false, $context);
 $jwt = json_decode($res)->jwt;
 setcookie("jwt", $jwt, time() + 3600, "/");
 
