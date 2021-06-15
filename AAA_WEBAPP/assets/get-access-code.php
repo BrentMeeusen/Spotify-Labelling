@@ -18,7 +18,6 @@ if(!isset($_GET["code"])) {
 
 
 // Make the call to the Spotify API
-// WARNING: HARDCODED
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],
@@ -58,7 +57,6 @@ $context = stream_context_create([
 	]
 ]);
 
-// WARNING: HARDCODED
 $res = @file_get_contents($VARIABLES->BASE->API . "api/v1/users/add-token/", false, $context);
 $jwt = json_decode($res)->jwt;
 setcookie("jwt", $jwt, time() + 3600, "/");
