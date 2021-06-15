@@ -96,10 +96,6 @@ class HtmlJsForm {
 
 		let values = {};
 
-		if(this.inputs[0].tagName.toLowerCase() === "div" && this.inputs[0].classList.contains("table-container")) {
-			return this.getTableValues();
-		}
-
 		for(const input of this.inputs) {
 			if(input.name && input.name.includes("input")) {
 				values[input.name.split(" ")[1]] = input.value;
@@ -108,19 +104,6 @@ class HtmlJsForm {
 
 		return values;
 
-	}
-
-
-
-
-
-	/**
-	 * Gets the values of a table
-	 * 
-	 * @returns An object with keys and values
-	 */
-	getTableValues() {
-		console.log("Table bitch!");
 	}
 
 
