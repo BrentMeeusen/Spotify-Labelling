@@ -103,7 +103,7 @@ button.icon > img {
 	width: 100%;
 }
 .table-container.limit-height {
-	max-height: 275px;
+	max-height: 50vh;
 }
 table {
 	border-collapse: collapse;
