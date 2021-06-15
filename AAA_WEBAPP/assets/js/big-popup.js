@@ -26,7 +26,7 @@ class BigPopup {
 
 
 	/**
- 	 * Adds an element to the popup
+ 	 * Creates and adds an element to the popup
 	 * 
 	 * @param {string} element The element type
 	 * @param {string} name The name of the input field
@@ -38,6 +38,19 @@ class BigPopup {
 		el.setAttribute("name", element + " " + name);
 		this.elements.push(el);
 
+	}
+
+
+
+
+
+	/**
+	 * Adds an element to the popup
+	 * 
+	 * @param {HTMLElement} element The element to add
+	 */
+	addElement(element) {
+		this.elements.push(element);
 	}
 
 
