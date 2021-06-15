@@ -76,7 +76,7 @@ class SpotifyApi {
 	 * @param		array		The body parameters to send
 	 * @return		StdClass	A standard class with the given data
 	 */
-	private static function sendRequest(string $endpoint, string $method, array $queryParameters = [], array $bodyParameters = []) : StdClass {
+	private static function sendRequest(string $endpoint, string $method, ?array $queryParameters = [], ?array $bodyParameters = []) : StdClass {
 
 		// Make the call to the Spotify API
 		$context = stream_context_create([
