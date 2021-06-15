@@ -64,6 +64,20 @@ session_start();
 		document.getElementById("import-songs").addEventListener("click", async () => {
 
 
+
+			// ============================================================================
+			// TODO: THINK OF A SMARTER WAY TO DO THIS
+			// A TABLE DOESN'T WORK WELL WITH HTML JS FORMS
+			// SO THE SOLUTION MUST WORK WITH THE CURRENT JAVASCRIPT FILES
+			// WELL ENOUGH TO ONLY WRITE ADDITIONAL CODE INSTEAD OF REWRITING PARTS
+			// BUT IT ALSO NEEDS EITHER TABLE SUPPORT OR ANOTHER WAY
+			// OF DISPLAYING THE DATA TO THE USER
+			// ADDITIONAL PAGES IS NOT TOO BAD IF THAT IS NEEDED
+			// ============================================================================
+
+
+
+
 			// Create popup
 			const importSongs = new BigPopup("Import Songs", "api/v1/spotify/import", "POST", "import-songs-form");
 
