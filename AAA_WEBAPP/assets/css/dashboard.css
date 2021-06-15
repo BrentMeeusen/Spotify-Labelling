@@ -107,7 +107,7 @@ button.icon > img {
 }
 table {
 	border-collapse: collapse;
-	border: 2px solid var(--current--background-highlight);
+	border: 2px solid var(--current--text);
 	width: 100%;
 }
 table * {
@@ -118,7 +118,13 @@ table td {
 	padding: 0.5em;
 }
 table tr:nth-child(2n) {
-	border: 2px solid var(--current--background-highlight);
+	border: 2px solid var(--current--text);
+}
+
+.table-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px 0 0;
 }
 
 

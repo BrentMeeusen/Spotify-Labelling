@@ -85,6 +85,9 @@ h1 * {
 	margin-bottom: 1em;
 	transition: 0.25s ease border, 0.25s;
 }
+.form > .table-container {
+	border: none;
+}
 .form > p {
 	border-width: 0;
 }
