@@ -39,7 +39,6 @@ $token = @json_decode($res)->access_token;
 // Add the token to the user in the database
 $jwt = $_COOKIE["jwt"];
 
-$parameters = http_build_query(["AccessToken" => $token]);
 $context = stream_context_create([
 	"http" => [
 		"method" => "POST",
@@ -47,7 +46,7 @@ $context = stream_context_create([
 			"Content-Type: application/json",
 			"Authorization: Bearer $jwt"
 		],
-		"content" => $parameters
+		"content" => http_build_query(["AccessToken" => $token])
 	]
 ]);
 
