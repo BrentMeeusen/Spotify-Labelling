@@ -168,6 +168,21 @@ class Database {
 		// $res = self::createTable($conn, $SQL, $tableName);
 
 
+
+
+
+
+
+
+
+
+		// Add row to USERS table
+		$stmt = $conn->prepare("ALTER TABLE USERS ADD COLUMN 
+		AccessToken		VARCHAR(240);");
+		$res = $stmt->execute();
+
+
+
 		// Create RIGHTS table
 		$tableName = "RIGHTS";
 		$SQL = "CREATE TABLE $tableName (
