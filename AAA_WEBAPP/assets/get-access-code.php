@@ -34,6 +34,12 @@ $context = stream_context_create([
 $res = @file_get_contents("https://accounts.spotify.com/api/token", false, $context);
 $token = @json_decode($res)->access_token;
 
+// If there is no token, throw an error
+if($token === NULL) {
+	header("Location: php/redirect.php?redirect=&code=001&message=Something%20went%20wrong%20whilst%20getting%20an%20authorisation%20code.");
+	exit();
+}
+
 // Add the token to the user in the database
 $jwt = $_COOKIE["jwt"];
 
