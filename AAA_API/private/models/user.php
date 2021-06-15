@@ -17,6 +17,8 @@ class User extends Table implements TableInterface {
 	public int $accountStatus;
 	public string $accountStatusText;
 
+	public ?string $accessToken;
+
 
 
 
@@ -31,8 +33,9 @@ class User extends Table implements TableInterface {
 	 * @param		string		Password
 	 * @param		string		Email address
 	 * @param		int			Account status
+	 * @param		string		Access token
 	 */
-	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus) {
+	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
 
 		$this->publicID = $publicID;
 		$this->firstName = $firstName;
@@ -40,6 +43,7 @@ class User extends Table implements TableInterface {
 		$this->username = $username;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
+		$this->accessToken = $accessToken;
 
 		$status = $this->setAccountStatus($accountStatus);
 		$this->accountStatus = $status["status"];
@@ -59,7 +63,7 @@ class User extends Table implements TableInterface {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["PublicID"], $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"]);
+		$user = new User($values["PublicID"], $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -192,7 +196,7 @@ class User extends Table implements TableInterface {
 
 		// Set the current payload
 		$payload = [
-			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText],
+			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
 			"rights" => ["users" => $users, "user" => $user, "label" => $label]
 		];
 
