@@ -41,6 +41,7 @@ $jwt = $_COOKIE["jwt"];
 
 $context = stream_context_create([
 	"http" => [
+		"ignore_errors" => "true",
 		"method" => "POST",
 		"header" => [
 			"Content-Type: application/json",
@@ -54,7 +55,7 @@ $context = stream_context_create([
 $res = @file_get_contents("http://localhost/Spotify%20Labelling/AAA_API/api/v1/users/add-token/", false, $context);
 
 print("<pre>");
-print_r($res);
+print_r(json_decode($res));
 print_r($http_response_header);
 
 exit();
