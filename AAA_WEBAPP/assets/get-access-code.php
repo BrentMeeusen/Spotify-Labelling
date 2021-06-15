@@ -17,6 +17,7 @@ if(!isset($_GET["code"])) {
 // - Make a call to the correct Spotify endpoint (https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow)
 
 
+// WARNING: HARDCODED
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],

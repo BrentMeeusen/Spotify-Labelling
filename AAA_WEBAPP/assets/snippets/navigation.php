@@ -1,4 +1,5 @@
 <!-- Menu -->
+<!-- WARNING: HARDCODED -->
 <div class="nav-btn" id="nav-open">
 	<img src="/Spotify Labelling/AAA_WEBAPP/assets/icons/menu/menu-open.png">
 </div>

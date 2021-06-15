@@ -2,7 +2,7 @@
 
 session_start();
 
-// WARNING: HARDCODED LOCATION; CHANGE TO "/"
+// WARNING: HARDCODED; CHANGE TO "/"
 $redirect = "/Spotify Labelling/AAA_WEBAPP/" . $_GET["redirect"];
 
 // Get the code and message
