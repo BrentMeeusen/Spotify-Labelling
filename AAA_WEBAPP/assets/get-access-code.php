@@ -26,7 +26,10 @@ $parameters = http_build_query([
 $context = stream_context_create([
 	"http" => [
 		"method" => "POST",
-		"header" => ["Content-Type: application/x-www-form-urlencoded", "Authorization: Basic " . base64_encode("a209cbda1aaa4f408bd6ae2efc2264fb" . ":" . "da1ccba787b14df0bffdede8987c63ed")],
+		"header" => [
+			"Content-Type: application/x-www-form-urlencoded",
+			"Authorization: Basic " . base64_encode("a209cbda1aaa4f408bd6ae2efc2264fb:da1ccba787b14df0bffdede8987c63ed")
+		],
 		"content" => $parameters
 	]
 ]);
