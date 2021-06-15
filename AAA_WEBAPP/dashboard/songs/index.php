@@ -68,7 +68,7 @@ session_start();
 			console.log(playlists);
 
 			// Create popup
-			const addLabel = new BigPopup("Add Label", "api/v1/tracks/import", "POST", "create-label-form");
+			const addLabel = new BigPopup("Add Label", "api/v1/spotify/import", "POST", "create-label-form");
 			
 			// Show all playlists for the user to choose from
 			// for(const list of playlists) {
