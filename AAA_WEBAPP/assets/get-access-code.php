@@ -45,7 +45,7 @@ $context = stream_context_create([
 			"Content-Type: application/json",
 			"Authorization: Bearer $jwt"
 		],
-		"content" => http_build_query(["AccessToken" => $token])
+		"content" => json_encode(["AccessToken" => $token])
 	]
 ]);
 
