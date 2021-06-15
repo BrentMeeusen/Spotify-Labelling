@@ -67,7 +67,7 @@ class SpotifyApi {
 		]);
 		$res = @file_get_contents("https://api.spotify.com/" . $endpoint, false, $context);
 
-		return json_encode($res);
+		return json_decode($res);
 
 	}
 
