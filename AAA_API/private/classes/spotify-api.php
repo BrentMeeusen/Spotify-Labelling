@@ -38,7 +38,7 @@ class SpotifyApi {
 		do {
 
 			// Get the playlists
-			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ["limit" => 50]);
 
 			// Store the playlists
 			foreach($response->items as $list) {
