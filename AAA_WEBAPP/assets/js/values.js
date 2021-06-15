@@ -1,3 +1,4 @@
+// WARNING: HARDCODED
 const VALUES = {
 	assets: "/Spotify Labelling/AAA_WEBAPP/assets/",
 	assetsOnline: "/assets/",

@@ -51,19 +51,25 @@ session_start();
 
 
 
+
+
 		<?php
+
 		// Load JavaScript
 		include_once("../assets/snippets/javascript-files.php");
 
 		// Load showing result after redirect
 		include_once("../assets/snippets/show-redirect-result.php");
+
 		?>
+
+
 
 		<script>
 
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
-		
+
 		</script>
 
 	</body>
