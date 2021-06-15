@@ -39,6 +39,25 @@ $token = @json_decode($res)->access_token;
 // Add the token to the user in the database
 $jwt = $_COOKIE["jwt"];
 
+$parameters = http_build_query(["AccessToken" => $token]);
+$context = stream_context_create([
+	"http" => [
+		"method" => "POST",
+		"header" => [
+			"Content-Type: application/json",
+			"Authorization: Bearer $jwt"
+		],
+		"content" => $parameters
+	]
+]);
+
+// WARNING: HARDCODED
+$res = @file_get_contents("http://localhost/Spotify%20Labelling/AAA_API/api/v1/users/add-token/", false, $context);
+
+print("<pre>");
+print_r($res);
+print_r($http_response_header);
+
 exit();
 // - Redirect to the dashboard
 
