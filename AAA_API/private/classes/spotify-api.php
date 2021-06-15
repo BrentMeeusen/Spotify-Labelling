@@ -34,11 +34,13 @@ class SpotifyApi {
 		// While there are still playlists left to retrieve, get the playlists
 		$playlists = [];
 		$next = ".com/v1/me/playlists";
+		$i = 1;
 
 		do {
 
 			// Get the playlists
-			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ["limit" => 50]);
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ($i === 1 ? ["limit" => 50] : NULL));
+			file_put_contents("test-" . $i++ . ".json", json_encode($response, JSON_PRETTY_PRINT));
 
 			// Store the playlists
 			foreach($response->items as $list) {
@@ -47,6 +49,7 @@ class SpotifyApi {
 
 			// Setup the next request
 			$next = $response->next;
+			$i++;
 
 		}
 		while($next !== NULL);
