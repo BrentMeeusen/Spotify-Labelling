@@ -15,7 +15,28 @@ if(!isset($_GET["code"])) {
 // TODO
 // If we have a code
 // - Make a call to the correct Spotify endpoint (https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow)
-// - Get the actual, correct authorisation token
+
+
+$parameters = http_build_query([
+	"grant_type" => "authorization_code",
+	"code" => $_GET["code"],
+	"redirect_uri" => "http%3A%2F%2Flocalhost%2FSpotify%20Labelling%2FAAA_WEBAPP%2Fassets%2Fget-access-code.php"
+]);
+$context = stream_context_create([
+	"http" => [
+		"method" => "POST",
+		"header" => "Content-Type: application/x-www-form-urlencoded",
+		"content" => $parameters
+	]
+]);
+$res = @file_get_contents("https://accounts.spotify.com/api/token", false, $context);
+
+print("<pre>");
+print_r([$_GET["code"], $res, $http_response_header]);
+
+
+exit();
+
 // - Add that to the user in the database using the cookie JWT (that I should be able to get here if I'm not mistaken)
 // - Redirect to the dashboard
 
