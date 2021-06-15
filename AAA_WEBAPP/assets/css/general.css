@@ -87,6 +87,7 @@ h1 * {
 }
 .form > .table-container {
 	border: none;
+	padding: 0;
 }
 .form > p {
 	border-width: 0;
