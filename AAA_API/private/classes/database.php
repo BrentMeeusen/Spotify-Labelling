@@ -214,6 +214,19 @@ class Database {
 		$res = self::createTable($conn, $SQL, $tableName);
 
 		// Create SONGS table
+		$tableName = "SONGS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			SpotifyID		VARCHAR(50)		NOT NULL,
+			Name			VARCHAR(250)	NOT NULL,
+			ReleaseDate		TIMESTAMP,
+			AddedAt			TIMESTAMP		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
+
+			PRIMARY KEY (ID),
+			UNIQUE (SpotifyID)
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
 
 
 		// Create ARTISTS table
