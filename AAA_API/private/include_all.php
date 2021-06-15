@@ -10,7 +10,9 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once("classes/api-response.php");
 include_once("classes/database.php");
 include_once("classes/jwt.php");
+include_once("classes/spotify-api.php");
 
+include_once("models/AAA_spotify.php");
 include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
