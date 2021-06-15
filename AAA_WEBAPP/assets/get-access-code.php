@@ -20,7 +20,7 @@ if(!isset($_GET["code"])) {
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],
-	"redirect_uri" => "http%3A%2F%2Flocalhost%2FSpotify%20Labelling%2FAAA_WEBAPP%2Fassets%2Fget-access-code.php"
+	"redirect_uri" => "http://localhost/Spotify Labelling/AAA_WEBAPP/assets/get-access-code.php"
 ]);
 $context = stream_context_create([
 	"http" => [
@@ -32,7 +32,7 @@ $context = stream_context_create([
 $res = @file_get_contents("https://accounts.spotify.com/api/token", false, $context);
 
 print("<pre>");
-print_r([$_GET["code"], $res, $http_response_header]);
+print_r([$_GET["code"], $parameters, $context, $res, $http_response_header]);
 
 
 exit();
