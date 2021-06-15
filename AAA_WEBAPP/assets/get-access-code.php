@@ -58,16 +58,7 @@ $context = stream_context_create([
 // WARNING: HARDCODED
 $res = @file_get_contents("http://localhost/Spotify%20Labelling/AAA_API/api/v1/users/add-token/", false, $context);
 
-print("<pre>");
-print_r(json_decode($res));
-print_r($http_response_header);
-
-exit();
-// - Redirect to the dashboard
-
-// If we have a code, redirect to the dashboard
-session_start();
-$_SESSION["spotify-access-code"] = $_GET["code"];
+// Redirect to the dashboard
 header("Location: php/redirect.php?redirect=dashboard&code=200&message=Logged%20in%20successfully.");
 exit();
 
