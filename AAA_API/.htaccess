@@ -34,7 +34,7 @@ RewriteRule		api/v1/jwt/generate						jwt/generate/?testing=true	[L,QSA]
 RewriteRule 	api/v1/users/verify/([0-9]+)/(.*)		users/verify/?id=$1&email=$2			[L,QSA]
 
 ############	api/v1/users/[action]					users/[action]/
-RewriteRule		api/v1/users/([a-zA-Z]+)				users/$1/								[L,QSA]
+RewriteRule		api/v1/users/([a-zA-Z\-]+)				users/$1/								[L,QSA]
 
 ############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
 RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1							[L,QSA]
