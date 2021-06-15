@@ -102,6 +102,9 @@ button.icon > img {
 	overflow: scroll;
 	width: 100%;
 }
+.table-container.limit-height {
+	max-height: 275px;
+}
 table {
 	border-collapse: collapse;
 	border: 2px solid var(--current--background-highlight);
