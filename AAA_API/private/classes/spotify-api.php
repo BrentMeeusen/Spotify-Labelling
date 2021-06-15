@@ -48,13 +48,15 @@ class SpotifyApi {
 	 * @param		string		The endpoint to send to
 	 * @param		string		The method to use
 	 * @param		array		The parameters to send
+	 * @return		StdClass	A standard class with the given data
 	 */
-	private static function sendRequest(string $endpoint, string $method, array $parameters = []) {
+	private static function sendRequest(string $endpoint, string $method, array $parameters = []) : StdClass {
 
 		// Make the call to the Spotify API
 		$parameters = http_build_query($parameters);
 		$context = stream_context_create([
 			"http" => [
+				"ignore_errors" => "true"
 				"method" => $method,
 				"header" => [
 					"Content-Type: application/x-www-form-urlencoded",
@@ -65,7 +67,7 @@ class SpotifyApi {
 		]);
 		$res = @file_get_contents("https://api.spotify.com/" . $endpoint, false, $context);
 
-		return $res;
+		return json_encode($res);
 
 	}
 
