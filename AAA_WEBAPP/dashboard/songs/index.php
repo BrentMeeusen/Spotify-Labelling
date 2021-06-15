@@ -64,7 +64,7 @@ session_start();
 		document.getElementById("import-songs").addEventListener("click", async () => {
 
 			// Request all playlists
-			const playlists = await Api.requestEndpoint("api/v1/spotify/playlists", "GET");
+			const playlists = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 			console.log(playlists);
 
 			// Create popup
@@ -76,7 +76,7 @@ session_start();
 			// }
 
 			addLabel.show("IMPORT");
-			HtmlJsForm.findById("create-label-form").addCallback(() => { Api.showLabels(); });
+			HtmlJsForm.findById("create-label-form").addCallback(() => {  });
 
 		});
 
