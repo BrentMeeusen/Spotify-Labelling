@@ -7,12 +7,17 @@ include_once("../../private/include_all.php");
 
 
 
-// Get the JWT
 // Get the authorisation token from the JWT
-// Send a request to the endpoint at Spotify
-// Parse the data using the models
-// Return the useful playlist data
+SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
+// Send a request to the endpoint at Spotify
+$data = SpotifyApi::getMyPlaylists();
+
+// Parse the data using the models
+$playlists = Playlists::create($data);
+
+// Return the useful playlist data
+ApiResponse::httpResponse(200, ["message" => "Found your playlists.", "data" => $playlists]);
 
 
 ?>
