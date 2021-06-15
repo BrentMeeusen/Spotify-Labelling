@@ -38,9 +38,8 @@ class SpotifyApi {
 
 		do {
 
-			// Get the playlists
+			// Get the playlists, only add limit parameter if we're at the first parameter
 			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ($i === 1 ? ["limit" => 50] : NULL));
-			file_put_contents("test-" . $i . ".json", json_encode($response, JSON_PRETTY_PRINT));
 
 			// Store the playlists
 			foreach($response->items as $list) {
