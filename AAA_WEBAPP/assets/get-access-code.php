@@ -36,7 +36,8 @@ $context = stream_context_create([
 $res = @file_get_contents("https://accounts.spotify.com/api/token", false, $context);
 
 print("<pre>");
-print_r([$_GET["code"], $parameters, $context, $res, $http_response_header]);
+// print_r([$_GET["code"], $parameters, $context, $res, $http_response_header]);
+print(json_encode(json_decode($res), JSON_PRETTY_PRINT));
 
 
 exit();
