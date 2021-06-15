@@ -31,10 +31,11 @@ STANDARD NEW VERSION:
 
 <!-- 
 
-## 0.x.x-alpha - 2021/06/xx
+## 0.10.0-alpha - 2021/06/xx
 
 ### Added
 - Creating a new payload from the database values as soon as the token is required so we are up-to-date
+- Made user grant access to the application on login
 
 ### Fixed
 - Conditions for TRUE being too strict (as 1 may also work in some specific situations)
