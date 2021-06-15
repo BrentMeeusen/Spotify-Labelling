@@ -32,7 +32,19 @@ session_start();
 			<!-- Title -->
 			<h1><a href="../">Spotify Labelling</a></h1>
 			
-			<p>SONGS GO HERE</p>
+			<!-- Content -->
+			<div class="module">
+
+				<button class="wide" id="import-songs">IMPORT SONGS</button>
+
+				<div class="table-container">
+					<table>
+						<tbody id="songs">
+						</tbody>
+					</table>
+				</div>
+
+			</div>
 
 		</div>	<!-- .main-wrapper -->
 
