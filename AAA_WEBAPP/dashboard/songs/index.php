@@ -61,7 +61,7 @@ session_start();
 		PageProtect.protect({ verifiedLevel: 2 });
 
 		// Add "Import songs" button functionality
-		document.getElementById("import-songs").addEventListener("click", () => {
+		document.getElementById("import-songs").addEventListener("click", async () => {
 
 			// Request all playlists
 			const playlists = await Api.requestEndpoint("api/v1/spotify/playlists", "GET");
