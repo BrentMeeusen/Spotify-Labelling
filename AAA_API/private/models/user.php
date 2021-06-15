@@ -352,7 +352,7 @@ class User extends Table implements TableInterface {
 		$user = parent::prepareUpdate($user, $values);
 		
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ? WHERE PublicID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
@@ -360,7 +360,7 @@ class User extends Table implements TableInterface {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssii", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $user->publicID);
+		$stmt->bind_param("sssssisi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
