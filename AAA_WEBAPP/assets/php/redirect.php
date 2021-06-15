@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-
-$VARIABLES = json_decode(file_get_contents("../../../SpotifyLabelling.json"));
+$VARIABLES = json_decode(file_get_contents("../../../../SpotifyLabelling.json"));
 
 $redirect = $VARIABLES->BASE->APP . $_GET["redirect"];
 
