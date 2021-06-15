@@ -5,7 +5,7 @@ class Playlists {
 
 
 	// Declare variables
-	private array $playlists;
+	public array $playlists;
 
 
 

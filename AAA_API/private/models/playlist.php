@@ -5,9 +5,9 @@ class Playlist {
 
 
 	// Declare variables
-	private string $name;
-	private int $numTracks;
-	private string $spotifyID;
+	public string $name;
+	public int $numTracks;
+	public string $spotifyID;
 
 
 
