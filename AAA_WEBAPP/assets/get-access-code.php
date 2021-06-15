@@ -28,7 +28,7 @@ $context = stream_context_create([
 		"method" => "POST",
 		"header" => [
 			"Content-Type: application/x-www-form-urlencoded",
-			"Authorization: Basic " . base64_encode("a209cbda1aaa4f408bd6ae2efc2264fb:da1ccba787b14df0bffdede8987c63ed")
+			"Authorization: Basic " . base64_encode("a209cbda1aaa4f408bd6ae2efc2264fb:" . json_decode(file_get_contents("../../../SpotifyLabelling.json"))->CLIENT_SECRET)
 		],
 		"content" => $parameters
 	]
