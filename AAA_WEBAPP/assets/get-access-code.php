@@ -57,6 +57,7 @@ $context = stream_context_create([
 
 // WARNING: HARDCODED
 $res = @file_get_contents("http://localhost/Spotify%20Labelling/AAA_API/api/v1/users/add-token/", false, $context);
+setcookie("jwt", json_decode($res)->jwt, 3600, "/");
 
 // Redirect to the dashboard
 header("Location: php/redirect.php?redirect=dashboard&code=200&message=Logged%20in%20successfully.");
