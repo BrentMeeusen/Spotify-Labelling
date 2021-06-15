@@ -20,6 +20,55 @@ class SpotifyApi {
 		self::$authorisationToken = $token;
 	}
 
+
+
+
+
+	/**
+	 * Gets the playlists of the user
+	 */
+	public static function getMyPlaylists() {
+
+		return self::sendRequest("v1/me/playlists", "GET");
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Sends a request to a certain endpoint
+	 * 
+	 * @param		string		The endpoint to send to
+	 * @param		string		The method to use
+	 * @param		array		The parameters to send
+	 */
+	private static function sendRequest(string $endpoint, string $method, array $parameters = []) {
+
+		// Make the call to the Spotify API
+		$parameters = http_build_query($parameters);
+		$context = stream_context_create([
+			"http" => [
+				"method" => $method,
+				"header" => [
+					"Content-Type: application/x-www-form-urlencoded",
+					"Authorization: Bearer " . self::$authorisationToken
+				],
+				"content" => $parameters
+			]
+		]);
+		$res = @file_get_contents("https://api.spotify.com/" . $endpoint, false, $context);
+
+		return $res;
+
+	}
+
 }
 
 
