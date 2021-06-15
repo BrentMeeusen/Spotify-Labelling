@@ -90,7 +90,8 @@ class SpotifyApi {
 				"content" => http_build_query($bodyParameters)
 			]
 		]);
-		$res = @file_get_contents("https://api.spotify.com/" . $endpoint . "?" . http_build_query($queryParameters), false, $context);
+		$url = "https://api.spotify.com/" . $endpoint . ($queryParameters !== NULL ? "?" . http_build_query($queryParameters) : "");
+		$res = @file_get_contents($url, false, $context);
 
 		return json_decode($res);
 
