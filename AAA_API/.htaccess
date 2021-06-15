@@ -67,6 +67,11 @@ RewriteRule		api/v1/labels							labels/get/								[L,QSA]
 
 
 
+############	api/v1/spotify/import					spotify/import/
+RewriteRule		api/v1/spotify/import					spotify/import/							[L,QSA]
+
+
+
 
 
 ###############################
