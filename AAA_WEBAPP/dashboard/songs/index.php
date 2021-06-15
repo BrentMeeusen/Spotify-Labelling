@@ -60,6 +60,26 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
+		// Add "Import songs" button functionality
+		document.getElementById("import-songs").addEventListener("click", () => {
+
+			// Request all playlists
+			const playlists = await Api.requestEndpoint("api/v1/spotify/playlists", "GET");
+			console.log(playlists);
+
+			// Create popup
+			const addLabel = new BigPopup("Add Label", "api/v1/tracks/import", "POST", "create-label-form");
+			
+			// Show all playlists for the user to choose from
+			// for(const list of playlists) {
+			// 	console.log(list);
+			// }
+
+			addLabel.show("IMPORT");
+			HtmlJsForm.findById("create-label-form").addCallback(() => { Api.showLabels(); });
+
+		});
+
 		</script>
 
 	</body>
