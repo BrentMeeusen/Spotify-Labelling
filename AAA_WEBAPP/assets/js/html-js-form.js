@@ -90,11 +90,15 @@ class HtmlJsForm {
 	/**
 	 * Gets the values from the form children
 	 * 
-	 * @returns An object with the input names as keys, and the values as the values (that's not too surprising, is it?)
+	 * @returns An object with keys and values
 	 */
 	getValues() {
 
 		let values = {};
+
+		if(this.inputs[0].tagName.toLowerCase() === "div" && this.inputs[0].classList.contains("table-container")) {
+			return this.getTableValues();
+		}
 
 		for(const input of this.inputs) {
 			if(input.name && input.name.includes("input")) {
@@ -104,6 +108,19 @@ class HtmlJsForm {
 
 		return values;
 
+	}
+
+
+
+
+
+	/**
+	 * Gets the values of a table
+	 * 
+	 * @returns An object with keys and values
+	 */
+	getTableValues() {
+		console.log("Table bitch!");
 	}
 
 
