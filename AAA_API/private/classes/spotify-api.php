@@ -26,10 +26,32 @@ class SpotifyApi {
 
 	/**
 	 * Gets the playlists of the user
+	 * 
+	 * @return		array		An array of playlists
 	 */
-	public static function getMyPlaylists() {
+	public static function getMyPlaylists() : array {
 
-		return self::sendRequest("v1/me/playlists", "GET");
+		// While there are still playlists left to retrieve, get the playlists
+		$playlists = [];
+		$next = ".com/v1/me/playlists";
+
+		do {
+
+			// Get the playlists
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
+
+			// Store the playlists
+			foreach($response->items as $list) {
+				array_push($playlists, $list);
+			}
+
+			// Setup the next request
+			$next = $response->next;
+
+		}
+		while($next !== NULL);
+
+		return $playlists;
 
 	}
 
