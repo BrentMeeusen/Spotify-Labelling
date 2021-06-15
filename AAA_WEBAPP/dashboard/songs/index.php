@@ -77,7 +77,7 @@ session_start();
 				const row = Api.createElement("tr");
 				row.appendChild(Api.createElement("td", { innerHTML: list.name }));
 				row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
-				row.appendChild(Api.createElement("input", { type: "checkbox", name: "playlist id-" + list.spotifyID }));
+				row.appendChild(Api.createElement("input", { type: "checkbox", name: "input id-" + list.spotifyID }));
 				table.appendChild(row);
 
 			}
