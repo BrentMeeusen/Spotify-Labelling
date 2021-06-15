@@ -32,6 +32,12 @@ class Playlists {
 	 */
 	public static function create(array $playlists) : Playlists {
 
+		$lists = [];
+		foreach($playlists as $list) {
+			array_push($lists, new Playlist($list));
+		}
+		return new Playlists($lists);
+
 	}
 
 }
