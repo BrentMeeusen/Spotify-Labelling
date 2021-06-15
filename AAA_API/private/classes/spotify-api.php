@@ -16,7 +16,7 @@ class SpotifyApi {
 	 * 
 	 * @param		string		The token
 	 */
-	public static string setAuthorisationToken(string $token) : void {
+	public static function setAuthorisationToken(string $token) : void {
 		self::$authorisationToken = $token;
 	}
 
