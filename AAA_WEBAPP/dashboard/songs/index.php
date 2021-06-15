@@ -63,19 +63,29 @@ session_start();
 		// Add "Import songs" button functionality
 		document.getElementById("import-songs").addEventListener("click", async () => {
 
-			// Request all playlists
-			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 
 			// Create popup
-			const addLabel = new BigPopup("Add Label", "api/v1/spotify/import", "POST", "create-label-form");
+			const importSongs = new BigPopup("Import Songs", "api/v1/spotify/import", "POST", "import-songs-form");
+
+			const tableContainer = Api.createElement("div", {classList: "table-container"});
+			const table = Api.createElement("table");
 			
 			// Show all playlists for the user to choose from
+			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 			for(const list of res.data.playlists) {
-				console.log(list);
+				
+				const row = Api.createElement("tr");
+				row.appendChild(Api.createElement("td", { innerHTML: list.name }));
+				row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
+				row.appendChild(Api.createElement("input", { type: "checkbox", name: "lists[]" }));
+				table.appendChild(row);
+
 			}
 
-			addLabel.show("IMPORT");
-			HtmlJsForm.findById("create-label-form").addCallback(() => {  });
+			tableContainer.appendChild(table);
+			importSongs.addElement(tableContainer);
+			importSongs.show("IMPORT");
+			HtmlJsForm.findById("import-songs-form").addCallback(() => {  });
 
 		});
 
