@@ -12,6 +12,19 @@ class Playlists {
 
 
 	/**
+	 * Constructor
+	 * 
+	 * @param		array		An array of Playlist objects
+	 */
+	public function __construct(array $playlists) {
+		$this->playlists = $playlists;
+	}
+
+
+
+
+
+	/**
 	 * Formats the found playlists in this collection
 	 * 
 	 * @param		array		A playlist array that Spotify sent
