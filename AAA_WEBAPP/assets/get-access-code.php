@@ -32,8 +32,6 @@ $context = stream_context_create([
 	]
 ]);
 $res = @file_get_contents("https://accounts.spotify.com/api/token", false, $context);
-
-// Get the token
 $token = @json_decode($res)->access_token;
 
 // Add the token to the user in the database
