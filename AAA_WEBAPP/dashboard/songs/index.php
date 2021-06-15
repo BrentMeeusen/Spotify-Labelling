@@ -64,16 +64,15 @@ session_start();
 		document.getElementById("import-songs").addEventListener("click", async () => {
 
 			// Request all playlists
-			const playlists = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-			console.log(playlists);
+			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 
 			// Create popup
 			const addLabel = new BigPopup("Add Label", "api/v1/spotify/import", "POST", "create-label-form");
 			
 			// Show all playlists for the user to choose from
-			// for(const list of playlists) {
-			// 	console.log(list);
-			// }
+			for(const list of res.data.playlists) {
+				console.log(list);
+			}
 
 			addLabel.show("IMPORT");
 			HtmlJsForm.findById("create-label-form").addCallback(() => {  });
