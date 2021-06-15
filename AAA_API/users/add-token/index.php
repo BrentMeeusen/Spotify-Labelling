@@ -7,11 +7,6 @@ include_once("../../private/include_all.php");
 
 
 
-// If the ID is not set, return an error
-if(!isset($_GET["id"])) {
-	ApiResponse::httpResponse(400, ["error" => "Could not find the given user."]);
-}
-
 // If the payload doesn't contain "user.id", return an error
 if(!isset($payload->user->id) || !isset($payload->rights->user->update) || $payload->rights->user->update !== TRUE) {
 	ApiResponse::httpResponse(401, ["error" => "You are not allowed to update your account.", "data" => $payload->user]);
@@ -27,7 +22,7 @@ if(setAndEmpty($body, "accessToken")) {
 
 
 // If the user isn't found, return an error
-$user = User::findByPublicID($_GET["id"]);
+$user = User::findByPublicID($payload->user->id);
 if($user === NULL) {
 	ApiResponse::httpResponse(404, ["error" => "We couldn't find your account.", "data" => $payload->user]);
 }
