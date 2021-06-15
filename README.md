@@ -29,11 +29,6 @@ It is of course very possible that you gave a song a label, but you do not find 
 
 
 
-## Dependencies
-If you want to run this on your local machine, you will need a database (MariaDB) and a program that allows you to run PHP scripts. I used XAMPP 7.4.9 for developing this project.
-
-
-
 <!-- ## Test the software -->
 
 
