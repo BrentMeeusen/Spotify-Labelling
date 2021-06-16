@@ -24,6 +24,46 @@ class SpotifyApi {
 
 
 
+
+
+
+
+
+	/**
+	 * Gets the songs from a given playlist from the Spotify API
+	 * 
+	 * @param		string		The playlist ID
+	 */
+	public static function getSongsFromPlaylist(string $playlistID) {
+
+		// While there are still songs left to retrieve, get the songs
+		$songs = [];
+		$next = ".com/v1/playlists/$playlistID/tracks";
+
+		do {
+
+			// Get the playlists, only add limit parameter if we're at the first parameter
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
+
+			// Store the playlists
+			foreach($response->items as $list) {
+				array_push($songs, $list);
+			}
+
+			// Setup the next request
+			$next = $response->next;
+
+		}
+		while($next !== NULL);
+
+		return $songs;
+
+	}
+
+
+
+
+
 	/**
 	 * Gets the playlists of the user
 	 * 
