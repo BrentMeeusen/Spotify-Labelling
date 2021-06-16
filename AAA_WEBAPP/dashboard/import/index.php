@@ -9,7 +9,7 @@ session_start();
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Spotify Labelling | Your Songs</title>
+		<title>Spotify Labelling | Import Songs</title>
 		
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
@@ -39,7 +39,7 @@ session_start();
 
 				<div class="table-container">
 					<table>
-						<tbody id="songs">
+						<tbody id="playlists">
 						</tbody>
 					</table>
 				</div>
@@ -63,43 +63,8 @@ session_start();
 		// Add "Import songs" button functionality
 		document.getElementById("import-songs").addEventListener("click", async () => {
 
-
-
-			// ============================================================================
-			// TODO: THINK OF A SMARTER WAY TO DO THIS
-			// A TABLE DOESN'T WORK WELL WITH HTML JS FORMS
-			// SO THE SOLUTION MUST WORK WITH THE CURRENT JAVASCRIPT FILES
-			// WELL ENOUGH TO ONLY WRITE ADDITIONAL CODE INSTEAD OF REWRITING PARTS
-			// BUT IT ALSO NEEDS EITHER TABLE SUPPORT OR ANOTHER WAY
-			// OF DISPLAYING THE DATA TO THE USER
-			// ADDITIONAL PAGES IS NOT TOO BAD IF THAT IS NEEDED
-			// ============================================================================
-
-
-
-
-			// Create popup
-			const importSongs = new BigPopup("Import Songs", "api/v1/spotify/import", "POST", "import-songs-form");
-
-			const tableContainer = Api.createElement("div", {classList: "table-container limit-height"});
-			const table = Api.createElement("table");
-			
-			// Show all playlists for the user to choose from
 			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-			for(const list of res.data.playlists) {
-				
-				const row = Api.createElement("tr");
-				row.appendChild(Api.createElement("td", { innerHTML: list.name }));
-				row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
-				row.appendChild(Api.createElement("input", { type: "checkbox", name: "input id-" + list.spotifyID }));
-				table.appendChild(row);
-
-			}
-
-			tableContainer.appendChild(table);
-			importSongs.addElement(tableContainer);
-			importSongs.show("IMPORT");
-			HtmlJsForm.findById("import-songs-form").addCallback(() => {  });
+			Api.showPlaylistsForImport(res.data.playlists);
 
 		});
 
