@@ -99,7 +99,7 @@ button.icon > img {
 	width: 100%;
 }
 .table-container {
-	overflow: scroll;
+	overflow: auto;
 	width: 100%;
 }
 .table-container.limit-height {
