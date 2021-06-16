@@ -38,6 +38,7 @@ session_start();
 				<div class="table-container">
 					<table>
 						<tbody id="playlists">
+
 						</tbody>
 					</table>
 				</div>
@@ -59,8 +60,13 @@ session_start();
 		PageProtect.protect({ verifiedLevel: 2 });
 
 		// Add "Import songs" button functionality
-		const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-		Api.showPlaylistsForImport(res.data.playlists);
+		window.addEventListener("load", async () => {
+
+			document.getElementById("playlists").innerHTML = "Loading...";
+			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
+			Api.showPlaylistsForImport(res.data.playlists);
+
+		});
 
 		</script>
 
