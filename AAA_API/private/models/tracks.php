@@ -35,7 +35,6 @@ class Tracks {
 		$newTracks = [];
 		foreach($tracks as $track) {
 			array_push($newTracks, new Track($track));
-			print("Created track\r\n");
 		}
 		return new Tracks($newTracks);
 
