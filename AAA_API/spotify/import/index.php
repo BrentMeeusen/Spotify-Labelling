@@ -11,7 +11,7 @@ include_once("../../private/include_all.php");
 SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
 // Send a request to the endpoint at Spotify
-$data = SpotifyApi::getSongsFromPlaylist($_GET["id"]);
+$data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 
 // Parse the data using the models
 $tracks = Tracks::create($data);

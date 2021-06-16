@@ -34,10 +34,10 @@ class SpotifyApi {
 	 * 
 	 * @param		string		The playlist ID
 	 */
-	public static function getSongsFromPlaylist(string $playlistID) {
+	public static function getTracksFromPlaylist(string $playlistID) {
 
-		// While there are still songs left to retrieve, get the songs
-		$songs = [];
+		// While there are still tracks left to retrieve, get the tracks
+		$tracks = [];
 		$next = ".com/v1/playlists/$playlistID/tracks";
 
 		do {
@@ -46,8 +46,8 @@ class SpotifyApi {
 			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
 
 			// Store the playlists
-			foreach($response->items as $list) {
-				array_push($songs, $list);
+			foreach($response->items as $track) {
+				array_push($tracks, $track);
 			}
 
 			// Setup the next request
@@ -56,7 +56,7 @@ class SpotifyApi {
 		}
 		while($next !== NULL);
 
-		return $songs;
+		return $tracks;
 
 	}
 
