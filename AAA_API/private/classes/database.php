@@ -302,6 +302,21 @@ class Database {
 		$res = self::createTable($conn, $SQL, $tableName);
 
 
+		// Create USERS_TO_TRACKS table
+		$tableName = "USERS_TO_TRACKS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			UserID			VARCHAR(32)		NOT NULL,
+			TrackID			VARCHAR(50)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+
 
 	}
 
