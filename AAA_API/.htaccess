@@ -71,7 +71,7 @@ RewriteRule		api/v1/labels							labels/get/								[L,QSA]
 RewriteRule		api/v1/spotify/playlists				spotify/playlists/						[L,QSA]
 
 ############	api/v1/spotify/import/[id]				spotify/import/[id]
-RewriteRule		api/v1/spotify/import/([a-zA-Z0-9])		spotify/import/$1/						[L,QSA]
+RewriteRule		api/v1/spotify/import/([a-zA-Z0-9]+)	spotify/import/?id=$1					[L,QSA]
 
 
 
