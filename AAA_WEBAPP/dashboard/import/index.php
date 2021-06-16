@@ -35,8 +35,6 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<button class="wide" id="import-songs">IMPORT SONGS</button>
-
 				<div class="table-container">
 					<table>
 						<tbody id="playlists">
@@ -61,12 +59,8 @@ session_start();
 		PageProtect.protect({ verifiedLevel: 2 });
 
 		// Add "Import songs" button functionality
-		document.getElementById("import-songs").addEventListener("click", async () => {
-
-			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-			Api.showPlaylistsForImport(res.data.playlists);
-
-		});
+		const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
+		Api.showPlaylistsForImport(res.data.playlists);
 
 		</script>
 
