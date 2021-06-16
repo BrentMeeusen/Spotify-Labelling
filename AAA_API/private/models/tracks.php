@@ -32,11 +32,12 @@ class Tracks {
 	 */
 	public static function create(array $tracks) : Tracks {
 
-		$tracks = [];
+		$newTracks = [];
 		foreach($tracks as $track) {
-			array_push($tracks, new Track($track));
+			array_push($newTracks, new Track($track));
+			print("Created track\r\n");
 		}
-		return new Tracks($tracks);
+		return new Tracks($newTracks);
 
 	}
 
