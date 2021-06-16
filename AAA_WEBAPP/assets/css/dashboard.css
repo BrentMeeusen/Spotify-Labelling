@@ -20,6 +20,9 @@ button.icon > img {
 	height: 24px;
 	width: auto;
 }
+button.icon:focus, button.icon > img:focus, button.icon:focus > img {
+	outline: none;
+}
 
 
 
