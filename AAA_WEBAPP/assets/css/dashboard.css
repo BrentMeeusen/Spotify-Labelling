@@ -105,6 +105,9 @@ button.icon > img {
 .table-container.limit-height {
 	max-height: 50vh;
 }
+.table-container button.icon {
+	margin: 8px 8px 0 0;
+}
 table {
 	border-collapse: collapse;
 	border: 2px solid var(--current--text);
