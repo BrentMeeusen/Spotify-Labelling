@@ -21,6 +21,26 @@ class Tracks {
 	}
 
 
+
+
+
+	/**
+	 * Formats the given tracks
+	 * 
+	 * @param		array		A tracks array that Spotify sent
+	 * @return		Tracks		A Tracks object with the given tracks
+	 */
+	public static function create(array $tracks) : Tracks {
+
+		$tracks = [];
+		foreach($tracks as $track) {
+			array_push($tracks, new Track($track));
+		}
+		return new Tracks($tracks);
+
+	}
+
+
 }
 
 ?>
