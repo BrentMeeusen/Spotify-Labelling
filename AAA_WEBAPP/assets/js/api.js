@@ -64,6 +64,7 @@ Api.showPlaylistsForImport = async (playlists) => {
 		row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
 		row.appendChild(Api.createIcon("import", async () => {
 			const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
+			console.log(res);
 			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 		}));
 
