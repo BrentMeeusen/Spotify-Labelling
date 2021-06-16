@@ -45,6 +45,39 @@ Api.sendRequest = async (location, method, values = {}) => {
 
 
 /**
+ * Shows the playlists for import
+ * 
+ * @param {array} playlists The playlists which can be imported
+ */
+Api.showPlaylistsForImport = async (playlists) => {
+
+	console.log(playlists);
+
+	const output = document.getElementById("playlists");
+	output.innerHTML = "";
+
+	for(const list of playlists) {
+
+		// Create row, add name, number of tracks, import button
+		const row = Api.createElement("tr");
+		row.appendChild(Api.createElement("td", { innerHTML: list.name }));
+		row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
+		row.appendChild(Api.createIcon("import", () => {
+			console.log("Importing " + list.spotifyID);
+		}));
+
+		// Output the row
+		output.appendChild(row);
+
+	}
+
+}
+
+
+
+
+
+/**
  * Shows the labels
  */
 Api.showLabels = async () => {
