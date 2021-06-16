@@ -14,10 +14,10 @@ SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 $data = SpotifyApi::getSongsFromPlaylist($_GET["id"]);
 
 // Parse the data using the models
-$songs = Songs::create($data);
+$tracks = Tracks::create($data);
 
 // Store them in the database
-Spotify::store($songs);
+Spotify::store($tracks);
 
 // Return the useful playlist data
 ApiResponse::httpResponse(200, ["message" => "Imported your songs successfully."]);
