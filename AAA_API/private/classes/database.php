@@ -213,8 +213,8 @@ class Database {
 
 		$res = self::createTable($conn, $SQL, $tableName);
 
-		// Create SONGS table
-		$tableName = "SONGS";
+		// Create TRACKS table
+		$tableName = "TRACKS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			SpotifyID		VARCHAR(50)		NOT NULL,
@@ -230,6 +230,76 @@ class Database {
 
 
 		// Create ARTISTS table
+		$tableName = "ARTISTS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			SpotifyID		VARCHAR(50)		NOT NULL,
+			Name			VARCHAR(250)	NOT NULL,
+
+			PRIMARY KEY (ID),
+			UNIQUE (SpotifyID)
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+
+		// Create ALBUMS table
+		$tableName = "ALBUMS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			SpotifyID		VARCHAR(50)		NOT NULL,
+			Name			VARCHAR(250)	NOT NULL,
+
+			PRIMARY KEY (ID),
+			UNIQUE (SpotifyID)
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+
+		// Create TRACKS_TO_ARTISTS table
+		$tableName = "TRACKS_TO_ARTISTS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			TrackID			VARCHAR(50)		NOT NULL,
+			ArtistID		VARCHAR(50)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
+			FOREIGN KEY (ArtistID) REFERENCES ARTISTS (SpotifyID) ON DELETE CASCADE
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+
+		// Create TRACKS_TO_ALBUMS table
+		$tableName = "TRACKS_TO_ALBUMS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			TrackID			VARCHAR(50)		NOT NULL,
+			AlbumID			VARCHAR(50)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
+			FOREIGN KEY (AlbumID) REFERENCES ALBUMS (SpotifyID) ON DELETE CASCADE
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
+
+
+		// Create ARTISTS_TO_ALBUMS table
+		$tableName = "ARTISTS_TO_ALBUMS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			ArtistID		VARCHAR(50)		NOT NULL,
+			AlbumID			VARCHAR(50)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (ArtistID) REFERENCES ARTISTS (SpotifyID) ON DELETE CASCADE,
+			FOREIGN KEY (AlbumID) REFERENCES ALBUMS (SpotifyID) ON DELETE CASCADE
+		);";
+
+		$res = self::createTable($conn, $SQL, $tableName);
 
 
 
