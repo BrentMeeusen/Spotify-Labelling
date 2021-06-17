@@ -1,7 +1,7 @@
 <?php
 
 
-class Albums {
+class Albums implements SpotifyCollection {
 	
 }
 

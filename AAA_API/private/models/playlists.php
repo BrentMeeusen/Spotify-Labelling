@@ -1,7 +1,7 @@
 <?php
 
 
-class Playlists {
+class Playlists implements SpotifyCollection {
 
 
 	// Declare variables
