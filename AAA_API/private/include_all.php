@@ -14,6 +14,8 @@ include_once("classes/spotify-api.php");
 
 include_once("models/AAA_spotify.php");
 include_once("models/AAA_table.php");
+include_once("models/album.php");
+include_once("models/albums.php");
 include_once("models/label.php");
 include_once("models/playlist.php");
 include_once("models/playlists.php");
