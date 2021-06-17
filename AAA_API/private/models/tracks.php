@@ -25,6 +25,17 @@ class Tracks implements SpotifyCollection {
 
 
 	/**
+	 * Getter for the array
+	 */
+	public function getData() : array {
+		return $this->data;
+	}
+
+
+
+
+
+	/**
 	 * Formats the given tracks in a collection
 	 * 
 	 * @param		array		A tracks array that Spotify sent

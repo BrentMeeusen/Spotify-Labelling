@@ -25,6 +25,17 @@ class Playlists implements SpotifyCollection {
 
 
 	/**
+	 * Getter for the array
+	 */
+	public function getData() : array {
+		return $this->data;
+	}
+
+
+
+
+
+	/**
 	 * Formats the given playlists in a collection
 	 * 
 	 * @param		array		A playlist array that Spotify sent

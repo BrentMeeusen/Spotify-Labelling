@@ -25,6 +25,17 @@ class Albums implements SpotifyCollection {
 
 
 	/**
+	 * Getter for the array
+	 */
+	public function getData() : array {
+		return $this->data;
+	}
+
+
+
+
+
+	/**
 	 * Formats the given albums in a collection
 	 * 
 	 * @param		array		An album array that Spotify sent

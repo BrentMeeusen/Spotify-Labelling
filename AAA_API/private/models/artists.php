@@ -25,6 +25,17 @@ class Artists implements SpotifyCollection {
 
 
 	/**
+	 * Getter for the array
+	 */
+	public function getData() : array {
+		return $this->data;
+	}
+
+
+
+
+
+	/**
 	 * Formats the given artists in a collection
 	 * 
 	 * @param		array		An artist array that Spotify sent
