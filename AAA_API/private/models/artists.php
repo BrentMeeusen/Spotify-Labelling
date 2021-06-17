@@ -30,7 +30,18 @@ class Artists implements SpotifyCollection {
 	 * @return		bool		Whether it was a success or not
 	 */
 	public function store() : bool {
-		return FALSE;
+
+		// For all artists
+		foreach($this->data as $artist) {
+
+			// Store the artist
+			$res = $artist->store();
+			if($res === FALSE) { return $res; }
+
+		}
+
+		// Return TRUE because everything went right
+		return TRUE;
 	}
 
 
