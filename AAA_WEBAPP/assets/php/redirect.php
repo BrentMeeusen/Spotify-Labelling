@@ -1,5 +1,6 @@
 <?php
 
+// TODO: ON LOGOUT, PATH WITH FILE_GET_CONTENTS IS NOT CORRECT; THINK OF A FIX!
 session_start();
 $VARIABLES = json_decode(file_get_contents("../../../../SpotifyLabelling.json"));
 
