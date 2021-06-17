@@ -17,7 +17,7 @@ class Track {
 	/**
 	 * Constructor
 	 * 
-	 * @param		StdClass	The data rom Spotify
+	 * @param		StdClass	The data from Spotify
 	 */
 	public function __construct(StdClass $data) {
 

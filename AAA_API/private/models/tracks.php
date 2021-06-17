@@ -25,7 +25,7 @@ class Tracks {
 
 
 	/**
-	 * Formats the given tracks
+	 * Formats the given tracks in a collection
 	 * 
 	 * @param		array		A tracks array that Spotify sent
 	 * @return		Tracks		A Tracks object with the given tracks

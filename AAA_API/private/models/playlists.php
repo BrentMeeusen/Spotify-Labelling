@@ -25,7 +25,7 @@ class Playlists {
 
 
 	/**
-	 * Formats the found playlists in this collection
+	 * Formats the given playlists in a collection
 	 * 
 	 * @param		array		A playlist array that Spotify sent
 	 * @return		Playlists	A playlists object with the given playlists
