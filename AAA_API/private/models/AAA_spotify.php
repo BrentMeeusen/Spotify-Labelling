@@ -14,6 +14,22 @@ class Spotify {
 
 
 
+interface SpotifyData {
+
+
+	/**
+	 * Stores the data in the database
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool;
+
+}
+
+
+
+
+
 interface SpotifyCollection {
 
 	
