@@ -30,7 +30,26 @@ class Tracks implements SpotifyCollection {
 	 * @return		bool		Whether it was a success or not
 	 */
 	public function store() : bool {
-		return FALSE;
+
+		// For all tracks
+		foreach($this->data as $track) {
+
+			// Store the album
+			$res = $track->album->store();
+			if($res === FALSE) { return $res; }
+			
+			// Store the artists
+			$res = $track->artists->store();
+			if($res === FALSE) { return $res; }
+
+			// Store the track which will also store the links to the album, artists, and user
+			$res = $track->store();
+			if($res === FALSE) { return $res; }
+
+		}
+
+		// Return TRUE because everything went right
+		return TRUE;
 	}
 
 
