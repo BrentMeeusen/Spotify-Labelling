@@ -17,7 +17,7 @@ $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 $tracks = Tracks::create($data);
 
 // Store them in the database
-Spotify::storeCollection($tracks);
+$tracks->store();
 
 // Return the useful playlist data
 ApiResponse::httpResponse(200, ["message" => "Imported your songs successfully."]);
