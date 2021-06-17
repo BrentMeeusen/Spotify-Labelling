@@ -10,7 +10,7 @@ class Spotify {
 	 * @param		SpotifyCollection	A collection object
 	 */
 	public static function storeCollection(SpotifyCollection $collection) {
-		
+
 	}
 	
 }
@@ -25,6 +25,8 @@ class Spotify {
 
 
 interface SpotifyCollection {
+
+	public array $data;
 
 	public static function create(array $data);
 
