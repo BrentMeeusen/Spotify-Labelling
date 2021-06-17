@@ -25,6 +25,19 @@ class Tracks implements SpotifyCollection {
 
 
 	/**
+	 * Stores the collection
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool {
+		return;
+	}
+
+
+
+
+
+	/**
 	 * Getter for the array
 	 */
 	public function getData() : array {

@@ -36,6 +36,19 @@ class Albums implements SpotifyCollection {
 
 
 	/**
+	 * Stores the collection
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool {
+		return;
+	}
+
+
+
+
+
+	/**
 	 * Formats the given albums in a collection
 	 * 
 	 * @param		array		An album array that Spotify sent
