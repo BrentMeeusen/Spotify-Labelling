@@ -14,7 +14,7 @@ class Spotify {
 
 
 
-interface Collection {
+interface SpotifyCollection {
 
 	public static function create(array $data);
 
