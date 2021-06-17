@@ -5,7 +5,7 @@ class Tracks implements SpotifyCollection {
 
 
 	// Declare variables
-	public array $tracks;
+	public array $data;
 
 
 
@@ -17,7 +17,7 @@ class Tracks implements SpotifyCollection {
 	 * @param		array		An array of Track objects
 	 */
 	public function __construct(array $tracks) {
-		$this->tracks = $tracks;
+		$this->data = $tracks;
 	}
 
 
