@@ -2,6 +2,16 @@
 
 
 class Spotify {
+
+
+	/**
+	 * Stores the collection
+	 * 
+	 * @param		SpotifyCollection	A collection object
+	 */
+	public static function storeCollection(SpotifyCollection $collection) {
+		
+	}
 	
 }
 
