@@ -11,6 +11,8 @@ class Spotify {
 	 */
 	public static function storeCollection(SpotifyCollection $collection) {
 
+		print(json_encode("joe mama"));
+
 	}
 	
 }
