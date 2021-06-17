@@ -20,6 +20,26 @@ class Artists {
 		$this->artists = $artists;
 	}
 
+
+
+
+
+	/**
+	 * Formats the given artists in a collection
+	 * 
+	 * @param		array		An artist array that Spotify sent
+	 * @return		Artists		An Artists object with the given artists
+	 */
+	public static function create(array $artists) : Artists {
+
+		$newArtists = [];
+		foreach($artists as $artist) {
+			array_push($newArtists, new Artist($artist));
+		}
+		return new Artists($newArtists);
+
+	}
+
 }
 
 ?>
