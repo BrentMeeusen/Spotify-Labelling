@@ -22,7 +22,7 @@ class Track {
 	public function __construct(StdClass $data) {
 
 		$this->album = new Album($data->track->album);
-		$this->artists = new Artists::create($data->track->artists);
+		$this->artists = Artists::create($data->track->artists);
 		$this->name = $data->track->name;
 		$this->spotifyID = $data->track->id;
 
