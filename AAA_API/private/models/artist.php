@@ -1,7 +1,7 @@
 <?php
 
 
-class Artist {
+class Artist implements SpotifyData {
 
 
 	// Declare variables
@@ -22,6 +22,21 @@ class Artist {
 		$this->name = $data->name;
 		$this->spotifyID = $data->id;
 
+	}
+
+
+
+
+
+	/**
+	 * Stores the artist
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool {
+
+
+		return FALSE;
 	}
 
 }

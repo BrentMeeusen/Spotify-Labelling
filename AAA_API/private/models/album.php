@@ -1,7 +1,7 @@
 <?php
 
 
-class Album {
+class Album implements SpotifyData {
 
 
 	// Declare variables
@@ -22,6 +22,21 @@ class Album {
 		$this->name = $data->name;
 		$this->spotifyID = $data->id;
 
+	}
+
+
+
+
+
+	/**
+	 * Stores the track AND the links to album, artists, and user
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool {
+
+
+		return FALSE;
 	}
 
 }
