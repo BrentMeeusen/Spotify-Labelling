@@ -30,7 +30,7 @@ class Tracks implements SpotifyCollection {
 	 * @return		bool		Whether it was a success or not
 	 */
 	public function store() : bool {
-		return;
+		return FALSE;
 	}
 
 
