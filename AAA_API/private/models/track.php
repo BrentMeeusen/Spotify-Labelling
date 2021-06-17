@@ -1,7 +1,7 @@
 <?php
 
 
-class Track {
+class Track implements SpotifyData {
 
 
 	// Declare variables
@@ -28,6 +28,21 @@ class Track {
 		$this->releaseDate = strtotime($data->track->album->release_date);
 		$this->spotifyID = $data->track->id;
 
+	}
+
+
+
+
+
+	/**
+	 * Stores the track AND the links to album, artists, and user
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool {
+
+
+		return FALSE;
 	}
 
 }
