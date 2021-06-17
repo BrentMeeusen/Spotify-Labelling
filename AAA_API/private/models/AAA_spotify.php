@@ -28,7 +28,7 @@ class Spotify {
 
 interface SpotifyCollection {
 
-	public array $data;
+	public function getData() : array;
 
 	public static function create(array $data);
 
