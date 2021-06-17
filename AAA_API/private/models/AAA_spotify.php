@@ -5,7 +5,7 @@ class Spotify {
 
 
 	/**
-	 * Stores the collection
+	 * Stores the collection in the database
 	 * 
 	 * @param		SpotifyCollection	A collection object
 	 */
