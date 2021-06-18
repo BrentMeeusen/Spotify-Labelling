@@ -29,6 +29,29 @@ class Artist implements SpotifyData {
 
 
 	/**
+	 * Adds an album-artist link
+	 * 
+	 * @param		Album		The album to link with
+	 * @return		bool		Whether it was a success or not
+	 */
+	private function storeLink(Album $album) : bool {
+
+		// Prepare the statement
+		$stmt = Database::prepare("INSERT INTO ARTISTS_TO_ALBUMS (ArtistID, AlbumID) VALUES (?, ?)");
+
+		// Insert the data
+		$stmt->bind_param("ss", $this->spotifyID, $album->spotifyID);
+
+		// Execute the statement and return the result
+		return Database::execute($stmt);
+
+	}
+
+
+
+
+
+	/**
 	 * Stores the artist
 	 * 
 	 * @param		Album		The album to link to
