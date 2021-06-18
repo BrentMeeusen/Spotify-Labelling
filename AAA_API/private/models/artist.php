@@ -35,6 +35,11 @@ class Artist implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// If the row is already there, return TRUE
+		if(Database::findArtistBySpotifyID($this->spotifyID) !== NULL) {
+			return TRUE;
+		}
+
 		// Prepare the statement
 		$stmt = Database::prepare("INSERT INTO ARTISTS (Name, SpotifyID) VALUES (?, ?);");
 
