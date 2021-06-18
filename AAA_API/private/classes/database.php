@@ -25,6 +25,27 @@ class Database {
 
 
 	/**
+	 * Connects to the database
+	 * 
+	 * @return	mysqli	the connection
+	 */
+	public static function connect() : mysqli {
+
+		self::$conn = @new mysqli(self::$host, self::$username, self::$password, self::$database);
+		
+		if(self::$conn->connect_errno !== 0) {
+			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", "db_errno" => self::$conn->connect_errno, "db_error" => self::$conn->connect_error ]);
+		}
+		
+		return self::$conn;
+
+	}
+
+
+
+
+
+	/**
 	 * Prepares a statement
 	 * 
 	 * @param		string			SQL to prepare
@@ -270,24 +291,6 @@ class Database {
 
 		// Return true, because nothing went wrong
 		return TRUE;
-
-	}
-
-
-	/**
-	 * Connects to the database
-	 * 
-	 * @return	mysqli	the connection
-	 */
-	public static function connect() : mysqli {
-
-		self::$conn = @new mysqli(self::$host, self::$username, self::$password, self::$database);
-		
-		if(self::$conn->connect_errno !== 0) {
-			ApiResponse::httpResponse(500, [ "error" => "Database connection failed", "db_errno" => self::$conn->connect_errno, "db_error" => self::$conn->connect_error ]);
-		}
-		
-		return self::$conn;
 
 	}
 
