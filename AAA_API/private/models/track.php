@@ -60,6 +60,8 @@ class Track implements SpotifyData {
 
 		}
 
+		return TRUE;
+
 	}
 
 
