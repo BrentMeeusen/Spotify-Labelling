@@ -19,8 +19,8 @@ class Artist implements SpotifyData {
 	 */
 	public function __construct(StdClass $data) {
 
-		$this->name = $data->name;
-		$this->spotifyID = $data->id;
+		$this->name = (isset($data->name) ? $data->name : $data->Name);
+		$this->spotifyID = (isset($data->id) ? $data->id : $data->SpotifyID);
 
 	}
 
