@@ -154,7 +154,7 @@ class Database {
 	 * @return		null		If not found
 	 * @return		array		Artist and Track if found
 	 */
-	public static function findArtistToTrack(string $trackID, string $artistID) : ?array {
+	public static function findTrackToArtist(string $trackID, string $artistID) : ?array {
 
 		$data = self::findLink("SELECT * FROM TRACKS_TO_ARTISTS WHERE TrackID = ? AND ArtistID = ?;", $trackID, $artistID);
 		if(empty($data)) { return NULL; }
