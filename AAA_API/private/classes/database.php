@@ -551,8 +551,8 @@ class Database {
 	 */
 	public static function initialise(mysqli $conn) {
 
-		// self::createUsers();
-		// self::createLabels();
+		self::createUsers();
+		self::createLabels();
 		self::createRights();
 		self::createRightsToUsers();
 		self::createTracks();
@@ -561,12 +561,6 @@ class Database {
 		self::createTracksToArtists();
 		self::createTracksToAlbums();
 		self::createTracksToUsers();
-
-
-		// Add column to USERS table
-		$stmt = $conn->prepare("ALTER TABLE USERS ADD COLUMN 
-		AccessToken		VARCHAR(240);");
-		$res = $stmt->execute();
 
 
 		// Insert special rights into table
