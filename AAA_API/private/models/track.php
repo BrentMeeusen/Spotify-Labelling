@@ -77,25 +77,38 @@ class Track implements SpotifyData {
 	/**
 	 * Stores the track and its album and artists, including the linking together
 	 * 
+	 * @param		array		The payload
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store() : bool {
+	public function store(array $payload) : bool {
 
-		// If the row is already there, return TRUE
-		if(Database::findTrackBySpotifyID($this->spotifyID) !== NULL) {
-			return TRUE;
+		// Store the track if it does not exist yet
+		if(Database::findTrackBySpotifyID($this->spotifyID) === NULL) {
+
+			// Prepare the statement
+			$stmt = Database::prepare("INSERT INTO TRACKS (Name, SpotifyID, ReleaseDate) VALUES (?, ?, ?)");
+
+			// Insert the data
+			$stmt->bind_param("sss", $this->name, $this->spotifyID, $this->releaseDate);
+
+			// Execute the statement
+			$result = Database::execute($stmt);
+			if($result === FALSE) { return FALSE; }
+
 		}
 
-		// Prepare the statement
-		$stmt = Database::prepare("INSERT INTO TRACKS (Name, SpotifyID, ReleaseDate) VALUES (?, ?, ?)");
 
-		// Insert the data
-		$stmt->bind_param("sss", $this->name, $this->spotifyID, $this->releaseDate);
 
-		// Execute the statement
-		$result = Database::execute($stmt);
-		if($result === FALSE) { return FALSE; }
+		// Store the user-track link if it does not exist yet
+		if(Database::findTrackToUser($this->spotifyID, $payload->user->id) === NULL) {
 
+			$stmt = Database::prepare("INSERT INTO TRACKS_TO_USERS (TrackID, UserID) VALUES (?, ?);");
+			$stmt->bind_param("ss", $this->spotifyID, $payload->user->id);
+			$result = Database::execute($stmt);
+			if($result === FALSE) { return FALSE; }
+
+		}
+		
 
 
 		// Store the album
@@ -111,6 +124,8 @@ class Track implements SpotifyData {
 			if($result === FALSE) { return FALSE; }
 
 		}
+
+
 
 		// Store the artists and the artist-track link
 		return $this->storeArtists();
