@@ -83,7 +83,7 @@ class Track implements SpotifyData {
 		$result = Database::execute($stmt);
 		if($result === FALSE) { return FALSE; }
 
-		
+
 
 		// Store the album
 		$result = $this->album->store();
