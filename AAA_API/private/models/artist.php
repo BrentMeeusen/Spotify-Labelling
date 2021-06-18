@@ -31,9 +31,10 @@ class Artist implements SpotifyData {
 	/**
 	 * Stores the artist
 	 * 
+	 * @param		Album		The album to link to
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store() : bool {
+	public function store(Album $album) : bool {
 
 		// Prepare the statement
 		$stmt = Database::prepare("INSERT INTO ARTISTS (Name, SpotifyID) VALUES (?, ?)");
@@ -42,7 +43,11 @@ class Artist implements SpotifyData {
 		$stmt->bind_param("ss", $this->name, $this->spotifyID);
 
 		// Execute the statement and return the result
-		return Database::execute($stmt);
+		$result = Database::execute($stmt);
+		if($result === FALSE) { return FALSE; }
+
+		// Add artist-album link
+		$this->storeLink($album);
 
 	}
 
