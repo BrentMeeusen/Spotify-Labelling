@@ -38,6 +38,7 @@ STANDARD NEW VERSION:
 - Made user grant access to the application on login
 - Load in user playlists
 - Import all songs from selected playlist into the database
+- Redirecting to login screen when the token expires and a request is made
 
 ### Changed
 - Refactored tables and table creation
