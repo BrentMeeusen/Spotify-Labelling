@@ -40,7 +40,7 @@ class Tracks implements SpotifyCollection {
 
 			// TODO
 			// Store the artists
-			$res = $track->artists->store();
+			$res = $track->artists->store($track->album);
 			if($res === FALSE) { return $res; }
 
 			// TODO
