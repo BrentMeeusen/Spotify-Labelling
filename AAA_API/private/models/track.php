@@ -5,8 +5,8 @@ class Track implements SpotifyData {
 
 
 	// Declare variables
-	public Album $album;
-	public Artists $artists;
+	public ?Album $album;
+	public ?Artists $artists;
 	public string $name;
 	public int $releaseDate;
 	public string $spotifyID;
@@ -22,8 +22,8 @@ class Track implements SpotifyData {
 	 */
 	public function __construct(StdClass $data) {
 
-		$this->album = new Album($data->track->album);
-		$this->artists = Artists::create($data->track->artists);
+		$this->album = (isset($data->track->album) ? new Album($data->track->album) : null);
+		$this->artists = (isset($data->track->artists) ? Artists::create($data->track->artists) : null);
 
 		$this->name = (isset($data->track->name) ? $data->track->name : $data->Name);
 		$this->releaseDate = (isset($data->track->album->release_date) ? strtotime($data->track->album->release_date) : $data->ReleaseDate);
