@@ -17,7 +17,7 @@ $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 $tracks = Tracks::create($data);
 
 // Store them in the database
-$res = $tracks->store();
+$res = $tracks->store($payload);
 
 // If something went wrong, return an error
 if($res === FALSE) {

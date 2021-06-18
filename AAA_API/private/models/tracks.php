@@ -27,15 +27,16 @@ class Tracks implements SpotifyCollection {
 	/**
 	 * Stores the collection
 	 * 
+	 * @param		array		The payload
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store() : bool {
+	public function store(array $payload) : bool {
 
 		// For all tracks
 		foreach($this->tracks as $track) {
 
 			// Store the track
-			$res = $track->store();
+			$res = $track->store($payload);
 			if($res === FALSE) { return $res; }
 
 		}
