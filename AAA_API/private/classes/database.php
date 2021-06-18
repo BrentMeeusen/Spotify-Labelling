@@ -34,7 +34,7 @@ class Database {
 
 		$stmt = self::$conn->prepare($SQL);
 		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst preparing the statement", "SQL" => $SQL]);
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst preparing the statement", "SQL" => $SQL, "backtrace" => $debug_backtrace]);
 		}
 		return $stmt;
 
@@ -54,7 +54,7 @@ class Database {
 		
 		$res = $stmt->execute();
 		if($res === FALSE) {
-			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst executing the statement", "data" => $stmt]);
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst executing the statement", "data" => $stmt, "backtrace" => $debug_backtrace]);
 		}
 		return TRUE;
 
