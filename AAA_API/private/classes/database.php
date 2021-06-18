@@ -167,6 +167,27 @@ class Database {
 
 
 
+	/**
+	 * Finds a link between artist and track
+	 * 
+	 * @param		string		The track ID
+	 * @param		string		The album ID
+	 * @return		null		If not found
+	 * @return		array		Album and Track if found
+	 */
+	public static function findTrackToAlbum(string $trackID, string $albumID) : ?array {
+
+		$data = self::findLink("SELECT * FROM TRACKS_TO_ARTISTS WHERE TrackID = ? AND AlbmuID = ?;", $trackID, $albumID);
+		if(empty($data)) { return NULL; }
+		return [];
+		// TODO: return [self::findArtist(albumID), self::findTrack(trackID)] as an associative ID
+
+	}
+
+
+
+
+
 
 
 
