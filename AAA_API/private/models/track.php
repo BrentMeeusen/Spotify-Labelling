@@ -26,7 +26,7 @@ class Track implements SpotifyData {
 		$this->artists = (isset($data->track->artists) ? Artists::create($data->track->artists) : null);
 
 		$this->name = (isset($data->track->name) ? $data->track->name : $data->Name);
-		$this->releaseDate = (isset($data->track->album->release_date) ? strtotime($data->track->album->release_date) : $data->ReleaseDate);
+		$this->releaseDate = (isset($data->track->album->release_date) ? date("Y-m-d", $data->track->album->release_date) : $data->ReleaseDate);
 		$this->spotifyID = (isset($data->track->id) ? $data->track->id : $data->SpotifyID);
 
 	}
