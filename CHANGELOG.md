@@ -39,9 +39,12 @@ STANDARD NEW VERSION:
 - Load in user playlists
 - Import all songs from selected playlist into the database
 
+### Changed
+- Refactored tables and table creation
+- Removed and re-added all tables, with it removing all existing data
+
 ### Fixed
 - Conditions for TRUE being too strict (as 1 may also work in some specific situations)
-- Refactored tables and table creation
 
  -->
 
