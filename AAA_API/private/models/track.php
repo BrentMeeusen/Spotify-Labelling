@@ -57,7 +57,7 @@ class Track implements SpotifyData {
 
 
 	/**
-	 * Stores the track AND the links to album, artists, and user
+	 * Stores the track and its album and artists, including the linking together
 	 * 
 	 * @return		bool		Whether it was a success or not
 	 */
