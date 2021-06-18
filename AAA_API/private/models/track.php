@@ -77,10 +77,10 @@ class Track implements SpotifyData {
 	/**
 	 * Stores the track and its album and artists, including the linking together
 	 * 
-	 * @param		array		The payload
+	 * @param		StdClass	The payload
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store(array $payload) : bool {
+	public function store(StdClass $payload) : bool {
 
 		// Store the track if it does not exist yet
 		if(Database::findTrackBySpotifyID($this->spotifyID) === NULL) {
