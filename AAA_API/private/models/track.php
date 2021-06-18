@@ -41,6 +41,16 @@ class Track implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// Store the album
+		$result = $this->album->store();
+		if($result === FALSE) { return FALSE; }
+
+		// Store the artists
+		$result = $this->artists->store($this->album);
+		if($result === FALSE) { return FALSE; }
+
+
+
 		// Prepare the statement
 		$stmt = Database::prepare("INSERT INTO TRACKS (Name, SpotifyID, ReleaseDate) VALUES (?, ?, ?)");
 
@@ -50,6 +60,8 @@ class Track implements SpotifyData {
 		// Execute the statement
 		$result = Database::execute($stmt);
 		if($result === FALSE) { return FALSE; }
+
+
 
 		// Add track-album link
 		$result = $this->storeLink("ALBUMS");
