@@ -227,7 +227,7 @@ class Database {
 
 
 	/**
-	 * Finds a link between artist and track
+	 * Finds a link between album and track
 	 * 
 	 * @param		string		The track ID
 	 * @param		string		The album ID
@@ -239,7 +239,7 @@ class Database {
 		$data = self::findLink("SELECT * FROM TRACKS_TO_ALBUMS WHERE TrackID = ? AND AlbumID = ?;", $trackID, $albumID);
 		if(empty($data)) { return NULL; }
 		return [];
-		// TODO: return [self::findArtist(albumID), self::findTrack(trackID)] as an associative ID
+		// TODO: return [self::findAlbum(albumID), self::findTrack(trackID)] as an associative ID
 
 	}
 
@@ -248,7 +248,7 @@ class Database {
 
 
 	/**
-	 * Finds a link between artist and track
+	 * Finds a link between user and track
 	 * 
 	 * @param		string		The track ID
 	 * @param		string		The user ID
@@ -260,7 +260,7 @@ class Database {
 		$data = self::findLink("SELECT * FROM TRACKS_TO_USERS WHERE TrackID = ? AND UserID = ?;", $trackID, $userID);
 		if(empty($data)) { return NULL; }
 		return [];
-		// TODO: return [self::findArtist(userID), self::findTrack(trackID)] as an associative ID
+		// TODO: return [self::findUser(userID), self::findTrack(trackID)] as an associative ID
 
 	}
 
