@@ -27,16 +27,15 @@ class Artists implements SpotifyCollection {
 	/**
 	 * Stores the collection
 	 * 
-	 * @param		Track		A track to link to
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store(Track $track) : bool {
+	public function store() : bool {
 
 		// For all artists
 		foreach($this->artists as $artist) {
 
 			// Store the artist
-			$res = $artist->store($track);
+			$res = $artist->store();
 			if($res === FALSE) { return $res; }
 
 		}
