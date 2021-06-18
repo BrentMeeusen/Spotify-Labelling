@@ -52,7 +52,8 @@ interface SpotifyCollection {
 	/**
 	 * Creates a collection object from the given data
 	 * 
-	 * @param		array		The objects to create from Spotify's data
+	 * @param		array				The objects to create from Spotify's data
+	 * @return		SpotifyCollection	A Spotify Collection
 	 */
 	public static function create(array $data) : SpotifyCollection;
 
