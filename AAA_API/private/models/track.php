@@ -8,7 +8,7 @@ class Track implements SpotifyData {
 	public ?Album $album;
 	public ?Artists $artists;
 	public string $name;
-	public int $releaseDate;
+	public string $releaseDate;
 	public string $spotifyID;
 
 
