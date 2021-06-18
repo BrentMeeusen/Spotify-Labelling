@@ -64,6 +64,68 @@ class Database {
 
 
 
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Finds an entry in a specific table with one parameter
+	 * 
+	 * @param		string		The SQL to run
+	 * @param		string		The parameter
+	 * @return		array		An associative array with objects of the results
+	 */
+	private static function find(string $SQL, string $parameter) : array {
+
+		$stmt = self::prepare($SQL);
+		$stmt->bind_param("s", $parameter);
+		self::execute($stmt);
+		$res = $stmt->get_result();
+		return json_decode(json_encode($res->fetch_all(1)));
+
+	}
+
+
+
+
+
+	/**
+	 * Finds an album by Spotify ID
+	 * 
+	 * @param		string		The ID to search for
+	 * @return		null		If not found
+	 * @return		Album		If found
+	 */
+	public static function findAlbumBySpotifyID(string $spotifyID) : ?Album {
+
+		$data = self::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $spotifyID);
+		$album = new Album($data[0]);
+		print_r($album);
+		exit();
+		return NULL;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * Create a table based on an SQL
 	 * 
