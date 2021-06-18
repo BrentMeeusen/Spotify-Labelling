@@ -25,6 +25,26 @@ class Database {
 
 
 	/**
+	 * Prepares a statement
+	 * 
+	 * @param		string		SQL to prepare
+	 * @return		mysqli_stmt	The prepared statement
+	 */
+	public static function prepare(string $SQL) : mysqli_stmt {
+
+		$stmt = self::$conn->prepare($SQL);
+		if($stmt === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst preparing the statement", "SQL" => $SQL]);
+		}
+		return $stmt;
+
+	}
+
+
+
+
+
+	/**
 	 * Create a table based on an SQL
 	 * 
 	 * @return	bool	true if everything went right
