@@ -141,6 +141,25 @@ class Database {
 
 
 
+	/**
+	 * Finds an artist by Spotify ID
+	 * 
+	 * @param		string		The ID to search for
+	 * @return		null		If not found
+	 * @return		Artist		If found
+	 */
+	public static function findArtistBySpotifyID(string $spotifyID) : ?Artist {
+
+		$data = self::find("SELECT * FROM ARTISTS WHERE SpotifyID = ?;", $spotifyID);
+		$artist = (isset($data[0]) ? new Artist($data[0]) : NULL);
+		return $artist;
+
+	}
+
+
+
+
+
 
 
 
