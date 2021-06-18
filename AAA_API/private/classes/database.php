@@ -27,8 +27,8 @@ class Database {
 	/**
 	 * Prepares a statement
 	 * 
-	 * @param		string		SQL to prepare
-	 * @return		mysqli_stmt	The prepared statement
+	 * @param		string			SQL to prepare
+	 * @return		mysqli_stmt		The prepared statement
 	 */
 	public static function prepare(string $SQL) : mysqli_stmt {
 
@@ -37,6 +37,25 @@ class Database {
 			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst preparing the statement", "SQL" => $SQL]);
 		}
 		return $stmt;
+
+	}
+
+
+
+
+
+	/**
+	 * Executes a statement
+	 * 
+	 * @param		mysqli_stmt		The statement to execute
+	 * @return		bool			Whether it was a success or not
+	 */
+	public static function execute(mysqli_stmt $stmt) : bool {
+		
+		$res = $stmt->execute();
+		if($res === FALSE) {
+			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst executing the statement", "data" => $stmt]);
+		}
 
 	}
 
