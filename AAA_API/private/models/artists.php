@@ -43,6 +43,7 @@ class Artists implements SpotifyCollection {
 
 		// Return TRUE because everything went right
 		return TRUE;
+
 	}
 
 
