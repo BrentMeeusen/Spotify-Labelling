@@ -35,8 +35,15 @@ class Album implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// Prepare the statement
+		$stmt = Database::prepare("INSERT INTO ALBUMS (Name, SpotifyID) VALUES (?, ?)");
 
-		return FALSE;
+		// Insert the data
+		$stmt->bind_param("ss", $this->name, $this->spotifyID);
+
+		// Execute the statement and return the result
+		return Database::execute($stmt);
+
 	}
 
 }
