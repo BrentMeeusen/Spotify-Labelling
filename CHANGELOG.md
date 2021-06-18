@@ -36,9 +36,12 @@ STANDARD NEW VERSION:
 ### Added
 - Creating a new payload from the database values as soon as the token is required so we are up-to-date
 - Made user grant access to the application on login
+- Load in user playlists
+- Import all songs from selected playlist into the database
 
 ### Fixed
 - Conditions for TRUE being too strict (as 1 may also work in some specific situations)
+- Refactored tables and table creation
 
  -->
 
