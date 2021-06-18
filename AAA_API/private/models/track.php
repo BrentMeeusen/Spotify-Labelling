@@ -68,7 +68,7 @@ class Track implements SpotifyData {
 		$artistAlbum = Database::prepare("INSERT INTO ARTISTS_TO_ALBUMS (AlbumID, ArtistID) VALUES (?, ?);");
 
 		// For every artist
-		foreach($this->artists as $artist) {
+		foreach($this->artists->artists as $artist) {
 
 			// Store the artist
 			$result = $artist->store();
