@@ -34,14 +34,6 @@ interface SpotifyCollection {
 
 
 	/**
-	 * Stores the entire collection in the database
-	 * 
-	 * @return		bool		Whether it was a success or not
-	 */
-	public function store() : bool;
-
-
-	/**
 	 * Creates a collection object from the given data
 	 * 
 	 * @param		array				The objects to create from Spotify's data
