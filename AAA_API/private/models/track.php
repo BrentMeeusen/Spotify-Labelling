@@ -105,9 +105,9 @@ class Track implements SpotifyData {
 		// Store the album-track link if it does not exist yet
 		if(Database::findTrackToAlbum($this->spotifyID, $this->album->spotifyID) === NULL) {
 
-			$stmt = self::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
+			$stmt = Database::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
 			$stmt->bind_param("ss", $this->spotifyID, $this->album->spotifyID);
-			$result = self::execute($stmt);
+			$result = Database::execute($stmt);
 			if($result === FALSE) { return FALSE; }
 
 		}
