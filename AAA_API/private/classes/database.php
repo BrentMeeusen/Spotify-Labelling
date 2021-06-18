@@ -551,16 +551,16 @@ class Database {
 	 */
 	public static function initialise(mysqli $conn) {
 
-		self::createUsers();
-		self::createLabels();
-		self::createRights();
-		self::createRightsToUsers();
-		self::createTracks();
-		self::createArtists();
-		self::createAlbums();
-		self::createTracksToArtists();
-		self::createTracksToAlbums();
-		self::createTracksToUsers();
+		self::createUsers($conn);
+		self::createLabels($conn);
+		self::createRights($conn);
+		self::createRightsToUsers($conn);
+		self::createTracks($conn);
+		self::createArtists($conn);
+		self::createAlbums($conn);
+		self::createTracksToArtists($conn);
+		self::createTracksToAlbums($conn);
+		self::createTracksToUsers($conn);
 
 
 		// Insert special rights into table
