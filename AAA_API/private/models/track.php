@@ -52,6 +52,11 @@ class Track implements SpotifyData {
 			$result = $artist->store();
 			if($result === FALSE) { return FALSE; }
 
+			// If the link already exists, continue
+			if(Database::findArtistToTrack($this->spotifyID, $artist->spotifyID) !== NULL) {
+				continue;
+			}
+
 			// Prepare the artist-track link
 			$artistTrack->bind_param("ss", $this->spotifyID, $artist->spotifyID);
 
