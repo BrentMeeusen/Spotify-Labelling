@@ -34,19 +34,24 @@ class Tracks implements SpotifyCollection {
 		// For all tracks
 		foreach($this->tracks as $track) {
 
-			// Store the album
-			$res = $track->album->store();
-			if($res === FALSE) { return $res; }
-
-			// TODO
-			// Store the artists
-			$res = $track->artists->store($track->album);
-			if($res === FALSE) { return $res; }
-
-			// TODO
-			// Store the track which will also store the links to the album, artists, and user
+			// Store the track
 			$res = $track->store();
 			if($res === FALSE) { return $res; }
+
+
+			// // Store the album
+			// $res = $track->album->store();
+			// if($res === FALSE) { return $res; }
+
+			// // TODO
+			// // Store the artists
+			// $res = $track->artists->store($track->album);
+			// if($res === FALSE) { return $res; }
+
+			// // TODO
+			// // Store the track which will also store the links to the album, artists, and user
+			// $res = $track->store();
+			// if($res === FALSE) { return $res; }
 
 		}
 
