@@ -265,29 +265,12 @@ class Database {
 	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
 
 		// Drop the table if it exists
-		$stmt = $conn->prepare("DROP TABLE IF EXISTS $table;");
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
-
-		// Execute the statement and check whether nothing went wrong
-		$res = $stmt->execute();
-		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
-
+		self::prepare("DROP TABLE IF EXISTS $table;");
+		self::execute();
 
 		// Prepare the statement and check whether it's fine
-		$stmt = $conn->prepare($SQL);
-		if($stmt === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst preparing table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
-
-		// Execute the statement and check whether nothing went wrong
-		$res = $stmt->execute();
-		if($res === FALSE) {
-			ApiResponse::httpResponse(500, [ "error" => "Something went wrong whilst creating table \"$table\"", "db_errno" => $conn->errno, "db_error" => $conn->error ]);
-		}
+		self::prepare($SQL);
+		self::execute();
 
 		// Return true, because nothing went wrong
 		return TRUE;
