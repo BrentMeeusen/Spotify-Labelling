@@ -327,27 +327,12 @@ class Database {
 		$res = self::createTable($conn, $SQL, $tableName);
 
 
-		// Create ARTISTS_TO_ALBUMS table
-		$tableName = "ARTISTS_TO_ALBUMS";
+		// Create USERS_TRACKS_TO_USERSTO_TRACKS table
+		$tableName = "TRACKS_TO_USERS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			ArtistID		VARCHAR(50)		NOT NULL,
-			AlbumID			VARCHAR(50)		NOT NULL,
-
-			PRIMARY KEY (ID),
-			FOREIGN KEY (ArtistID) REFERENCES ARTISTS (SpotifyID) ON DELETE CASCADE,
-			FOREIGN KEY (AlbumID) REFERENCES ALBUMS (SpotifyID) ON DELETE CASCADE
-		);";
-
-		$res = self::createTable($conn, $SQL, $tableName);
-
-
-		// Create USERS_TO_TRACKS table
-		$tableName = "USERS_TO_TRACKS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			UserID			VARCHAR(32)		NOT NULL,
 			TrackID			VARCHAR(50)		NOT NULL,
+			UserID			VARCHAR(32)		NOT NULL,
 
 			PRIMARY KEY (ID),
 			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
