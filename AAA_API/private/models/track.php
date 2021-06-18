@@ -97,11 +97,15 @@ class Track implements SpotifyData {
 		$result = $this->album->store();
 		if($result === FALSE) { return FALSE; }
 
-		// TODO: Store the album-track link
-		$stmt = self::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
-		$stmt->bind_param("ss", $this->spotifyID, $this->album->spotifyID);
-		$result = self::execute($stmt);
-		if($result === FALSE) { return FALSE; }
+		// Store the album-track link if it does not exist yet
+		if(Database::findTrackToAlbum($this->spotifyID, $this->album->spotifyID) === NULL) {
+
+			$stmt = self::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
+			$stmt->bind_param("ss", $this->spotifyID, $this->album->spotifyID);
+			$result = self::execute($stmt);
+			if($result === FALSE) { return FALSE; }
+			
+		}
 
 		// Store the artists and the artist-track link
 		return $this->storeArtists();
