@@ -321,14 +321,18 @@ class Database {
 
 
 
-	/**
-	 * Creates the tables needed
-	 * 
-	 * @param	mysqli 	database to create the tables in
-	 */
-	public static function initialise(mysqli $conn) {
 
-		// Create USERS table
+
+
+
+
+	/**
+	 * Creates USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createUsers(mysqli $conn) {
+
 		$tableName = "USERS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL 	AUTO_INCREMENT,
@@ -344,11 +348,21 @@ class Database {
 			PRIMARY KEY (ID),
 			UNIQUE(PublicID)
 		);";
+		$res = self::createTable($conn, $SQL, $tableName);
 
-		// $res = self::createTable($conn, $SQL, $tableName);
+	}
 
 
-		// Create LABELS table
+
+
+
+	/**
+	 * Creates LABELS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createLabels(mysqli $conn) {
+
 		$tableName = "LABELS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -361,26 +375,21 @@ class Database {
 			FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			UNIQUE (PublicID)
 		);";
+		$res = self::createTable($conn, $SQL, $tableName);
 
-		// $res = self::createTable($conn, $SQL, $tableName);
-
-
-
+	}
 
 
 
 
 
+	/**
+	 * Creates RIGHTS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createRights(mysqli $conn) {
 
-
-		// Add row to USERS table
-		$stmt = $conn->prepare("ALTER TABLE USERS ADD COLUMN 
-		AccessToken		VARCHAR(240);");
-		$res = $stmt->execute();
-
-
-
-		// Create RIGHTS table
 		$tableName = "RIGHTS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -389,14 +398,20 @@ class Database {
 			
 			PRIMARY KEY (ID)
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
+	}
 
-		// Insert special rights into table
-		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
-		$res = $stmt->execute();
 
-		// Create RIGHTS_TO_USERS table
+
+
+
+	/**
+	 * Creates RIGHTS_TO_USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createRightsToUsers(mysqli $conn) {
+
 		$tableName = "RIGHTS_TO_USERS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -407,10 +422,21 @@ class Database {
 			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID) ON DELETE CASCADE
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
-		// Create TRACKS table
+	}
+
+
+
+
+
+	/**
+	 * Creates TRACKS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createTracks(mysqli $conn) {
+
 		$tableName = "TRACKS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -422,11 +448,21 @@ class Database {
 			PRIMARY KEY (ID),
 			UNIQUE (SpotifyID)
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
-		// Create ARTISTS table
+
+
+
+
+	/**
+	 * Creates ARTISTS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createArtists(mysqli $conn) {
+
 		$tableName = "ARTISTS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -436,11 +472,21 @@ class Database {
 			PRIMARY KEY (ID),
 			UNIQUE (SpotifyID)
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
-		// Create ALBUMS table
+
+
+
+
+	/**
+	 * Creates ALBUMS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createAlbums(mysqli $conn) {
+
 		$tableName = "ALBUMS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -450,11 +496,21 @@ class Database {
 			PRIMARY KEY (ID),
 			UNIQUE (SpotifyID)
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
-		// Create TRACKS_TO_ARTISTS table
+
+
+
+
+	/**
+	 * Creates TRACKS_TO_ARTISTS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createTracksToArtists(mysqli $conn) {
+
 		$tableName = "TRACKS_TO_ARTISTS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -465,11 +521,21 @@ class Database {
 			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
 			FOREIGN KEY (ArtistID) REFERENCES ARTISTS (SpotifyID) ON DELETE CASCADE
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
-		// Create TRACKS_TO_ALBUMS table
+
+
+
+
+	/**
+	 * Creates TRACKS_TO_ALBUMS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createTracksToAlbums(mysqli $conn) {
+
 		$tableName = "TRACKS_TO_ALBUMS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -480,11 +546,21 @@ class Database {
 			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
 			FOREIGN KEY (AlbumID) REFERENCES ALBUMS (SpotifyID) ON DELETE CASCADE
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
-		// Create USERS_TRACKS_TO_USERSTO_TRACKS table
+
+
+
+
+	/**
+	 * Creates TRACKS_TO_USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createTracksToUsers(mysqli $conn) {
+
 		$tableName = "TRACKS_TO_USERS";
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
@@ -495,10 +571,47 @@ class Database {
 			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE
 		);";
-
 		$res = self::createTable($conn, $SQL, $tableName);
 
+	}
 
+
+
+
+
+
+
+
+
+
+	/**
+	 * Creates the tables needed
+	 * 
+	 * @param	mysqli 	database to create the tables in
+	 */
+	public static function initialise(mysqli $conn) {
+
+		// self::createUsers();
+		// self::createLabels();
+		self::createRights();
+		self::createRightsToUsers();
+		self::createTracks();
+		self::createArtists();
+		self::createAlbums();
+		self::createTracksToArtists();
+		self::createTracksToAlbums();
+		self::createTracksToUsers();
+
+
+		// Add column to USERS table
+		$stmt = $conn->prepare("ALTER TABLE USERS ADD COLUMN 
+		AccessToken		VARCHAR(240);");
+		$res = $stmt->execute();
+
+
+		// Insert special rights into table
+		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
+		$res = $stmt->execute();
 
 	}
 
