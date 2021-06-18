@@ -105,10 +105,8 @@ class Database {
 	public static function findAlbumBySpotifyID(string $spotifyID) : ?Album {
 
 		$data = self::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $spotifyID);
-		$album = new Album($data[0]);
-		print_r($album);
-		exit();
-		return NULL;
+		$album = (isset($data[0]) ? new Album($data[0]) : NULL);
+		return $album;
 
 	}
 
