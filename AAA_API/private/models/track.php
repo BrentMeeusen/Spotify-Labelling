@@ -63,11 +63,11 @@ class Track implements SpotifyData {
 	 */
 	public function store() : bool {
 
-		// Store the album
+		// Store the album and the track-album link
 		$result = $this->storeAlbum();
 		if($result === FALSE) { return FALSE; }
 
-		// Store the artists
+		// Store the artists, the artist-album link and the artist-track link
 		$result = $this->artists->store($this->album);
 		if($result === FALSE) { return FALSE; }
 
