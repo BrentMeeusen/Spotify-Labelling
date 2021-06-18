@@ -41,8 +41,15 @@ class Track implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// Prepare the statement
+		$stmt = Database::prepare("INSERT INTO TRACKS (Name, SpotifyID, ReleaseDate) VALUES (?, ?, ?)");
 
-		return FALSE;
+		// Insert the data
+		$stmt->bind_param("sss", $this->name, $this->spotifyID, $this->releaseDate);
+
+		// Execute the statement
+		$result = Database::execute($stmt);
+
 	}
 
 }
