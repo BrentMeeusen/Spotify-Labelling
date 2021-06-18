@@ -265,12 +265,12 @@ class Database {
 	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
 
 		// Drop the table if it exists
-		self::prepare("DROP TABLE IF EXISTS $table;");
-		self::execute();
+		$stmt = self::prepare("DROP TABLE IF EXISTS $table;");
+		self::execute($stmt);
 
 		// Prepare the statement and check whether it's fine
-		self::prepare($SQL);
-		self::execute();
+		$stmt = self::prepare($SQL);
+		self::execute($stmt);
 
 		// Return true, because nothing went wrong
 		return TRUE;
