@@ -35,6 +35,11 @@ class Album implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// If the row is already there, return TRUE
+		if(Database::findAlbumBySpotifyID($this->spotifyID) !== NULL) {
+			return TRUE;
+		}
+
 		// Prepare the statement
 		$stmt = Database::prepare("INSERT INTO ALBUMS (Name, SpotifyID) VALUES (?, ?)");
 
