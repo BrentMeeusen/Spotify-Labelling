@@ -96,6 +96,28 @@ class Database {
 
 
 	/**
+	 * Finds an entry in a specific table with one parameter
+	 * 
+	 * @param		string		The SQL to run
+	 * @param		string		The first parameter
+	 * @param		string		The second parameter
+	 * @return		array		An associative array with objects of the results
+	 */
+	private static function findLink(string $SQL, string $p1, string $p2) : array {
+
+		$stmt = self::prepare($SQL);
+		$stmt->bind_param("ss", $p1, $p2);
+		self::execute($stmt);
+		$res = $stmt->get_result();
+		return json_decode(json_encode($res->fetch_all(1)));
+
+	}
+
+
+
+
+
+	/**
 	 * Finds an album by Spotify ID
 	 * 
 	 * @param		string		The ID to search for
