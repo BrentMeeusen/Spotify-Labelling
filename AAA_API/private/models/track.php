@@ -35,6 +35,28 @@ class Track implements SpotifyData {
 
 
 	/**
+	 * Stores the album and the track-album link
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	private function storeAlbum() : bool {
+
+		// Store the album
+		$result = $this->album->store();
+		if($result === FALSE) { return FALSE; }
+
+		// Store the link
+		$stmt = Database::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
+		$stmt->bind_param("ss", $this->spotifyID, $this->album->spotifyID);
+		return Database::execute($stmt);
+
+	}
+
+
+
+
+
+	/**
 	 * Stores the track AND the links to album, artists, and user
 	 * 
 	 * @return		bool		Whether it was a success or not
@@ -42,7 +64,7 @@ class Track implements SpotifyData {
 	public function store() : bool {
 
 		// Store the album
-		$result = $this->album->store();
+		$result = $this->storeAlbum();
 		if($result === FALSE) { return FALSE; }
 
 		// Store the artists
