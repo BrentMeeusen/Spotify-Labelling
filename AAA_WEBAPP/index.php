@@ -27,7 +27,7 @@ session_start();
 		
 			<h1>Spotify Labelling</h1>
 
-			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="assets/auth.php">
+			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="assets/php/auth.php">
 
 			<input name="input Identifier"		type="text"			placeholder="USERNAME OR EMAIL ADDRESS">
 			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
