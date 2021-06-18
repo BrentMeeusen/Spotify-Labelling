@@ -46,6 +46,7 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Conditions for TRUE being too strict (as 1 may also work in some specific situations)
+- Logout including a file that was not found bug
 
  -->
 
