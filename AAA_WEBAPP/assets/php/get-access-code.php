@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$VARIABLES = json_decode(file_get_contents("../../../SpotifyLabelling.json"));
+$VARIABLES = json_decode(file_get_contents("../../../../SpotifyLabelling.json"));
 
 // If we get an "Access denied" error, return to the user
 if(isset($_GET["error"])) {
