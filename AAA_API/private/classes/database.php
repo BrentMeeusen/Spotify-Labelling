@@ -298,29 +298,6 @@ class Database {
 
 
 
-	/**
-	 * Updates constraints
-	 * 
-	 * @param	mysqli 	database to create the tables in
-	 */
-	public static function updateConstraint(mysqli $conn) {
-
-		$table = "LABELS";
-
-
-
-		$stmt = self::prepare("ALTER TABLE $table DROP FOREIGN KEY Creator;");
-		$res = self::execute($stmt);
-
-		$stmt = self::prepare("ALTER TABLE $table ADD CONSTRAINT owner_account FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE;");
-		$res = self::execute();
-		
-	}
-
-
-
-
-
 
 
 
