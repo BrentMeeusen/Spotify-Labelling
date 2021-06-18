@@ -34,7 +34,6 @@ class Tracks implements SpotifyCollection {
 		// For all tracks
 		foreach($this->tracks as $track) {
 
-			// TODO
 			// Store the album
 			$res = $track->album->store();
 			if($res === FALSE) { return $res; }
