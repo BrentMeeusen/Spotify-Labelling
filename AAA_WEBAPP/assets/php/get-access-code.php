@@ -21,7 +21,7 @@ if(!isset($_GET["code"])) {
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],
-	"redirect_uri" => $VARIABLES->BASE->APP . "assets/get-access-code.php"
+	"redirect_uri" => $VARIABLES->BASE->APP . "assets/php/get-access-code.php"
 ]);
 $context = stream_context_create([
 	"http" => [
