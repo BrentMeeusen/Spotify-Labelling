@@ -29,7 +29,7 @@ class Album implements SpotifyData {
 
 
 	/**
-	 * Stores the track AND the links to album, artists, and user
+	 * Stores the album
 	 * 
 	 * @return		bool		Whether it was a success or not
 	 */
