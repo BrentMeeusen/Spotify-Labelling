@@ -15,7 +15,7 @@ else { $_GET["message"] = $_SESSION["message"]; }
 $_GET["redirect"] = "";
 
 // Redirect to login
-include_once("../assets/php/redirect.php");
+header("Location: ../assets/php/redirect.php?redirect=&code=200&message=Logged%20out%20successfully.");
 
 
 ?>
