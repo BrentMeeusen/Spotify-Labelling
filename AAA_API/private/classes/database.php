@@ -56,6 +56,7 @@ class Database {
 		if($res === FALSE) {
 			ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst executing the statement", "data" => $stmt]);
 		}
+		return TRUE;
 
 	}
 
