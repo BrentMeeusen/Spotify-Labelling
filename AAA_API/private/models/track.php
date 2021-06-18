@@ -49,6 +49,14 @@ class Track implements SpotifyData {
 
 		// Execute the statement
 		$result = Database::execute($stmt);
+		if($result === FALSE) { return FALSE; }
+
+		// Add track-album link
+		$result = $this->storeLink("ALBUMS");
+		if($result === FALSE) { return FALSE; }
+
+		// Add track-artists link
+		return $this->storeLinks("ARTISTS");
 
 	}
 
