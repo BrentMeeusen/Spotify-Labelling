@@ -177,7 +177,7 @@ class Database {
 	 */
 	public static function findTrackToAlbum(string $trackID, string $albumID) : ?array {
 
-		$data = self::findLink("SELECT * FROM TRACKS_TO_ALBUMS WHERE TrackID = ? AND AlbmuID = ?;", $trackID, $albumID);
+		$data = self::findLink("SELECT * FROM TRACKS_TO_ALBUMS WHERE TrackID = ? AND AlbumID = ?;", $trackID, $albumID);
 		if(empty($data)) { return NULL; }
 		return [];
 		// TODO: return [self::findArtist(albumID), self::findTrack(trackID)] as an associative ID
