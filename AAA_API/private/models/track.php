@@ -81,6 +81,11 @@ class Track implements SpotifyData {
 	 */
 	public function store() : bool {
 
+		// If the row is already there, return TRUE
+		if(Database::findTrackBySpotifyID($this->spotifyID) !== NULL) {
+			return TRUE;
+		}
+
 		// Prepare the statement
 		$stmt = Database::prepare("INSERT INTO TRACKS (Name, SpotifyID, ReleaseDate) VALUES (?, ?, ?)");
 
