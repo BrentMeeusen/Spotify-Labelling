@@ -94,6 +94,9 @@ button.icon:focus, button.icon > img:focus, button.icon:focus > img {
 .module.text {
 	padding: 0 2em;
 }
+.module.text h2 {
+	margin-top: 1em;
+}
 .module.text p + p {
 	margin-top: 1em;
 }
