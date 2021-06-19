@@ -27,8 +27,6 @@ session_start();
 				<p id="popup-text"></p>
 			</div>
 
-			<?php include_once("../assets/snippets/navigation.php"); ?>
-
 			<!-- Title -->
 			<h1><a href="../dashboard">Spotify Labelling</a></h1>
 
@@ -44,6 +42,8 @@ session_start();
 				<p>Now you can create the actual playlists by selecting the corresponding rules. All that is left now is to click the "Update Spotify playlists" button, which will update existing linked playlists and create the new playlists if you created new playlists.</p>
 
 			</div>	<!-- .module -->
+
+			<p class="footer"><a href="../">Back</a></p>
 			
 		</div>	<!-- .main-wrapper -->
 
