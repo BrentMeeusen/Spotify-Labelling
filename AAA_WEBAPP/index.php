@@ -30,7 +30,7 @@ session_start();
 
 			<div class="module text">
 
-				<p></p>
+				<p>Spotify is a great platform for streaming music, but to me it lacks one key feature: smart playlists. They generate playlists based on a couple of rules that you can set. So I decided to create it myself! </p>
 
 			</div>
 
