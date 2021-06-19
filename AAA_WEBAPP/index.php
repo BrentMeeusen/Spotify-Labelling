@@ -32,6 +32,12 @@ session_start();
 
 				<p>Spotify is a great platform for streaming music, but to me it lacks one key feature: smart playlists. They generate playlists based on a couple of rules that you can set. So I decided to create it myself! </p>
 
+				<ul class="links">
+					<li><a href="how-it-works">How it works</a></li>
+					<li><a href="login">Login</a></li>
+					<li><a href="register">Register</a></li>
+				</ul>
+
 				<h2>How it works</h2>
 				<p>First, you <a href="register">create an account</a>. After verifying your account by clicking the link in the email, you can <a href="login">login</a>. This is when you give the application access to your Spotify account which is required for this to work.</p>
 				<p>Once you've logged in, you can now import songs from your playlists into the app, and create your labels. When you got your songs and labels, you can now start connecting them together.</p>
