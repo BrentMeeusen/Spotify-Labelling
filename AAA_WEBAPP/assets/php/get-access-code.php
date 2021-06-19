@@ -21,7 +21,7 @@ if(!isset($_GET["code"])) {
 $parameters = http_build_query([
 	"grant_type" => "authorization_code",
 	"code" => $_GET["code"],
-	"redirect_uri" => $VARIABLES->BASE->APP . "assets/php/get-access-code.php"
+	"redirect_uri" => "http://spotify-labelling.21webb.nl/assets/php/get-access-code.php"
 ]);
 $context = stream_context_create([
 	"http" => [
@@ -57,7 +57,7 @@ $context = stream_context_create([
 	]
 ]);
 
-$res = @file_get_contents($VARIABLES->BASE->API . "api/v1/users/add-token/", false, $context);
+$res = @file_get_contents("http://spotify-labelling-api.21webb.nl/api/v1/users/add-token/", false, $context);
 $jwt = json_decode($res)->jwt;
 setcookie("jwt", $jwt, time() + 3600, "/");
 
