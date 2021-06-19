@@ -95,11 +95,18 @@ button.icon:focus, button.icon > img:focus, button.icon:focus > img {
 	padding: 0 2em;
 	font-size: 1.125rem;
 }
-.module.text h2 {
+.module.text p + p, .module.text h2, .module .links {
 	margin-top: 1em;
 }
-.module.text p + p {
-	margin-top: 1em;
+.module .links {
+	list-style-type: none;
+}
+.module .links * {
+	padding: 0.25em 0;
+	color: var(--current--link);
+}
+.module .links *:hover {
+	color: var(--current--info);
 }
 
 .module {
