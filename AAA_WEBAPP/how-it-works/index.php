@@ -37,13 +37,11 @@ session_start();
 			<!-- Content -->
 			<div class="module text">
 
-				<p>An extensive explanation about how it works.</p>
+				<p>First, you <a href="register">create an account</a>. After verifying your account by clicking the link in the email, you can <a href="login">login</a>. This is when you give the application access to your Spotify account which is required for this to work.</p>
 
-				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit non eveniet eos dolores laborum sed molestiae sint maiores sequi! Dolorum accusantium sapiente quisquam consequatur voluptates distinctio pariatur neque ab facere, libero voluptatem saepe totam nihil dicta ea maxime incidunt quo. Amet unde placeat, illum blanditiis perspiciatis quisquam. Quam, labore sequi.</p>
-				<p>Fugiat reiciendis dicta iusto saepe sapiente nemo earum veniam ea rerum recusandae, maxime facere culpa minima eos facilis cupiditate. Qui consequatur excepturi provident accusamus, fugiat error dolorum rem tenetur at tempora aspernatur maxime. Rem explicabo commodi ab placeat quam vitae quod illum ratione perspiciatis nostrum repellendus, quasi est corporis temporibus?</p>
-				<p>Ipsa consequuntur dignissimos doloribus temporibus, eius nobis! Blanditiis placeat aliquam rerum eveniet praesentium labore veniam quaerat. Eum, reprehenderit sapiente est veritatis corporis nesciunt voluptatibus! Numquam fugiat ipsam aut ipsa? Quo saepe maiores quisquam, illo dolores impedit ut nisi dolorem sunt sint voluptatibus consectetur alias, similique necessitatibus sapiente ea veniam! Recusandae?</p>
-				<p>Voluptatibus vitae laudantium tenetur ab adipisci porro dicta molestiae repudiandae. Tenetur reprehenderit ex, sint in vitae dicta numquam illo et nihil non, deleniti autem? Voluptatem fugit animi error minus voluptatum eaque, ea molestias quia modi vel nisi asperiores accusamus assumenda illum. Ex odit qui tempore placeat recusandae sequi, pariatur magnam.</p>
-				<p>Illum modi excepturi voluptatem ut quaerat minus mollitia inventore repudiandae, ratione illo molestiae ipsum nam, facere odio laudantium, laboriosam suscipit. Illo, et! Illo, repellat earum porro beatae voluptates accusantium reiciendis magni. Deleniti ad sequi, hic quidem dicta est quo quibusdam repellat dolorum optio quisquam fugit dolor enim, vel, ratione earum!</p>
+				<p>Once you've logged in, you can now import songs from your playlists into the app, and create your labels. When you got your songs and labels, you can now start connecting them together.</p>
+
+				<p>Now you can create the actual playlists by selecting the corresponding rules. All that is left now is to click the "Update Spotify playlists" button, which will update existing linked playlists and create the new playlists if you created new playlists.</p>
 
 			</div>	<!-- .module -->
 			
@@ -55,13 +53,6 @@ session_start();
 		// Load JavaScript
 		include_once("../assets/snippets/javascript-files.php");
 		?>
-
-		<script>
-
-		// Protect the page
-		PageProtect.protect({ verifiedLevel: 2 });
-
-		</script>
 
 	</body>
 </html>

@@ -38,11 +38,6 @@ session_start();
 					<li><a href="register">Register</a></li>
 				</ul>
 
-				<h2>How it works</h2>
-				<p>First, you <a href="register">create an account</a>. After verifying your account by clicking the link in the email, you can <a href="login">login</a>. This is when you give the application access to your Spotify account which is required for this to work.</p>
-				<p>Once you've logged in, you can now import songs from your playlists into the app, and create your labels. When you got your songs and labels, you can now start connecting them together.</p>
-				<p>Now you can create the actual playlists by selecting the corresponding rules. All that is left now is to click the "Update Spotify playlists" button, which will update existing linked playlists and create the new playlists if you created new playlists.</p>
-
 			</div>
 
 			<!-- <img class="lazy-image" style="margin-top: 100vh;" data-src="../assets/images/test-image", data-extension="png"> -->
