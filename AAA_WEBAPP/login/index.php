@@ -42,7 +42,7 @@ session_start();
 
 
 
-			<p class="footer">Don't have an account yet? Click <a href="register">here</a>!</p>
+			<p class="footer">Don't have an account yet? Click <a href="../register">here</a>!</p>
 
 		</div>
 

@@ -44,7 +44,7 @@
 
 
 
-			<p class="footer">Already have an account? Click <a href="../">here</a>!</p>
+			<p class="footer">Already have an account? Click <a href="../login">here</a>!</p>
 
 		</div>
 
