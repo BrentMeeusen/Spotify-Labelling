@@ -43,7 +43,7 @@ session_start();
 
 			</div>	<!-- .module -->
 
-			<p class="footer"><a href="../">Back</a></p>
+			<p class="footer"><a onclick="window.history.go(-1);">Back</a></p>
 			
 		</div>	<!-- .main-wrapper -->
 
