@@ -9,11 +9,11 @@ session_start();
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Spotify Labelling</title>
+		<title>Spotify Labelling | Login</title>
 		
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
-		<link rel="stylesheet" type="text/css" href="assets/css/general.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/general.css">
 	</head>
 
 
@@ -27,7 +27,7 @@ session_start();
 		
 			<h1>Spotify Labelling</h1>
 
-			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="assets/php/auth.php">
+			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="../assets/php/auth.php">
 
 			<input name="input Identifier"		type="text"			placeholder="USERNAME OR EMAIL ADDRESS">
 			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
@@ -46,14 +46,14 @@ session_start();
 
 		</div>
 
-		
-		
+
+
 		<?php
 		// Load JavaScript
-		include_once("assets/snippets/javascript-files.php");
+		include_once("../assets/snippets/javascript-files.php");
 		
 		// Load showing result after redirect
-		include_once("assets/snippets/show-redirect-result.php");
+		include_once("../assets/snippets/show-redirect-result.php");
 		?>
 
 		<script>
