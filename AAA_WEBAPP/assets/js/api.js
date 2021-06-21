@@ -63,9 +63,9 @@ Api.showTracks = async (tracks) => {
 
 	// Add header
 	const header = Api.createElement("tr");
-	header.appendChild("th", { innerHTML: "Song" });
-	header.appendChild("th", { innerHTML: "Released at" });
-	header.appendChild("th", { innerHTML: "Added at" });
+	header.appendChild(Api.createElement("th", { innerHTML: "Song" }));
+	header.appendChild(Api.createElement("th", { innerHTML: "Released at" }));
+	header.appendChild(Api.createElement("th", { innerHTML: "Added at" }));
 	output.appendChild(header);
 
 	// For each track
