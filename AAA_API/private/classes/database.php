@@ -282,6 +282,7 @@ class Database {
 	public static function getTracksFromUser(string $userID) : Tracks {
 
 		// Get all tracks the user has
+		// TODO: also get artist and album
 		$tracks = self::find("SELECT T.*, TTU.AddedAt FROM TRACKS AS T JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID WHERE TTU.UserID = ?;", $userID);
 
 		// Create Track objects and store them in an array
