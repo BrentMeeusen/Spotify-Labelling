@@ -283,7 +283,14 @@ class Database {
 
 		// Get all tracks the user has
 		// TODO: also get artist and album
-		$tracks = self::find("SELECT T.*, TTU.AddedAt FROM TRACKS AS T JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID WHERE TTU.UserID = ?;", $userID);
+		$tracks = self::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ART.Name AS ArtistName FROM TRACKS AS T 
+			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
+			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
+			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
+			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
+			WHERE TTU.UserID = ?;", 
+			$userID);
 
 		// Create Track objects and store them in an array
 		$ret = [];
