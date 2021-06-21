@@ -35,8 +35,6 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<button class="wide" id="import-songs">IMPORT SONGS</button>
-
 				<div class="table-container">
 					<table>
 						<tbody id="songs">
