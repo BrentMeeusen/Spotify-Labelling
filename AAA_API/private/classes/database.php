@@ -572,6 +572,7 @@ class Database {
 	 */
 	public static function initialise(mysqli $conn) {
 
+		// Create tables
 		self::createUsers($conn);
 		self::createLabels($conn);
 		self::createRights($conn);
@@ -582,7 +583,6 @@ class Database {
 		self::createTracksToArtists($conn);
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
-
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
