@@ -282,7 +282,7 @@ class Database {
 	public static function getTracksFromUser(string $userID) : Tracks {
 
 		// Get all tracks the user has
-		// TODO: also get artist and album
+		// TODO: figure out what happens on multiple artists with the same track!
 		$tracks = self::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ART.Name AS ArtistName FROM TRACKS AS T 
 			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
