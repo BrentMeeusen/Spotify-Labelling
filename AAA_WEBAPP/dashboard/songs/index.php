@@ -34,6 +34,14 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
+				<div class="table-container">
+					<table>
+						<tbody id="songs">
+
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 
 		</div>	<!-- .main-wrapper -->
