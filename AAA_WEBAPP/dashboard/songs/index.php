@@ -36,7 +36,7 @@ session_start();
 
 				<div class="table-container">
 					<table>
-						<tbody id="songs">
+						<tbody id="tracks">
 
 						</tbody>
 					</table>
@@ -57,6 +57,15 @@ session_start();
 
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
+
+		// Load tracks
+		window.addEventListener("load", async () => {
+			
+			document.getElementById("tracks").innnerHTML = "Loading...";
+			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
+			Api.showTracks(res.data.tracks);
+
+		});
 
 		</script>
 
