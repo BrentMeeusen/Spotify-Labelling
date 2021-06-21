@@ -61,6 +61,14 @@ Api.showTracks = async (tracks) => {
 	const output = document.getElementById("tracks");
 	output.innerHTML = "";
 
+	// Add header
+	const header = Api.createElement("tr");
+	header.appendChild("th", { innerHTML: "Song" });
+	header.appendChild("th", { innerHTML: "Released at" });
+	header.appendChild("th", { innerHTML: "Added at" });
+	output.appendChild(header);
+
+	// For each track
 	for(const track of tracks) {
 
 		// Create row, add name, releaseDate, addedAt
