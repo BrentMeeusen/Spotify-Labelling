@@ -13,8 +13,7 @@ session_start();
 		
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
-		<link rel="stylesheet" type="text/css" href="../../assets/css/general.css">
-		<link rel="stylesheet" type="text/css" href="../../assets/css/dashboard.css">
+		<?php include_once("../../assets/snippets/css.php"); ?>
 	</head>
 
 
