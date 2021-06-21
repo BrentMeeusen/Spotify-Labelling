@@ -10,6 +10,7 @@ class Track implements SpotifyData {
 	public string $name;
 	public string $releaseDate;
 	public string $spotifyID;
+	public ?string $addedAt;
 
 
 
@@ -28,6 +29,7 @@ class Track implements SpotifyData {
 		$this->name = (isset($data->track->name) ? $data->track->name : $data->Name);
 		$this->releaseDate = (isset($data->track->album->release_date) ? date("Y-m-d", strtotime($data->track->album->release_date)) : $data->ReleaseDate);
 		$this->spotifyID = (isset($data->track->id) ? $data->track->id : $data->SpotifyID);
+		$this->addedAt = (isset($data->AddedAt) ? $data->AddedAt : null);
 
 	}
 
