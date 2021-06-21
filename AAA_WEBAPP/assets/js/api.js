@@ -50,6 +50,22 @@ Api.sendRequest = async (location, method, values = {}) => {
 
 
 /**
+ * Shows the tracks
+ * 
+ * @param {array} tracks The tracks to show
+ */
+Api.showTracks = async (tracks) => {
+
+	console.log("Placeholder method.");
+	console.log(tracks);
+
+}
+
+
+
+
+
+/**
  * Shows the playlists for import
  * 
  * @param {array} playlists The playlists which can be imported
