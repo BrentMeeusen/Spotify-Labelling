@@ -61,6 +61,10 @@ Api.showTracks = async (tracks) => {
 	const output = document.getElementById("tracks");
 	output.innerHTML = "";
 
+	for(const track of tracks) {
+		
+	}
+
 }
 
 
