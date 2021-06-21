@@ -62,7 +62,14 @@ Api.showTracks = async (tracks) => {
 	output.innerHTML = "";
 
 	for(const track of tracks) {
-		
+
+		// Create row, add name, releaseDate, addedAt
+		const row = Api.createElement("tr");
+		row.appendChild(Api.createElement("td", { innerHTML: track.name }));
+		row.appendChild(Api.createElement("td", { innerHTML: track.releaseDate }));
+		row.appendChild(Api.createElement("td", { innerHTML: track.addedAt }));
+		output.appendChild(row);
+
 	}
 
 }
