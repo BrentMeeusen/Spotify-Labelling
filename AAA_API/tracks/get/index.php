@@ -8,7 +8,7 @@ include_once("../../private/include_all.php");
 
 
 // Get all tracks from this user
-Database::getTracksFromUser($payload->user->id);
+$res = Database::getTracksFromUser($payload->user->id);
 
 // Properly return the results
 ApiResponse::httpResponse(200, [ "message" => "Tracks found.", "data" => $res ]);
