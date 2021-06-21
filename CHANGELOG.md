@@ -32,6 +32,9 @@ STANDARD NEW VERSION:
 
 ## 0.10.1-alpha - 2021/06/xx
 
+### Added
+- State token for Spotify to make it more secure
+
 ### Changed
 
 ### Fixed
