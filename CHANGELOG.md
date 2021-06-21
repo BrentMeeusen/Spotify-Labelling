@@ -39,6 +39,7 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Refactored Your Songs page
+- Moved AddedAt timestamp column from Tracks to Tracks_to_users
 
  -->
 
