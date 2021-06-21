@@ -56,8 +56,10 @@ Api.sendRequest = async (location, method, values = {}) => {
  */
 Api.showTracks = async (tracks) => {
 
-	console.log("Placeholder method.");
 	console.log(tracks);
+
+	const output = document.getElementById("tracks");
+	output.innerHTML = "";
 
 }
 
