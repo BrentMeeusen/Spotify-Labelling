@@ -1,0 +1,56 @@
+.module {
+	margin: 3em 0;
+	padding: 0 1em;
+}
+.module.text {
+	padding: 0 2em;
+	font-size: 1.125rem;
+}
+.module.text p + p, .module.text h2, .module .links {
+	margin-top: 1em;
+}
+.module .links {
+	list-style-type: none;
+}
+.module .links * {
+	padding: 0.25em 0;
+	color: var(--current--link);
+}
+.module .links *:hover {
+	color: var(--current--info);
+}
+
+.module {
+	width: 100%;
+}
+.table-container {
+	overflow: auto;
+	width: 100%;
+}
+.table-container.limit-height {
+	max-height: 50vh;
+}
+.table-container button.icon {
+	margin: 8px 8px 0 0;
+}
+table {
+	border-collapse: collapse;
+	border: 2px solid var(--current--text);
+	width: 100%;
+}
+table * {
+	white-space: nowrap;
+	font-size: 1.1rem;
+}
+table td {
+	padding: 0.5em;
+}
+table tr:nth-child(2n) {
+	border: 2px solid var(--current--text);
+}
+
+.table-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px 0 0;
+}

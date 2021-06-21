@@ -1,0 +1,48 @@
+.nav-btn {
+	position: absolute;
+	top: 1em;
+	left: 0.5em;
+}
+.nav .nav-btn {
+	right: 1em;
+	left: auto;
+}
+
+
+
+.nav {
+	top: 0;
+	left: -90vw;
+	position: fixed;
+	z-index: 90;
+	background: var(--current--background-highlight);
+	height: 110vh;
+	width: 90vw;
+	transition: .3s ease-out;
+}
+.nav.open {
+	left: 0;
+}
+
+.nav ul {
+	list-style-type: none;
+	width: calc(90vw - 1em - 2em - 32px); /* nav width - nav margin - btn margin - btn size */
+	margin: 3em 1em;
+}
+.nav li {
+	width: 100%;
+	transition: .2s ease-out;
+}
+.nav a {
+	display: block;
+	width: 100%;
+	padding: 0.5em;
+	font-size: 1.25em;
+	text-decoration: none;
+}
+.nav li:hover {
+	margin-left: 0.5em;
+}
+.nav a:hover, .nav a:active, .nav a:focus {
+	color: var(--current--highlight);
+}

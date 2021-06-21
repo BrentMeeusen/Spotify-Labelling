@@ -1,0 +1,53 @@
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.form > *, button.wide {
+	color: var(--current--text);
+	background-color: var(--current--background);
+	border: 2px solid var(--current--text);
+	padding: 10px;
+	flex: 1 1 100%;
+	font-size: 1em;
+	margin-bottom: 1em;
+	transition: 0.25s ease border, 0.25s;
+}
+.form > .table-container {
+	border: none;
+	padding: 0;
+}
+.form > p {
+	border-width: 0;
+}
+.form > *::placeholder {
+	color: var(--current--placeholder);
+}
+.form > *:focus {
+	outline: none;
+	border-color: var(--current--highlight);
+}
+.form .small {
+	width: 0;
+	flex: 0 1 calc(50% - 0.5rem);
+}
+
+button.wide, .form button {
+	width: 100%;
+	border-color: var(--current--highlight);
+}
+button.wide:hover, button.wide:active, .form button:hover, .form button:active {
+	background-color: var(--current--background-highlight);
+	color: var(--current--highlight);
+}
+button.wide:disabled, .form button:disabled {
+	opacity: 0.5;
+	background-color: var(--current--background) !important;
+	color: var(--current--text);
+}
+
+.register-form {
+	width: 90vw;
+	margin: 0 5vw;
+}
