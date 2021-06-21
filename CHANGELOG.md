@@ -28,10 +28,21 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.10.1-alpha - 2021/06/21
 
-<!-- 
+### Added
+- State token for Spotify to make it more secure
 
-## 0.10.0-alpha - 2021/06/xx
+### Changed
+
+### Fixed
+- Refactored Your Songs page
+- Refactored CSS files
+- Moved AddedAt timestamp column from Tracks to Tracks_to_users
+
+
+
+## 0.10.0-alpha - 2021/06/19
 
 ### Added
 - Creating a new payload from the database values as soon as the token is required so we are up-to-date
@@ -39,6 +50,7 @@ STANDARD NEW VERSION:
 - Load in user playlists
 - Import all songs from selected playlist into the database
 - Redirecting to login screen when the token expires and a request is made
+- Landing page
 
 ### Changed
 - Refactored tables and table creation
@@ -47,8 +59,6 @@ STANDARD NEW VERSION:
 ### Fixed
 - Conditions for TRUE being too strict (as 1 may also work in some specific situations)
 - Logout including a file that was not found bug
-
- -->
 
 
 

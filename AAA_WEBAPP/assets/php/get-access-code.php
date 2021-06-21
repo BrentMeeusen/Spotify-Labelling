@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$VARIABLES = json_decode(file_get_contents("../../../../SpotifyLabelling.json"));
 
 // If we get an "Access denied" error, return to the user
 if(isset($_GET["error"])) {
@@ -28,7 +27,7 @@ $context = stream_context_create([
 		"method" => "POST",
 		"header" => [
 			"Content-Type: application/x-www-form-urlencoded",
-			"Authorization: Basic " . base64_encode($VARIABLES->SPOTIFY->CLIENT . ":" . $VARIABLES->SPOTIFY->SECRET)
+			"Authorization: Basic " . base64_encode("CLIENT:SECRET")
 		],
 		"content" => $parameters
 	]

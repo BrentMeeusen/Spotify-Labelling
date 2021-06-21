@@ -414,7 +414,6 @@ class Database {
 			SpotifyID		VARCHAR(50)		NOT NULL,
 			Name			VARCHAR(250)	NOT NULL,
 			ReleaseDate		DATE			NULL			DEFAULT		NULL,
-			AddedAt			TIMESTAMP		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
 
 			PRIMARY KEY (ID),
 			UNIQUE (SpotifyID)
@@ -537,6 +536,7 @@ class Database {
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			TrackID			VARCHAR(50)		NOT NULL,
 			UserID			VARCHAR(32)		NOT NULL,
+			AddedAt			DATETIME		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
 
 			PRIMARY KEY (ID),
 			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
@@ -562,6 +562,7 @@ class Database {
 	 */
 	public static function initialise(mysqli $conn) {
 
+		// Create tables
 		self::createUsers($conn);
 		self::createLabels($conn);
 		self::createRights($conn);
@@ -572,7 +573,6 @@ class Database {
 		self::createTracksToArtists($conn);
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
-
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");

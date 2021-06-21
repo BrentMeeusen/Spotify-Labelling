@@ -1,0 +1,9 @@
+.lazy-image {
+    filter: blur(0);
+    transition: filter .25s linear;
+}
+
+.lazy-image.small {
+    filter: blur(8px);
+    transition-duration: 0s;
+}

@@ -1,0 +1,40 @@
+.popup {
+	position: fixed;
+	width: 100vw;
+	min-height: 2em;
+	top: -2.5em;
+	padding: 0.75em 1em;
+	z-index: 100;
+
+	color: var(--current--text);
+	background: var(--current--background-highlight);
+	border-bottom: 2px solid var(--current--error);
+	transition: 0.25s top ease-out;
+	box-shadow: 0 3px 6px -1px var(--current--background-highlight);
+}
+
+
+
+.popup-big {
+	position: fixed;
+	width: 90vw;
+	height: 80vh;
+	left: 5vw;
+	top: 5vh;
+	z-index: 99;
+
+	border: 3px solid var(--current--text);
+	background: var(--current--background);
+	padding: 0.625em;
+	display: none;
+	opacity: 0;
+	transition: 0.2s ease;
+}
+.popup-big.opened {
+	opacity: 1;
+	top: 10vh;
+}
+
+.popup-big h2 {
+	margin-bottom: 3rem;
+}
