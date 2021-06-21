@@ -63,7 +63,7 @@ session_start();
 			
 			document.getElementById("tracks").innnerHTML = "Loading...";
 			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
-			Api.showTracks(res.data.tracks);
+			Api.showTracks(res);
 
 		});
 
