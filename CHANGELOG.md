@@ -28,9 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- 
-
-## 0.10.1-alpha - 2021/06/xx
+## 0.10.1-alpha - 2021/06/21
 
 ### Added
 - State token for Spotify to make it more secure
@@ -42,7 +40,6 @@ STANDARD NEW VERSION:
 - Refactored CSS files
 - Moved AddedAt timestamp column from Tracks to Tracks_to_users
 
- -->
 
 
 ## 0.10.0-alpha - 2021/06/19
