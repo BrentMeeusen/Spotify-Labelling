@@ -273,6 +273,37 @@ class Database {
 
 
 
+	/**
+	 * Gets all the tracks that the user has imported
+	 * 
+	 * @param		string		The user ID
+	 * @return		Tracks		All the tracks found
+	 */
+	public static function getTracksFromUser(string $userID) : Tracks {
+
+		// Get all tracks the user has
+		$tracks = self::find("SELECT T.* FROM TRACKS AS T JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID WHERE TTU.UserID = ?;", $userID);
+
+		// Create Track objects and store them in an array
+		$ret = [];
+		foreach($tracks as $track) {
+			array_push($ret, new Track($track));
+		}
+
+		// Return the tracks
+		return new Tracks($ret);
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 
