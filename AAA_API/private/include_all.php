@@ -14,7 +14,10 @@ include_once("classes/spotify-api.php");
 
 // Include Spotify models
 include_once("models/spotify/spotify-collection.php");
+include_once("models/spotify/spotify-album.php");
+include_once("models/spotify/spotify-artist.php");
 include_once("models/spotify/spotify-playlist.php");
+include_once("models/spotify/spotify-track.php");
 
 // include_once("models/AAA_spotify.php");
 // include_once("models/album.php");
