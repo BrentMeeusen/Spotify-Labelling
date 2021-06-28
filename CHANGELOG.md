@@ -42,8 +42,6 @@ STANDARD NEW VERSION:
 ### Added
 - State token for Spotify to make it more secure
 
-### Changed
-
 ### Fixed
 - Refactored Your Songs page
 - Refactored CSS files
