@@ -5,9 +5,9 @@ class Database {
 
 	// Declare variables
 	private static string $host = "localhost";
-	private static string $username = "u236549530_BrentSpotify";
-	private static string $password = "MySp0t1fy!";
-	private static string $database = "u236549530_SpotifyLabels";
+	private static string $username = "root";
+	private static string $password = "";
+	private static string $database = "spotify_labelling_api";
 	private static mysqli $conn;
 
 
