@@ -58,7 +58,7 @@ class SpotifyCollection {
 
 		$tracks = [];
 		foreach($data as $track) {
-			array_push($tracks, new SpotifyTrack($track));
+			array_push($tracks, new SpotifyArtist($track));
 		}
 		return new SpotifyCollection($tracks);
 
