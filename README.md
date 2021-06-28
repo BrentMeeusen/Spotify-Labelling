@@ -34,7 +34,14 @@ It is of course very possible that you gave a song a label, but you do not find 
 
 
 ## Known issues
-At this point, I am not aware of any issues in v0.9.1-alpha.
+<!-- At this point, I am not aware of any issues in v0.10.2-alpha. -->
+In v0.10.2-alpha, I am aware of the following issues:
+- SpotifyApi::sendRequest() doesn't catch errors
+- SpotifyApi::sendRequest() contains a bug that makes some requests fail
+- Input size is not limited on the front-end
+- Users can spam-click buttons
+- Requests are not limited
+- Playlist size is not capped, but Spotify API can't handle playlists with too many songs
 
 
 
