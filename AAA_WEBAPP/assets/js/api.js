@@ -104,7 +104,7 @@ Api.showPlaylistsForImport = async (playlists) => {
 		// Create row, add name, number of tracks, import button
 		const row = Api.createElement("tr");
 		row.appendChild(Api.createElement("td", { innerHTML: list.name }));
-		row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " songs" }));
+		row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s") }));
 		row.appendChild(Api.createIcon("import", async () => {
 			const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
 			console.log(res);
