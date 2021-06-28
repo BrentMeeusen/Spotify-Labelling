@@ -23,6 +23,26 @@ class SpotifyCollection {
 
 
 
+	/**
+	 * Creates a collection of tracks
+	 * 
+	 * @param		array				The tracks
+	 * @return		SpotifyCollection	The collection
+	 */
+	public static function createTrackCollection(array $data) : SpotifyCollection {
+
+		$tracks = [];
+		foreach($data as $track) {
+			array_push($tracks, new SpotifyTrack($track));
+		}
+		return new SpotifyCollection($tracks);
+
+	}
+
+
+
+
+
 	 /**
 	 * Creates a collection of playlists
 	 * 
