@@ -29,11 +29,11 @@ class SpotifyCollection {
 	 * @param		array				The playlists
 	 * @return		SpotifyCollection	The collection
 	 */
-	public static function createPlaylists(array $playlists) : SpotifyCollection {
+	public static function createPlaylistCollection(array $playlists) : SpotifyCollection {
 
 		$lists = [];
 		foreach($playlists as $list) {
-			array_push($lists, new Playlist($list));
+			array_push($lists, new SpotifyPlaylist($list));
 		}
 		return new SpotifyCollection($lists);
 
