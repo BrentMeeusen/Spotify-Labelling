@@ -279,7 +279,7 @@ class Database {
 	 * @param		string		The user ID
 	 * @return		Tracks		All the tracks found
 	 */
-	public static function getTracksFromUser(string $userID) : Tracks {
+	public static function findTracksByUser(string $userID) : Tracks {
 
 		// Get all tracks the user has
 		// TODO: figure out what happens on multiple artists with the same track!
