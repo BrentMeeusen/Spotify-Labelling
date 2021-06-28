@@ -6,23 +6,27 @@ header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Include all the files here so that all the other files only need one include
+// Include classes
 include_once("classes/api-response.php");
 include_once("classes/database.php");
 include_once("classes/jwt.php");
 include_once("classes/spotify-api.php");
 
-include_once("models/AAA_spotify.php");
+// Include Spotify models
+include_once("models/spotify/spotify-collection.php");
+include_once("models/spotify/spotify-playlist.php");
+
+// include_once("models/AAA_spotify.php");
+// include_once("models/album.php");
+// include_once("models/albums.php");
+// include_once("models/artist.php");
+// include_once("models/artists.php");
+// include_once("models/label.php");
+// include_once("models/playlist.php");
+// include_once("models/playlists.php");
+// include_once("models/track.php");
+// include_once("models/tracks.php");
 include_once("models/AAA_table.php");
-include_once("models/album.php");
-include_once("models/albums.php");
-include_once("models/artist.php");
-include_once("models/artists.php");
-include_once("models/label.php");
-include_once("models/playlist.php");
-include_once("models/playlists.php");
-include_once("models/track.php");
-include_once("models/tracks.php");
 include_once("models/user.php");
 
 include_once("methods.php");
