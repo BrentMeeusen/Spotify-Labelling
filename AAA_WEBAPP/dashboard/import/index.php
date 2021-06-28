@@ -63,7 +63,7 @@ session_start();
 
 			document.getElementById("playlists").innerHTML = "Loading...";
 			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-			Api.showPlaylistsForImport(res.data.playlists);
+			Api.showPlaylistsForImport(res.data);
 
 		});
 
