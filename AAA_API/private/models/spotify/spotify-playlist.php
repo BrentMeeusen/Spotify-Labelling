@@ -1,6 +1,6 @@
 <?php
 
-class SpotifyPlaylist extends SpotifyData {
+class SpotifyPlaylist implements SpotifyData {
 
 
 	// Declare variables

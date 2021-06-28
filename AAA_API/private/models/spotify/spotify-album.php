@@ -1,6 +1,6 @@
 <?php
 
-class SpotifyAlbum extends SpotifyData {
+class SpotifyAlbum implements SpotifyData {
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-class SpotifyTrack extends SpotifyData {
+class SpotifyTrack implements SpotifyData {
 
 }
 
