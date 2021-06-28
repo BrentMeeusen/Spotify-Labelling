@@ -1,7 +1,11 @@
 <?php
 
-class SpotifyCollection extends SpotifyData {
+class SpotifyCollection {
 
+}
+
+interface SpotifyData {
+	
 }
 
 ?>
