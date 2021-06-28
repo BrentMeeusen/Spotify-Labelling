@@ -10,6 +10,22 @@ include_once("../../private/include_all.php");
 // Get the authorisation token from the JWT
 SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
+// Get the tracks
+$data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
+
+// Parse the data using the models
+$tracks = SpotifyCollection::createTrackCollection($data);
+
+
+
+print(json_encode($tracks));
+exit();
+
+
+
+// Get the authorisation token from the JWT
+SpotifyApi::setAuthorisationToken($payload->user->accessToken);
+
 // Send a request to the endpoint at Spotify
 $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 
