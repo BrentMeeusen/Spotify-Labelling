@@ -28,6 +28,15 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.10.2-alpha - 2021/06/28
+
+### Fixed
+- Showing labels would stop after public label is not owned
+- Authorisation tokens wouldn't be stored completely
+- Started waiting for Spotify API to prevent 419 and 428 errors
+
+
+
 ## 0.10.1-alpha - 2021/06/21
 
 ### Added
