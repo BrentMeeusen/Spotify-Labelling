@@ -387,12 +387,38 @@ class Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
-			Creator			VARCHAR(32)		NOT NULL,
 			Name			VARCHAR(100)	NOT NULL,
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
 			FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE,
+			UNIQUE (PublicID)
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
+	/**
+	 * Creates LABELS_TO_USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createLabelsToUsers(mysqli $conn) {
+
+		$tableName = "LABELS_TO_USERS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			LabelID			VARCHAR(32)		NOT NULL,
+			OwnerID			VARCHAR(32)		NOT NULL,
+			IsHidden		INT(1)			NOT NULL	DEFAULT		0,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (OwnerID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			UNIQUE (PublicID)
 		);";
 		$res = self::createTable($conn, $SQL, $tableName);
