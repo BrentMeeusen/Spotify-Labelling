@@ -11,6 +11,16 @@ class Database {
 	private static mysqli $conn;
 
 
+	/**
+	 * WARNING: HARDCODED
+	 * private static string $host = "localhost";
+	 * private static string $username = "u236549530_BrentSpotify";
+	 * private static string $password = "MySp0t1fy!";
+	 * private static string $database = "u236549530_SpotifyLabels";
+	 * private static mysqli $conn;
+	 */
+
+
 
 
 
