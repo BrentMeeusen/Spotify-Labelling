@@ -52,6 +52,14 @@ class SpotifyCollection {
 
 interface SpotifyData {
 
+
+	/**
+	 * Stores the element
+	 * 
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store() : bool;
+
 }
 
 ?>
