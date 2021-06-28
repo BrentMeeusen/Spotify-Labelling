@@ -1,7 +1,9 @@
 <?php
 
+// WARNING: HARDCODED
 session_start();
-$redirect = "http://spotify-labelling.21webb.nl/" . $_GET["redirect"];
+$VARIABLES = json_decode(file_get_contents("../../../../SpotifyLabelling.json"));
+$redirect = $VARIABLES->BASE->APP . $_GET["redirect"];
 
 // Get the code and message
 $_SESSION["code"] = $_GET["code"];
