@@ -14,10 +14,10 @@ SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 $data = SpotifyApi::getMyPlaylists();
 
 // Parse the data using the models
-$playlists = Playlists::create($data);
+$playlists = SpotifyCollection::createPlaylistCollection($data);
 
 // Return the useful playlist data
-ApiResponse::httpResponse(200, ["message" => "Found your playlists.", "data" => $playlists]);
+ApiResponse::httpResponse(200, ["message" => "Found your playlists.", "data" => $playlists->data]);
 
 
 ?>
