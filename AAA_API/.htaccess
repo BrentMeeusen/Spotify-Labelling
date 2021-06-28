@@ -67,6 +67,11 @@ RewriteRule		api/v1/labels							labels/get/								[L,QSA]
 
 
 
+############	api/v1/tracks/get						tracks/get/
+RewriteRule		api/v1/tracks/get						tracks/get/								[L,QSA]
+
+
+
 ############	api/v1/spotify/playlists				spotify/playlists/
 RewriteRule		api/v1/spotify/playlists				spotify/playlists/						[L,QSA]
 

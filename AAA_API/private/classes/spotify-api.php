@@ -117,6 +117,9 @@ class SpotifyApi {
 	 */
 	private static function sendRequest(string $endpoint, string $method, ?array $queryParameters = [], ?array $bodyParameters = []) : StdClass {
 
+		// Wait for 10ms to prevent HTTP 428/419 error
+		usleep(10000);
+
 		// Make the call to the Spotify API
 		$context = stream_context_create([
 			"http" => [

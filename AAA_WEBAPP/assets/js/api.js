@@ -50,6 +50,44 @@ Api.sendRequest = async (location, method, values = {}) => {
 
 
 /**
+ * Shows the tracks
+ * 
+ * @param {array} tracks The tracks to show
+ */
+Api.showTracks = async (tracks) => {
+
+	console.log(tracks);
+
+	const output = document.getElementById("tracks");
+	output.innerHTML = "";
+
+	// Add header
+	const header = Api.createElement("tr");
+	header.appendChild(Api.createElement("th", { innerHTML: "Song" }));
+	header.appendChild(Api.createElement("th", { innerHTML: "Released at" }));
+	header.appendChild(Api.createElement("th", { innerHTML: "Added at" }));
+	output.appendChild(header);
+
+	// For each track
+	for(const track of tracks) {
+
+		// Create row, add name, releaseDate, addedAt
+		// TODO: show date better formatted
+		const row = Api.createElement("tr");
+		row.appendChild(Api.createElement("td", { innerHTML: track.name }));
+		row.appendChild(Api.createElement("td", { innerHTML: track.releaseDate }));
+		row.appendChild(Api.createElement("td", { innerHTML: track.addedAt }));
+		output.appendChild(row);
+
+	}
+
+}
+
+
+
+
+
+/**
  * Shows the playlists for import
  * 
  * @param {array} playlists The playlists which can be imported
@@ -115,7 +153,7 @@ Api.showLabels = async () => {
 		// If the label is not ours, do not show the buttons
 		if(row.creator !== Api.TOKEN.getPayload().user.id) {
 			output.appendChild(tr);
-			return;
+			continue;
 		}
 
 

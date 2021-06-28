@@ -34,6 +34,14 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
+				<div class="table-container">
+					<table>
+						<tbody id="tracks">
+
+						</tbody>
+					</table>
+				</div>
+
 			</div>
 
 		</div>	<!-- .main-wrapper -->
@@ -49,6 +57,15 @@ session_start();
 
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
+
+		// Load tracks
+		window.addEventListener("load", async () => {
+			
+			document.getElementById("tracks").innnerHTML = "Loading...";
+			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
+			Api.showTracks(res.data.tracks);
+
+		});
 
 		</script>
 

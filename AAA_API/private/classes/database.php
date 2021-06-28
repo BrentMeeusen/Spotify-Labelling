@@ -263,6 +263,45 @@ class Database {
 
 
 
+	/**
+	 * Gets all the tracks that the user has imported
+	 * 
+	 * @param		string		The user ID
+	 * @return		Tracks		All the tracks found
+	 */
+	public static function getTracksFromUser(string $userID) : Tracks {
+
+		// Get all tracks the user has
+		// TODO: figure out what happens on multiple artists with the same track!
+		$tracks = self::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ART.Name AS ArtistName FROM TRACKS AS T 
+			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
+			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
+			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
+			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
+			WHERE TTU.UserID = ?;", 
+			$userID);
+
+		// Create Track objects and store them in an array
+		$ret = [];
+		foreach($tracks as $track) {
+			array_push($ret, new Track($track));
+		}
+
+		// Return the tracks
+		return new Tracks($ret);
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -314,7 +353,7 @@ class Database {
 			EmailAddress	VARCHAR(250)	NOT NULL,
 			Password		VARCHAR(256)	NOT NULL,
 			AccountStatus	INT(1)			NOT NULL,
-			AccessToken		VARCHAR(240),
+			AccessToken		VARCHAR(256),
 			
 			PRIMARY KEY (ID),
 			UNIQUE(PublicID)
@@ -338,13 +377,37 @@ class Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
-			Creator			VARCHAR(32)		NOT NULL,
 			Name			VARCHAR(100)	NOT NULL,
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
-			FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			UNIQUE (PublicID)
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
+	/**
+	 * Creates LABELS_TO_USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createLabelsToUsers(mysqli $conn) {
+
+		$tableName = "LABELS_TO_USERS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			LabelID			VARCHAR(32)		NOT NULL,
+			OwnerID			VARCHAR(32)		NOT NULL,
+			IsHidden		INT(1)			NOT NULL	DEFAULT		0,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (OwnerID) REFERENCES USERS (PublicID) ON DELETE CASCADE
 		);";
 		$res = self::createTable($conn, $SQL, $tableName);
 
@@ -550,6 +613,30 @@ class Database {
 
 
 
+	/**
+	 * Creates BANNED_IPS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createBannedIPs(mysqli $conn) {
+
+		$tableName = "BANNED_IPS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			IP				VARCHAR(16)		NOT NULL,
+			StartedAt		DATETIME		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
+			EndsAfter		INT(7)			NOT NULL,
+
+			PRIMARY KEY (ID)
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
 
 
 
@@ -565,6 +652,7 @@ class Database {
 		// Create tables
 		self::createUsers($conn);
 		self::createLabels($conn);
+		self::createLabelsToUsers($conn);
 		self::createRights($conn);
 		self::createRightsToUsers($conn);
 		self::createTracks($conn);
@@ -573,6 +661,7 @@ class Database {
 		self::createTracksToArtists($conn);
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
+		self::createBannedIPs($conn);
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
