@@ -78,7 +78,7 @@ interface SpotifyData {
 	 * 
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store() : bool;
+	// public function store() : bool;
 
 }
 
