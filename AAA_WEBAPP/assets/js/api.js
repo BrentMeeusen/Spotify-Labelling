@@ -153,7 +153,7 @@ Api.showLabels = async () => {
 		// If the label is not ours, do not show the buttons
 		if(row.creator !== Api.TOKEN.getPayload().user.id) {
 			output.appendChild(tr);
-			return;
+			continue;
 		}
 
 
