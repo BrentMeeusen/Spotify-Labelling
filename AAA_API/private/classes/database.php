@@ -363,7 +363,7 @@ class Database {
 			EmailAddress	VARCHAR(250)	NOT NULL,
 			Password		VARCHAR(256)	NOT NULL,
 			AccountStatus	INT(1)			NOT NULL,
-			AccessToken		VARCHAR(240),
+			AccessToken		VARCHAR(256),
 			
 			PRIMARY KEY (ID),
 			UNIQUE(PublicID)
