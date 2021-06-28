@@ -17,7 +17,7 @@ class SpotifyTrack implements SpotifyData {
 	/**
 	 * Constructor
 	 * 
-	 * @param		StdClass	The data from Spotify
+	 * @param		StdClass	The track data
 	 */
 	public function __construct(StdClass $data) {
 
