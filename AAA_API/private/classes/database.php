@@ -391,7 +391,6 @@ class Database {
 			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
-			FOREIGN KEY (Creator) REFERENCES USERS (PublicID) ON DELETE CASCADE,
 			UNIQUE (PublicID)
 		);";
 		$res = self::createTable($conn, $SQL, $tableName);
@@ -418,8 +417,7 @@ class Database {
 
 			PRIMARY KEY (ID),
 			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
-			FOREIGN KEY (OwnerID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
-			UNIQUE (PublicID)
+			FOREIGN KEY (OwnerID) REFERENCES USERS (PublicID) ON DELETE CASCADE
 		);";
 		$res = self::createTable($conn, $SQL, $tableName);
 
@@ -664,6 +662,7 @@ class Database {
 		// Create tables
 		self::createUsers($conn);
 		self::createLabels($conn);
+		self::createLabelsToUsers($conn);
 		self::createRights($conn);
 		self::createRightsToUsers($conn);
 		self::createTracks($conn);
