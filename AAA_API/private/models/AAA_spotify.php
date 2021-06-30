@@ -1,7 +1,7 @@
 <?php
 
 
-class Spotify {
+class OldSpotify {
 
 }
 
@@ -14,7 +14,7 @@ class Spotify {
 
 
 
-interface SpotifyData {
+interface OldSpotifyData {
 
 }
 
@@ -22,7 +22,7 @@ interface SpotifyData {
 
 
 
-interface SpotifyCollection {
+interface OldSpotifyCollection {
 
 	
 	/**
