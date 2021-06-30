@@ -30,10 +30,10 @@ class SpotifyArtist implements SpotifyData {
 	/**
 	 * Stores the artist in our database
 	 * 
-	 * @param		string		The user ID that wants to store
+	 * @param		string		The track ID to connect to
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store(string $userID) : bool {
+	public function store(string $trackID) : bool {
 
 		// If the artist does not exist yet
 		if(Database::findArtistBySpotifyID($this->id) === NULL) {
