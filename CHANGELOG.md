@@ -32,6 +32,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Playlist size limit because the server can't handle over 2000 tracks
+- Limit to label text length
 
 ### Fixed
 - Caught Spotify API response errors
