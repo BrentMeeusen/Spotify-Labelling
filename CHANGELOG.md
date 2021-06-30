@@ -28,6 +28,14 @@ STANDARD NEW VERSION:
 
 -->
 
+<!-- ## 0.x.x-alpha - 2021/x/x
+
+### Fixed
+- Caught Spotify API response errors
+- A minor bug that has to do with query parameters -->
+
+
+
 ## 0.10.2-alpha - 2021/06/28
 
 ### Fixed
