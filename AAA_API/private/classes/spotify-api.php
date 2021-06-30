@@ -48,7 +48,7 @@ class SpotifyApi {
 				$response = self::sendRequest(explode(".com/", $next)[1], "GET");
 			}
 			catch(UnexpectedValueException $e) {
-				ApiResponse::httpResponse(400, ["error" => "Exception thrown.", "data" => [$e->getMessage(), $e->getTrace()]]);
+				ApiResponse::httpResponse(400, ["error" => $e->getMessage() . " (" . $e->getCode() . ")", "data" => $e->getTrace()]);
 			}
 
 			// Store the playlists
@@ -145,7 +145,7 @@ class SpotifyApi {
 
 		// If the HTTP response is not 200
 		if(substr(explode("HTTP/1.0 ", $http_response_header[0])[1], 0, 1) !== "2") {
-			throw new UnexpectedValueException($res->error->message);
+			throw new UnexpectedValueException($res->error->message, $res->error->status);
 		}
 
 		return $res;
