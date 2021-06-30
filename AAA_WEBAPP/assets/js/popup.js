@@ -9,7 +9,7 @@ Popup.text = document.getElementById("popup-text");
  * @param {string} type The type of the message
  * @param {string} dur The duration of the popup
  */
-Popup.show = (message, type, dur) => {
+Popup.show = (message, type, dur = 5000) => {
 
 	Popup.text.innerHTML = message;
 	Popup.container.style.top = 0;
