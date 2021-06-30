@@ -138,9 +138,13 @@ class SpotifyApi {
 		$res = @file_get_contents($url, false, $context);
 		$res = json_decode($res);
 
+		$httpResponse = substr(explode("HTTP/1.0 ", $http_response_header[0])[1], 0, 3);
+
 		// If the HTTP response is not 200, return an error
-		if(substr(explode("HTTP/1.0 ", $http_response_header[0])[1], 0, 1) !== "2") {
-			ApiResponse::httpResponse(400, ["error" => $res->error->message . " (" . $res->error->status . ")"]);
+		if(substr($httpResponse, 0, 1) !== "2") {
+
+			ApiResponse::httpResponse(400, ["error" => $res->error->message . " (" . $res->error->status . ")", "data" => $http_response_header]);
+
 		}
 
 		return $res;
