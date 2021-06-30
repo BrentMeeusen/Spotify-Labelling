@@ -36,7 +36,8 @@ STANDARD NEW VERSION:
 
 ### Fixed
 - Caught Spotify API response errors
-- A minor bug that has to do with query parameters -->
+- A minor bug that has to do with query parameters
+- Buttons no longer send requests until the last request has received a response -->
 
 
 
