@@ -21,22 +21,22 @@ $result = $tracks->store($payload->user->id);
 
 
 
-print(json_encode([$tracks, $result], JSON_PRETTY_PRINT));
-exit();
+// print(json_encode([$tracks, $result], JSON_PRETTY_PRINT));
+// exit();
 
 
 
-// Get the authorisation token from the JWT
-SpotifyApi::setAuthorisationToken($payload->user->accessToken);
+// // Get the authorisation token from the JWT
+// SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
-// Send a request to the endpoint at Spotify
-$data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
+// // Send a request to the endpoint at Spotify
+// $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 
-// Parse the data using the models
-$tracks = Tracks::create($data);
+// // Parse the data using the models
+// $tracks = Tracks::create($data);
 
-// Store them in the database
-$res = $tracks->store($payload);
+// // Store them in the database
+// $res = $tracks->store($payload);
 
 // If something went wrong, return an error
 if($res === FALSE) {
