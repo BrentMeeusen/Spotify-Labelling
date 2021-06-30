@@ -33,6 +33,7 @@ class SpotifyApi {
 	 * Gets the songs from a given playlist from the Spotify API
 	 * 
 	 * @param		string		The playlist ID
+	 * @return		array		An array of tracks
 	 */
 	public static function getTracksFromPlaylist(string $playlistID) {
 
