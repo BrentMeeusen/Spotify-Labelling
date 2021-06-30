@@ -23,14 +23,14 @@ class Track {
 	 */
 	public function __construct(StdClass $data) {
 
-		@$album->name = @$data->AlbumName;
-		$album->id = 0;
+		// @$album->name = @$data->AlbumName;
+		// $album->id = 0;
 
-		@$artist->name = @$data->ArtistName;
-		$artist->id = 0;
+		// @$artist->name = @$data->ArtistName;
+		// $artist->id = 0;
 
-		$this->album = (isset($data->track->album) ? new Album($data->track->album) : new Album($album));
-		$this->artists = (isset($data->track->artists) ? Artists::create($data->track->artists) : new Artists([new Artist($artist)]));
+		$this->album = (isset($data->track->album) ? new Album($data->track->album) : NULL);
+		$this->artists = (isset($data->track->artists) ? Artists::create($data->track->artists) : NULL);
 
 		$this->name = (isset($data->track->name) ? $data->track->name : $data->Name);
 		$this->releaseDate = (isset($data->track->album->release_date) ? date("Y-m-d", strtotime($data->track->album->release_date)) : $data->ReleaseDate);
