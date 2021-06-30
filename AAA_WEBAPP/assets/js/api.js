@@ -112,8 +112,8 @@ Api.showTracks = async (tracks) => {
 		// TODO: show date better formatted
 		const row = Api.createElement("tr");
 		row.appendChild(Api.createElement("td", { innerHTML: track.name }));
-		row.appendChild(Api.createElement("td", { innerHTML: track.releaseDate }));
-		row.appendChild(Api.createElement("td", { innerHTML: track.addedAt }));
+		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y", new Date(track.releaseDate)) }));
+		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y H:i:s", new Date(track.addedAt)) }));
 		output.appendChild(row);
 
 	}
