@@ -13,6 +13,30 @@ class Api {
 		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 	}
 
+
+
+
+
+	/**
+	 * Formats a date into a given format
+	 * 
+	 * @param {string} format The format to make the date adhere to
+	 * @param {Date} date The date to format
+	 * @return {string} The formatted date
+	 */
+	static formatDate(format, date = Date.now()) {
+
+		var result = format;
+		result.replace("d", date.getDate());
+		result.replace("m", date.getMonth() + 1);
+		result.replace("Y", date.getFullYear());
+		result.replace("H", date.getHours());
+		result.replace("i", date.getMinutes());
+		result.replace("s", date.getSeconds());
+		return result;
+
+	}
+
 }
 
 
