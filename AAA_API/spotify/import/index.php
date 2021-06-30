@@ -13,13 +13,6 @@ SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 // Get the tracks
 $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 
-
-
-// print(json_encode($data, JSON_PRETTY_PRINT));
-exit();
-
-
-
 // Parse the data using the models
 $tracks = SpotifyCollection::createTrackCollection($data);
 
