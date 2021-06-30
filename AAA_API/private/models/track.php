@@ -1,7 +1,7 @@
 <?php
 
 
-class Track implements SpotifyData {
+class Track {
 
 
 	// Declare variables
