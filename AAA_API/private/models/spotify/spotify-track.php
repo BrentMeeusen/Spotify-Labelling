@@ -66,12 +66,12 @@ class SpotifyTrack implements SpotifyData {
 		}
 
 		// Store the album
-		if(!($this->album->store($userID))) {
+		if(!($this->album->store($this->id))) {
 			return FALSE;
 		}
 
 		// Store the artists
-		return $this->artists->store($userID);
+		return $this->artists->store($this->id);
 
 	}
 
