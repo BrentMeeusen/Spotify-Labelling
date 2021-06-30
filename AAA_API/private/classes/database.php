@@ -364,6 +364,7 @@ class Database {
 			Password		VARCHAR(256)	NOT NULL,
 			AccountStatus	INT(1)			NOT NULL,
 			AccessToken		VARCHAR(256),
+			LastRequest		DATETIME		NULL		DEFAULT		NULL,
 			
 			PRIMARY KEY (ID),
 			UNIQUE(PublicID)
