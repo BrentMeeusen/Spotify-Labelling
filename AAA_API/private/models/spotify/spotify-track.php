@@ -29,6 +29,22 @@ class SpotifyTrack implements SpotifyData {
 
 	}
 
+
+
+
+
+	/**
+	 * Stores the track in our database
+	 * 
+	 * @param		string		The user ID that wants to store
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store(string $userID) : bool {
+
+		return FALSE;
+
+	}
+
 }
 
 ?>

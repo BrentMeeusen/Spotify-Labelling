@@ -23,6 +23,22 @@ class SpotifyAlbum implements SpotifyData {
 
 	}
 
+
+
+
+
+	/**
+	 * Stores the album in our database
+	 * 
+	 * @param		string		The user ID that wants to store
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store(string $userID) : bool {
+
+		return FALSE;
+
+	}
+
 }
 
 ?>
