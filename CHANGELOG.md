@@ -30,6 +30,9 @@ STANDARD NEW VERSION:
 
 <!-- ## 0.x.x-alpha - 2021/x/x
 
+### Added
+- Playlist size limit because the server can't handle over 2000 tracks
+
 ### Fixed
 - Caught Spotify API response errors
 - A minor bug that has to do with query parameters -->
