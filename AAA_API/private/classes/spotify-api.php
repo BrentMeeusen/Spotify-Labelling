@@ -135,8 +135,14 @@ class SpotifyApi {
 		]);
 		$url = "https://api.spotify.com/" . $endpoint . ($queryParameters !== NULL ? "?" . http_build_query($queryParameters) : "");
 		$res = @file_get_contents($url, false, $context);
+		$res = json_decode($res);
 
-		return json_decode($res);
+		// If the HTTP response is not 200
+		if(substr(explode("HTTP/1.0 ", $http_response_header[0])[1], 0, 1) !== "2") {
+			throw new UnexpectedValueException("Error: " . $res->error->message);
+		}
+
+		return $res;
 
 	}
 
