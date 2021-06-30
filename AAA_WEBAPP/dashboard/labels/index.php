@@ -63,7 +63,7 @@ session_start();
 		document.getElementById("add-label").addEventListener("click", () => {
 
 			const addLabel = new BigPopup("Add Label", "api/v1/labels/create", "POST", "create-label-form");
-			addLabel.add("input", "Name", { placeholder: "LABEL NAME" });
+			addLabel.add("input", "Name", { placeholder: "LABEL NAME", type: "text", maxLength: "100" });
 			addLabel.show("ADD");
 			HtmlJsForm.findById("create-label-form").addCallback(() => { Api.showLabels(); });
 
