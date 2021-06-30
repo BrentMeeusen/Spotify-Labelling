@@ -44,12 +44,7 @@ class SpotifyApi {
 		do {
 
 			// Get the playlists, only add limit parameter if we're at the first parameter
-			try {
-				$response = self::sendRequest(explode(".com/", $next)[1], "GET");
-			}
-			catch(UnexpectedValueException $e) {
-				ApiResponse::httpResponse(400, ["error" => $e->getMessage() . " (" . $e->getCode() . ")", "data" => $e->getTrace()]);
-			}
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
 
 			// Store the playlists
 			foreach($response->items as $track) {
@@ -143,9 +138,9 @@ class SpotifyApi {
 		$res = @file_get_contents($url, false, $context);
 		$res = json_decode($res);
 
-		// If the HTTP response is not 200
+		// If the HTTP response is not 200, return an error
 		if(substr(explode("HTTP/1.0 ", $http_response_header[0])[1], 0, 1) !== "2") {
-			throw new UnexpectedValueException($res->error->message, $res->error->status);
+			ApiResponse::httpResponse(400, ["error" => $res->error->message . " (" . $res->error->status . ")"]);
 		}
 
 		return $res;
