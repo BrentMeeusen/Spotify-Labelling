@@ -194,7 +194,7 @@ Api.showLabels = async () => {
 			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
 			popup.show("REMOVE");
 			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
-			
+
 		}));
 		tr.appendChild(remove);
 
