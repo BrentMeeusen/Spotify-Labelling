@@ -28,7 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- ## 0.x.x-alpha - 2021/x/x
+## 0.10.3-alpha - 2021/06/30
 
 ### Added
 - Playlist size limit because the server can't handle over 2000 tracks
@@ -37,7 +37,7 @@ STANDARD NEW VERSION:
 ### Fixed
 - Caught Spotify API response errors
 - A minor bug that has to do with query parameters
-- Buttons no longer send requests until the last request has received a response -->
+- Buttons no longer send requests until the last request has received a response
 
 
 
