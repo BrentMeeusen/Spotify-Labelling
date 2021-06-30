@@ -16,9 +16,12 @@ $data = SpotifyApi::getTracksFromPlaylist($_GET["id"]);
 // Parse the data using the models
 $tracks = SpotifyCollection::createTrackCollection($data);
 
+// Store the data in the collection
+$result = $tracks->store($payload->user->id);
 
 
-print(json_encode($tracks));
+
+print(json_encode([$tracks, $result], JSON_PRETTY_PRINT));
 exit();
 
 
