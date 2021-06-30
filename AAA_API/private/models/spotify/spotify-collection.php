@@ -130,7 +130,7 @@ interface SpotifyData {
 	 * @param		string		The user ID who wants to store
 	 * @return		bool		Whether it was a success or not
 	 */
-	// public function store(string $userID) : bool;
+	public function store(string $userID) : bool;
 
 }
 
