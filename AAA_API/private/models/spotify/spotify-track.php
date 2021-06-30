@@ -41,15 +41,29 @@ class SpotifyTrack implements SpotifyData {
 	 */
 	public function store(string $userID) : bool {
 
-		// If the track exists, everything exists (given that it all went right) and we can return TRUE
-		if(Database::findTrackBySpotifyID($this->id) !== NULL) {
-			return TRUE;
+		// If the track does not exist yet
+		if(Database::findTrackBySpotifyID($this->id) === NULL) {
+
+			// Store the track
+			$stmt = Database::prepare("INSERT INTO TRACKS (SpotifyID, Name, ReleaseDate) VALUES (?, ?, ?);");
+			$stmt->bind_param("sss", $this->id, $this->name, $this->releaseDate);
+			if(!(Database::execute($stmt))) {
+				return FALSE;
+			}
+
 		}
 
-		// Store the track
-		$stmt = Database::prepare("INSERT INTO TRACKS (SpotifyID, Name, ReleaseDate) VALUES (?, ?, ?)");
-		$stmt->bind_param("sss", $this->id, $this->name, $this->releaseDate);
-		Database::execute($stmt);
+		// If the track-user link does not exist yet
+		if(Database::findTrackToUser($this->id, $userID) === NULL) {
+
+			// Store the track-user link
+			$stmt = Database::prepare("INSERT INTO TRACKS_TO_USERS (TrackID, UserID) VALUES (?, ?);");
+			$stmt->bind_param("ss", $this->id, $userID);
+			if(!(Database::execute($stmt))) {
+				return FALSE;
+			}
+
+		}
 
 		return FALSE;
 
