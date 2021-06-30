@@ -121,6 +121,14 @@ Api.showPlaylistsForImport = async (playlists) => {
 		row.appendChild(Api.createIcon("import", async () => { Api.request("api/v1/spotify/import/" + list.spotifyID, "POST"); }));
 
 
+		// If the number of tracks is more than 2000, disable button
+
+		row.appendChild(Api.createIcon("import", async () => {
+			const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
+			console.log(res);
+			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+		}));
+
 		// Output the row
 		output.appendChild(row);
 
