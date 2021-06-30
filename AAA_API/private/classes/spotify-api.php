@@ -110,11 +110,12 @@ class SpotifyApi {
 	/**
 	 * Sends a request to a certain endpoint
 	 * 
-	 * @param		string		The endpoint to send to
-	 * @param		string		The method to use
-	 * @param		array		The query parameters to send
-	 * @param		array		The body parameters to send
-	 * @return		StdClass	A standard class with the given data
+	 * @param		string						The endpoint to send to
+	 * @param		string						The method to use
+	 * @param		array						The query parameters to send
+	 * @param		array						The body parameters to send
+	 * @return		StdClass					A standard class with the given data
+	 * @throws		UnexpectedValueException	If Spotify responds with something else than a 2xx code
 	 */
 	private static function sendRequest(string $endpoint, string $method, ?array $queryParameters = [], ?array $bodyParameters = []) : StdClass {
 
