@@ -96,13 +96,13 @@ class SpotifyCollection {
 	/**
 	 * Stores the collection
 	 * 
-	 * @param		string		The user ID who wants to store
+	 * @param		string		The ID to work with
 	 * @return		bool		Whether it was a success or not
 	 */
-	public function store(string $userID) : bool {
+	public function store(string $id) : bool {
 
 		foreach($this->data as $row) {
-			if(!$row->store($userID)) {
+			if(!$row->store($id)) {
 				return FALSE;
 			}
 		}
