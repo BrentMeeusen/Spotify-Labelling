@@ -26,15 +26,28 @@ class Api {
 	 */
 	static formatDate(format, date = Date.now()) {
 
-		var result = format;
-		result.replace("d", date.getDate());
-		result.replace("m", date.getMonth() + 1);
-		result.replace("Y", date.getFullYear());
-		result.replace("H", date.getHours());
-		result.replace("i", date.getMinutes());
-		result.replace("s", date.getSeconds());
+		let result = format.replace("d", this.append0(date.getDate()));
+		result = result.replace("m", this.append0(date.getMonth() + 1));
+		result = result.replace("Y", this.append0(date.getFullYear()));
+		result = result.replace("H", this.append0(date.getHours()));
+		result = result.replace("i", this.append0(date.getMinutes()));
+		result = result.replace("s", this.append0(date.getSeconds()));
 		return result;
 
+	}
+
+
+
+
+
+	/**
+	 * Appends a 0 if needed
+	 * 
+	 * @param {any} value The value to append a 0 to
+	 * @return {string} The value with a 0 if needed
+	 */
+	static append0(value) {
+		return (value.toString().length < 2 ? "0" + value : value);
 	}
 
 }
