@@ -84,6 +84,32 @@ class SpotifyCollection {
 
 	}
 
+
+
+
+
+
+
+
+
+
+	/**
+	 * Stores the collection
+	 * 
+	 * @param		string		The user ID who wants to store
+	 * @return		bool		Whether it was a success or not
+	 */
+	public function store(string $userID) : bool {
+
+		foreach($this->data as $row) {
+			if(!$row->store($userID)) {
+				return FALSE;
+			}
+		}
+		return TRUE;
+
+	}
+
 }
 
 
