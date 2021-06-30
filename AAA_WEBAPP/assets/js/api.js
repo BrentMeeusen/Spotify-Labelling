@@ -56,6 +56,7 @@ class Api {
 
 
 
+Api.isSending = false;
 /**
  * Sends a request to the Spotify Labelling API
  * 
@@ -65,6 +66,10 @@ class Api {
  * @returns {object} The return object
  */
 Api.sendRequest = async (location, method, values = {}) => {
+
+	// If we're already sending, return false
+	if(Api.isSending === true) { return false; }
+	Api.isSending = true;
 
 	// Send a request and return the result
 	const response = await fetch(encodeURI(VALUES.api + location), {
@@ -78,6 +83,7 @@ Api.sendRequest = async (location, method, values = {}) => {
 
 	// Get the response
 	const res = await response.json();
+	Api.isSending = false;
 
 	// If the token is expired, redirect to login screen with error
 	if(res.error && res.error.includes("expired")) {
