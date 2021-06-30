@@ -41,6 +41,11 @@ class SpotifyTrack implements SpotifyData {
 	 */
 	public function store(string $userID) : bool {
 
+		// If the track exists, everything exists (given that it all went right) and we can return TRUE
+		if(Database::findTrackBySpotifyID($this->id) !== NULL) {
+			return TRUE;
+		}
+
 		// Store the track
 		$stmt = Database::prepare("INSERT INTO TRACKS (SpotifyID, Name, ReleaseDate) VALUES (?, ?, ?)");
 		$stmt->bind_param("sss", $this->id, $this->name, $this->releaseDate);
