@@ -1,5 +1,18 @@
 class Api {
 
+
+	/**
+	 * Sends the request and shows the result
+	 * 
+	 * @param {string} url The URL of the request
+	 * @param {string} method The method of the request
+	 */
+	static async request(url, method) {
+		const res = await Api.sendRequest(url, method);
+		console.log(res);
+		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+	}
+
 }
 
 
