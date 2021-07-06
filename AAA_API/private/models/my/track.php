@@ -57,6 +57,23 @@ class ITrack {
 
 	}
 
+
+
+
+
+	/**
+	 * Checks whether everything is equal
+	 * 
+	 * @param		ITrack		A track to compare to
+	 * @return		bool		Whether they're equal or not
+	 */
+	public function equals(ITrack $track) : bool {
+
+		return $this->equalExceptArtist($track) &&
+				$this->artists->equals($track->artists);
+
+	}
+
 }
 
 ?>
