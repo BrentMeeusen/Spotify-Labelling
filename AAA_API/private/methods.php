@@ -37,7 +37,9 @@ function array_flatten(array $array) : array {
 				array_push($flat, $n);
 			}
 		}
-		array_push($flat, $entry);
+		else  {
+			array_push($flat, $entry);
+		}
 
 	}
 	return $flat;
