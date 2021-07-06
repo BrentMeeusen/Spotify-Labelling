@@ -1,6 +1,14 @@
 <?php
 
 
+// TODO		Create `Initialise extends Database` class
+// TODO		Refactor AAA_Table class into Database class
+// TODO		Create `Table extends Database` class
+// TODO		Make Spotify classes extend table if needed
+// TODO		Refactor Labels class and SQL table
+// TODO		Refactor Users class
+
+
 class Database {
 
 	// Declare variables
