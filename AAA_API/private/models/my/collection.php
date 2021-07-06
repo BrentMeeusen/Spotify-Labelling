@@ -32,9 +32,19 @@ class ICollection {
 	 * Creates a collection of tracks
 	 * 
 	 * @param		array		The tracks
-	 * @param		ICollection	The collection
+	 * @return		ICollection	The collection
+	 * @return		null		If something went wrong
 	 */
-	public static function createTrackCollection(array $data) : ICollection {
+	public static function createTrackCollection(array $data) : ?ICollection {
+
+		$tracks = [];
+		foreach($data as $row) {
+			if(!($row instanceof ITrack)) {
+				return NULL;
+			}
+			array_push($tracks, $row);
+		}
+		return new ICollection($tracks);
 
 	}
 
