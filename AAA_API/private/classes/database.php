@@ -275,9 +275,9 @@ class Database {
 	 * Gets all the tracks that the user has imported
 	 * 
 	 * @param		string		The user ID
-	 * @return		Tracks		All the tracks found
+	 * @return		ICollection	All the tracks found
 	 */
-	public static function findTracksByUser(string $userID) : Tracks {
+	public static function findTracksByUser(string $userID) : ICollection {
 
 		// Get all tracks the user has
 		// TODO: figure out what happens on multiple artists with the same track!
@@ -293,11 +293,11 @@ class Database {
 		// Create Track objects and store them in an array
 		$ret = [];
 		foreach($tracks as $track) {
-			array_push($ret, new Track($track));
+			array_push($ret, new ITrack($track));
 		}
 
-		// Return the tracks
-		return new Tracks($ret);
+		// Create and return a collection of tracks
+		return ICollection::createTrackCollection($ret);
 
 	}
 
