@@ -39,6 +39,28 @@ class IAlbum {
 
 	}
 
+
+
+
+
+
+
+
+
+
+	/**
+	 * Checks whether everything is equal
+	 * 
+	 * @param		IAlbum		The album to compare to
+	 * @return		bool		Whether they're equal or not
+	 */
+	public function equals(IAlbum $album) : bool {
+
+		return $this->id === $album->id &&
+				$this->name === $album->name;
+
+	}
+
 }
 
 ?>
