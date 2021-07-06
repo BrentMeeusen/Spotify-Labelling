@@ -29,6 +29,29 @@ class ICollection {
 
 
 	/**
+	 * Merges all tracks where only the artist collection is different
+	 * 
+	 * @return		ICollection	The new collection
+	 * @return		null		If something went wrong
+	 */
+	public function merge() : ?ICollection {
+
+
+
+		return NULL;
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Creates a collection of tracks
 	 * 
 	 * @param		array		The tracks
