@@ -276,8 +276,9 @@ class Database {
 	 * 
 	 * @param		string		The user ID
 	 * @return		ICollection	All the tracks found
+	 * @return		null		If something went wrong
 	 */
-	public static function findTracksByUser(string $userID) : ICollection {
+	public static function findTracksByUser(string $userID) : ?ICollection {
 
 		// Get all tracks the user has
 		// TODO: figure out what happens on multiple artists with the same track!
