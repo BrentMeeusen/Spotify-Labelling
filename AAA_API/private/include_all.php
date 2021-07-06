@@ -19,19 +19,15 @@ include_once("models/spotify/spotify-artist.php");
 include_once("models/spotify/spotify-playlist.php");
 include_once("models/spotify/spotify-track.php");
 
-include_once("models/AAA_spotify.php");
-include_once("models/AAA_table.php");
-include_once("models/album.php");
-include_once("models/albums.php");
-include_once("models/artist.php");
-include_once("models/artists.php");
-include_once("models/label.php");
-include_once("models/playlist.php");
-include_once("models/playlists.php");
-include_once("models/track.php");
-include_once("models/tracks.php");
-include_once("models/user.php");
+// Include my Spotify data models
+include_once("models/my/album.php");
+include_once("models/my/artist.php");
+include_once("models/my/collection.php");
+include_once("models/my/track.php");
 
+// Include general
+include_once("models/AAA_table.php");
+include_once("models/user.php");
 include_once("methods.php");
 
 
