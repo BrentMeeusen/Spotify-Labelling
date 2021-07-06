@@ -46,7 +46,7 @@ class ICollection {
 			if(!($track instanceof ITrack)) { return NULL; }
 
 			// Get all artists from this track
-			$offset = 0;
+			$offset = 1;
 			$artists = [];
 
 			while($i + $offset < count($this->data)) {
@@ -55,7 +55,14 @@ class ICollection {
 					array_push($artists, $next->artists->data);
 				} else { break; }
 			}
-			$artists = array_flatten($artists);
+
+			// Save the track
+			$newTrack = $track;
+			$newTrack->setArtists(new ICollection($artists));
+			array_push($newTracks, $newTrack);
+
+			// Skip the merged tracks
+			$i += $offset;
 
 		}
 
