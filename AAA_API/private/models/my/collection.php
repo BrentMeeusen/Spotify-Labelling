@@ -66,7 +66,7 @@ class ICollection {
 
 		}
 
-		return $newTracks;
+		return new ICollection($newTracks);
 
 	}
 
