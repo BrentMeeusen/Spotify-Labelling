@@ -66,7 +66,7 @@ class ICollection {
 
 		}
 
-		return NULL;
+		return $newTracks;
 
 	}
 
