@@ -63,6 +63,9 @@ session_start();
 			
 			document.getElementById("tracks").innnerHTML = "Loading...";
 			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
+			if(res && res.code && (res.code < 200 || res.code > 299)) {
+				Popup.show(res.error, "error", 5000);
+			}
 			console.log(res);
 			Api.showTracks(res.data.tracks);
 
