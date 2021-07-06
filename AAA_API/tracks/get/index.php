@@ -20,6 +20,6 @@ if($res === NULL) {
 }
 
 // Properly return the results
-ApiResponse::httpResponse(200, [ "message" => "Tracks found.", "data" => $res ]);
+ApiResponse::httpResponse(200, [ "message" => "Tracks found.", "data" => $res->data ]);
 
 ?>
