@@ -5,7 +5,7 @@ $ALLOWED_METHOD = "POST";
 include_once("../private/include_all.php");
 
 
-Database::initialise(Database::connect());
+Initialise::createTables(Database::connect());
 
 
 

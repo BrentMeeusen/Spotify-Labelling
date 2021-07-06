@@ -343,7 +343,10 @@ class Initialise extends Database {
 	 * 
 	 * @param	mysqli 	database to create the tables in
 	 */
-	public static function initialise(mysqli $conn) {
+	public static function createTables(mysqli $conn) {
+
+		print(json_encode("joe mama"));
+		exit();
 
 		// Create tables
 		self::createUsers($conn);
