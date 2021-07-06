@@ -56,9 +56,19 @@ class ICollection {
 	 * Creates a collection of artists
 	 * 
 	 * @param		array		The artists
-	 * @param		ICollection	The collection
+	 * @return		ICollection	The collection
+	 * @return		null		If something went wrong
 	 */
-	public static function createArtistCollection(array $data) : ICollection {
+	public static function createArtistCollection(array $data) : ?ICollection {
+
+		$artists = [];
+		foreach($data as $row) {
+			if(!($row instanceof IArtist)) {
+				return NULL;
+			}
+			array_push($artists, $row);
+		}
+		return new ICollection($artists);
 
 	}
 
