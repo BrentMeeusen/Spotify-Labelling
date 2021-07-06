@@ -36,6 +36,19 @@ class ITrack {
 
 
 
+	/**
+	 * Sets the artists
+	 * 
+	 * @param		ICollection	The artists
+	 */
+	public function setArtists(ICollection $artists) : void {
+		$this->artists = $artists;
+	}
+
+
+
+
+
 
 
 
