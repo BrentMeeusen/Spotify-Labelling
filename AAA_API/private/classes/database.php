@@ -6,6 +6,7 @@
 // TODO		Make Spotify classes extend table if needed
 // TODO		Refactor Labels class and SQL table
 // TODO		Refactor Users class
+// TODO		Refactor database getters
 
 
 class Database {
