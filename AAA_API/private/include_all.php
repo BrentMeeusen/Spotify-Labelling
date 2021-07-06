@@ -9,6 +9,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // Include classes
 include_once("classes/api-response.php");
 include_once("classes/database.php");
+include_once("classes/initialise.php");
 include_once("classes/jwt.php");
 include_once("classes/spotify-api.php");
 
