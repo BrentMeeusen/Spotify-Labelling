@@ -37,7 +37,6 @@ class ICollection {
 	public function merge() : ?ICollection {
 
 		$newTracks = [];
-		$offset = 0;
 
 		// For each element
 		for($i = 0; $i < count($this->data); $i++) {
@@ -45,6 +44,18 @@ class ICollection {
 			// If it's not a track, return NULL
 			$track = $this->data[$i];
 			if(!($track instanceof ITrack)) { return NULL; }
+
+			// Get all artists from this track
+			$offset = 0;
+			$artists = [];
+
+			while($i + $offset < count($this->data)) {
+				$next = $this->data[$i + $offset++];
+				if($track->equalsExceptArtist($next)) {
+					array_merge($artists, $next->artists->data);
+				} else { break; }
+			}
+			$artists = array_flatten($artists);
 
 		}
 
