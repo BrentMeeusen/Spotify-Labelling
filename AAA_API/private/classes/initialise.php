@@ -345,9 +345,6 @@ class Initialise extends Database {
 	 */
 	public static function createTables(mysqli $conn) {
 
-		print(json_encode("joe mama"));
-		exit();
-
 		// Create tables
 		self::createUsers($conn);
 		self::createLabels($conn);
