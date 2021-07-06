@@ -67,7 +67,7 @@ session_start();
 				Popup.show(res.error, "error", 5000);
 			}
 			console.log(res);
-			Api.showTracks(res.data.tracks);
+			Api.showTracks(res.data);
 
 		});
 
