@@ -36,7 +36,17 @@ class ICollection {
 	 */
 	public function merge() : ?ICollection {
 
+		$newTracks = [];
+		$offset = 0;
 
+		// For each element
+		for($i = 0; $i < count($this->data); $i++) {
+
+			// If it's not a track, return NULL
+			$track = $this->data[$i];
+			if(!($track instanceof ITrack)) { return NULL; }
+
+		}
 
 		return NULL;
 
