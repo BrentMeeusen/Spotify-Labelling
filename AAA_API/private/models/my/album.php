@@ -76,7 +76,7 @@ class IAlbum {
 	public static function findBySpotifyId(string $id) : ?IAlbum {
 
 		$data = Database::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $id);
-		return (isset($data[0] ? self::createFromDatabase($data[0]) : NULL);
+		return (isset($data[0]) ? self::createFromDatabase($data[0]) : NULL);
 
 	}
 
