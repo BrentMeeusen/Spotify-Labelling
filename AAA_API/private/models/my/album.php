@@ -43,6 +43,24 @@ class IAlbum {
 
 
 
+	/**
+	 * Finds an album from our database given a Spotify ID
+	 * 
+	 * @param		string		The Spotify ID to search for
+	 * @return		IAlbum		If it was found
+	 * @return		null		If it was not found
+	 */
+	public static function findBySpotifyId(string $id) : ?IAlbum {
+
+		$data = Database::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $id);
+		return (isset($data[0] ? self::createFromDatabase($data[0]) : NULL);
+
+	}
+
+
+
+
+
 
 
 
