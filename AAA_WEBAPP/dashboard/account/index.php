@@ -38,10 +38,7 @@ session_start();
 
 				<div class="form" name="html-js-form" data-action="api/v1/users/update" data-method="POST" data-id="account-values">
 
-					<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
-					<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
-					<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
-					<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
+					<input class=""	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
 
 					<button type="submit" name="html-js-form-submit" value="submit">UPDATE ACCOUNT INFORMATION</button>
 
