@@ -27,9 +27,6 @@
 
 			<div class="form register-form" name="html-js-form" data-action="api/v1/users/create" data-method="POST" data-redirect="">
 
-				<input class="small"	name="input FirstName"			type="text"			placeholder="FIRST NAME">
-				<input class="small"	name="input LastName"			type="text"			placeholder="LAST NAME">
-				<input class="small"	name="input Username"			type="text"			placeholder="USERNAME">
 				<input class="small"	name="input EmailAddress"		type="text"			placeholder="EMAIL ADDRESS">
 				<input class="small"	name="input Password"			type="password"		placeholder="PASSWORD"					id="password">
 				<input class="small"	name="input PasswordRepeat"		type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
