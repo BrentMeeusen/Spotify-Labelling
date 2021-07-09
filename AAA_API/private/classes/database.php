@@ -135,11 +135,6 @@ class Database {
 
 
 
-
-
-
-
-
 	/**
 	 * Finds an entry in a specific table with one parameter
 	 * 
@@ -200,44 +195,6 @@ class Database {
 		$data = self::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
 		$track = (isset($data[0]) ? new Track($data[0]) : NULL);
 		return $track;
-
-	}
-
-
-
-
-
-	/**
-	 * Finds an album by Spotify ID
-	 * 
-	 * @param		string		The ID to search for
-	 * @return		null		If not found
-	 * @return		Album		If found
-	 */
-	public static function findAlbumBySpotifyID(string $spotifyID) : ?Album {
-
-		$data = self::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $spotifyID);
-		$album = (isset($data[0]) ? new Album($data[0]) : NULL);
-		return $album;
-
-	}
-
-
-
-
-
-	/**
-	 * Finds an artist by Spotify ID
-	 * 
-	 * @param		string		The ID to search for
-	 * @return		null		If not found
-	 * @return		Artist		If found
-	 */
-	public static function findArtistBySpotifyID(string $spotifyID) : ?Artist {
-
-		$data = self::find("SELECT * FROM ARTISTS WHERE SpotifyID = ?;", $spotifyID);
-		$artist = (isset($data[0]) ? new Artist($data[0]) : NULL);
-		return $artist;
 
 	}
 
