@@ -284,7 +284,7 @@ class User extends Table implements TableInterface {
 	public static function create(array $values) : User {
 
 		// Create a user object
-		$user = new User(self::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
+		$user = new User(Database::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
 
 
 		// Check for duplicate values that should be unique (username, email address)

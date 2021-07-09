@@ -103,7 +103,7 @@ class Label extends Table implements TableInterface {
 	public static function create(array $values) : Label {
 
 		// Create a label object
-		$label = new Label(self::generateRandomID("LABELS"), $values["Creator"], $values["Name"], $values["IsPublic"]);
+		$label = new Label(Database::generateRandomID("LABELS"), $values["Creator"], $values["Name"], $values["IsPublic"]);
 
 		// Prepare SQL statement
 		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Creator, Name, IsPublic) 

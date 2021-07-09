@@ -96,6 +96,45 @@ class Database {
 
 
 
+	/**
+	 * Creates a unique, randomly generated ID
+	 * 
+	 * @param	string	The name of the table to check whether it's unique
+	 * @return	string	The randomly generated ID
+	 * @return	null	If something went wrong
+	 */
+	public static function generateRandomID(string $tableName) : ?string {
+
+		// If connection is not set, return null
+		if(!isset(self::$conn)) {
+			return NULL;
+		}
+
+		// As long as it's not unique, try finding a unique ID
+		do {
+
+			$chars = "0123456789";
+			$randomID = "";
+			for($i = 0; $i < 32; $i++) {
+				$randomID .= $chars[rand(0, strlen($chars) - 1)];		
+			}
+			$data = self::find("SELECT ID FROM $tableName WHERE PublicID = ?;", $randomID);
+
+		}
+		while(count($data) !== 0);
+		return $randomID;
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 
