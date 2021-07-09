@@ -13,12 +13,6 @@ if($res === NULL) {
 	ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst getting your tracks."]);
 }
 
-// Merge all tracks if the IDs are the same
-$res = $res->merge();
-if($res === NULL) {
-	ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst getting your tracks."]);
-}
-
 // Properly return the results
 ApiResponse::httpResponse(200, [ "message" => "Tracks found.", "data" => $res->data ]);
 
