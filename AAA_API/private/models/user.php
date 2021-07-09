@@ -7,11 +7,7 @@ class User extends Table {
 	public int $id;
 	public string $publicID;
 
-	public string $firstName;
-	public string $lastName;
 	public string $emailAddress;
-
-	public string $username;
 	public string $password;
 
 	public int $accountStatus;
@@ -27,20 +23,14 @@ class User extends Table {
 	 * User constructor
 	 * 
 	 * @param		string		Public ID
-	 * @param		string		First name
-	 * @param		string		Last name
-	 * @param		string		Username
 	 * @param		string		Password
 	 * @param		string		Email address
 	 * @param		int			Account status
 	 * @param		string		Access token
 	 */
-	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
+	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
 
 		$this->publicID = $publicID;
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->username = $username;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 		$this->accessToken = $accessToken;
@@ -63,7 +53,7 @@ class User extends Table {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["PublicID"], $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
+		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -85,12 +75,6 @@ class User extends Table {
 	 * @return		array		[key => Property, value => Duplicate value]
 	 */
 	public function hasDuplicates() {
-
-		// Find user by username		=> results that's not this? true
-		$res = self::findByUsername($this->username);
-		if($res !== NULL && $res->publicID !== $this->publicID) { 
-			return ["key" => "a username", "value" => $res->username];
-		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
@@ -162,9 +146,6 @@ class User extends Table {
 	 */
 	public function sanitizeInputs() : void {
 
-		$this->firstName = trim(mysqli_real_escape_string(self::$conn, $this->firstName));
-		$this->lastName = trim(mysqli_real_escape_string(self::$conn, $this->lastName));
-		$this->username = trim(mysqli_real_escape_string(self::$conn, $this->username));
 		$this->emailAddress = trim(mysqli_real_escape_string(self::$conn, $this->emailAddress));
 
 	}
@@ -196,7 +177,7 @@ class User extends Table {
 
 		// Set the current payload
 		$payload = [
-			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
+			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
 			"rights" => ["users" => $users, "user" => $user, "label" => $label]
 		];
 
@@ -240,15 +221,14 @@ class User extends Table {
 	/**
 	 * Logs the user in 
 	 * 
-	 * @param		string		Either username or email address
+	 * @param		string		Email address
 	 * @param		string		User password
 	 * @return		User		The user found with the given credentials
 	 */
 	public static function login(string $identifier, string $password) : User {
 
-		// Find the user by username and by email if necessary
-		$user = self::findByUsername($identifier);
-		$user = ($user !== NULL ? $user : self::findByEmailAddress($identifier));
+		// Find the user by email
+		$user = self::findByEmailAddress($identifier);
 
 		// If no user is found, throw an error
 		if($user === NULL) {
@@ -316,7 +296,7 @@ class User extends Table {
 	public static function create(array $values) : User {
 
 		// Create a user object
-		$user = new User(Database::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
+		$user = new User(Database::generateRandomID("USERS"), $values["Password"], $values["EmailAddress"], 1);
 
 		// Check for duplicate values that should be unique (username, email address)
 		$dupes = $user->hasDuplicates();
@@ -325,15 +305,15 @@ class User extends Table {
 		}
 
 		// Prepare SQL statement
-		$stmt = self::prepare("INSERT INTO USERS (PublicID, FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
+		$stmt = self::prepare("INSERT INTO USERS (PublicID, EmailAddress, Password, AccountStatus) 
 		VALUES ( ?, ?, ?, ?, ?, ?, ? );");
 
 		// Sanitize input and create password hash
 		$user->sanitizeInputs();
 		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
-		
+
 		// Insert input into SQL statement
-		$stmt->bind_param("ssssssi", $user->publicID, $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
+		$stmt->bind_param("sssi", $user->publicID, $user->emailAddress, $user->password, $user->accountStatus);
 
 		// Execute SQL statement
 		self::execute($stmt);
@@ -366,7 +346,7 @@ class User extends Table {
 		$user = parent::prepareUpdate($user, $values);
 		
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
@@ -374,7 +354,7 @@ class User extends Table {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssisi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
+		$stmt->bind_param("ssisi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
@@ -442,30 +422,6 @@ class User extends Table {
 
 		// If no user is found, return NULL
 		$res = Database::find("SELECT * FROM USERS WHERE PublicID = ?;", $userID);
-		if(count($res) === 0) {
-			return NULL;
-		}
-
-		// Create and return the found user as an object
-		return User::construct((array) $res[0]);
-
-	}
-
-
-
-
-
-	/**
-	 * Get all the users by the given username
-	 * 
-	 * @param		string		The username to search for
-	 * @return		null		If the user was not found
-	 * @return		User		The user that was found
-	 */
-	public static function findByUsername(string $username) : ?User {
-
-		// If no user is found, return NULL
-		$res = Database::find("SELECT * FROM USERS WHERE Username = ?;", $username);
 		if(count($res) === 0) {
 			return NULL;
 		}
