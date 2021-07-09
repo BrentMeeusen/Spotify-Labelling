@@ -1,5 +1,12 @@
 <?php
 
+// If it's a preflight check, return 200
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+	ApiResponse::httpResponse(200);
+}
+
+
+
 // Headers here because this file is added to all endpoints
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
@@ -34,15 +41,8 @@ include_once("methods.php");
 
 
 
-// If it's a preflight check, return 200
-if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-	ApiResponse::httpResponse(200);
-}
-
-
-
 // Set the database connection
-Table::setConnection(Database::connect());
+Database::connect();
 
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
@@ -51,7 +51,7 @@ $body = (array) json_decode(file_get_contents("php://input"));
 
 // Check whether the method is correct
 if(isset($ALLOWED_METHOD)) {
-	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD && $_SERVER["REQUEST_METHOD"] !== "OPTIONS") {
+	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD) {
 		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 	}
 }
