@@ -302,7 +302,8 @@ class Database {
 		}
 
 		// Create and return a collection of tracks
-		return ICollection::createTrackCollection($ret);
+		$collection = ICollection::createTrackCollection($ret);
+		return $collection->merge();
 
 	}
 
