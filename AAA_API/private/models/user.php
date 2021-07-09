@@ -276,6 +276,38 @@ class User extends Table {
 
 
 	/**
+	 * Sends a verification email
+	 * 
+	 * @param		string		The public ID of the user
+	 * @param		string		The email address of the user
+	 */
+	public static function sendVerificationEmail(string $id, string $email) : void {
+
+		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $id . "&email=" . $email;
+
+		$subject = "Verify Your Account";
+		
+		$body = "<html><head></head><body>";
+		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
+		$body .= "</body></html>";
+
+		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
+				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
+				"Organization: Spotify Labelling\r\n" . 
+				"MIME-Version: 1.0\r\n" . 
+				"Content-type: text/html; charset: utf8\r\n" . 
+				"X-Priority: 3\r\n" . 
+				"X-Mailer: PHP" . phpversion() ." \r\n";
+
+		@mail($email, $subject, $body, $headers);
+
+	} 
+
+
+
+
+
+	/**
 	 * Create the user with the given values
 	 * 
 	 * @param		array		The values to create the user with
@@ -309,23 +341,7 @@ class User extends Table {
 		self::execute($stmt);
 
 		// Send an email to the user to verify their account
-		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $user->publicID . "&email=" . $user->emailAddress;
-
-		$subject = "Verify Your Account";
-		
-		$body = "<html><head></head><body>";
-		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
-		$body .= "</body></html>";
-
-		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
-				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
-				"Organization: Spotify Labelling\r\n" . 
-				"MIME-Version: 1.0\r\n" . 
-				"Content-type: text/html; charset: utf8\r\n" . 
-				"X-Priority: 3\r\n" . 
-				"X-Mailer: PHP" . phpversion() ." \r\n";
-
-		@mail($user->emailAddress, $subject, $body, $headers);
+		self::sendVerificationEmail($user->publicID, $user->emailAddress);
 
 		// Return the result
 		return $user;
