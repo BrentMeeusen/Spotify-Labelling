@@ -306,7 +306,7 @@ class User extends Table {
 
 		// Prepare SQL statement
 		$stmt = self::prepare("INSERT INTO USERS (PublicID, EmailAddress, Password, AccountStatus) 
-		VALUES ( ?, ?, ?, ?, ?, ?, ? );");
+		VALUES ( ?, ?, ?, ? );");
 
 		// Sanitize input and create password hash
 		$user->sanitizeInputs();
