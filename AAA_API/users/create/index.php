@@ -23,18 +23,18 @@ if(!isset($payload->rights->register) || $payload->rights->register !== TRUE) {
 
 
 // Check whether all required fields are filled in
-if(empty($body["FirstName"]) || empty($body["LastName"]) || empty($body["Username"]) || empty($body["Password"]) || empty($body["EmailAddress"])) {
+if(empty($body["Password"]) || empty($body["EmailAddress"])) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
 // Check if the password is the same as another value
-if($body["Password"] == $body["FirstName"] || $body["Password"] == $body["LastName"] || $body["Password"] == $body["Username"] || $body["Password"] == $body["EmailAddress"]) {
+if($body["Password"] == $body["EmailAddress"]) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value."]);
 }
 
 
 // Set values of the payload
-$values = ["FirstName" => NULL, "LastName" => NULL, "Username" => NULL, "Password" => NULL, "EmailAddress" => NULL];
+$values = ["Password" => NULL, "EmailAddress" => NULL];
 foreach($body as $key => $value) {
 	$values[$key] = $value;
 }

@@ -34,12 +34,12 @@ else {
 
 
 // Check if inputs are set and not empty
-if(setAndEmpty($body, "FirstName") || setAndEmpty($body, "LastName") || setAndEmpty($body, "Username") || setAndEmpty($body, "EmailAddress")) {
+if(setAndEmpty($body, "EmailAddress")) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
 }
 
 // Check if the password is the same as another value
-if(isset($body["Password"]) && ($body["Password"] == $payload->user->firstname || $body["Password"] == $payload->user->lastname || $body["Password"] == $payload->user->username || $body["Password"] == $payload->user->emailAddress)) {
+if(isset($body["Password"]) && ($body["Password"] == $payload->user->emailAddress)) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value.", "data" => $payload->user]);
 }
 
