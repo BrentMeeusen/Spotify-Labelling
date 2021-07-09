@@ -147,7 +147,7 @@ class Database {
 	 * @param		string		The parameter
 	 * @return		array		An associative array with objects of the results
 	 */
-	private static function find(string $SQL, string $parameter) : array {
+	public static function find(string $SQL, string $parameter) : array {
 
 		$stmt = self::prepare($SQL);
 		$stmt->bind_param("s", $parameter);
@@ -169,7 +169,7 @@ class Database {
 	 * @param		string		The second parameter
 	 * @return		array		An associative array with objects of the results
 	 */
-	private static function findLink(string $SQL, string $p1, string $p2) : array {
+	public static function findLink(string $SQL, string $p1, string $p2) : array {
 
 		$stmt = self::prepare($SQL);
 		$stmt->bind_param("ss", $p1, $p2);
