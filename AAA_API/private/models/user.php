@@ -464,18 +464,14 @@ class User extends Table {
 	 */
 	public static function findByUsername(string $username) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE Username = ?;");
-		$username = self::sanitizeArray([$username])[0];
-		$stmt->bind_param("s", $username);
-		$res = self::getResults($stmt);
-
 		// If no user is found, return NULL
+		$res = Database::find("SELECT * FROM USERS WHERE Username = ?;", $username);
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found user as an object
-		return User::construct($res[0]);
+		return User::construct((array) $res[0]);
 
 	}
 
@@ -492,18 +488,14 @@ class User extends Table {
 	 */
 	public static function findByEmailAddress(string $emailAddress) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
-		$email = self::sanitizeArray([$emailAddress])[0];
-		$stmt->bind_param("s", $email);
-		$res = self::getResults($stmt);
-
 		// If no user is found, return NULL
+		$res = Database::find("SELECT * FROM USERS WHERE EmailAddress = ?;", $emailAddress);
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found user as an object
-		return User::construct($res[0]);
+		return User::construct((array) $res[0]);
 
 	}
 
