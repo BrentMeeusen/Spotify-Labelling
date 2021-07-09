@@ -162,10 +162,10 @@ class User extends Table {
 	 */
 	public function sanitizeInputs() : void {
 
-		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
-		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
-		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
-		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
+		$this->firstName = trim(mysqli_real_escape_string(self::$conn, $this->firstName));
+		$this->lastName = trim(mysqli_real_escape_string(self::$conn, $this->lastName));
+		$this->username = trim(mysqli_real_escape_string(self::$conn, $this->username));
+		$this->emailAddress = trim(mysqli_real_escape_string(self::$conn, $this->emailAddress));
 
 	}
 
@@ -318,13 +318,11 @@ class User extends Table {
 		// Create a user object
 		$user = new User(Database::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
 
-
 		// Check for duplicate values that should be unique (username, email address)
 		$dupes = $user->hasDuplicates();
 		if($dupes !== FALSE) {
 			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
 		}
-
 
 		// Prepare SQL statement
 		$stmt = self::prepare("INSERT INTO USERS (PublicID, FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
