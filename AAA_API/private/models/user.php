@@ -418,13 +418,11 @@ class User extends Table {
 	 */
 	public static function findAll() : array {
 
-		$stmt = self::prepare("SELECT * FROM USERS;");
-		$res = self::getResults($stmt);
-
 		// Return an array of Users
+		$found = Database::find("SELECT * FROM USERS WHERE ID > ?;", -1);
 		$users = [];
-		foreach($res as $user) {
-			array_push($users, User::construct($user));
+		foreach($found as $user) {
+			array_push($users, User::construct((array) $user));
 		}
 		return $users;
 	}
