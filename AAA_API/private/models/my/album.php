@@ -44,6 +44,29 @@ class IAlbum {
 
 
 	/**
+	 * Creates an album from the data that the database returned
+	 * 
+	 * @param		StdClass	The album data
+	 * @return		IAlbum		The created album
+	 */
+	public static function createFromDatabase(StdClass $album) : IAlbum {
+
+		@$data->id = $album->SpotifyID;
+		$data->name = $album->Name;
+		return new IAlbum($data);
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Finds an album from our database given a Spotify ID
 	 * 
 	 * @param		string		The Spotify ID to search for
