@@ -440,18 +440,14 @@ class User extends Table {
 	 */
 	public static function findByPublicID(string $userID) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE PublicID = ?;");
-		$userID = self::sanitizeArray([$userID])[0];
-		$stmt->bind_param("s", $userID);
-		$res = self::getResults($stmt);
-
 		// If no user is found, return NULL
+		$res = Database::find("SELECT * FROM USERS WHERE PublicID = ?;", $userID);
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found user as an object
-		return User::construct($res[0]);
+		return User::construct((array) $res[0]);
 
 	}
 
