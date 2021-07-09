@@ -1,6 +1,6 @@
 <?php
 
-class User extends Table implements TableInterface {
+class User extends Table {
 
 
 	// Initialise variables
@@ -343,7 +343,7 @@ class User extends Table implements TableInterface {
 	 * @param		array		The new values in an associative array
 	 * @return		User		The updated user
 	 */
-	public static function update(Table $user, array $values) : User {
+	public static function update($user, array $values) : User {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
@@ -378,7 +378,7 @@ class User extends Table implements TableInterface {
 	 * @param		User		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
-	public static function delete(Table $user) : bool {
+	public static function delete($user) : bool {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }

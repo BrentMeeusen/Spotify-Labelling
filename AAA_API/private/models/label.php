@@ -1,6 +1,6 @@
 <?php
 
-class Label extends Table implements TableInterface {
+class Label extends Table {
 
 
 	// Initialise variables
@@ -134,7 +134,7 @@ class Label extends Table implements TableInterface {
 	 * @param		array		The new values in an associative array
 	 * @param		Label		The updated label
 	 */
-	public static function update(Table $label, array $values) : Label {
+	public static function update($label, array $values) : Label {
 
 		// Check whether object is of type Label
 		if(!($label instanceof Label)) { throw new InvalidArgumentException; }
@@ -164,7 +164,7 @@ class Label extends Table implements TableInterface {
 	 * @param		Label		The label to delete
 	 * @return		bool		Whether it was deleted successfully or not
 	 */
-	public static function delete(Table $label) : bool {
+	public static function delete($label) : bool {
 
 		// Check whether object is of type Label
 		if(!($label instanceof Label)) { throw new InvalidArgumentException; }
