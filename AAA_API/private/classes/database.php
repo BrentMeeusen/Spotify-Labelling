@@ -1,7 +1,6 @@
 <?php
 
 
-// TODO		Refactor Labels class
 // TODO		Refactor Users class
 
 
