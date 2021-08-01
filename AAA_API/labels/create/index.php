@@ -12,6 +12,11 @@ if(!isset($payload->rights->label->create) || $payload->rights->label->create !=
 	ApiResponse::httpResponse(401, ["error" => "You are not allowed to create a label."]);
 }
 
+// If the label name is empty, return an error
+if(setAndEmpty($body, "Name")) {
+	ApiResponse::httpResponse(400, ["error" => "You have to give the label a name."]);
+}
+
 // If a label already exists, return an error
 if(Label::findByName($body["Name"], $payload->user->id) !== NULL) {
 	ApiResponse::httpResponse(400, ["error" => "You already have a label with the name \"" . $body["Name"] . "\"."]);
