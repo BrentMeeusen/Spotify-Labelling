@@ -35,7 +35,7 @@ include_once("models/my/track.php");
 
 // Include general
 include_once("models/AAA_table.php");
-include_once("models/new-label.php");
+include_once("models/label.php");
 include_once("models/user.php");
 include_once("methods.php");
 
