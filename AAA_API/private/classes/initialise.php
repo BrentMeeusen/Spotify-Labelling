@@ -71,7 +71,6 @@ class Initialise extends Database {
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			PublicID		VARCHAR(32)		NOT NULL,
 			Name			VARCHAR(100)	NOT NULL,
-			IsPublic		INT(1)			NOT NULL,
 
 			PRIMARY KEY (ID),
 			UNIQUE (PublicID)
