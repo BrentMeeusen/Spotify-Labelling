@@ -223,9 +223,7 @@ class Label extends Database {
 		// Loop over all labels and return the array
 		$return = [];
 		foreach($res as $row) {
-			print(json_encode($row));
-			exit();
-			// array_push($return, new Label($row->));
+			array_push($return, new Label($row->PublicID, $ownerID, $row->Name));
 		}
 
 		return $return;
