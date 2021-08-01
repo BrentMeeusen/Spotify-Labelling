@@ -97,6 +97,65 @@ class Database {
 
 
 	/**
+	 * Prepares the update method
+	 * 
+	 * @param		Table		The entry to update
+	 * @param		array		The new values in an associative array
+	 * @return		Table		The updated entry
+	 */
+	protected static function prepareUpdate($entry, array $values) {
+
+		// Update its values with the newest values
+		foreach($values as $key => $value) {
+			$entry->{lcfirst($key)} = $value;
+		}
+
+		// Check for duplicate values that should be unique
+		$dupes = $entry->hasDuplicates();
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
+
+		// Sanitize input and return the entry
+		$entry->sanitizeInputs();
+		return $entry;
+
+	}
+
+
+
+
+
+	/**
+	 * Deletes an entry from the given table
+	 * TODO: SET ENTRY TYPES
+	 * 
+	 * @param		Table		A table child to delete
+	 * @param		string		The table to delete data from
+	 * @param		bool		Whether the entry was deleted successfully or not
+	 */
+	protected static function deleteEntry($entry, string $table) {
+
+		// Delete the entry
+		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
+		$stmt->bind_param("s", $entry->publicID);
+		self::execute($stmt);
+
+		// Return TRUE because everything went right
+		return TRUE;
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Creates a unique, randomly generated ID
 	 * 
 	 * @param	string	The name of the table to check whether it's unique
