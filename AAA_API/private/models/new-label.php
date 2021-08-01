@@ -41,7 +41,7 @@ class Label extends Database {
 	 */
 	public static function construct(array $values) : Label {
 
-		$label = new Label($values["PublicID"], $values["Creator"], $values["Name"], $values["IsPublic"]);
+		$label = new Label($values["PublicID"], $values["Creator"], $values["Name"]);
 		return $label;
 
 	}
