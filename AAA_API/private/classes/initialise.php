@@ -96,7 +96,6 @@ class Initialise extends Database {
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			LabelID			VARCHAR(32)		NOT NULL,
 			OwnerID			VARCHAR(32)		NOT NULL,
-			IsHidden		INT(1)			NOT NULL	DEFAULT		0,
 
 			PRIMARY KEY (ID),
 			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
