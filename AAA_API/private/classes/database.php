@@ -99,11 +99,11 @@ class Database {
 	/**
 	 * Prepares the update method
 	 * 
-	 * @param		Table		The entry to update
+	 * @param		Database	The entry to update
 	 * @param		array		The new values in an associative array
-	 * @return		Table		The updated entry
+	 * @return		Database	The updated entry
 	 */
-	protected function prepareUpdate($entry, array $values) {
+	protected function prepareUpdate(Database $entry, array $values) {
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
@@ -128,13 +128,12 @@ class Database {
 
 	/**
 	 * Deletes an entry from the given table
-	 * TODO: SET ENTRY TYPES
 	 * 
-	 * @param		Table		A table child to delete
+	 * @param		Database	A table child to delete
 	 * @param		string		The table to delete data from
 	 * @param		bool		Whether the entry was deleted successfully or not
 	 */
-	protected function deleteEntry($entry, string $table) {
+	protected function deleteEntry(Database $entry, string $table) {
 
 		// Delete the entry
 		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
