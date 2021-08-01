@@ -103,7 +103,7 @@ class Database {
 	 * @param		array		The new values in an associative array
 	 * @return		Table		The updated entry
 	 */
-	protected static function prepareUpdate($entry, array $values) {
+	protected function prepareUpdate($entry, array $values) {
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
@@ -134,7 +134,7 @@ class Database {
 	 * @param		string		The table to delete data from
 	 * @param		bool		Whether the entry was deleted successfully or not
 	 */
-	protected static function deleteEntry($entry, string $table) {
+	protected function deleteEntry($entry, string $table) {
 
 		// Delete the entry
 		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
@@ -162,7 +162,7 @@ class Database {
 	 * @return	string	The randomly generated ID
 	 * @return	null	If something went wrong
 	 */
-	public static function generateRandomID(string $tableName) : ?string {
+	public function generateRandomID(string $tableName) : ?string {
 
 		// If connection is not set, return null
 		if(!isset(self::$conn)) {
