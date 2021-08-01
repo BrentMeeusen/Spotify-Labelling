@@ -103,7 +103,7 @@ class Database {
 	 * @param		array		The new values in an associative array
 	 * @return		Database	The updated entry
 	 */
-	protected function prepareUpdate(Database $entry, array $values) {
+	protected function prepareUpdate(Database $entry, array $values) : Database {
 
 		// Update its values with the newest values
 		foreach($values as $key => $value) {
@@ -133,7 +133,7 @@ class Database {
 	 * @param		string		The table to delete data from
 	 * @param		bool		Whether the entry was deleted successfully or not
 	 */
-	protected function deleteEntry(Database $entry, string $table) {
+	protected function deleteEntry(Database $entry, string $table) : bool {
 
 		// Delete the entry
 		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
