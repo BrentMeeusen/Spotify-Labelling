@@ -20,7 +20,7 @@ if(Label::findByName($body["Name"]) !== NULL) {
 
 
 // Set values of the payload
-$values = ["Name" => NULL, "IsPublic" => FALSE, "Creator" => $payload->user->id];
+$values = ["Name" => NULL, "Creator" => $payload->user->id];
 foreach($body as $key => $value) {
 	$values[$key] = $value;
 }

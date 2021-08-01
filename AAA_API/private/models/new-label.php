@@ -9,7 +9,6 @@ class Label extends Database {
 
 	public string $creator;
 	public string $name;
-	public bool $isPublic;
 
 
 
@@ -106,12 +105,12 @@ class Label extends Database {
 	public static function create(array $values) : Label {
 
 		// Create a label object
-		$label = new Label(Database::generateRandomID("LABELS"), $values["Creator"], $values["Name"], $values["IsPublic"]);
+		$label = new Label(Database::generateRandomID("LABELS"), $values["Creator"], $values["Name"]);
 
 		// Create label
-		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Name, IsPublic) VALUES ( ?, ?, ? );");
+		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Name) VALUES (?, ?);");
 		$label->sanitizeInputs();
-		$stmt->bind_param("ssi", $label->publicID, $label->name, $label->isPublic);
+		$stmt->bind_param("ssi", $label->publicID, $label->name);
 		self::execute($stmt);
 
 		// Create label-to-user
