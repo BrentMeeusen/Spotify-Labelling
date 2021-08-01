@@ -140,7 +140,7 @@ class Label extends Database {
 		if(!($label instanceof Label)) { throw new InvalidArgumentException; }
 
 		// Prepare the update process
-		$label = parent->prepareUpdate($label, $values);
+		$label = parent::prepareUpdate($label, $values);
 
 		// Prepare SQL statement
 		$stmt = self::prepare("UPDATE LABELS SET Name = ?, IsPublic = ? WHERE PublicID = ?;");
@@ -170,7 +170,7 @@ class Label extends Database {
 		if(!($label instanceof Label)) { throw new InvalidArgumentException; }
 
 		// Delete the entry
-		return parent->deleteEntry($label, "LABELS");
+		return parent::deleteEntry($label, "LABELS");
 
 	}
 
