@@ -2,7 +2,7 @@
 
 // If it's a preflight check, return 200
 if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-	ApiResponse::httpResponse(200);
+	http_response_code(200);
 }
 
 
