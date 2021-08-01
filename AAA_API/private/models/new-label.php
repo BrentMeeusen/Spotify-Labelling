@@ -75,13 +75,10 @@ class Label extends Database {
 	public function hasDuplicates() {
 
 		// Get all entries that are from this creator with this name
-		// TODO: REFACTOR WITH NEW DATABASE STRUCTURE AND CLASSES
-		$stmt = self::prepare("SELECT * FROM LABELS WHERE Creator = ? AND Name = ? AND NOT PublicID = ?;");
-		$stmt->bind_param("sss", $this->creator, $this->name, $this->publicID);
-		$res = self::getResults($stmt);
+		$res = parent::findLink("SELECT L.* FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE LTU.OwnerID = ? AND L.Name = ?;", $this->creator, $this->name);
 
 		// Return whether it has found a duplicate or not
-		return (count($res) === 0 ? FALSE : ["key" => "a label", "value" => $res[0]["Name"]]);
+		return (count($res) === 0 ? FALSE : ["key" => "a label", "value" => $res[0]->Name]);
 
 	}
 
