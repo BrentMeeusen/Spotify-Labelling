@@ -92,6 +92,21 @@ class Database {
 
 
 
+
+	/**
+	 * Sanitizes a certain input
+	 * 
+	 * @param		string		The input to sanitize
+	 * @return		string		The sanitized input
+	 */
+	protected function sanitize(string $toSanitize) : string {
+		return mysqli_real_escape_string(self::$conn, $toSanitize);
+	}
+
+
+
+
+
 	/**
 	 * Prepares the update method
 	 * 
