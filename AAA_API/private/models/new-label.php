@@ -20,14 +20,12 @@ class Label extends Database {
 	 * @param		string		The label public ID
 	 * @param		string		The creator public ID
 	 * @param		string		Label name
-	 * @param		bool		Whether the label is public or not
 	 */
-	public function __construct(string $publicID, string $creator, string $name, bool $isPublic) {
+	public function __construct(string $publicID, string $creator, string $name) {
 
 		$this->publicID = $publicID;
 		$this->creator = $creator;
 		$this->name = $name;
-		$this->isPublic = $isPublic;
 
 	}
 
