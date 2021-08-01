@@ -223,7 +223,9 @@ class Label extends Database {
 		// Loop over all labels and return the array
 		$return = [];
 		foreach($res as $row) {
-			array_push($return, Label::construct($row));
+			print(json_encode($row));
+			exit();
+			// array_push($return, new Label($row->));
 		}
 
 		return $return;
@@ -238,13 +240,14 @@ class Label extends Database {
 	 * Finds the label by name
 	 * 
 	 * @param		string		The name of the label
+	 * @param		string		The owner ID
 	 * @return		Label		If it was found
 	 * @return		null		If no label was found
 	 */
-	public static function findByName(string $name) : ?Label {
+	public static function findByName(string $name, string $ownerID) : ?Label {
 
 		// If no label is found, return NULL
-		$res = parent::find("SELECT * FROM LABELS WHERE Name = ?;", $name);
+		$res = parent::findLink("SELECT * FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE Name = ? AND LTU.OwnerID = ?;", $name, $ownerID);
 		if(count($res) === 0) {
 			return NULL;
 		}

@@ -13,7 +13,7 @@ if(!isset($payload->rights->label->create) || $payload->rights->label->create !=
 }
 
 // If a label already exists, return an error
-if(Label::findByName($body["Name"]) !== NULL) {
+if(Label::findByName($body["Name"], $payload->user->id) !== NULL) {
 	ApiResponse::httpResponse(400, ["error" => "You already have a label with the name \"" . $body["Name"] . "\"."]);
 }
 
