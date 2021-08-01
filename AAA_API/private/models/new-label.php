@@ -197,7 +197,7 @@ class Label extends Database {
 		}
 
 		// Create and return the found label as an object
-		return Label::construct($res[0]);
+		return new Label($res[0]->PublicID, "-1", $res[0]->Name);
 
 	}
 
@@ -277,7 +277,7 @@ class Label extends Database {
 		// Loop over all labels and return the array
 		$return = [];
 		foreach($res as $row) {
-			array_push($return, Label::construct($row));
+			array_push($return, new Label($row->PublicID, $ownerID, $row->Name));
 		}
 
 		return $return;
