@@ -137,14 +137,12 @@ class Label extends Database {
 		// Prepare the update process
 		$label = parent::prepareUpdate($label, $values);
 
-		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE LABELS SET Name = ?, IsPublic = ? WHERE PublicID = ?;");
-
-		// Insert input into SQL statement
-		$stmt->bind_param("sis", $label->name, $label->isPublic, $label->publicID);
-
-		// Execute SQL statement and return the result
+		// Do the actual updating
+		$stmt = self::prepare("UPDATE LABELS SET Name = ? WHERE PublicID = ?;");
+		$stmt->bind_param("ss", $label->name, $label->publicID);
 		self::execute($stmt);
+
+		// Return the new label
 		return $label;
 
 	}
