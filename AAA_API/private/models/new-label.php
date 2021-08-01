@@ -108,7 +108,7 @@ class Label extends Database {
 		// Create label
 		$stmt = self::prepare("INSERT INTO LABELS (PublicID, Name) VALUES (?, ?);");
 		$label->sanitizeInputs();
-		$stmt->bind_param("ssi", $label->publicID, $label->name);
+		$stmt->bind_param("ss", $label->publicID, $label->name);
 		self::execute($stmt);
 
 		// Create label-to-user
