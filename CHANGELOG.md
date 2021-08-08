@@ -28,6 +28,12 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.11.1-alpha - 2021/08/08
+
+### Changed
+- Preflight check due to CORS policies
+
+
 ## 0.11.0-alpha - 2021/08/08
 
 ### Added
