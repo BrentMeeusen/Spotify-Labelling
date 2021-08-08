@@ -1,7 +1,7 @@
 <?php
 
 // Headers here because this file is added to all endpoints
-header("Access-Control-Allow-Origin: spotify-labelling.21webb.nl");
+header("Access-Control-Allow-Origin: http://spotify-labelling.21webb.nl");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
