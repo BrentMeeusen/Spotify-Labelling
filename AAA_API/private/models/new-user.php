@@ -337,10 +337,10 @@ class User extends Database {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
-		
+
 		// Prepare the update process
 		$user = parent::prepareUpdate($user, $values);
-		
+
 		// Prepare SQL statement
 		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
