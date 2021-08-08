@@ -177,9 +177,7 @@ class User extends Database {
 			]
 		];
 
-		// Get all the additional rights of the user
-		$stmt = self::prepare("SELECT r.Name, r.Value FROM RIGHTS_TO_USERS AS rtu JOIN RIGHTS AS r ON r.ID = rtu.RightID WHERE rtu.UserID = " . $this->publicID . ";");
-		$data = self::getResults($stmt);
+		$data = self::find("SELECT r.Name, r.Value FROM RIGHTS_TO_USERS AS rtu JOIN RIGHTS AS r ON r.ID = rtu.RightID WHERE rtu.UserID = ?;", $this->publicID);
 
 		// Loop over all data
 		foreach($data as $row) {
