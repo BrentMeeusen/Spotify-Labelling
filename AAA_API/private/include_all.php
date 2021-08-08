@@ -43,7 +43,6 @@ include_once("methods.php");
 
 // Set the database connection
 $conn = Database::connect();
-Table::setConnection($conn);
 
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
