@@ -1,6 +1,6 @@
 <?php
 
-class User extends Table {
+class User extends Database {
 
 
 	// Initialise variables
@@ -145,9 +145,7 @@ class User extends Table {
 	 * Sanitizes the inputs
 	 */
 	public function sanitizeInputs() : void {
-
-		$this->emailAddress = trim(mysqli_real_escape_string(self::$conn, $this->emailAddress));
-
+		$this->emailAddress = parent::sanitize($this->emailAddress);
 	}
 
 
@@ -166,19 +164,17 @@ class User extends Table {
 	 */
 	public function createPayload() : array {
 
-		// Every user is allowed to find all users, but not to find by ID, by email, or by username, nor can he update or delete other accounts
-		$users = ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE];
-
-		// Every user is allowed to update and delete himself
-		$user = ["update" => TRUE, "delete" => TRUE];
-
-		// Every user can create, read, update, delete his own labels
-		$label = ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE, "public" => FALSE];
-
 		// Set the current payload
 		$payload = [
 			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
-			"rights" => ["users" => $users, "user" => $user, "label" => $label]
+			"rights" => [
+				// Rights for all users
+				"users" => ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE],
+				// Rights for user of its own
+				"user" => ["update" => TRUE, "delete" => TRUE],
+				// Rights for all labels
+				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE]
+			]
 		];
 
 		// Get all the additional rights of the user
@@ -268,7 +264,7 @@ class User extends Table {
 		$subject = "Verify Your Account";
 		
 		$body = "<html><head></head><body>";
-		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
+		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
 		$body .= "</body></html>";
 
 		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
@@ -341,10 +337,10 @@ class User extends Table {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
-		
+
 		// Prepare the update process
 		$user = parent::prepareUpdate($user, $values);
-		
+
 		// Prepare SQL statement
 		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
