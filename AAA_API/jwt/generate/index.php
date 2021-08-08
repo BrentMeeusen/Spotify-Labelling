@@ -24,14 +24,6 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 	// Create a payload
 	$payload = $user->createPayload();
 
-
-
-	// TODO Get the additional rights the user has
-	
-	// TODO Add the additional rights the user has
-
-
-
 	// Create token
 	$timeValid = 60;
 	$token = JSONWebToken::createToken($payload, $timeValid);
