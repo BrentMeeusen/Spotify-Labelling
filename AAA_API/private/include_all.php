@@ -1,14 +1,7 @@
 <?php
 
-// If it's a preflight check, return 200
-if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-	http_response_code(200);
-}
-
-
-
 // Headers here because this file is added to all endpoints
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: spotify-labelling.21webb.nl");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
@@ -34,10 +27,16 @@ include_once("models/my/collection.php");
 include_once("models/my/track.php");
 
 // Include general
-include_once("models/AAA_table.php");
 include_once("models/label.php");
 include_once("models/user.php");
 include_once("methods.php");
+
+
+
+// If it's a preflight check, return 200
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+	ApiResponse::httpResponse(200);
+}
 
 
 
