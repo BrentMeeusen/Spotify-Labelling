@@ -1,17 +1,13 @@
 <?php
 
-class User extends Table implements TableInterface {
+class User extends Database {
 
 
 	// Initialise variables
 	public int $id;
 	public string $publicID;
 
-	public string $firstName;
-	public string $lastName;
 	public string $emailAddress;
-
-	public string $username;
 	public string $password;
 
 	public int $accountStatus;
@@ -27,20 +23,14 @@ class User extends Table implements TableInterface {
 	 * User constructor
 	 * 
 	 * @param		string		Public ID
-	 * @param		string		First name
-	 * @param		string		Last name
-	 * @param		string		Username
 	 * @param		string		Password
 	 * @param		string		Email address
 	 * @param		int			Account status
 	 * @param		string		Access token
 	 */
-	public function __construct(string $publicID, string $firstName, string $lastName, string $username, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
+	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
 
 		$this->publicID = $publicID;
-		$this->firstName = $firstName;
-		$this->lastName = $lastName;
-		$this->username = $username;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 		$this->accessToken = $accessToken;
@@ -63,7 +53,7 @@ class User extends Table implements TableInterface {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["PublicID"], $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
+		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -85,12 +75,6 @@ class User extends Table implements TableInterface {
 	 * @return		array		[key => Property, value => Duplicate value]
 	 */
 	public function hasDuplicates() {
-
-		// Find user by username		=> results that's not this? true
-		$res = self::findByUsername($this->username);
-		if($res !== NULL && $res->publicID !== $this->publicID) { 
-			return ["key" => "a username", "value" => $res->username];
-		}
 
 		// Find user by email address	=> results that's not this? true
 		$res = self::findByEmailAddress($this->emailAddress);
@@ -161,12 +145,7 @@ class User extends Table implements TableInterface {
 	 * Sanitizes the inputs
 	 */
 	public function sanitizeInputs() : void {
-
-		$this->firstName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->firstName))));
-		$this->lastName = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->lastName))));
-		$this->username = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->username))));
-		$this->emailAddress = htmlspecialchars(strip_tags(trim(mysqli_real_escape_string(self::$conn, $this->emailAddress))));
-
+		$this->emailAddress = parent::sanitize($this->emailAddress);
 	}
 
 
@@ -185,24 +164,20 @@ class User extends Table implements TableInterface {
 	 */
 	public function createPayload() : array {
 
-		// Every user is allowed to find all users, but not to find by ID, by email, or by username, nor can he update or delete other accounts
-		$users = ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE];
-
-		// Every user is allowed to update and delete himself
-		$user = ["update" => TRUE, "delete" => TRUE];
-
-		// Every user can create, read, update, delete his own labels
-		$label = ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE, "public" => FALSE];
-
 		// Set the current payload
 		$payload = [
-			"user" => ["id" => $this->publicID, "firstname" => $this->firstName, "lastname" => $this->lastName, "emailAddress" => $this->emailAddress, "username" => $this->username, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
-			"rights" => ["users" => $users, "user" => $user, "label" => $label]
+			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
+			"rights" => [
+				// Rights for all users
+				"users" => ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE],
+				// Rights for user of its own
+				"user" => ["update" => TRUE, "delete" => TRUE],
+				// Rights for all labels
+				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE]
+			]
 		];
 
-		// Get all the additional rights of the user
-		$stmt = self::prepare("SELECT r.Name, r.Value FROM RIGHTS_TO_USERS AS rtu JOIN RIGHTS AS r ON r.ID = rtu.RightID WHERE rtu.UserID = " . $this->publicID . ";");
-		$data = self::getResults($stmt);
+		$data = self::find("SELECT r.Name, r.Value FROM RIGHTS_TO_USERS AS rtu JOIN RIGHTS AS r ON r.ID = rtu.RightID WHERE rtu.UserID = ?;", $this->publicID);
 
 		// Loop over all data
 		foreach($data as $row) {
@@ -240,15 +215,14 @@ class User extends Table implements TableInterface {
 	/**
 	 * Logs the user in 
 	 * 
-	 * @param		string		Either username or email address
+	 * @param		string		Email address
 	 * @param		string		User password
 	 * @return		User		The user found with the given credentials
 	 */
 	public static function login(string $identifier, string $password) : User {
 
-		// Find the user by username and by email if necessary
-		$user = self::findByUsername($identifier);
-		$user = ($user !== NULL ? $user : self::findByEmailAddress($identifier));
+		// Find the user by email
+		$user = self::findByEmailAddress($identifier);
 
 		// If no user is found, throw an error
 		if($user === NULL) {
@@ -276,45 +250,19 @@ class User extends Table implements TableInterface {
 
 
 	/**
-	 * Create the user with the given values
+	 * Sends a verification email
 	 * 
-	 * @param		array		The values to create the user with
-	 * @return		User		The user that was created
+	 * @param		string		The public ID of the user
+	 * @param		string		The email address of the user
 	 */
-	public static function create(array $values) : User {
+	public static function sendVerificationEmail(string $id, string $email) : void {
 
-		// Create a user object
-		$user = new User(self::generateRandomID("USERS"), $values["FirstName"], $values["LastName"], $values["Username"], $values["Password"], $values["EmailAddress"], 1);
-
-
-		// Check for duplicate values that should be unique (username, email address)
-		$dupes = $user->hasDuplicates();
-		if($dupes !== FALSE) {
-			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
-		}
-
-
-		// Prepare SQL statement
-		$stmt = self::prepare("INSERT INTO USERS (PublicID, FirstName, LastName, Username, EmailAddress, Password, AccountStatus) 
-		VALUES ( ?, ?, ?, ?, ?, ?, ? );");
-
-		// Sanitize input and create password hash
-		$user->sanitizeInputs();
-		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
-		
-		// Insert input into SQL statement
-		$stmt->bind_param("ssssssi", $user->publicID, $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus);
-
-		// Execute SQL statement
-		self::execute($stmt);
-
-		// Send an email to the user to verify their account
-		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $user->publicID . "&email=" . $user->emailAddress;
+		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $id . "&email=" . $email;
 
 		$subject = "Verify Your Account";
 		
 		$body = "<html><head></head><body>";
-		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
+		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
 		$body .= "</body></html>";
 
 		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
@@ -325,7 +273,47 @@ class User extends Table implements TableInterface {
 				"X-Priority: 3\r\n" . 
 				"X-Mailer: PHP" . phpversion() ." \r\n";
 
-		@mail($user->emailAddress, $subject, $body, $headers);
+		@mail($email, $subject, $body, $headers);
+
+	} 
+
+
+
+
+
+	/**
+	 * Create the user with the given values
+	 * 
+	 * @param		array		The values to create the user with
+	 * @return		User		The user that was created
+	 */
+	public static function create(array $values) : User {
+
+		// Create a user object
+		$user = new User(Database::generateRandomID("USERS"), $values["Password"], $values["EmailAddress"], 1);
+
+		// Check for duplicate values that should be unique (username, email address)
+		$dupes = $user->hasDuplicates();
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
+
+		// Prepare SQL statement
+		$stmt = self::prepare("INSERT INTO USERS (PublicID, EmailAddress, Password, AccountStatus) 
+		VALUES ( ?, ?, ?, ? );");
+
+		// Sanitize input and create password hash
+		$user->sanitizeInputs();
+		$user->password = password_hash($user->password, PASSWORD_DEFAULT);
+
+		// Insert input into SQL statement
+		$stmt->bind_param("sssi", $user->publicID, $user->emailAddress, $user->password, $user->accountStatus);
+
+		// Execute SQL statement
+		self::execute($stmt);
+
+		// Send an email to the user to verify their account
+		self::sendVerificationEmail($user->publicID, $user->emailAddress);
 
 		// Return the result
 		return $user;
@@ -343,16 +331,16 @@ class User extends Table implements TableInterface {
 	 * @param		array		The new values in an associative array
 	 * @return		User		The updated user
 	 */
-	public static function update(Table $user, array $values) : User {
+	public static function update($user, array $values) : User {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
-		
+
 		// Prepare the update process
 		$user = parent::prepareUpdate($user, $values);
-		
+
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET FirstName = ?, LastName = ?, Username = ?, EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
@@ -360,7 +348,7 @@ class User extends Table implements TableInterface {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("sssssisi", $user->firstName, $user->lastName, $user->username, $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
+		$stmt->bind_param("ssisi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
@@ -378,7 +366,7 @@ class User extends Table implements TableInterface {
 	 * @param		User		The user to delete
 	 * @return		bool		Whether it was a success deleting
 	 */
-	public static function delete(Table $user) : bool {
+	public static function delete($user) : bool {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
@@ -404,13 +392,11 @@ class User extends Table implements TableInterface {
 	 */
 	public static function findAll() : array {
 
-		$stmt = self::prepare("SELECT * FROM USERS;");
-		$res = self::getResults($stmt);
-
 		// Return an array of Users
+		$found = Database::find("SELECT * FROM USERS WHERE ID > ?;", -1);
 		$users = [];
-		foreach($res as $user) {
-			array_push($users, User::construct($user));
+		foreach($found as $user) {
+			array_push($users, User::construct((array) $user));
 		}
 		return $users;
 	}
@@ -428,46 +414,14 @@ class User extends Table implements TableInterface {
 	 */
 	public static function findByPublicID(string $userID) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE PublicID = ?;");
-		$userID = self::sanitizeArray([$userID])[0];
-		$stmt->bind_param("s", $userID);
-		$res = self::getResults($stmt);
-
 		// If no user is found, return NULL
+		$res = Database::find("SELECT * FROM USERS WHERE PublicID = ?;", $userID);
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found user as an object
-		return User::construct($res[0]);
-
-	}
-
-
-
-
-
-	/**
-	 * Get all the users by the given username
-	 * 
-	 * @param		string		The username to search for
-	 * @return		null		If the user was not found
-	 * @return		User		The user that was found
-	 */
-	public static function findByUsername(string $username) : ?User {
-
-		$stmt = self::prepare("SELECT * FROM USERS WHERE Username = ?;");
-		$username = self::sanitizeArray([$username])[0];
-		$stmt->bind_param("s", $username);
-		$res = self::getResults($stmt);
-
-		// If no user is found, return NULL
-		if(count($res) === 0) {
-			return NULL;
-		}
-
-		// Create and return the found user as an object
-		return User::construct($res[0]);
+		return User::construct((array) $res[0]);
 
 	}
 
@@ -484,18 +438,14 @@ class User extends Table implements TableInterface {
 	 */
 	public static function findByEmailAddress(string $emailAddress) : ?User {
 
-		$stmt = self::prepare("SELECT * FROM USERS WHERE EmailAddress = ?;");
-		$email = self::sanitizeArray([$emailAddress])[0];
-		$stmt->bind_param("s", $email);
-		$res = self::getResults($stmt);
-
 		// If no user is found, return NULL
+		$res = Database::find("SELECT * FROM USERS WHERE EmailAddress = ?;", $emailAddress);
 		if(count($res) === 0) {
 			return NULL;
 		}
 
 		// Create and return the found user as an object
-		return User::construct($res[0]);
+		return User::construct((array) $res[0]);
 
 	}
 

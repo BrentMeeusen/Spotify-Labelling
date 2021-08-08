@@ -28,6 +28,25 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.11.0-alpha - 2021/08/08
+
+### Added
+- Classes for data from Spotify
+- Class for Spotify data collection
+- Classes for data from my own database
+- Result popup disappears on click
+
+### Changed
+- Table methods into Database
+- Label class
+- User class
+
+### Removed
+- Table class
+- Classes that worked with both Spotify and my data simultaneously
+
+
+
 ## 0.10.3-alpha - 2021/06/30
 
 ### Added

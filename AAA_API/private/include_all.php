@@ -1,5 +1,12 @@
 <?php
 
+// If it's a preflight check, return 200
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+	http_response_code(200);
+}
+
+
+
 // Headers here because this file is added to all endpoints
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
@@ -9,6 +16,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // Include classes
 include_once("classes/api-response.php");
 include_once("classes/database.php");
+include_once("classes/initialise.php");
 include_once("classes/jwt.php");
 include_once("classes/spotify-api.php");
 
@@ -19,32 +27,22 @@ include_once("models/spotify/spotify-artist.php");
 include_once("models/spotify/spotify-playlist.php");
 include_once("models/spotify/spotify-track.php");
 
-include_once("models/AAA_spotify.php");
-include_once("models/AAA_table.php");
-include_once("models/album.php");
-include_once("models/albums.php");
-include_once("models/artist.php");
-include_once("models/artists.php");
-include_once("models/label.php");
-include_once("models/playlist.php");
-include_once("models/playlists.php");
-include_once("models/track.php");
-include_once("models/tracks.php");
-include_once("models/user.php");
+// Include my Spotify data models
+include_once("models/my/album.php");
+include_once("models/my/artist.php");
+include_once("models/my/collection.php");
+include_once("models/my/track.php");
 
+// Include general
+include_once("models/AAA_table.php");
+include_once("models/label.php");
+include_once("models/user.php");
 include_once("methods.php");
 
 
 
-// If it's a preflight check, return 200
-if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-	ApiResponse::httpResponse(200);
-}
-
-
-
 // Set the database connection
-Table::setConnection(Database::connect());
+$conn = Database::connect();
 
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
@@ -53,7 +51,7 @@ $body = (array) json_decode(file_get_contents("php://input"));
 
 // Check whether the method is correct
 if(isset($ALLOWED_METHOD)) {
-	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD && $_SERVER["REQUEST_METHOD"] !== "OPTIONS") {
+	if($_SERVER["REQUEST_METHOD"] !== $ALLOWED_METHOD) {
 		ApiResponse::httpResponse(405, [ "error" => "Request method is not allowed." ]);
 	}
 }

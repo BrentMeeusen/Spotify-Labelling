@@ -2,6 +2,21 @@ class Popup {}
 Popup.container = document.getElementById("popup");
 Popup.text = document.getElementById("popup-text");
 
+
+
+
+
+/**
+ * When the popup is clicked, close it
+ */
+Popup.container.addEventListener("click", () => {
+	Popup.hide();
+});
+
+
+
+
+
 /**
  * Show the popup
  * 
@@ -17,7 +32,18 @@ Popup.show = (message, type, dur = 5000) => {
 
 	clearTimeout(Popup.timeout);
 	Popup.timeout = setTimeout(() => {
-		Popup.container.style.top = (-1 * Popup.container.offsetHeight) - 10 + "px";
+		Popup.hide();
 	}, dur);
 
+}
+
+
+
+
+
+/**
+ * Hide the popup
+ */
+Popup.hide = () => {
+	Popup.container.style.top = (-1 * Popup.container.offsetHeight) - 10 + "px";
 }

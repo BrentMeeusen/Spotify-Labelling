@@ -81,6 +81,113 @@ class Database {
 
 
 
+	/**
+	 * Sanitizes a certain input
+	 * 
+	 * @param		string		The input to sanitize
+	 * @return		string		The sanitized input
+	 */
+	protected function sanitize(string $toSanitize) : string {
+		return mysqli_real_escape_string(self::$conn, $toSanitize);
+	}
+
+
+
+
+
+	/**
+	 * Prepares the update method
+	 * 
+	 * @param		Database	The entry to update
+	 * @param		array		The new values in an associative array
+	 * @return		Database	The updated entry
+	 */
+	protected function prepareUpdate(Database $entry, array $values) : Database {
+
+		// Update its values with the newest values
+		foreach($values as $key => $value) {
+			$entry->{lcfirst($key)} = $value;
+		}
+
+		// Check for duplicate values that should be unique
+		$dupes = $entry->hasDuplicates();
+		if($dupes !== FALSE) {
+			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
+		}
+
+		// Sanitize input and return the entry
+		$entry->sanitizeInputs();
+		return $entry;
+
+	}
+
+
+
+
+
+	/**
+	 * Deletes an entry from the given table
+	 * 
+	 * @param		Database	A table child to delete
+	 * @param		string		The table to delete data from
+	 * @param		bool		Whether the entry was deleted successfully or not
+	 */
+	protected function deleteEntry(Database $entry, string $table) : bool {
+
+		// Delete the entry
+		$stmt = self::prepare("DELETE FROM $table WHERE PublicID = ?");
+		$stmt->bind_param("s", $entry->publicID);
+		self::execute($stmt);
+
+		// Return TRUE because everything went right
+		return TRUE;
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Creates a unique, randomly generated ID
+	 * 
+	 * @param	string	The name of the table to check whether it's unique
+	 * @return	string	The randomly generated ID
+	 * @return	null	If something went wrong
+	 */
+	public function generateRandomID(string $tableName) : ?string {
+
+		// If connection is not set, return null
+		if(!isset(self::$conn)) {
+			return NULL;
+		}
+
+		// As long as it's not unique, try finding a unique ID
+		do {
+
+			$chars = "0123456789";
+			$randomID = "";
+			for($i = 0; $i < 32; $i++) {
+				$randomID .= $chars[rand(0, strlen($chars) - 1)];		
+			}
+			$data = self::find("SELECT ID FROM $tableName WHERE PublicID = ?;", $randomID);
+
+		}
+		while(count($data) !== 0);
+		return $randomID;
+
+	}
+
+
+
+
+
+
 
 
 
@@ -92,7 +199,7 @@ class Database {
 	 * @param		string		The parameter
 	 * @return		array		An associative array with objects of the results
 	 */
-	private static function find(string $SQL, string $parameter) : array {
+	public static function find(string $SQL, string $parameter) : array {
 
 		$stmt = self::prepare($SQL);
 		$stmt->bind_param("s", $parameter);
@@ -114,7 +221,7 @@ class Database {
 	 * @param		string		The second parameter
 	 * @return		array		An associative array with objects of the results
 	 */
-	private static function findLink(string $SQL, string $p1, string $p2) : array {
+	public static function findLink(string $SQL, string $p1, string $p2) : array {
 
 		$stmt = self::prepare($SQL);
 		$stmt->bind_param("ss", $p1, $p2);
@@ -145,44 +252,6 @@ class Database {
 		$data = self::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
 		$track = (isset($data[0]) ? new Track($data[0]) : NULL);
 		return $track;
-
-	}
-
-
-
-
-
-	/**
-	 * Finds an album by Spotify ID
-	 * 
-	 * @param		string		The ID to search for
-	 * @return		null		If not found
-	 * @return		Album		If found
-	 */
-	public static function findAlbumBySpotifyID(string $spotifyID) : ?Album {
-
-		$data = self::find("SELECT * FROM ALBUMS WHERE SpotifyID = ?;", $spotifyID);
-		$album = (isset($data[0]) ? new Album($data[0]) : NULL);
-		return $album;
-
-	}
-
-
-
-
-
-	/**
-	 * Finds an artist by Spotify ID
-	 * 
-	 * @param		string		The ID to search for
-	 * @return		null		If not found
-	 * @return		Artist		If found
-	 */
-	public static function findArtistBySpotifyID(string $spotifyID) : ?Artist {
-
-		$data = self::find("SELECT * FROM ARTISTS WHERE SpotifyID = ?;", $spotifyID);
-		$artist = (isset($data[0]) ? new Artist($data[0]) : NULL);
-		return $artist;
 
 	}
 
@@ -267,13 +336,13 @@ class Database {
 	 * Gets all the tracks that the user has imported
 	 * 
 	 * @param		string		The user ID
-	 * @return		Tracks		All the tracks found
+	 * @return		ICollection	All the tracks found
+	 * @return		null		If something went wrong
 	 */
-	public static function findTracksByUser(string $userID) : Tracks {
+	public static function findTracksByUser(string $userID) : ?ICollection {
 
 		// Get all tracks the user has
-		// TODO: figure out what happens on multiple artists with the same track!
-		$tracks = self::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ART.Name AS ArtistName FROM TRACKS AS T 
+		$tracks = self::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
 			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
@@ -285,393 +354,15 @@ class Database {
 		// Create Track objects and store them in an array
 		$ret = [];
 		foreach($tracks as $track) {
-			array_push($ret, new Track($track));
+			array_push($ret, new ITrack($track));
 		}
 
-		// Return the tracks
-		return new Tracks($ret);
-
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/**
-	 * Create a table based on an SQL
-	 * 
-	 * @return	bool	true if everything went right
-	 */
-	private static function createTable(mysqli $conn, string $SQL, string $table) : bool {
-
-		// Drop the table if it exists
-		$stmt = self::prepare("DROP TABLE IF EXISTS $table;");
-		self::execute($stmt);
-
-		// Prepare the statement and check whether it's fine
-		$stmt = self::prepare($SQL);
-		self::execute($stmt);
-
-		// Return true, because nothing went wrong
-		return TRUE;
-
-	}
-
-
-
-
-
-
-
-
-
-
-	/**
-	 * Creates USERS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createUsers(mysqli $conn) {
-
-		$tableName = "USERS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL 	AUTO_INCREMENT,
-			PublicID		VARCHAR(32)		NOT NULL,
-			FirstName		VARCHAR(50) 	NOT NULL,
-			LastName		VARCHAR(50)		NOT NULL,
-			Username		VARCHAR(100)	NOT NULL,
-			EmailAddress	VARCHAR(250)	NOT NULL,
-			Password		VARCHAR(256)	NOT NULL,
-			AccountStatus	INT(1)			NOT NULL,
-			AccessToken		VARCHAR(256),
-			
-			PRIMARY KEY (ID),
-			UNIQUE(PublicID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates LABELS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createLabels(mysqli $conn) {
-
-		$tableName = "LABELS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			PublicID		VARCHAR(32)		NOT NULL,
-			Name			VARCHAR(100)	NOT NULL,
-			IsPublic		INT(1)			NOT NULL,
-
-			PRIMARY KEY (ID),
-			UNIQUE (PublicID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates LABELS_TO_USERS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createLabelsToUsers(mysqli $conn) {
-
-		$tableName = "LABELS_TO_USERS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			LabelID			VARCHAR(32)		NOT NULL,
-			OwnerID			VARCHAR(32)		NOT NULL,
-			IsHidden		INT(1)			NOT NULL	DEFAULT		0,
-
-			PRIMARY KEY (ID),
-			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
-			FOREIGN KEY (OwnerID) REFERENCES USERS (PublicID) ON DELETE CASCADE
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates RIGHTS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createRights(mysqli $conn) {
-
-		$tableName = "RIGHTS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			Name			VARCHAR(64)		NOT NULL,
-			Value			BOOLEAN			NOT NULL,
-			
-			PRIMARY KEY (ID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-	}
-
-
-
-
-
-	/**
-	 * Creates RIGHTS_TO_USERS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createRightsToUsers(mysqli $conn) {
-
-		$tableName = "RIGHTS_TO_USERS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			UserID			VARCHAR(32)		NOT NULL,
-			RightID			INT(11)			NOT NULL,
-			
-			PRIMARY KEY (ID),
-			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
-			FOREIGN KEY (RightID) REFERENCES RIGHTS (ID) ON DELETE CASCADE
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates TRACKS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createTracks(mysqli $conn) {
-
-		$tableName = "TRACKS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			SpotifyID		VARCHAR(50)		NOT NULL,
-			Name			VARCHAR(250)	NOT NULL,
-			ReleaseDate		DATE			NULL			DEFAULT		NULL,
-
-			PRIMARY KEY (ID),
-			UNIQUE (SpotifyID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates ARTISTS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createArtists(mysqli $conn) {
-
-		$tableName = "ARTISTS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			SpotifyID		VARCHAR(50)		NOT NULL,
-			Name			VARCHAR(250)	NOT NULL,
-
-			PRIMARY KEY (ID),
-			UNIQUE (SpotifyID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates ALBUMS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createAlbums(mysqli $conn) {
-
-		$tableName = "ALBUMS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			SpotifyID		VARCHAR(50)		NOT NULL,
-			Name			VARCHAR(250)	NOT NULL,
-
-			PRIMARY KEY (ID),
-			UNIQUE (SpotifyID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates TRACKS_TO_ARTISTS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createTracksToArtists(mysqli $conn) {
-
-		$tableName = "TRACKS_TO_ARTISTS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			TrackID			VARCHAR(50)		NOT NULL,
-			ArtistID		VARCHAR(50)		NOT NULL,
-
-			PRIMARY KEY (ID),
-			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
-			FOREIGN KEY (ArtistID) REFERENCES ARTISTS (SpotifyID) ON DELETE CASCADE
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates TRACKS_TO_ALBUMS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createTracksToAlbums(mysqli $conn) {
-
-		$tableName = "TRACKS_TO_ALBUMS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			TrackID			VARCHAR(50)		NOT NULL,
-			AlbumID			VARCHAR(50)		NOT NULL,
-
-			PRIMARY KEY (ID),
-			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE,
-			FOREIGN KEY (AlbumID) REFERENCES ALBUMS (SpotifyID) ON DELETE CASCADE
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates TRACKS_TO_USERS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createTracksToUsers(mysqli $conn) {
-
-		$tableName = "TRACKS_TO_USERS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			TrackID			VARCHAR(50)		NOT NULL,
-			UserID			VARCHAR(32)		NOT NULL,
-			AddedAt			DATETIME		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
-
-			PRIMARY KEY (ID),
-			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
-			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
-	 * Creates BANNED_IPS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createBannedIPs(mysqli $conn) {
-
-		$tableName = "BANNED_IPS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			IP				VARCHAR(16)		NOT NULL,
-			StartedAt		DATETIME		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
-			EndsAfter		INT(7)			NOT NULL,
-
-			PRIMARY KEY (ID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-
-
-
-
-
-	/**
-	 * Creates the tables needed
-	 * 
-	 * @param	mysqli 	database to create the tables in
-	 */
-	public static function initialise(mysqli $conn) {
-
-		// Create tables
-		self::createUsers($conn);
-		self::createLabels($conn);
-		self::createLabelsToUsers($conn);
-		self::createRights($conn);
-		self::createRightsToUsers($conn);
-		self::createTracks($conn);
-		self::createArtists($conn);
-		self::createAlbums($conn);
-		self::createTracksToArtists($conn);
-		self::createTracksToAlbums($conn);
-		self::createTracksToUsers($conn);
-		self::createBannedIPs($conn);
-
-		// Insert special rights into table
-		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
-		$res = $stmt->execute();
+		// Create and return a collection of tracks
+		$collection = ICollection::createTrackCollection($ret);
+		return $collection->merge();
 
 	}
 
 }
-
-
-
 
 ?>
