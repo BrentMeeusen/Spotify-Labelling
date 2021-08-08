@@ -33,7 +33,7 @@ if(isset($_GET["login"]) && $_GET["login"] == TRUE) {
 
 // If the user wants to be able to login
 else if(isset($_GET["register"]) && $_GET["register"] == TRUE) {
-	
+
 	$payload = ["rights" => ["login" => TRUE, "register" => TRUE]];
 	$timeValid = 15;
 	$token = JSONWebToken::createToken($payload, $timeValid);
