@@ -264,7 +264,7 @@ class User extends Database {
 		$subject = "Verify Your Account";
 		
 		$body = "<html><head></head><body>";
-		$body .= "<h2>Verify your account</h2><p>Click <a href='$link'>here</a> to verify your account.</p><p>If the link not works, paste the following in your browser: <a href='$link'>$link</a></p>";
+		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
 		$body .= "</body></html>";
 
 		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
