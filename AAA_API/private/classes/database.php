@@ -1,9 +1,6 @@
 <?php
 
 
-// TODO		Refactor Users class
-
-
 class Database {
 
 	// Declare variables
