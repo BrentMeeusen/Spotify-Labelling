@@ -6,3 +6,4 @@
 <link rel="stylesheet" type="text/css" href="/Spotify Labelling/AAA_WEBAPP/assets/css/module.css">
 <link rel="stylesheet" type="text/css" href="/Spotify Labelling/AAA_WEBAPP/assets/css/navigation.css">
 <link rel="stylesheet" type="text/css" href="/Spotify Labelling/AAA_WEBAPP/assets/css/popup.css">
+<link rel="stylesheet" type="text/css" href="/Spotify Labelling/AAA_WEBAPP/assets/css/table.css">
