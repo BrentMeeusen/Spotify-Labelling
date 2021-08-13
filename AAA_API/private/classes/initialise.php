@@ -355,8 +355,6 @@ class Initialise extends Database {
 		self::createRequests($conn);
 
 		// Insert special rights into table
-		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
-		$res = $stmt->execute();
 
 	}
 
