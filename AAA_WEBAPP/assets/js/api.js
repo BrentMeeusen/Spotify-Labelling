@@ -223,17 +223,6 @@ Api.showLabels = async () => {
 		const tr = document.createElement("tr");
 		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
 		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
-		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
-
-
-
-		// If the label is not ours, do not show the buttons
-		if(row.creator !== Api.TOKEN.getPayload().user.id) {
-			output.appendChild(tr);
-			continue;
-		}
-
-
 
 		// Create edit button
 		const edit = Api.createElement("td");
@@ -258,42 +247,6 @@ Api.showLabels = async () => {
 
 		}));
 		tr.appendChild(remove);
-
-		// If the user can set it to public/private
-		const maySetPublic = Api.TOKEN.getPayload().rights.label.public;
-		if(maySetPublic == true) {
-
-			// If it's public, create private button
-			if(row.isPublic) {
-
-				const makePrivate = Api.createElement("td");
-
-				makePrivate.appendChild(Api.createIcon("eye-crossed", async () => {
-					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/private", "POST");
-					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-					Api.showLabels();
-				}));
-
-				tr.appendChild(makePrivate);
-
-			}
-
-			// Else, create make public button
-			else {
-
-				const makePublic = Api.createElement("td");
-
-				makePublic.appendChild(Api.createIcon("eye", async () => {
-					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/public", "POST");
-					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-					Api.showLabels();
-				}));
-				
-				tr.appendChild(makePublic);
-
-			}
-
-		}
 
 		output.appendChild(tr);
 
