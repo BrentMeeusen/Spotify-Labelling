@@ -63,7 +63,13 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$data = Database::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
+		$data = Database::find("SELECT T.*, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
+			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
+			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
+			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
+			WHERE T.SpotifyID = ?;", $spotifyID);
+
 		return (isset($data[0]) ? new ITrack($data[0]) : NULL);
 
 	}
