@@ -35,6 +35,17 @@ class Request {
 	}
 
 
+
+
+
+	/**
+	 * Checks whether the limit is exceeded
+	 */
+	public static function checkLimit(string $ip) {
+		return NULL;
+	}
+
+
 }
 
 
