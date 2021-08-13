@@ -55,6 +55,29 @@ class ITrack {
 
 
 	/**
+	 * Finds a track by Spotify ID
+	 * 
+	 * @param		string		The ID to search for
+	 * @return		null		If not found
+	 * @return		ITrack		If found
+	 */
+	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
+
+		$data = self::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
+		return (isset($data[0]) ? new ITrack($data[0]) : NULL);
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Checks whether everything except the artist is equal
 	 * 
 	 * @param		ITrack		A track to compare to

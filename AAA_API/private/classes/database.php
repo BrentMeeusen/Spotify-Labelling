@@ -249,30 +249,6 @@ class Database {
 
 
 	/**
-	 * Finds a track by Spotify ID
-	 * 
-	 * @param		string		The ID to search for
-	 * @return		null		If not found
-	 * @return		Track		If found
-	 */
-	public static function findTrackBySpotifyID(string $spotifyID) : ?Track {
-
-		$data = self::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
-		$track = (isset($data[0]) ? new Track($data[0]) : NULL);
-		return $track;
-
-	}
-
-
-
-
-
-
-
-
-
-
-	/**
 	 * Finds a link between artist and track
 	 * 
 	 * @param		string		The track ID
