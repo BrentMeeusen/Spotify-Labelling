@@ -128,9 +128,7 @@ Api.showTracks = async (tracks) => {
 	for(const track of tracks) {
 
 		// Create row and text container
-		const row = Api.createElement("div");
-		row.classList.add("row");
-
+		const row = Api.createElement("div", { classList: "row" });
 		const textContainer = Api.createElement("div", { classList: "text" });
 
 		// Add track title
@@ -219,14 +217,17 @@ Api.showLabels = async () => {
 	// For every row
 	for(const row of result.data) {
 		
-		// Create the row
-		const tr = document.createElement("tr");
-		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
-		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
+		// Create the row and text container
+		const htmlRow = Api.createElement("div", { classList: "row" });
+		const textContainer = Api.createElement("div", { classList: "text" });
+
+		textContainer.appendChild(Api.createElement("p", { innerHTML: row.name }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs" }));
+
+		htmlRow.appendChild(textContainer);
 
 		// Create edit button
-		const edit = Api.createElement("td");
-		edit.appendChild(Api.createIcon("edit", () => {
+		htmlRow.appendChild(Api.createIcon("edit", () => {
 
 			const popup = new BigPopup("Edit Label", "api/v1/labels/" + row.publicID + "/update", "POST", "edit-label-form");
 			popup.add("input", "Name", { value: row.name });
@@ -234,11 +235,9 @@ Api.showLabels = async () => {
 			HtmlJsForm.findById("edit-label-form").addCallback(() => { Api.showLabels(); });
 
 		}));
-		tr.appendChild(edit);
 
 		// Create remove button
-		const remove = Api.createElement("td");
-		remove.appendChild(Api.createIcon("delete", () => {
+		htmlRow.appendChild(Api.createIcon("delete", () => {
 
 			const popup = new BigPopup("Remove Label", "api/v1/labels/" + row.publicID + "/delete", "DELETE", "remove-label-form");
 			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
@@ -246,9 +245,9 @@ Api.showLabels = async () => {
 			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
 
 		}));
-		tr.appendChild(remove);
 
-		output.appendChild(tr);
+		// append row to HTML
+		output.appendChild(htmlRow);
 
 	}
 
