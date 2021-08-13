@@ -52,7 +52,7 @@ class ICollection {
 			while(($i + $offset + 1) < count($this->data)) {
 				$next = $this->data[$i + ++$offset];
 				if($track->equalsExceptArtist($next)) {
-					array_push($artists, $next->artists->data);
+					array_push($artists, $next->artists->data[0]);
 				} else { break; }
 			}
 
