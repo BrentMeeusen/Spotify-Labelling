@@ -16,15 +16,16 @@
 	-webkit-box-orient: vertical;
 
 	font-size: 1.2em;
-	line-height: 2em;
+	line-height: 1.2em;
 	overflow: hidden;
+	margin: 0.2em 0;
 }
 .table-container > .row .artist, .table-container > .row .added {
 	width: auto;
 	max-width: 70%;
+	margin: 0;
 	padding: 0em 0.5em;
 	font-size: 0.9em;
-	line-height: 1em;
 	color: var(--current--text-low);
 }
 .table-container > .row .icon {
