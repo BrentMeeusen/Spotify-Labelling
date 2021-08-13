@@ -127,13 +127,30 @@ Api.showTracks = async (tracks) => {
 	// For each track
 	for(const track of tracks) {
 
-		// Create row, add name and button
+		// Create row and text container
 		const row = Api.createElement("div");
 		row.classList.add("row");
 
-		row.appendChild(Api.createElement("p", { innerHTML: track.name }));
+		const textContainer = Api.createElement("div", { classList: "text" });
+
+		// Add track title
+		textContainer.appendChild(Api.createElement("p", { innerHTML: track.name, classList: "title" }));
+
+		// Add artists
+		const artists = [];
+		for(const a of track.artists.data) {
+			artists.push(a.name);
+		}
+		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "artist" }));
+
+		// Add date added 
+		textContainer.appendChild(Api.createElement("p", { innerHTML: Api.formatDate("d-m-Y", new Date(track.addedAt)), classList: "added" }));
+
+		// Add text container and "more" button to row
+		row.appendChild(textContainer);
 		row.appendChild(Api.createIcon("more_horiz"));
 
+		// Append row
 		output.appendChild(row);
 
 	}
