@@ -328,6 +328,30 @@ class Initialise extends Database {
 
 
 
+	/**
+	 * Creates REQUESTS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createRequests(mysqli $conn) {
+
+		$tableName = "REQUESTS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			IP				VARCHAR(16)		NOT NULL,
+			Minute			DATETIME		NOT NULL	DEFAULT		CURRENT_TIMESTAMP,
+			NumberRequests	INT(3)			NOT NULL	DEFAULT		0,
+
+			PRIMARY KEY (ID)
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
 
 
 
@@ -353,6 +377,7 @@ class Initialise extends Database {
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
 		self::createBannedIPs($conn);
+		self::createRequests($conn);
 
 		// Insert special rights into table
 		$stmt = $conn->prepare("INSERT INTO RIGHTS (Name, Value) VALUES ('label.public', TRUE);");
