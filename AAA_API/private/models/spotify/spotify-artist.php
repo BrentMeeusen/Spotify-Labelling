@@ -36,7 +36,7 @@ class SpotifyArtist implements SpotifyData {
 	public function store(string $trackID) : bool {
 
 		// If the artist does not exist yet
-		if(Database::findArtistBySpotifyID($this->id) === NULL) {
+		if(IArtist::findBySpotifyId($this->id) === NULL) {
 
 			// Store the artist
 			$stmt = Database::prepare("INSERT INTO ARTISTS (SpotifyID, Name) VALUES (?, ?);");
