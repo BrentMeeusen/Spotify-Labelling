@@ -27,6 +27,9 @@
 	line-height: 1em;
 	color: var(--current--text-low);
 }
+.table-container > .row .icon {
+	margin: 0;
+}
 .table-container > .row:not(:last-child) {
 	border-bottom: 2px solid var(--current--text);
 }
