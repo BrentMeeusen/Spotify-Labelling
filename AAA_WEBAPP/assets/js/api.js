@@ -85,9 +85,12 @@ Api.sendRequest = async (location, method, values = {}) => {
 	const res = await response.json();
 	Api.isSending = false;
 
+	// Show error popup for rate limiting
 	if(res.code === 429) {
 		Popup.show(res.error, "error");
 	}
+
+
 
 	// If the token is expired, redirect to login screen with error
 	if(res.error && res.error.includes("expired")) {
