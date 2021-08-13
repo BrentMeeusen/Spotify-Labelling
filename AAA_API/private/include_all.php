@@ -51,7 +51,6 @@ $body = (array) json_decode(file_get_contents("php://input"));
 
 // Check whether the number of requests this minute is limited
 Request::increment($_SERVER["REMOTE_ADDR"]);
-Request::checkLimit($_SERVER["REMOTE_ADDR"]);
 
 
 
