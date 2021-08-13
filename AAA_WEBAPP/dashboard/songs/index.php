@@ -34,12 +34,7 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<div class="table-container">
-
-					<div class="row">
-						<p>This is a very long track title that must be truncated</p>
-						<div class="icon"><img src="../../assets/icons/delete.png"></div>
-					</div>
+				<div class="table-container" id="tracks">
 
 				</div>
 
