@@ -28,6 +28,12 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.xx.x-alpha - 2021/08/xx
+
+### Added
+- Limited number of requests a user can make within one minute
+
+
 ## 0.11.1-alpha - 2021/08/08
 
 ### Changed
