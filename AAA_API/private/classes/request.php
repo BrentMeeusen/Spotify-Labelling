@@ -32,8 +32,9 @@ class Request {
 			// If it is the exact same minute, increment count
 			if($foundDate === $currentDate) {
 
+				$newReq = $found[0]->NumberRequests + 1;
 				$stmt = Database::prepare("UPDATE REQUESTS SET NumberRequests = ? WHERE IP = ?;");
-				$stmt->bind_param("is", $found[0]->NumberRequests + 1, $found[0]->IP);
+				$stmt->bind_param("is", $newReq, $found[0]->IP);
 				Database::execute($stmt);
 
 			}
