@@ -9,7 +9,7 @@ class ITrack {
 	public string $id;
 	public string $name;
 	public string $releaseDate;
-	public string $addedAt;
+	public ?string $addedAt;
 
 
 
@@ -64,7 +64,7 @@ class ITrack {
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
 		$data = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
-			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
+			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
