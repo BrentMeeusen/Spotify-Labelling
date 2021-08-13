@@ -36,6 +36,9 @@
 .table-container > .row .icon {
 	margin: 0;
 }
+.table-container > .row .icon + .icon {
+	margin-left: 0.5em;
+}
 .table-container > .row:not(:last-child) {
 	border-bottom: 2px solid var(--current--text);
 }
