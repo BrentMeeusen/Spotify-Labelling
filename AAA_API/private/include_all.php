@@ -11,6 +11,7 @@ include_once("classes/api-response.php");
 include_once("classes/database.php");
 include_once("classes/initialise.php");
 include_once("classes/jwt.php");
+include_once("classes/request.php");
 include_once("classes/spotify-api.php");
 
 // Include Spotify models
@@ -45,6 +46,12 @@ $conn = Database::connect();
 
 // Read the input
 $body = (array) json_decode(file_get_contents("php://input"));
+
+
+
+// Check whether the number of requests this minute is limited
+Request::add($_SERVER["REMOTE_ADDR"]);
+Request::checkLimit($_SERVER["REMOTE_ADDR"]);
 
 
 
