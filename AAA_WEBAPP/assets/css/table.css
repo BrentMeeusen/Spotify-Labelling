@@ -10,7 +10,7 @@
 	flex-wrap: wrap;
 }
 .table-container > .row .text * {
-	width: 100%;
+	width: auto;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
@@ -19,6 +19,9 @@
 	line-height: 1.2em;
 	overflow: hidden;
 	margin: 0.2em 0;
+}
+.table-container > .row .title {
+	width: 100%;
 }
 .table-container > .row .artist, .table-container > .row .added {
 	width: auto;
