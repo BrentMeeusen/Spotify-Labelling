@@ -37,6 +37,11 @@ class Request {
 				$stmt->bind_param("is", $newReq, $found[0]->IP);
 				Database::execute($stmt);
 
+				// If the number of requests is exceeded, exit
+				if($newReq >= 15) {
+					ApiResponse::httpResponse(429, ["error" => "Please lower the amount of requests you make."]);
+				}
+
 			}
 
 			// If it is not, set a new date and increment
@@ -51,18 +56,6 @@ class Request {
 		}
 
 	}
-
-
-
-
-
-	/**
-	 * Checks whether the limit is exceeded
-	 */
-	public static function checkLimit(string $ip) {
-		return NULL;
-	}
-
 
 }
 
