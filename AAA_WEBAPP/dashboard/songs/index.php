@@ -38,14 +38,6 @@ session_start();
 
 				</div>
 
-				<!-- <div class="table-container">
-					<table>
-						<tbody id="tracks">
-
-						</tbody>
-					</table>
-				</div> -->
-
 			</div>
 
 		</div>	<!-- .main-wrapper -->
