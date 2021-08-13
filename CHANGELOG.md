@@ -33,6 +33,9 @@ STANDARD NEW VERSION:
 ### Added
 - Limited number of requests a user can make within one minute
 
+### Changed
+- Getting the tracks is now done in a different class
+
 
 ## 0.11.1-alpha - 2021/08/08
 
