@@ -42,7 +42,7 @@ class SpotifyTrack implements SpotifyData {
 	public function store(string $userID) : bool {
 
 		// If the track does not exist yet
-		if(Database::findTrackBySpotifyID($this->id) === NULL) {
+		if(ITrack::findBySpotifyId($this->id) === NULL) {
 
 			// Store the track
 			$stmt = Database::prepare("INSERT INTO TRACKS (SpotifyID, Name, ReleaseDate) VALUES (?, ?, ?);");
