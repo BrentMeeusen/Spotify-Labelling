@@ -339,7 +339,7 @@ class Initialise extends Database {
 		$SQL = "CREATE TABLE $tableName (
 			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
 			IP				VARCHAR(64)		NOT NULL,
-			Minute			DATETIME		NOT NULL	DEFAULT		CURRENT_TIMESTAMP,
+			Minute			DATETIME		NOT NULL,
 			NumberRequests	INT(3)			NOT NULL	DEFAULT		0,
 
 			PRIMARY KEY (ID)
