@@ -1,16 +1,29 @@
 .table-container > .row {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding: 0.5em;
 }
-.table-container > .row p {
+.table-container > .row .text {
+	width: 78vw;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.table-container > .row .title {
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	font-size: 1.2em;
 	line-height: 2em;
-	max-width: 80vw;
 	overflow: hidden;
+	width: 100%;
+}
+.table-container > .row .artist, .table-container > .row .added {
+	color: var(--current--text-low);
+	font-size: 0.9em;
+	line-height: 1em;
+	width: auto;
+	padding: 0em 0.5em;
 }
 .table-container > .row:not(:last-child) {
 	border-bottom: 2px solid var(--current--text);
