@@ -85,6 +85,10 @@ Api.sendRequest = async (location, method, values = {}) => {
 	const res = await response.json();
 	Api.isSending = false;
 
+	if(res.code === 429) {
+		Popup.show(res.error, "error");
+	}
+
 	// If the token is expired, redirect to login screen with error
 	if(res.error && res.error.includes("expired")) {
 		window.location.href = VALUES.assets + "php/redirect.php?redirect=&code=400&message=Your%20session%20expired.%20Please%20login%20again%20to%20continue.";
