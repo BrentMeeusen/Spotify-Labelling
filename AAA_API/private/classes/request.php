@@ -18,13 +18,17 @@ class Request {
 
 			// Create a row for the IP
 			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute) VALUES (?, ?);");
-			$stmt->bind_param("ss", $ip, date("Y-m-d H:i:s"));
+			@$stmt->bind_param("ss", $ip, date("Y-m-d H:i:s"));
 			Database::execute($stmt);
 
 		}
 
 		// If the IP already exists
 		else {
+
+			// Check for the datetime
+			print(json_encode($ip));
+			exit();
 
 		}
 
