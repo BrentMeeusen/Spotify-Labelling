@@ -18,7 +18,7 @@ class Request {
 
 			// Create a row for the IP
 			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute) VALUES (?, ?);");
-			$stmt->bind_param("ssi", $ip, date("Y-m-d H:i:s"));
+			$stmt->bind_param("ss", $ip, date("Y-m-d H:i:s"));
 			Database::execute($stmt);
 
 		}
