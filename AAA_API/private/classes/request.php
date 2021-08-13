@@ -13,14 +13,12 @@ class Request {
 		// Check whether the IP already exists in the database
 		$found = Database::find("SELECT * FROM REQUESTS WHERE IP = ?;", $ip);
 
-		print(json_encode([$ip, $found]));
-
 		// If the IP does not exist yet
 		if(count($found) === 0) {
 
 			// Create a row for the IP
 			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute) VALUES (?, ?);");
-			@$stmt->bind_param("ss", $ip, date("Y-m-d H:i:s"));
+			@$stmt->bind_param("ss", $ip, date("Y-m-d H:i"));
 			Database::execute($stmt);
 
 		}
@@ -28,9 +26,26 @@ class Request {
 		// If the IP already exists
 		else {
 
-			// Check for the datetime
-			print(json_encode($ip));
-			exit();
+			$foundDate = date("Y-m-d H:i", strtotime($found[0]->Minute));
+			$currentDate = date("Y-m-d H:i");
+
+			// If it is the exact same minute, increment count
+			if($foundDate === $currentDate) {
+
+				$stmt = Database::prepare("UPDATE REQUESTS SET NumberRequests = ? WHERE IP = ?;");
+				$stmt->bind_param("is", $found[0]->NumberRequests + 1, $found[0]->IP);
+				Database::execute($stmt);
+
+			}
+
+			// If it is not, set a new date and increment
+			else {
+
+				$stmt = Database::prepare("UPDATE REQUESTS SET NumberRequests = 1, Minute = ? WHERE IP = ?;");
+				$stmt->bind_param("ss", $currentDate, $found[0]->IP);
+				Database::execute($stmt);
+
+			}
 
 		}
 
