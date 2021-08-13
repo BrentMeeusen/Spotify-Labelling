@@ -11,7 +11,7 @@ class Request {
 	public static function increment(string $ip) : void {
 
 		// Check whether the IP already exists in the database
-		$found = Database::find("SELECT * FROM REQUESTS WHERE ID = ?;", $ip);
+		$found = Database::find("SELECT * FROM REQUESTS WHERE IP = ?;", $ip);
 
 		print(json_encode([$ip, $found]));
 
