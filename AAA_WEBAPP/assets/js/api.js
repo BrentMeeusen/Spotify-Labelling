@@ -124,21 +124,16 @@ Api.showTracks = async (tracks) => {
 	const output = document.getElementById("tracks");
 	output.innerHTML = "";
 
-	// Add header
-	const header = Api.createElement("tr");
-	header.appendChild(Api.createElement("th", { innerHTML: "Song" }));
-	header.appendChild(Api.createElement("th", { innerHTML: "Released at" }));
-	header.appendChild(Api.createElement("th", { innerHTML: "Added at" }));
-	output.appendChild(header);
-
 	// For each track
 	for(const track of tracks) {
 
-		// Create row, add name, releaseDate, addedAt
-		const row = Api.createElement("tr");
-		row.appendChild(Api.createElement("td", { innerHTML: track.name }));
-		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y", new Date(track.releaseDate)) }));
-		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y H:i:s", new Date(track.addedAt)) }));
+		// Create row, add name and button
+		const row = Api.createElement("div");
+		row.classList.add("row");
+
+		row.appendChild(Api.createElement("p", { innerHTML: track.name }));
+		row.appendChild(Api.createIcon("more_horiz"));
+
 		output.appendChild(row);
 
 	}
