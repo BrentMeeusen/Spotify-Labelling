@@ -305,30 +305,6 @@ class Initialise extends Database {
 
 
 	/**
-	 * Creates BANNED_IPS table
-	 * 
-	 * @param		mysqli		The database to create the table in
-	 */
-	private static function createBannedIPs(mysqli $conn) {
-
-		$tableName = "BANNED_IPS";
-		$SQL = "CREATE TABLE $tableName (
-			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
-			IP				VARCHAR(16)		NOT NULL,
-			StartedAt		DATETIME		NOT NULL		DEFAULT		CURRENT_TIMESTAMP,
-			EndsAfter		INT(7)			NOT NULL,
-
-			PRIMARY KEY (ID)
-		);";
-		$res = self::createTable($conn, $SQL, $tableName);
-
-	}
-
-
-
-
-
-	/**
 	 * Creates REQUESTS table
 	 * 
 	 * @param		mysqli		The database to create the table in
@@ -376,7 +352,6 @@ class Initialise extends Database {
 		self::createTracksToArtists($conn);
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
-		self::createBannedIPs($conn);
 		self::createRequests($conn);
 
 		// Insert special rights into table
