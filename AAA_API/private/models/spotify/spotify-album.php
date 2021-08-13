@@ -36,7 +36,7 @@ class SpotifyAlbum implements SpotifyData {
 	public function store(string $trackID) : bool {
 
 		// If the album does not exist yet
-		if(Database::findAlbumBySpotifyID($this->id) === NULL) {
+		if(IAlbum::findBySpotifyId($this->id) === NULL) {
 
 			// Store the album
 			$stmt = Database::prepare("INSERT INTO ALBUMS (SpotifyID, Name) VALUES (?, ?);");
