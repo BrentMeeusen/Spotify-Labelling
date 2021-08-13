@@ -34,18 +34,7 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<div class="table-container" id="tracks">
-
-					<div class="row">
-						<div class="text">
-							<p class="title">This is a very long track title that must be truncated</p>
-							<p class="artist">Artist name</p>
-							<p class="added">14/08/2021</p>
-						</div>
-						<button class="icon"><img src="../../assets/icons/more_horiz.png"></button>
-					</div>
-
-				</div>
+				<div class="table-container" id="tracks"></div>
 
 			</div>
 
