@@ -17,8 +17,8 @@ class Request {
 		if(count($ip) === 0) {
 
 			// Create a row for the IP
-			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute, NumberRequests) VALUES (?, ?, ?);");
-			$stmt->bind_param("ssi", $ip, date("Y-m-d H:i:s"), 1);
+			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute) VALUES (?, ?);");
+			$stmt->bind_param("ssi", $ip, date("Y-m-d H:i:s"));
 			Database::execute($stmt);
 
 		}
