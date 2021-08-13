@@ -11,10 +11,12 @@ class Request {
 	public static function increment(string $ip) : void {
 
 		// Check whether the IP already exists in the database
-		$ip = Database::find("SELECT * FROM REQUESTS WHERE ID = ?;", $ip);
+		$found = Database::find("SELECT * FROM REQUESTS WHERE ID = ?;", $ip);
+
+		print(json_encode([$ip, $found]));
 
 		// If the IP does not exist yet
-		if(count($ip) === 0) {
+		if(count($found) === 0) {
 
 			// Create a row for the IP
 			$stmt = Database::prepare("INSERT INTO REQUESTS (IP, Minute) VALUES (?, ?);");
