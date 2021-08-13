@@ -63,7 +63,7 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$data = self::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
+		$data = Database::find("SELECT * FROM TRACKS WHERE SpotifyID = ?;", $spotifyID);
 		return (isset($data[0]) ? new ITrack($data[0]) : NULL);
 
 	}
