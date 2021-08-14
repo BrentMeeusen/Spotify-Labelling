@@ -18,7 +18,7 @@ class OptionPopup {
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", () => {
-			Api.request("api/v1/tracks/" + track.data.id + "/delete", "DELETE");
+			Api.request("api/v1/tracks/" + track.id + "/delete", "DELETE");
 		});
 		deleteTrack.appendChild(Api.createIcon("delete"));
 		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
