@@ -85,6 +85,35 @@ class ITrack {
 
 
 	/**
+	 * Removes the track_to_user link if existent, also removes artist, album if there is no other links
+	 * 
+	 * @param		string		The user ID
+	 */
+	public function removeUser(string $userID) : void {
+
+		// Remove TTU link
+
+		// If there are no other TTU links (aka nobody stores the track), get the track and remove it
+
+		// If there are no other TTAlbum links (aka there are no tracks in that album anymore), remove the album
+
+		// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
+
+		ApiResponse::httpResponse(204, ["message" => "Removing..."]);
+		return;
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Checks whether everything except the artist is equal
 	 * 
 	 * @param		ITrack		A track to compare to
