@@ -287,7 +287,7 @@ Api.showLabels = async () => {
  * @param {Function} event The click event
  * @returns {HTMLElement} The button with icon
  */
-Api.createIcon = (icon, event) => {
+Api.createIcon = (icon, event = () => {}) => {
 
 	// Create button
 	const button = Api.createElement("button");
