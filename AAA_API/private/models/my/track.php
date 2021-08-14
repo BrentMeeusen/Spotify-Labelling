@@ -102,7 +102,7 @@ class ITrack {
 
 		// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
 
-		ApiResponse::httpResponse(204, ["message" => "Removing..."]);
+		ApiResponse::httpResponse(200, ["message" => "Removing..."]);
 		return;
 
 	}
