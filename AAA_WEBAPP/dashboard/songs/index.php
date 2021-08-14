@@ -50,7 +50,7 @@ session_start();
 		include_once("../../assets/snippets/javascript-files.php");
 		?>
 
-		<script src="../../asssets/js/option-popup.js"></script>
+		<script src="../../assets/js/option-popup.js"></script>
 
 		<script>
 
