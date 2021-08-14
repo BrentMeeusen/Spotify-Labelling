@@ -26,6 +26,9 @@ session_start();
 				<p id="popup-text"></p>
 			</div>
 
+			<!-- Track option popup -->
+			<div class="option-popup" id="option-popup"></div>
+
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
