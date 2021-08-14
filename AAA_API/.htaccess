@@ -70,8 +70,8 @@ RewriteRule		api/v1/tracks/get/([a-zA-Z0-9]+)		tracks/get/?id=$1						[L,QSA]
 ############	api/v1/tracks/get						tracks/get/
 RewriteRule		api/v1/tracks/get						tracks/get/								[L,QSA]
 
-############	api/v1/tracks/[action]					tracks/[action]/
-RewriteRule		api/v1/tracks/([a-zA-Z\-]+)				tracks/$1/								[L,QSA]
+############	api/v1/tracks/[id]/[action]				tracks/[action]/
+RewriteRule		api/v1/tracks/([0-9]+)/([a-zA-Z\-]+)	tracks/$2/?id=$1						[L,QSA]
 
 
 
