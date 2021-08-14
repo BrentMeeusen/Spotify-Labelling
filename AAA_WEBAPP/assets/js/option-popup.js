@@ -1,5 +1,12 @@
 class OptionPopup {
 
+	
+	// Set variables
+	static popup = document.getElementById("option-popup");
+
+
+
+
 
 	/**
 	 * Opens a track and its options
@@ -9,7 +16,7 @@ class OptionPopup {
 	static async openTrack(spotifyID) {
 
 		const track = await Api.sendRequest("api/v1/tracks/get/" + spotifyID, "GET");
-		console.log(track);
+		this.popup.classList.add("open");
 
 	}
 
