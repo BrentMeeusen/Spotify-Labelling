@@ -17,6 +17,14 @@ class OptionPopup {
 
 		const track = await Api.sendRequest("api/v1/tracks/get/" + spotifyID, "GET");
 		this.popup.classList.add("open");
+		this.popup.innerHTML = "";
+		console.log(track);
+
+		const deleteTrack = Api.createElement("div", { classList: "row" });
+		deleteTrack.appendChild(Api.createIcon("delete"));
+		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
+		this.popup.appendChild(deleteTrack);
+	
 
 	}
 
