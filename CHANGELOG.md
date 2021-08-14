@@ -32,6 +32,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Limited number of requests a user can make within one minute
+- Being able to remove tracks from the application, including unnecessary data that is left over afterwards
 
 ### Changed
 - Getting the tracks is now done in a different class
