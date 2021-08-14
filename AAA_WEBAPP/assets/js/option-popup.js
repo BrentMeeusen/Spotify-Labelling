@@ -30,6 +30,15 @@ class OptionPopup {
 		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
 		this.popup.appendChild(deleteTrack);
 
+		// Add "close popup" row
+		const closePopup = Api.createElement("div", { classList: "row" });
+		closePopup.addEventListener("click", () => {
+			this.popup.classList.remove("open");
+		});
+		closePopup.appendChild(Api.createIcon("menu/menu-close"));
+		closePopup.appendChild(Api.createElement("p", { innerHTML: "Close" }));
+		this.popup.appendChild(closePopup);
+
 	}
 
 }
