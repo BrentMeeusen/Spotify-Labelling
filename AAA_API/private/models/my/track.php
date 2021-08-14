@@ -100,7 +100,7 @@ class ITrack {
 		$links = Database::find("SELECT * FROM TRACKS_TO_USERS WHERE TrackID = ?;", $this->id);
 		if(count($links) !== 0) { return; }
 
-		Database::prepare("DELETE FROM TRACKS WHERE SpotifyID = ?;");
+		$stmt = Database::prepare("DELETE FROM TRACKS WHERE SpotifyID = ?;");
 		$stmt->bind_param("s", $this->id);
 		Database::execute();
 
