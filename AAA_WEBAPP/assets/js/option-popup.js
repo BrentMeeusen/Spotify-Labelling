@@ -15,6 +15,10 @@ class OptionPopup {
 	 */
 	static async openTrack(track) {
 
+		// Open popup
+		this.popup.innerHTML = "";
+		this.popup.classList.add("open");
+
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", () => {
@@ -23,10 +27,6 @@ class OptionPopup {
 		deleteTrack.appendChild(Api.createIcon("delete"));
 		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
 		this.popup.appendChild(deleteTrack);
-
-		// Open popup
-		this.popup.classList.add("open");
-	
 
 	}
 
