@@ -49,8 +49,8 @@ class ICollection {
 			$offset = 0;
 			$artists = $track->artists->data;
 
-			while(($i + $offset + 1) < count($this->data)) {
-				$next = $this->data[$i + ++$offset];
+			while(($i + ++$offset) < count($this->data)) {
+				$next = $this->data[$i + $offset];
 				if($track->equalsExceptArtist($next)) {
 					array_push($artists, $next->artists->data[0]);
 				} else { break; }
@@ -62,7 +62,7 @@ class ICollection {
 			array_push($newTracks, $newTrack);
 
 			// Skip the merged tracks
-			$i += ($offset === 0 ? 1 : $offset);
+			$i += $offset;
 
 		}
 
