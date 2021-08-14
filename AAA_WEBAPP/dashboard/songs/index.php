@@ -14,6 +14,7 @@ session_start();
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
 		<?php include_once("../../assets/snippets/css.php"); ?>
+		<link rel="stylesheet" href="../../assets/css/option-popup.css">
 	</head>
 
 
