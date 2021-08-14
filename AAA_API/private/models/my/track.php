@@ -71,7 +71,17 @@ class ITrack {
 			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
 			WHERE T.SpotifyID = ?;", $spotifyID);
 
-		return (isset($data[0]) ? new ITrack($data[0]) : NULL);
+		if($data === NULL) { return NULL; }
+
+		// Create Track objects and store them in an array
+		$ret = [];
+		foreach($data as $track) {
+			array_push($ret, new ITrack($track));
+		}
+
+		// Create and return a collection of tracks
+		$collection = ICollection::createTrackCollection($ret);
+		return $collection->merge()->data[0];
 
 	}
 
