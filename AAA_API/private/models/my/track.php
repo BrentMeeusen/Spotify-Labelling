@@ -102,7 +102,7 @@ class ITrack {
 
 		$stmt = Database::prepare("DELETE FROM TRACKS WHERE SpotifyID = ?;");
 		$stmt->bind_param("s", $this->id);
-		Database::execute();
+		Database::execute($stmt);
 
 		// If there are no other TTAlbum links (aka there are no tracks in that album anymore), remove the album
 
