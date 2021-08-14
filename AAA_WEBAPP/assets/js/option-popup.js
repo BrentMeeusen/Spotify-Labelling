@@ -22,6 +22,7 @@ class OptionPopup {
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", async () => {
+			this.popup.classList.remove("open");
 			await Api.request("api/v1/tracks/" + track.id + "/delete", "DELETE");
 			const tracks = await Api.sendRequest("api/v1/tracks/get", "GET");
 			Api.showTracks(tracks.data);
