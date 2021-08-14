@@ -8,7 +8,7 @@ class OptionPopup {
 	 */
 	static async openTrack(spotifyID) {
 
-		const track = await Api.sendRequest("api/v1/tracks/get", "GET", { spotifyID });
+		const track = await Api.sendRequest("api/v1/tracks/get/" + spotifyID, "GET");
 		console.log(track);
 
 	}
