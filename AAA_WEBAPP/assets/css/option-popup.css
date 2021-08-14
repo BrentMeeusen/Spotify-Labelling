@@ -1,0 +1,15 @@
+.option-popup {
+	position: fixed;
+	bottom: -30vh;
+	width: 100vw;
+	height: 30vh;
+	background: darkblue;
+	transition: 400ms ease;
+}
+.option-popup.open {
+	bottom: 0;
+}
+.option-popup .row {
+	width: 80vw;
+	margin: 0 auto;
+}
