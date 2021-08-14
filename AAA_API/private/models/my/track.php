@@ -98,11 +98,11 @@ class ITrack {
 
 		// If there are no other TTU links (aka nobody stores the track), get the track and remove it
 		$links = Database::find("SELECT * FROM TRACKS_TO_USERS WHERE TrackID = ?;", $this->id);
-		if(count($links) === 0) {
-			Database::prepare("DELETE FROM TRACKS WHERE TrackID = ?;");
-			$stmt->bind_param("s", $this->id);
-			Database::execute();
-		}
+		if(count($links) !== 0) { return; }
+
+		Database::prepare("DELETE FROM TRACKS WHERE TrackID = ?;");
+		$stmt->bind_param("s", $this->id);
+		Database::execute();
 
 		// If there are no other TTAlbum links (aka there are no tracks in that album anymore), remove the album
 
