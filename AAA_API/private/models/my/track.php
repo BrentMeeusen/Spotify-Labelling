@@ -105,8 +105,24 @@ class ITrack {
 		Database::execute($stmt);
 
 		// If there are no other TTAlbum links (aka there are no tracks in that album anymore), remove the album
+		$links = Database::find("SELECT * FROM TRACKS_TO_ALBUMS WHERE AlbumID = ?;", $this->album->id);
+		if(count($links) === 0) {
+			print(json_encode("No album links found."));
+		}
+		print(json_encode($links, JSON_PRETTY_PRINT));
 
-		// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
+		// For each artist
+		foreach($this->artists->data as $artist) {
+
+			// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
+			$links = Database::find("SELECT * FROM TRACKS_TO_ARTISTS WHERE ArtistID = ?;", $artist->id);
+			if(count($links) === 0) {
+				print(json_encode("No artist links found."));
+			}
+			print(json_encode($links, JSON_PRETTY_PRINT));
+
+		}
+		exit();
 
 		ApiResponse::httpResponse(200, ["message" => "Removing..."]);
 		return;
