@@ -92,6 +92,9 @@ class ITrack {
 	public function removeUser(string $userID) : void {
 
 		// Remove TTU link
+		$stmt = Database::prepare("DELETE FROM TRACKS_TO_USERS WHERE TrackID = ? AND UserID = ?;");
+		$stmt->bind_param("ss", $this->id, $userID);
+		Database::execute($stmt);
 
 		// If there are no other TTU links (aka nobody stores the track), get the track and remove it
 
