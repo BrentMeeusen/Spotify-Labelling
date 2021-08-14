@@ -11,15 +11,11 @@ class OptionPopup {
 	/**
 	 * Opens a track and its options
 	 * 
-	 * @param {string} spotifyID The track ID
+	 * @param {object} track The track object
 	 */
-	static async openTrack(spotifyID) {
+	static async openTrack(track) {
 
-		const track = await Api.sendRequest("api/v1/tracks/get/" + spotifyID, "GET");
-		this.popup.classList.add("open");
-		this.popup.innerHTML = "";
-		console.log(track);
-
+		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", () => {
 			Api.request("api/v1/tracks/" + track.data.id + "/delete", "DELETE");
@@ -27,6 +23,9 @@ class OptionPopup {
 		deleteTrack.appendChild(Api.createIcon("delete"));
 		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
 		this.popup.appendChild(deleteTrack);
+
+		// Open popup
+		this.popup.classList.add("open");
 	
 
 	}
