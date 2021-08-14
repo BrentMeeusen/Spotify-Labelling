@@ -101,8 +101,6 @@ class ITrack {
 	 */
 	public function removeUser(string $userID) : void {
 
-		$removed = [];
-
 		// Remove TTU link
 		$stmt = Database::prepare("DELETE FROM TRACKS_TO_USERS WHERE TrackID = ? AND UserID = ?;");
 		$stmt->bind_param("ss", $this->id, $userID);
@@ -115,7 +113,6 @@ class ITrack {
 		$stmt = Database::prepare("DELETE FROM TRACKS WHERE SpotifyID = ?;");
 		$stmt->bind_param("s", $this->id);
 		Database::execute($stmt);
-		$removed["track"] = $this;
 
 		// If there are no other TTAlbum links (aka there are no tracks in that album anymore), remove the album
 		$links = Database::find("SELECT * FROM TRACKS_TO_ALBUMS WHERE AlbumID = ?;", $this->album->id);
@@ -123,29 +120,22 @@ class ITrack {
 			$stmt = Database::prepare("DELETE FROM ALBUMS WHERE SpotifyID = ?;");
 			$stmt->bind_param("s", $this->album->id);
 			Database::execute($stmt);
-			$removed["album"] = $this->album;
 		}
 
 		// For each artist
-		$i = 0;
 		foreach($this->artists->data as $artist) {
 
 			// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
-			$removedArtists = [];
 			$links = Database::find("SELECT * FROM TRACKS_TO_ARTISTS WHERE ArtistID = ?;", $artist->id);
 			if(count($links) === 0) {
 				$stmt = Database::prepare("DELETE FROM ARTISTS WHERE SpotifyID = ?;");
 				$stmt->bind_param("s", $artist->id);
 				Database::execute($stmt);
-				$removedArtists["artist-$i"] = $artist;
-				$i++;
 			}
-
-			$removed["artists"] = $removedArtists;
 
 		}
 
-		ApiResponse::httpResponse(200, ["message" => "Removing...", "removed" => $removed]);
+		ApiResponse::httpResponse(200, ["message" => "Removing..."]);
 		return;
 
 	}
