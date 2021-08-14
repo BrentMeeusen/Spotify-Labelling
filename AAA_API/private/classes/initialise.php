@@ -305,6 +305,31 @@ class Initialise extends Database {
 
 
 	/**
+	 * Creates TRACKS_TO_LABELS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+		private static function createTracksToLabels(mysqli $conn) {
+
+		$tableName = "TRACKS_TO_LABELS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			TrackID			VARCHAR(50)		NOT NULL,
+			LabelID			VARCHAR(32)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (LabelID) REFERENCES LABELS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (TrackID) REFERENCES TRACKS (SpotifyID) ON DELETE CASCADE
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
+	/**
 	 * Creates REQUESTS table
 	 * 
 	 * @param		mysqli		The database to create the table in
@@ -352,6 +377,7 @@ class Initialise extends Database {
 		self::createTracksToArtists($conn);
 		self::createTracksToAlbums($conn);
 		self::createTracksToUsers($conn);
+		self::createTracksToLabels($conn);
 		self::createRequests($conn);
 
 		// Insert special rights into table
