@@ -28,13 +28,14 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.xx.x-alpha - 2021/08/xx
+## 0.12.0-alpha - 2021/08/xx
 
 ### Added
 - Limited number of requests a user can make within one minute
 
 ### Changed
 - Getting the tracks is now done in a different class
+- Labels and track display
 
 
 ## 0.11.1-alpha - 2021/08/08
