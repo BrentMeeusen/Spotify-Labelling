@@ -146,7 +146,9 @@ Api.showTracks = async (tracks) => {
 
 		// Add text container and "more" button to row
 		row.appendChild(textContainer);
-		row.appendChild(Api.createIcon("more_horiz"));
+		row.appendChild(Api.createIcon("more_horiz", () => {
+			OptionPopup.openTrack(track.id);
+		}));
 
 		// Append row
 		output.appendChild(row);
