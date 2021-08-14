@@ -38,7 +38,7 @@ class Request {
 				Database::execute($stmt);
 
 				// If the number of requests is exceeded, exit
-				if($newReq >= 15) {
+				if($newReq >= 1500) {
 					ApiResponse::httpResponse(429, ["error" => "Please lower the amount of requests you make."]);
 				}
 
