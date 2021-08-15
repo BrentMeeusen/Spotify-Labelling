@@ -70,7 +70,7 @@ if($routes[0] === "v1") {
 
 			// Request method has to be "GET" and token is required
 			Request::checkRequestMethod(["GET"], $method);
-			Request::requireToken($jwt);
+			$payload = Request::requireToken($jwt);
 
 			// /api/v1/tracks/get/[track-id]
 			if(isset($routes[3])) {
@@ -86,7 +86,7 @@ if($routes[0] === "v1") {
 
 
 
-print(json_encode([ "route" => $routes ]));
+print(json_encode([ "route" => $routes, "payload" => $payload ]));
 
 // exit();
 
