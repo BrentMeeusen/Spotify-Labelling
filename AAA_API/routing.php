@@ -79,7 +79,7 @@ if($routes[0] === "v1") {
 			if(isset($routes[3]) && $routes[3] !== "") {
 				$_GET["id"] = $routes[3];
 			}
-			include_once("tracks/get/index.php");
+			include_once("tracks/get.php");
 
 		}
 
