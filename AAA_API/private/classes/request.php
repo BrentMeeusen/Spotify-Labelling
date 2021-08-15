@@ -70,7 +70,7 @@ class Request {
 	public static function checkRequestMethod(array $allowed, string $method) : void {
 
 		if(!(in_array($method, $allowed))) {
-			ApiResponse::httpResponse(405, "Method not allowed.");
+			ApiResponse::httpResponse(405, ["error" => "Method not allowed."]);
 		}
 
 	}
