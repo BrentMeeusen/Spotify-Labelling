@@ -179,7 +179,7 @@ Api.showPlaylistsForImport = async (playlists) => {
 		const row = Api.createElement("div", { classList: "row" });
 
 		const textContainer = Api.createElement("div", { classList: "text" });
-		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name, classList: "max65" }));
 		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s"), classList: "right" }));
 		row.appendChild(textContainer);
 

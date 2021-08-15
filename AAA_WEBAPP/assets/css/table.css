@@ -22,6 +22,9 @@
 	overflow: hidden;
 	margin: 0.2em 0;
 }
+.table-container > .row .text .max65 {
+	max-width: 65%;
+}
 .table-container > .row .text .right {
 	text-align: right;
 }
