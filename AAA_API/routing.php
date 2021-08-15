@@ -14,12 +14,12 @@ $post = json_decode(file_get_contents("php://input"));
 $jwt = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
 
 // Include classes
-include_once("private/classes/api-response.php");
-include_once("private/classes/database.php");
-include_once("private/classes/initialise.php");
-include_once("private/classes/jwt.php");
-include_once("private/classes/request.php");
-include_once("private/classes/spotify-api.php");
+include_once("classes/api-response.php");
+include_once("classes/database.php");
+include_once("classes/initialise.php");
+include_once("classes/jwt.php");
+include_once("classes/request.php");
+include_once("classes/spotify-api.php");
 
 // If it's a preflight check, return 200
 if($method === "OPTIONS") {
@@ -27,22 +27,22 @@ if($method === "OPTIONS") {
 }
 
 // Include Spotify models
-include_once("private/models/spotify/spotify-collection.php");
-include_once("private/models/spotify/spotify-album.php");
-include_once("private/models/spotify/spotify-artist.php");
-include_once("private/models/spotify/spotify-playlist.php");
-include_once("private/models/spotify/spotify-track.php");
+include_once("classes/models/spotify/spotify-collection.php");
+include_once("classes/models/spotify/spotify-album.php");
+include_once("classes/models/spotify/spotify-artist.php");
+include_once("classes/models/spotify/spotify-playlist.php");
+include_once("classes/models/spotify/spotify-track.php");
 
 // Include my Spotify data models
-include_once("private/models/my/album.php");
-include_once("private/models/my/artist.php");
-include_once("private/models/my/collection.php");
-include_once("private/models/my/track.php");
+include_once("classes/models/my/album.php");
+include_once("classes/models/my/artist.php");
+include_once("classes/models/my/collection.php");
+include_once("classes/models/my/track.php");
 
 // Include general
-include_once("private/models/label.php");
-include_once("private/models/user.php");
-include_once("private/methods.php");
+include_once("classes/models/label.php");
+include_once("classes/models/user.php");
+include_once("classes/methods.php");
 
 // Connect with the database
 Database::connect();
