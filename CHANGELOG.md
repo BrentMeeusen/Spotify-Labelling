@@ -47,6 +47,7 @@ STANDARD NEW VERSION:
 - Preflight check due to CORS policies
 
 
+
 ## 0.11.0-alpha - 2021/08/08
 
 ### Added
