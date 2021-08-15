@@ -62,7 +62,7 @@ session_start();
 		window.addEventListener("load", async () => {
 
 			document.getElementById("tracks").innnerHTML = "Loading...";
-			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
+			const res = await Api.sendRequest("api/v1/tracks/get/5h2McyMd7gF7BWnVwczTco", "GET");
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
 				Popup.show(res.error, "error", 5000);
 			}
