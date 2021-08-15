@@ -7,7 +7,6 @@ header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Author
 header("Content-Type: application/json; charset=UTF-8");
 
 // Collect data
-$method = $_SERVER["REQUEST_METHOD"];
 $url = $_SERVER["REQUEST_URI"];
 $get = $_GET;
 $post = json_decode(file_get_contents("php://input"));
