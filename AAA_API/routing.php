@@ -69,7 +69,7 @@ if($routes[0] === "v1") {
 		if($routes[2] === "get") {
 
 			// Request method has to be "GET" and token is required
-			Request::checkRequestMethod(["GET"]);
+			Request::checkRequestMethod(["GET"], $method);
 			Request::requireToken($jwt);
 
 			// /api/v1/tracks/get/[track-id]
