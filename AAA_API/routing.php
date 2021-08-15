@@ -85,12 +85,12 @@ if($routes[0] === "v1") {
 			}
 			include_once("tracks/get.php");
 
-		}
+		}	// /api/v1/tracks/get
 
-	}
+	}	// /api/v1/tracks
 
 
-}
+}	// /api/v1
 
 
 
