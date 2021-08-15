@@ -59,7 +59,11 @@ if(strpos($url, "/api/") === FALSE) {
 	ApiResponse::httpResponse(404, ["error" => "Page not found."]);
 }
 
-// Routing
+
+
+/*************************
+ ******** ROUTING ********
+ ************************/
 $routes = explode("/", explode("/api/", $url)[1]);
 
 // /api/v1
