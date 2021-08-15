@@ -22,10 +22,13 @@
 	overflow: hidden;
 	margin: 0.2em 0;
 }
+.table-container > .row .text .right {
+	text-align: right;
+}
 .table-container > .row .title {
 	width: 100%;
 }
-.table-container > .row .artist, .table-container > .row .added {
+.table-container > .row .small {
 	max-width: 70%;
 	margin: 0;
 	padding: 0em 0.5em;

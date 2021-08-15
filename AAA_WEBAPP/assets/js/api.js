@@ -139,10 +139,10 @@ Api.showTracks = async (tracks) => {
 		for(const a of track.artists.data) {
 			artists.push(a.name);
 		}
-		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "artist" }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "small" }));
 
 		// Add date added 
-		textContainer.appendChild(Api.createElement("p", { innerHTML: Api.formatDate("d-m-Y", new Date(track.addedAt)), classList: "added" }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: Api.formatDate("d-m-Y", new Date(track.addedAt)), classList: "small" }));
 
 		// Add text container and "more" button to row
 		row.appendChild(textContainer);
@@ -180,7 +180,7 @@ Api.showPlaylistsForImport = async (playlists) => {
 
 		const textContainer = Api.createElement("div", { classList: "text" });
 		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name }));
-		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s") }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s"), classList: "right" }));
 		row.appendChild(textContainer);
 
 		// If the number of tracks is more than 2000, disable button
