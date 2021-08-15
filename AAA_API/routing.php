@@ -11,6 +11,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 $url = $_SERVER["REQUEST_URI"];
 $get = $_GET;
 $post = json_decode(file_get_contents("php://input"));
+$jwt = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
 
 // Include classes
 include_once("private/classes/api-response.php");
@@ -67,6 +68,11 @@ if($routes[0] === "v1") {
 		// /api/v1/tracks/get
 		if($routes[2] === "get") {
 
+			// Request method has to be "GET" and token is required
+			Request::checkRequestMethod(["GET"]);
+			Request::requireToken();
+
+			// /api/v1/tracks/get/[track-id]
 			if(isset($routes[3])) {
 
 			}
