@@ -44,6 +44,9 @@ include_once("private/models/label.php");
 include_once("private/models/user.php");
 include_once("private/methods.php");
 
+// Connect with the database
+Database::connect();
+
 
 
 
