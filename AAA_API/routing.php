@@ -21,7 +21,7 @@ include_once("classes/request.php");
 include_once("classes/spotify-api.php");
 
 // If it's a preflight check, return 200
-if($method === "OPTIONS") {
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 	ApiResponse::httpResponse(200);
 }
 
