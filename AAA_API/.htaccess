@@ -19,6 +19,11 @@ RewriteEngine On
 # ROUTES
 ###############################
 
+# Send everything to the router
+RewriteRule		.*			routing.php
+
+
+
 ############	api/v1/login							jwt/generate/
 RewriteRule		api/v1/login							jwt/generate/?login=true	[L,QSA]
 
