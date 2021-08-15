@@ -135,9 +135,6 @@ class ITrack {
 
 		}
 
-		ApiResponse::httpResponse(200, ["message" => "Removing..."]);
-		return;
-
 	}
 
 
