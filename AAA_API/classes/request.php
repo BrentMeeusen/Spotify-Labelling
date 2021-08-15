@@ -67,9 +67,9 @@ class Request {
 	 * @param		array		The allowed methods
 	 * @param		string		The method
 	 */
-	public static function checkRequestMethod(array $allowed, string $method) : void {
+	public static function checkRequestMethod(array $allowed) : void {
 
-		if(!(in_array($method, $allowed))) {
+		if(!(in_array($_SERVER["REQUEST_METHOD"], $allowed))) {
 			ApiResponse::httpResponse(405, ["error" => "Method not allowed."]);
 		}
 
