@@ -1,8 +1,8 @@
 <?php
 
 // If track ID is set, get from ID
-if(isset($_GET["id"])) {
-	$res = ITrack::findBySpotifyId($_GET["id"]);
+if(isset($trackID)) {
+	$res = ITrack::findBySpotifyId($trackID);
 	if($res === NULL) {
 		ApiResponse::httpResponse(500, ["error" => "The track was not found."]);
 	}

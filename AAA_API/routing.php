@@ -80,8 +80,8 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 			// /api/v1/tracks/get/[track-id]
 			if(isset($routes[3]) && $routes[3] !== "") {
-				$_GET["id"] = $routes[3];
-			} else { unset($_GET["id"]); }
+				$trackID = $routes[3];
+			}
 			include_once("tracks/get.php");
 
 		}	// /api/v1/tracks/get
@@ -93,7 +93,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["DELETE"]);
 			$payload = Request::requireToken($jwt);
 
-			$_GET["id"] = $routes[2];
+			$trackID = $routes[2];
 			include_once("tracks/delete.php");
 
 		}
