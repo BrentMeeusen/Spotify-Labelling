@@ -13,12 +13,12 @@ $get = $_GET;
 $post = json_decode(file_get_contents("php://input"));
 
 // Include classes
-include_once("classes/api-response.php");
-include_once("classes/database.php");
-include_once("classes/initialise.php");
-include_once("classes/jwt.php");
-include_once("classes/request.php");
-include_once("classes/spotify-api.php");
+include_once("private/classes/api-response.php");
+include_once("private/classes/database.php");
+include_once("private/classes/initialise.php");
+include_once("private/classes/jwt.php");
+include_once("private/classes/request.php");
+include_once("private/classes/spotify-api.php");
 
 // If it's a preflight check, return 200
 if($method === "OPTIONS") {
@@ -26,22 +26,22 @@ if($method === "OPTIONS") {
 }
 
 // Include Spotify models
-include_once("models/spotify/spotify-collection.php");
-include_once("models/spotify/spotify-album.php");
-include_once("models/spotify/spotify-artist.php");
-include_once("models/spotify/spotify-playlist.php");
-include_once("models/spotify/spotify-track.php");
+include_once("private/models/spotify/spotify-collection.php");
+include_once("private/models/spotify/spotify-album.php");
+include_once("private/models/spotify/spotify-artist.php");
+include_once("private/models/spotify/spotify-playlist.php");
+include_once("private/models/spotify/spotify-track.php");
 
 // Include my Spotify data models
-include_once("models/my/album.php");
-include_once("models/my/artist.php");
-include_once("models/my/collection.php");
-include_once("models/my/track.php");
+include_once("private/models/my/album.php");
+include_once("private/models/my/artist.php");
+include_once("private/models/my/collection.php");
+include_once("private/models/my/track.php");
 
 // Include general
-include_once("models/label.php");
-include_once("models/user.php");
-include_once("methods.php");
+include_once("private/models/label.php");
+include_once("private/models/user.php");
+include_once("private/methods.php");
 
 
 
@@ -55,8 +55,32 @@ if(strpos($url, "/api/") === FALSE) {
 	ApiResponse::httpResponse(404, ["error" => "Page not found."]);
 }
 
+// Routing
+$routes = explode("/", explode("/api/", $url)[1]);
 
-print(json_encode(["REQUEST_METHOD" => $_SERVER["REQUEST_METHOD"], "GET" => $_GET, "BODY" => json_decode(file_get_contents("php://input")), "URI" => $_SERVER["REQUEST_URI"], "URL" => $_SERVER["REDIRECT_URL"] ]));
+// /api/v1
+if($routes[0] === "v1") {
+
+	// /api/v1/tracks
+	if($routes[1] === "tracks") {
+
+		// /api/v1/tracks/get
+		if($routes[2] === "get") {
+
+			if(isset($routes[3])) {
+
+			}
+
+		}
+
+	}
+
+
+}
+
+
+
+print(json_encode([ "route" => $routes ]));
 
 // exit();
 
