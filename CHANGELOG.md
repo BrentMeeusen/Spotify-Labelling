@@ -36,7 +36,9 @@ STANDARD NEW VERSION:
 
 ### Changed
 - Getting the tracks is now done in a different class
-- Labels and track display
+- Labels display
+- Tracks display
+- Importing playlists display
 
 
 ## 0.11.1-alpha - 2021/08/08
