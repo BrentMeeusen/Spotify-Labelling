@@ -20,7 +20,7 @@ RewriteEngine On
 ###############################
 
 # Send everything to the router
-RewriteRule		.*			routing.php
+RewriteRule		.*			routing.php					[L,QSA]
 
 
 
