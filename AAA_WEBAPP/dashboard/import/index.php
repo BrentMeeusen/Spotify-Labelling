@@ -34,15 +34,7 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-			<div class="table-container" id="playlists"></div>
-
-				<!-- <div class="table-container">
-					<table>
-						<tbody id="playlists">
-
-						</tbody>
-					</table>
-				</div> -->
+				<div class="table-container" id="playlists"></div>
 
 			</div>
 
