@@ -75,6 +75,37 @@ class Request {
 
 	}
 
+
+
+
+
+	/**
+	 * Checks whether the token is valid
+	 * 
+	 * @param		string		The token
+	 * @return		StdClass	The most recent payload
+	 */
+	public static function requireToken(string $token) : StdClass {
+
+		// Verify the token and get the payload if it's valid
+		JSONWebToken::validateToken($token);
+		$payload = JSONWebToken::getPayload($token);
+
+		if($payload === NULL || !isset($payload->user) || !isset($payload->user->id)) {
+			ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
+		}
+
+		// Check if this user actually exists
+		$user = User::findByPublicID($payload->user->id);
+		if($user === NULL) {
+			ApiResponse::httpResponse(500, ["error" => "Could not validate your account."]);
+		}
+
+		// Get the newest payload from the user so that it is up-to-date with the info in the database
+		$payload = json_decode(json_encode($user->createPayload()));
+
+	}
+
 }
 
 
