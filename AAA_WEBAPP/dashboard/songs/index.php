@@ -60,7 +60,7 @@ session_start();
 
 		// Load tracks
 		window.addEventListener("load", async () => {
-			
+
 			document.getElementById("tracks").innnerHTML = "Loading...";
 			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
