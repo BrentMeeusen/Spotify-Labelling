@@ -96,7 +96,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$trackID = $routes[2];
 			include_once("tracks/delete.php");
 
-		}
+		}	// /api/v1/tracks/[track-id]/delete
 
 	}	// /api/v1/tracks
 
