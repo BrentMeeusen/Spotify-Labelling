@@ -175,21 +175,23 @@ Api.showPlaylistsForImport = async (playlists) => {
 
 	for(const list of playlists) {
 
-		// // Create row, add name, number of tracks, import button
-		// const row = Api.createElement("tr");
-		// row.appendChild(Api.createElement("td", { innerHTML: list.name }));
-		// row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s") }));
+		// Create row, add name, number of tracks, import button
+		const row = Api.createElement("div", { classList: "row" });
 
-		// // If the number of tracks is more than 2000, disable button
-		// if(list.numTracks > 2000) {
-		// 	row.appendChild(Api.createIcon("import", async() => { Popup.show("Cannot import playlists with more than 2000 songs.", "error"); }));
-		// }
-		// else {
-		// 	row.appendChild(Api.createIcon("import", async () => { Api.request("api/v1/spotify/import/" + list.spotifyID, "POST"); }));
-		// }
+		const textContainer = Api.createElement("div", { classList: "text" });
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s") }));
+		row.appendChild(textContainer);
 
-		// // Output the row
-		// output.appendChild(row);
+		// If the number of tracks is more than 2000, disable button
+		if(list.numTracks > 2000) {
+			row.appendChild(Api.createIcon("import", async() => { Popup.show("Cannot import playlists with more than 2000 songs.", "error"); }));
+		}
+		else {
+			row.appendChild(Api.createIcon("import", async () => { Api.request("api/v1/spotify/import/" + list.spotifyID, "POST"); }));
+		}
+
+		output.appendChild(row);
 
 	}
 
