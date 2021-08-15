@@ -66,13 +66,13 @@ if(strpos($url, "/api/") === FALSE) {
 $routes = explode("/", explode("/api/", $url)[1]);
 
 // /api/v1
-if($routes[0] === "v1") {
+if(isset($routes[0]) && $routes[0] === "v1") {
 
 	// /api/v1/tracks
-	if($routes[1] === "tracks") {
+	if(isset($routes[1]) && $routes[1] === "tracks") {
 
 		// /api/v1/tracks/get
-		if($routes[2] === "get") {
+		if(isset($routes[2]) && $routes[2] === "get") {
 
 			// Request method has to be "GET" and token is required
 			Request::checkRequestMethod(["GET"]);
@@ -81,10 +81,22 @@ if($routes[0] === "v1") {
 			// /api/v1/tracks/get/[track-id]
 			if(isset($routes[3]) && $routes[3] !== "") {
 				$_GET["id"] = $routes[3];
-			}
+			} else { unset($_GET["id"]); }
 			include_once("tracks/get.php");
 
 		}	// /api/v1/tracks/get
+
+		// /api/v1/tracks/[track-id]/delete
+		if(isset($routes[2]) && preg_match("/[a-zA-Z0-9]+/", $routes[2]) !== FALSE && isset($routes[3]) && $routes[3] === "delete") {
+
+			// Request method has to be "DELETE" and token is required
+			Request::checkRequestMethod(["DELETE"]);
+			$payload = Request::requireToken($jwt);
+
+			$_GET["id"] = $routes[2];
+			include_once("tracks/delete.php");
+
+		}
 
 	}	// /api/v1/tracks
 
