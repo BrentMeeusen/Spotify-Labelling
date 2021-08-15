@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "GET";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // If track ID is set, get from ID
 if(isset($_GET["id"])) {
 	$res = ITrack::findBySpotifyId($_GET["id"]);
