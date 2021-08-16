@@ -71,7 +71,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 	// /api/v1/login
 	if(isset($routes[1]) && $routes[1] === "login") {
 
-		// Request method has to be "POST", token is not required
 		Request::checkRequestMethod(["POST"]);
 
 		$identifier = $post->Identifier;
@@ -98,7 +97,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
 
-			// Request method has to be "GET" and token is required
 			Request::checkRequestMethod(["GET"]);
 			$payload = Request::requireToken($jwt);
 
@@ -113,7 +111,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		// /api/v1/tracks/[track-id]/delete
 		if(isset($routes[2]) && preg_match("/[a-zA-Z0-9]+/", $routes[2]) !== FALSE && isset($routes[3]) && $routes[3] === "delete") {
 
-			// Request method has to be "DELETE" and token is required
 			Request::checkRequestMethod(["DELETE"]);
 			$payload = Request::requireToken($jwt);
 
