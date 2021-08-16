@@ -1,19 +1,13 @@
 <?php
 
-$ALLOWED_METHOD = "GET";
-
-include_once("../../private/include_all.php");
-
-
-
 // Get the user by ID
-if(!isset($_GET["id"]) || !isset($_GET["email"])) {
+if(!isset($id) || !isset($email)) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
 // Verify the user
-$user = User::findByPublicID($_GET["id"]);
-if($user === NULL || $user->emailAddress !== $_GET["email"]) {
+$user = User::findByPublicID($id);
+if($user === NULL || $user->emailAddress !== $email) {
 	ApiResponse::httpResponse(400, ["error" => "We couldn't find your account."]);
 }
 
