@@ -28,7 +28,7 @@ function setAndEmpty($array, $key) : bool {
  * @return	bool	True if it's set and empty, false if it's not
  */
 function my_isset($value) : bool {
-	if(isset($value) && empty($value)) {
+	if(isset($value) && !empty($value)) {
 		return TRUE;
 	}
 	return FALSE;
