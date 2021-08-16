@@ -112,7 +112,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["GET"]);
 			$payload = Request::requireToken($jwt);
 
-			include_once("spotify/import.php");
+			include_once("spotify/playlists.php");
 
 		}	// /api/v1/spotify/playlists
 
