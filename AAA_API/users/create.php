@@ -18,16 +18,9 @@ if($password == $email) {
 }
 
 
-// Set values of the payload
-$values = ["Password" => NULL, "EmailAddress" => NULL];
-foreach($body as $key => $value) {
-	$values[$key] = $value;
-}
-
-
 
 // Create the entry in the user class
-$res = User::create($values);
+$res = User::create(["Password" => $password, "EmailAddress" => $email]);
 
 // Check whether everything went right whilst adding to the database, set response headers and messages.
 ApiResponse::httpResponse(200, [ "message" => "Successfully registered. You can login after you have verified your account.", "data" => $res ]);
