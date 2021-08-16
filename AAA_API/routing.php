@@ -52,16 +52,18 @@ Database::connect();
 
 
 
-// If the URL does not contain `/api/`, return an error
-if(strpos($url, "/api/") === FALSE) {
-	ApiResponse::httpResponse(404, ["error" => "Page not found."]);
-}
-
 
 
 /*************************
  ******** ROUTING ********
  ************************/
+
+// If the URL does not contain `/api/`, return an error
+if(strpos($url, "/api/") === FALSE) {
+	ApiResponse::httpResponse(404, ["error" => "Page not found."]);
+}
+
+// Set base at /api/
 $routes = explode("/", explode("/api/", $url)[1]);
 
 // /api/v1
@@ -72,8 +74,8 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		Request::checkRequestMethod(["POST"]);
 
-		$identifier = $post->Identifier;
-		$password = $post->Password;
+		$identifier = @$post->Identifier;
+		$password = @$post->Password;
 		include_once("users/login.php");
 
 	}	// /api/v1/login
@@ -81,7 +83,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 
 	// /api/v1/register
-	else if(isset($routes[1]) && $routes[1] === "register") {
+	if(isset($routes[1]) && $routes[1] === "register") {
 
 		Request::checkRequestMethod(["POST"]);
 		include_once("users/register.php");
@@ -90,8 +92,25 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 
 
+	// /api/v1/spotify
+	if(isset($routes[1]) && $routes[1] === "spotify") {
+
+		if(isset($routes[2]) && $routes[2] === "import") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = @$routes[3];
+			include_once("spotify/import.php");
+
+		}
+
+	}	// /api/v1/spotify
+
+
+
 	// /api/v1/tracks
-	else if(isset($routes[1]) && $routes[1] === "tracks") {
+	if(isset($routes[1]) && $routes[1] === "tracks") {
 
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
@@ -101,7 +120,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 			// /api/v1/tracks/get/[track-id]
 			if(isset($routes[3]) && $routes[3] !== "") {
-				$trackID = $routes[3];
+				$trackID = @$routes[3];
 			}
 			include_once("tracks/get.php");
 
@@ -113,7 +132,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["DELETE"]);
 			$payload = Request::requireToken($jwt);
 
-			$trackID = $routes[2];
+			$trackID = @$routes[2];
 			include_once("tracks/delete.php");
 
 		}	// /api/v1/tracks/[track-id]/delete
@@ -131,7 +150,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
-			$token = $post->AccessToken;
+			$token = @$post->AccessToken;
 			include_once("users/add-token.php");
 
 		}	// /api/v1/users/add-token
@@ -142,8 +161,8 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = JSONWebToken::getPayload($jwt);
 
-			$email = $post->EmailAddress;
-			$password = $post->Password;
+			$email = @$post->EmailAddress;
+			$password = @$post->Password;
 			include_once("users/create.php");
 
 		}	// /api/v1/users/create
@@ -155,7 +174,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$payload = Request::requireToken($jwt);
 
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
-			$password = $post->Password;
+			$password = @$post->Password;
 			include_once("users/delete.php");
 
 		}	// /api/v1/users/delete
