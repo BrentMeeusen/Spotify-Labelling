@@ -140,6 +140,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		if(isset($routes[2]) && $routes[2] === "create") {
 
 			Request::checkRequestMethod(["POST"]);
+			$payload = JSONWebToken::getPayload($jwt);
 
 			$email = $post->EmailAddress;
 			$password = $post->Password;
