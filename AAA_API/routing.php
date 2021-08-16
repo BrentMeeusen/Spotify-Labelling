@@ -101,7 +101,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = JSONWebToken::getPayload($jwt);
 
-			$name = @$body->Name;
+			$name = @$post->Name;
 			$values = ["Name" => $name];
 			include_once("labels/create.php");
 
