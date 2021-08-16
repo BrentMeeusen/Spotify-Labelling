@@ -39,6 +39,7 @@ STANDARD NEW VERSION:
 - Labels display
 - Tracks display
 - Importing playlists display
+- The way routing is done
 
 
 ## 0.11.1-alpha - 2021/08/08
