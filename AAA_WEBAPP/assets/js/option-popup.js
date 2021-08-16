@@ -17,6 +17,7 @@ class OptionPopup {
 
 		// Open popup
 		this.popup.innerHTML = "";
+		this.popup.style.height ="auto";
 		this.popup.classList.add("open");
 
 		// Add "delete track" row
@@ -39,6 +40,9 @@ class OptionPopup {
 		closePopup.appendChild(Api.createIcon("menu/menu-close"));
 		closePopup.appendChild(Api.createElement("p", { innerHTML: "Close" }));
 		this.popup.appendChild(closePopup);
+
+		// Set height
+		this.popup.style.height = (this.popup.clientHeight + 16) + "px";
 
 	}
 
