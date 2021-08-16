@@ -195,9 +195,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/verify
 
-		// /api/v1/users/[id]/[action]
-		// /api/v1/users/[id]
-
 	}	// /api/v1/users
 
 }	// /api/v1
