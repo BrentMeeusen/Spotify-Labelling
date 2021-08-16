@@ -108,13 +108,12 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		}	// /api/v1/labels/create
 
 		// /api/v1/labels/delete
-		if((isset($routes[2]) && $routes[2] === "delete") || (isset($routes[3]) && $routes[3] === "delete")) {
+		if(isset($routes[3]) && $routes[3] === "delete") {
 
 			Request::checkRequestMethod(["DELETE"]);
 			$payload = Request::requireToken($jwt);
 
-			$id = (isset($routes[3]) ? $routes[2] : NULL);
-			$password = @$post->Password;
+			$labelID = $routes[2];
 			include_once("labels/delete.php");
 
 		}	// /api/v1/labels/delete
