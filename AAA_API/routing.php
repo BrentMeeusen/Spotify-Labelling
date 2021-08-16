@@ -148,6 +148,18 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/create
 
+		// /api/v1/users/delete
+		if(isset($routes[2]) && $routes[2] === "delete") {
+
+			Request::checkRequestMethod(["DELETE"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = $_GET["id"];
+			$password = $body->Password;
+			include_once("users/delete.php");
+
+		}	// /api/v1/users/delete
+
 		// /api/v1/users/verify
 		if(isset($routes[2]) && $routes[2] === "verify") {
 
