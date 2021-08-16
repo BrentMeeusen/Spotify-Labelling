@@ -19,15 +19,3 @@ RewriteEngine On
 
 # Send everything to the routing file
 RewriteRule		.*			routing.php					[L,QSA]
-
-
-
-###############################
-# ERROR DOCUMENTS
-###############################
-
-# WARNING: HARDCODED
-ErrorDocument 403 /Spotify%20Labelling/AAA_API/errors/403.php
-ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/404.php
-ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/405.php
-
