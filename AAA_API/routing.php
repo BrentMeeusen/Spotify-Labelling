@@ -279,9 +279,8 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 }	// /api/v1
 
-
-
-@print(json_encode([ "route" => $routes, "payload" => $payload ]));
+// If there's no match, return an error
+ApiResponse::httpResponse(404, ["error" => "Page not found."]);
 
 // exit();
 
