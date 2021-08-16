@@ -78,12 +78,22 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		$password = $post->Password;
 		include_once("users/login.php");
 
-	}
+	}	// /api/v1/login
+
+
+
+	// /api/v1/register
+	else if(isset($routes[1]) && $routes[1] === "register") {
+
+		Request::checkRequestMethod(["POST"]);
+		include_once("users/register.php");
+
+	}	// /api/v1/register
 
 
 
 	// /api/v1/tracks
-	if(isset($routes[1]) && $routes[1] === "tracks") {
+	else if(isset($routes[1]) && $routes[1] === "tracks") {
 
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
