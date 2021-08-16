@@ -125,7 +125,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["GET"]);
 			$payload = Request::requireToken($jwt);
 
-			$labelID = @$routes[3];
+			$userID = @$routes[3];
 			include_once("labels/get.php");
 
 		}	// /api/v1/labels/get

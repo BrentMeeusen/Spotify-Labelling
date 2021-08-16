@@ -9,11 +9,11 @@ if(isset($labelID)) {
 }
 
 // If available is set
-else if(isset($_GET["available"])) {
+else if(isset($userID)) {
 	if(!isset($payload->rights->label->find->available) || $payload->rights->label->find->available !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "You are not allowed to get all available."]);
 	}
-	$res = Label::findAvailable(strval($_GET["available"]));
+	$res = Label::findAvailable(strval($userID));
 }
 
 
