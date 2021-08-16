@@ -24,17 +24,6 @@ RewriteRule		.*			routing.php					[L,QSA]
 
 
 
-############	api/v1/login							jwt/generate/
-RewriteRule		api/v1/login							jwt/generate/?login=true	[L,QSA]
-
-############	api/v1/register							jwt/generate/?register=true
-RewriteRule		api/v1/register							jwt/generate/?register=true	[L,QSA]
-
-############	api/v1/jwt/generate						jwt/generate/
-RewriteRule		api/v1/jwt/generate						jwt/generate/?testing=true	[L,QSA]
-
-
-
 ############	api/v1/users/verify/[id]/[email]		users/verify/?id=[id]&email=[email]
 RewriteRule 	api/v1/users/verify/([0-9]+)/(.*)		users/verify/?id=$1&email=$2			[L,QSA]
 
