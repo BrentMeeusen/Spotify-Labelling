@@ -95,6 +95,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 	// /api/v1/spotify
 	if(isset($routes[1]) && $routes[1] === "spotify") {
 
+		// /api/v1/spotify/import/[playlist-id]
 		if(isset($routes[2]) && $routes[2] === "import") {
 
 			Request::checkRequestMethod(["POST"]);
@@ -103,7 +104,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$id = @$routes[3];
 			include_once("spotify/import.php");
 
-		}
+		}	// /api/v1/spotify/import/[playlist-id]
 
 	}	// /api/v1/spotify
 
