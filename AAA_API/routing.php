@@ -95,17 +95,17 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 	// /api/v1/labels
 	if(isset($routes[1]) && $routes[1] === "labels") {
 
-		// /api/v1/users/create
+		// /api/v1/labels/create
 		if(isset($routes[2]) && $routes[2] === "create") {
 
 			Request::checkRequestMethod(["POST"]);
 			$payload = JSONWebToken::getPayload($jwt);
 
-			$email = @$post->EmailAddress;
-			$password = @$post->Password;
-			include_once("users/create.php");
+			$name = @$body->Name;
+			$values = ["Name" => $name];
+			include_once("labels/create.php");
 
-		}	// /api/v1/users/create
+		}	// /api/v1/labels/create
 
 		// /api/v1/users/delete
 		if((isset($routes[2]) && $routes[2] === "delete") || (isset($routes[3]) && $routes[3] === "delete")) {
