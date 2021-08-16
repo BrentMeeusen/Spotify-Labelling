@@ -28,7 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.12.0-alpha - 2021/08/xx
+## 0.12.0-alpha - 2021/08/17
 
 ### Added
 - Limited number of requests a user can make within one minute

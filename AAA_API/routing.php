@@ -66,6 +66,19 @@ if(strpos($url, "/api/") === FALSE) {
 // Set base at /api/
 $routes = explode("/", explode("/api/", $url)[1]);
 
+
+
+// /api/create-tables
+if(isset($routes[0]) && $routes[0] === "create-tables") {
+
+	Request::checkRequestMethod(["POST"]);
+
+	include_once("AAA_DEV/create-tables.php");
+
+}	// /api/v1/create-tables
+
+
+
 // /api/v1
 if(isset($routes[0]) && $routes[0] === "v1") {
 
