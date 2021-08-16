@@ -8,7 +8,6 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // Collect data
 $url = $_SERVER["REQUEST_URI"];
-$get = $_GET;
 $post = json_decode(file_get_contents("php://input"));
 $jwt = (isset(getallheaders()["Authorization"]) ? @explode("Bearer ", getallheaders()["Authorization"])[1] : "");
 
@@ -121,6 +120,27 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 	}	// /api/v1/tracks
 
+
+
+	// /api/v1/users
+	if(isset($routes[1]) && $routes[1] === "users") {
+
+		// /api/v1/users/verify
+		if(isset($routes[2]) && $routes[2] === "verify") {
+
+			Request::checkRequestMethod(["GET"]);
+
+			$id = $_GET["id"];
+			$email = $_GET["email"];
+			include_once("users/verify.php");
+
+		}	// /api/v1/users/verify
+
+		// /api/v1/users/[action]
+		// /api/v1/users/[id]
+		// /api/v1/users/[id]/[action]
+
+	}	// /api/v1/users
 
 }	// /api/v1
 
