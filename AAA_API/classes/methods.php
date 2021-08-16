@@ -21,6 +21,24 @@ function setAndEmpty($array, $key) : bool {
 
 
 /**
+ * Checks whether a key in an array is set AND is empty
+ * 
+ * @param	array	The array to search in
+ * @param	string	The key of the array
+ * @return	bool	True if it's set and empty, false if it's not
+ */
+function my_isset($value) : bool {
+	if(isset($value) && empty($value)) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+
+
+
+
+/**
  * Makes a one-dimensional array from a multi-dimensional array
  * 
  * @param		array		The array to flatten
