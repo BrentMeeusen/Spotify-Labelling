@@ -1,20 +1,13 @@
 <?php
 
-$ALLOWED_METHOD = "DELETE";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // If the ID is set, delete ID
-if(isset($_GET["id"])) {
+if(isset($id)) {
 
 	// Check whether the current user (JWT) is allowed to delete another user (ID)
 	if(!isset($payload->rights->users->delete) || $payload->rights->users->delete !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "You are not allowed to delete someone else's account."]);
 	}
-	$userID = $_GET["id"];
+	$userID = $id;
 
 	$prefix = "The";
 
@@ -43,7 +36,7 @@ if($user === NULL) {
 
 
 // If the password isn't correct, return an error
-if(!password_verify($body["Password"], $user->password)) {
+if(!password_verify($password, $user->password)) {
 	ApiResponse::httpResponse(400, ["error" => "The given password is incorrect."]);
 }
 
