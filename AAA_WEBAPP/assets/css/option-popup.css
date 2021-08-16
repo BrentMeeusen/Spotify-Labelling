@@ -2,6 +2,8 @@
 	position: fixed;
 	bottom: -10em;
 	width: 100vw;
+	max-height: 50vh;
+	overflow: auto;
 	background: var(--current--background-highlight);
 	box-shadow: 0 -0.5em 1em 0.5em var(--current--background-highlight);
 	transition: 400ms ease;
