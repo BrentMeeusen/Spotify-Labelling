@@ -160,6 +160,17 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/delete
 
+		// /api/v1/users/get
+		if(isset($routes[2]) && $routes[2] === "get") {
+
+			Request::checkRequestMethod(["GET"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = $_GET["id"];
+			include_once("users/get.php");
+
+		}	// /api/v1/users/get
+
 		// /api/v1/users/verify
 		if(isset($routes[2]) && $routes[2] === "verify") {
 
