@@ -101,7 +101,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
-			$id = @$routes[3];
+			$playlistID = @$routes[3];
 			include_once("spotify/import.php");
 
 		}	// /api/v1/spotify/import/[playlist-id]
