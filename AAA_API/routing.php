@@ -166,7 +166,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["GET"]);
 			$payload = Request::requireToken($jwt);
 
-			$id = $_GET["id"];
 			include_once("users/get.php");
 
 		}	// /api/v1/users/get
