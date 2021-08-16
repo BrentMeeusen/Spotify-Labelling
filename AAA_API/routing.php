@@ -179,7 +179,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
 			$email = @$post->EmailAddress;
 			$password = @$post->Password;
-			$values = ["emailAddress" => $email, "password" => $password];
+			$values = ["EmailAddress" => $email, "Password" => $password];
 			include_once("users/update.php");
 
 		}	// /api/v1/users/update

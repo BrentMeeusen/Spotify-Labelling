@@ -343,7 +343,7 @@ class User extends Database {
 		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
-		if(array_key_exists("password", strtolower($values))) {
+		if(array_key_exists("Password", $values)) {
 			$user->password = password_hash($user->password, PASSWORD_DEFAULT);
 		}
 
