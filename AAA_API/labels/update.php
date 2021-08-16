@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "POST";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // Get the ID
 $labelID = $_GET["id"];
 
@@ -18,7 +11,7 @@ if(!isset($payload->rights->label->update) || $payload->rights->label->update !=
 
 
 // Check if inputs are set and not empty
-if(setAndEmpty($body, "Name")) {
+if(!my_isset($name)) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in."]);
 }
 
@@ -33,15 +26,15 @@ if($label === NULL) {
 
 
 // Set values of the payload
-$values = [];
-foreach($body as $key => $value) {
+$newValues = [];
+foreach($values as $key => $value) {
 	if(!empty($value)) {
-		$values[$key] = $value;
+		$newValues[$key] = $value;
 	}
 }
 
 // Update the user
-$res = Label::update($label, $values);
+$res = Label::update($label, $newValues);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The label has been successfully updated.", "data" => $res]);
