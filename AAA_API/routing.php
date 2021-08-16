@@ -171,6 +171,19 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/get
 
+		// /api/v1/users/update
+		if(isset($routes[2]) && $routes[2] === "update") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = $_GET["id"];
+			$email = $post->EmailAddress;
+			$password = $post->Password;
+			include_once("users/update.php");
+
+		}	// /api/v1/users/update
+
 		// /api/v1/users/verify
 		if(isset($routes[2]) && $routes[2] === "verify") {
 
