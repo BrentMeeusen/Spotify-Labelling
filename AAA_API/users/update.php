@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "POST";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // If the ID is set, update ID
 if(isset($id)) {
 
@@ -39,7 +32,7 @@ if(!my_isset($email)) {
 }
 
 // Check if the password is the same as another value
-if(!my_isset($password) && ($body["Password"] == $payload->user->emailAddress)) {
+if(!my_isset($password) && ($password == $payload->user->emailAddress)) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value.", "data" => $payload->user]);
 }
 
@@ -54,15 +47,15 @@ if($user === NULL) {
 
 
 // Set values of the payload
-$values = [];
-foreach($body as $key => $value) {
+$newValues = [];
+foreach($values as $key => $value) {
 	if(!empty($value)) {
 		$values[$key] = $value;
 	}
 }
 
 // Update the user
-$res = User::update($user, $values);
+$res = User::update($user, $newValues);
 
 // Create a new token
 $user = User::findByPublicID($payload->user->id);
