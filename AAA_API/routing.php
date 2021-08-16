@@ -106,6 +106,16 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/spotify/import/[playlist-id]
 
+		// /api/v1/spotify/playlists
+		if(isset($routes[2]) && $routes[2] === "playlists") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			include_once("spotify/import.php");
+
+		}	// /api/v1/spotify/playlists
+
 	}	// /api/v1/spotify
 
 
