@@ -8,13 +8,13 @@ include_once("../../private/include_all.php");
 
 
 // If the ID is set, update ID
-if(isset($_GET["id"])) {
+if(isset($id)) {
 
 	// Check whether the current user (JWT) is allowed to update another user (ID)
 	if(!isset($payload->rights->users->update) || $payload->rights->users->update !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "You are not allowed to update someone else's account.", "data" => $payload->user]);
 	}
-	$updateID = $_GET["id"];
+	$updateID = $id;
 	$prefix = "The";
 
 }
@@ -34,12 +34,12 @@ else {
 
 
 // Check if inputs are set and not empty
-if(setAndEmpty($body, "EmailAddress")) {
+if(!my_isset($email)) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
 }
 
 // Check if the password is the same as another value
-if(isset($body["Password"]) && ($body["Password"] == $payload->user->emailAddress)) {
+if(!my_isset($password) && ($body["Password"] == $payload->user->emailAddress)) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value.", "data" => $payload->user]);
 }
 
