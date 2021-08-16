@@ -19,52 +19,8 @@ RewriteEngine On
 # ROUTES
 ###############################
 
-# Send everything to the router
+# Send everything to the routing file
 RewriteRule		.*			routing.php					[L,QSA]
-
-
-
-############	api/v1/users/verify/[id]/[email]		users/verify/?id=[id]&email=[email]
-RewriteRule 	api/v1/users/verify/([0-9]+)/(.*)		users/verify/?id=$1&email=$2			[L,QSA]
-
-############	api/v1/users/[action]					users/[action]/
-RewriteRule		api/v1/users/([a-zA-Z\-]+)				users/$1/								[L,QSA]
-
-############	api/v1/users/[id]/[action]				users/[action]/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)/([a-zA-Z]+)		users/$2/?id=$1							[L,QSA]
-
-############	api/v1/users/[id]						users/get/?id=[id]
-RewriteRule 	api/v1/users/([0-9]+)					users/get/?id=$1						[L,QSA]
-
-############	api/v1/users							users/get/
-RewriteRule 	api/v1/users							users/get/								[L,QSA]
-
-
-
-############	api/v1/labels/all/[id]					labels/get/?available=[id]
-RewriteRule		api/v1/labels/all/([0-9]+)				labels/get/?available=$1				[L,QSA]
-
-############	api/v1/labels/[id]/[action]				labels/[action]?id=[id]
-RewriteRule		api/v1/labels/([0-9]+)/([a-zA-Z]+)		labels/$2/?id=$1						[L,QSA]
-
-############	api/v1/labels/[action]					labels/[action]
-RewriteRule		api/v1/labels/([a-zA-Z]+)				labels/$1/								[L,QSA]
-
-############	api/v1/labels/[id]						labels/get/?id=[id]
-RewriteRule		api/v1/labels/([0-9]+)					labels/get/?id=$1						[L,QSA]
-
-############	api/v1/labels							labels/get/
-RewriteRule		api/v1/labels							labels/get/								[L,QSA]
-
-
-
-############	api/v1/spotify/playlists				spotify/playlists/
-RewriteRule		api/v1/spotify/playlists				spotify/playlists/						[L,QSA]
-
-############	api/v1/spotify/import/[id]				spotify/import/[id]
-RewriteRule		api/v1/spotify/import/([a-zA-Z0-9]+)	spotify/import/?id=$1					[L,QSA]
-
-
 
 
 
