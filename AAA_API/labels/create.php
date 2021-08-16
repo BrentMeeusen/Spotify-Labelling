@@ -19,7 +19,7 @@ if(Label::findByName($name, $payload->user->id) !== NULL) {
 
 // Set values of the payload
 $newValues = ["Creator" => $payload->user->id];
-foreach($body as $key => $value) {
+foreach($values as $key => $value) {
 	$newValues[$key] = $value;
 }
 
