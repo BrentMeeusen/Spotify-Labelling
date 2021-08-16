@@ -119,17 +119,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/labels/delete
 
-		// /api/v1/labels/get
-		if(isset($routes[2]) && $routes[2] === "get") {
-
-			Request::checkRequestMethod(["GET"]);
-			$payload = Request::requireToken($jwt);
-
-			$userID = @$routes[3];
-			include_once("labels/get.php");
-
-		}	// /api/v1/labels/get
-
 		// /api/v1/labels/update
 		if((isset($routes[2]) && $routes[2] === "update") || (isset($routes[3]) && $routes[3] === "update")) {
 
@@ -143,6 +132,13 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			include_once("labels/update.php");
 
 		}	// /api/v1/labels/update
+
+		// /api/v1/labels
+		Request::checkRequestMethod(["GET"]);
+		$payload = Request::requireToken($jwt);
+
+		$userID = @$routes[2];
+		include_once("labels/get.php");
 
 	}	// /api/v1/labels
 
