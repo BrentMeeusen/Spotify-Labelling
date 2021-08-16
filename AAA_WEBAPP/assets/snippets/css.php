@@ -5,3 +5,4 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/module.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/navigation.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/popup.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/table.css">

@@ -85,6 +85,13 @@ Api.sendRequest = async (location, method, values = {}) => {
 	const res = await response.json();
 	Api.isSending = false;
 
+	// Show error popup for rate limiting
+	if(res.code === 429) {
+		Popup.show(res.error, "error");
+	}
+
+
+
 	// If the token is expired, redirect to login screen with error
 	if(res.error && res.error.includes("expired")) {
 		window.location.href = VALUES.assets + "php/redirect.php?redirect=&code=400&message=Your%20session%20expired.%20Please%20login%20again%20to%20continue.";
@@ -117,21 +124,33 @@ Api.showTracks = async (tracks) => {
 	const output = document.getElementById("tracks");
 	output.innerHTML = "";
 
-	// Add header
-	const header = Api.createElement("tr");
-	header.appendChild(Api.createElement("th", { innerHTML: "Song" }));
-	header.appendChild(Api.createElement("th", { innerHTML: "Released at" }));
-	header.appendChild(Api.createElement("th", { innerHTML: "Added at" }));
-	output.appendChild(header);
-
 	// For each track
 	for(const track of tracks) {
 
-		// Create row, add name, releaseDate, addedAt
-		const row = Api.createElement("tr");
-		row.appendChild(Api.createElement("td", { innerHTML: track.name }));
-		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y", new Date(track.releaseDate)) }));
-		row.appendChild(Api.createElement("td", { innerHTML: Api.formatDate("d-m-Y H:i:s", new Date(track.addedAt)) }));
+		// Create row and text container
+		const row = Api.createElement("div", { classList: "row" });
+		const textContainer = Api.createElement("div", { classList: "text" });
+
+		// Add track title
+		textContainer.appendChild(Api.createElement("p", { innerHTML: track.name, classList: "title" }));
+
+		// Add artists
+		const artists = [];
+		for(const a of track.artists.data) {
+			artists.push(a.name);
+		}
+		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "small" }));
+
+		// Add date added 
+		textContainer.appendChild(Api.createElement("p", { innerHTML: Api.formatDate("d-m-Y", new Date(track.addedAt)), classList: "small" }));
+
+		// Add text container and "more" button to row
+		row.appendChild(textContainer);
+		row.appendChild(Api.createIcon("more_horiz", () => {
+			OptionPopup.openTrack(track);
+		}));
+
+		// Append row
 		output.appendChild(row);
 
 	}
@@ -157,9 +176,12 @@ Api.showPlaylistsForImport = async (playlists) => {
 	for(const list of playlists) {
 
 		// Create row, add name, number of tracks, import button
-		const row = Api.createElement("tr");
-		row.appendChild(Api.createElement("td", { innerHTML: list.name }));
-		row.appendChild(Api.createElement("td", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s") }));
+		const row = Api.createElement("div", { classList: "row" });
+
+		const textContainer = Api.createElement("div", { classList: "text" });
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name, classList: "max65" }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s"), classList: "right" }));
+		row.appendChild(textContainer);
 
 		// If the number of tracks is more than 2000, disable button
 		if(list.numTracks > 2000) {
@@ -169,7 +191,6 @@ Api.showPlaylistsForImport = async (playlists) => {
 			row.appendChild(Api.createIcon("import", async () => { Api.request("api/v1/spotify/import/" + list.spotifyID, "POST"); }));
 		}
 
-		// Output the row
 		output.appendChild(row);
 
 	}
@@ -189,7 +210,7 @@ Api.showLabels = async () => {
 	const output = document.getElementById("labels");
 	output.innerHTML = "";
 
-	const result = await Api.sendRequest("api/v1/labels/all/" + Api.TOKEN.getPayload().user.id, "GET");
+	const result = await Api.sendRequest("api/v1/labels/" + Api.TOKEN.getPayload().user.id, "GET");
 
 
 	// If no labels are found, return
@@ -200,25 +221,17 @@ Api.showLabels = async () => {
 	// For every row
 	for(const row of result.data) {
 		
-		// Create the row
-		const tr = document.createElement("tr");
-		tr.appendChild(Api.createElement("td", { innerHTML: row.name }));
-		tr.appendChild(Api.createElement("td", { innerHTML: "xx songs" }));
-		tr.appendChild(Api.createElement("td", { innerHTML: (row.isPublic ? "Public" : "Private") }));
+		// Create the row and text container
+		const htmlRow = Api.createElement("div", { classList: "row" });
+		const textContainer = Api.createElement("div", { classList: "text" });
 
+		textContainer.appendChild(Api.createElement("p", { innerHTML: row.name }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs" }));
 
-
-		// If the label is not ours, do not show the buttons
-		if(row.creator !== Api.TOKEN.getPayload().user.id) {
-			output.appendChild(tr);
-			continue;
-		}
-
-
+		htmlRow.appendChild(textContainer);
 
 		// Create edit button
-		const edit = Api.createElement("td");
-		edit.appendChild(Api.createIcon("edit", () => {
+		htmlRow.appendChild(Api.createIcon("edit", () => {
 
 			const popup = new BigPopup("Edit Label", "api/v1/labels/" + row.publicID + "/update", "POST", "edit-label-form");
 			popup.add("input", "Name", { value: row.name });
@@ -226,11 +239,9 @@ Api.showLabels = async () => {
 			HtmlJsForm.findById("edit-label-form").addCallback(() => { Api.showLabels(); });
 
 		}));
-		tr.appendChild(edit);
 
 		// Create remove button
-		const remove = Api.createElement("td");
-		remove.appendChild(Api.createIcon("delete", () => {
+		htmlRow.appendChild(Api.createIcon("delete", () => {
 
 			const popup = new BigPopup("Remove Label", "api/v1/labels/" + row.publicID + "/delete", "DELETE", "remove-label-form");
 			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
@@ -238,45 +249,9 @@ Api.showLabels = async () => {
 			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
 
 		}));
-		tr.appendChild(remove);
 
-		// If the user can set it to public/private
-		const maySetPublic = Api.TOKEN.getPayload().rights.label.public;
-		if(maySetPublic == true) {
-
-			// If it's public, create private button
-			if(row.isPublic) {
-
-				const makePrivate = Api.createElement("td");
-
-				makePrivate.appendChild(Api.createIcon("eye-crossed", async () => {
-					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/private", "POST");
-					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-					Api.showLabels();
-				}));
-
-				tr.appendChild(makePrivate);
-
-			}
-
-			// Else, create make public button
-			else {
-
-				const makePublic = Api.createElement("td");
-
-				makePublic.appendChild(Api.createIcon("eye", async () => {
-					const res = await Api.sendRequest("api/v1/labels/" + row.publicID + "/public", "POST");
-					Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-					Api.showLabels();
-				}));
-				
-				tr.appendChild(makePublic);
-
-			}
-
-		}
-
-		output.appendChild(tr);
+		// append row to HTML
+		output.appendChild(htmlRow);
 
 	}
 
@@ -314,7 +289,7 @@ Api.showLabels = async () => {
  * @param {Function} event The click event
  * @returns {HTMLElement} The button with icon
  */
-Api.createIcon = (icon, event) => {
+Api.createIcon = (icon, event = () => {}) => {
 
 	// Create button
 	const button = Api.createElement("button");

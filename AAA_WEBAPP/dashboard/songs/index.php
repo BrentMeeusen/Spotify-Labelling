@@ -14,6 +14,7 @@ session_start();
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
 		<?php include_once("../../assets/snippets/css.php"); ?>
+		<link rel="stylesheet" href="../../assets/css/option-popup.css">
 	</head>
 
 
@@ -26,6 +27,9 @@ session_start();
 				<p id="popup-text"></p>
 			</div>
 
+			<!-- Track option popup -->
+			<div class="option-popup" id="option-popup"></div>
+
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
@@ -34,13 +38,7 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<div class="table-container">
-					<table>
-						<tbody id="tracks">
-
-						</tbody>
-					</table>
-				</div>
+				<div class="table-container" id="tracks"></div>
 
 			</div>
 
@@ -53,6 +51,8 @@ session_start();
 		include_once("../../assets/snippets/javascript-files.php");
 		?>
 
+		<script src="../../assets/js/option-popup.js"></script>
+
 		<script>
 
 		// Protect the page
@@ -60,9 +60,9 @@ session_start();
 
 		// Load tracks
 		window.addEventListener("load", async () => {
-			
+
 			document.getElementById("tracks").innnerHTML = "Loading...";
-			const res = await Api.sendRequest("api/v1/tracks/get", "GET");
+			const res = await Api.sendRequest("api/v1/tracks/get/", "GET");
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
 				Popup.show(res.error, "error", 5000);
 			}

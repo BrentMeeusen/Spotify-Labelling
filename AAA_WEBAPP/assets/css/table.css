@@ -1,0 +1,51 @@
+.table-container > .row {
+	display: flex;
+	justify-content: space-around;
+	padding: 0.5em;
+}
+.table-container > .row .text {
+	max-width: 75vw;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	flex-grow: 1;
+}
+.table-container > .row .text * {
+	width: auto;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	flex-grow: 1;
+
+	font-size: 1.2em;
+	line-height: 1.2em;
+	overflow: hidden;
+	margin: 0.2em 0;
+}
+.table-container > .row .text .max65 {
+	max-width: 65%;
+}
+.table-container > .row .text .right {
+	text-align: right;
+}
+.table-container > .row .title {
+	width: 100%;
+}
+.table-container > .row .small {
+	max-width: 70%;
+	margin: 0;
+	padding: 0em 0.5em;
+	font-size: 0.9em;
+	color: var(--current--text-low);
+	flex-grow: 0;
+}
+.table-container > .row .icon {
+	margin: 0;
+	flex-grow: 0;
+}
+.table-container > .row .icon + .icon {
+	margin-left: 0.5em;
+}
+.table-container > .row:not(:last-child) {
+	border-bottom: 2px solid var(--current--text);
+}

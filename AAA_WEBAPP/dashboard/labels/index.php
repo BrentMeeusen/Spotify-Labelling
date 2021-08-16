@@ -36,12 +36,7 @@ session_start();
 
 				<button class="wide" id="add-label">ADD LABEL</button>
 
-				<div class="table-container">
-					<table>
-						<tbody id="labels">
-						</tbody>
-					</table>
-				</div>
+				<div class="table-container" id="labels"></div>
 
 			</div>
 
