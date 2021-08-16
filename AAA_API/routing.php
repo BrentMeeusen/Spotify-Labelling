@@ -125,6 +125,29 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 	// /api/v1/users
 	if(isset($routes[1]) && $routes[1] === "users") {
 
+		// /api/v1/users/add-token
+		if(isset($routes[2]) && $routes[2] === "add-token") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$token = $body->accessToken;
+			include_once("users/add-token.php");
+
+		}	// /api/v1/users/add-token
+
+		// /api/v1/users/create
+		if(isset($routes[2]) && $routes[2] === "create") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$email = $post->EmailAddress;
+			$password = $post->Password;
+			include_once("users/create.php");
+
+		}	// /api/v1/users/create
+
 		// /api/v1/users/verify
 		if(isset($routes[2]) && $routes[2] === "verify") {
 
@@ -135,18 +158,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			include_once("users/verify.php");
 
 		}	// /api/v1/users/verify
-
-		// /api/v1/users/create
-		if(isset($routes[2]) && $routes[2] === "add-token") {
-
-			Request::checkRequestMethod(["POST"]);
-			$payload = Request::requireToken($jwt);
-
-			$email = $post->EmailAddress;
-			$password = $post->Password;
-			include_once("users/create.php");
-
-		}	// /api/v1/users/create
 
 		// /api/v1/users/[id]/[action]
 		// /api/v1/users/[id]
