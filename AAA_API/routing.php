@@ -131,7 +131,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
-			$token = $post->accessToken;
+			$token = $post->AccessToken;
 			include_once("users/add-token.php");
 
 		}	// /api/v1/users/add-token
