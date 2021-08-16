@@ -26,11 +26,6 @@ else {
 
 
 
-// Check if inputs are set and not empty
-if(!my_isset($email)) {
-	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
-}
-
 // Check if the password is the same as another value
 if(!my_isset($password) && ($password == $payload->user->emailAddress)) {
 	ApiResponse::httpResponse(400, ["error" => "Your password must be a unique value.", "data" => $payload->user]);
