@@ -8,9 +8,6 @@
 	box-shadow: 0 -0.5em 1em 0.5em var(--current--background-highlight);
 	transition: 400ms ease;
 }
-.option-popup.open {
-	bottom: 0;
-}
 .option-popup .row {
 	width: 80vw;
 	margin: 0 auto;
