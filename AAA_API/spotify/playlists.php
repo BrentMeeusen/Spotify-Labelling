@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "GET";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // Get the authorisation token from the JWT
 SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
