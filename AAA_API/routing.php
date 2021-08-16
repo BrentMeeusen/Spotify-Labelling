@@ -120,15 +120,14 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		}	// /api/v1/labels/delete
 
 		// /api/v1/labels/update
-		if((isset($routes[2]) && $routes[2] === "update") || (isset($routes[3]) && $routes[3] === "update")) {
+		if((isset($routes[3]) && $routes[3] === "update")) {
 
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
-			$email = @$post->EmailAddress;
-			$password = @$post->Password;
-			$values = ["EmailAddress" => $email, "Password" => $password];
+			$name = @$post->Name;
+			$values = ["Name" => $name];
 			include_once("labels/update.php");
 
 		}	// /api/v1/labels/update
