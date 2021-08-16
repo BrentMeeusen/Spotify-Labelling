@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "POST";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // If the payload doesn't contain "user.id", return an error
 if(!isset($payload->user->id) || !isset($payload->rights->user->update) || $payload->rights->user->update !== TRUE) {
 	ApiResponse::httpResponse(401, ["error" => "You are not allowed to update your account.", "data" => $payload->user]);
@@ -15,7 +8,7 @@ if(!isset($payload->user->id) || !isset($payload->rights->user->update) || $payl
 
 
 // Check if the token is not empty
-if(setAndEmpty($body, "accessToken")) {
+if(!my_isset($token)) {
 	ApiResponse::httpResponse(400, ["error" => "Not all required fields were filled in.", "data" => $payload->user]);
 }
 
