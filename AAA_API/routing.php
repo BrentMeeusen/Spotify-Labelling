@@ -131,7 +131,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
-			$token = $body->accessToken;
+			$token = $post->accessToken;
 			include_once("users/add-token.php");
 
 		}	// /api/v1/users/add-token
@@ -155,7 +155,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$payload = Request::requireToken($jwt);
 
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
-			$password = $body->Password;
+			$password = $post->Password;
 			include_once("users/delete.php");
 
 		}	// /api/v1/users/delete
