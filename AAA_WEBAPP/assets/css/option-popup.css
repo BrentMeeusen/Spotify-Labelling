@@ -1,6 +1,6 @@
 .option-popup {
 	position: fixed;
-	bottom: -35vh;
+	bottom: -10em;
 	width: 100vw;
 	background: var(--current--background-highlight);
 	box-shadow: 0 -0.5em 1em 0.5em var(--current--background-highlight);
