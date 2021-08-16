@@ -9,6 +9,17 @@ class OptionPopup {
 
 
 	/**
+	 * Closes the popup
+	 */
+	static close() {
+		this.popup.style.bottom = -(this.popup.clientHeight + 32) + "px";
+	}
+
+
+
+
+
+	/**
 	 * Opens a track and its options
 	 * 
 	 * @param {object} track The track object
@@ -24,7 +35,7 @@ class OptionPopup {
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", async () => {
-			this.popup.classList.remove("open");
+			this.close();
 			await Api.request("api/v1/tracks/" + track.id + "/delete", "DELETE");
 			const tracks = await Api.sendRequest("api/v1/tracks/get", "GET");
 			Api.showTracks(tracks.data);
@@ -36,8 +47,7 @@ class OptionPopup {
 		// Add "close popup" row
 		const closePopup = Api.createElement("div", { classList: "row" });
 		closePopup.addEventListener("click", () => {
-			this.popup.classList.remove("open");
-			this.popup.style.bottom = -(this.popup.clientHeight + 32) + "px";
+			this.close();
 		});
 		closePopup.appendChild(Api.createIcon("menu/menu-close"));
 		closePopup.appendChild(Api.createElement("p", { innerHTML: "Close" }));
