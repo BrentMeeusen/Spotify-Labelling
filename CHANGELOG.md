@@ -28,6 +28,13 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.xx.x-alpha - 2021/08/xx
+
+### Changed
+- Closing popup on removing track from my list
+
+
+
 ## 0.12.0-alpha - 2021/08/17
 
 ### Added
