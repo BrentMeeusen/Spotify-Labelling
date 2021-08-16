@@ -68,6 +68,20 @@ $routes = explode("/", explode("/api/", $url)[1]);
 // /api/v1
 if(isset($routes[0]) && $routes[0] === "v1") {
 
+	// /api/v1/login
+	if(isset($routes[1]) && $routes[1] === "login") {
+
+		// Request method has to be "POST", token is not required
+		Request::checkRequestMethod(["POST"]);
+
+		$identifier = $post->Identifier;
+		$password = $post->Password;
+		include_once("users/login.php");
+
+	}
+
+
+
 	// /api/v1/tracks
 	if(isset($routes[1]) && $routes[1] === "tracks") {
 
@@ -105,7 +119,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 
 
-print(json_encode([ "route" => $routes, "payload" => $payload ]));
+@print(json_encode([ "route" => $routes, "payload" => $payload ]));
 
 // exit();
 
