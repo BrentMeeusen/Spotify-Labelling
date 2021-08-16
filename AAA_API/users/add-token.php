@@ -23,12 +23,7 @@ if($user === NULL) {
 
 
 // Set values of the payload
-$values = [];
-foreach($body as $key => $value) {
-	if(!empty($value)) {
-		$values[$key] = $value;
-	}
-}
+$values = ["accessToken" => $token];
 
 // Update the user
 $res = User::update($user, $values);
