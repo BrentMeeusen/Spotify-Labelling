@@ -130,15 +130,25 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 			Request::checkRequestMethod(["GET"]);
 
-			$id = $_GET["id"];
-			$email = $_GET["email"];
+			$id = @$routes[3];
+			$email = @$routes[4];
 			include_once("users/verify.php");
 
 		}	// /api/v1/users/verify
 
-		// /api/v1/users/[action]
-		// /api/v1/users/[id]
+		// /api/v1/users/create
+		if(isset($routes[2]) && $routes[2] === "add-token") {
+
+			Request::checkRequestMethod(["POST"]);
+
+			$email = $post->EmailAddress;
+			$password = $post->Password;
+			include_once("users/create.php");
+
+		}	// /api/v1/users/create
+
 		// /api/v1/users/[id]/[action]
+		// /api/v1/users/[id]
 
 	}	// /api/v1/users
 
