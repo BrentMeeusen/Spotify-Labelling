@@ -22,11 +22,8 @@ if($user === NULL) {
 
 
 
-// Set values of the payload
-$values = ["accessToken" => $token];
-
 // Update the user
-$res = User::update($user, $values);
+$res = User::update($user, ["accessToken" => $token]);
 
 // Create a new token
 $user = User::findByPublicID($payload->user->id);
