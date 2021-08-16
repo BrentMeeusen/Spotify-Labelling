@@ -50,7 +50,7 @@ if($user === NULL) {
 $newValues = [];
 foreach($values as $key => $value) {
 	if(!empty($value)) {
-		$values[$key] = $value;
+		$newValues[$key] = $value;
 	}
 }
 
