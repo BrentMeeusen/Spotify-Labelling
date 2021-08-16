@@ -34,15 +34,6 @@ session_start();
 
 			<!-- Content -->
 
-			<!-- <div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="dashboard">
-
-			<input name="input Identifier"		type="text"			placeholder="USERNAME OR EMAIL ADDRESS">
-			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
-
-			<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
-
-			</div> -->
-
 
 
 			<!-- <img class="lazy-image" style="margin-top: 100vh;" data-src="../assets/images/test-image", data-extension="png"> -->
