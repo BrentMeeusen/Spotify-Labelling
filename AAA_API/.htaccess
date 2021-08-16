@@ -13,8 +13,6 @@ RewriteEngine On
 
 
 
-
-
 ###############################
 # ROUTES
 ###############################
@@ -29,6 +27,7 @@ RewriteRule		.*			routing.php					[L,QSA]
 ###############################
 
 # WARNING: HARDCODED
-ErrorDocument 403 /Spotify%20Labelling/AAA_API/errors/403/
-ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/404/
+ErrorDocument 403 /Spotify%20Labelling/AAA_API/errors/403.php
+ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/404.php
+ErrorDocument 404 /Spotify%20Labelling/AAA_API/errors/405.php
 
