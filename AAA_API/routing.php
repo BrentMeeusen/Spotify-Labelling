@@ -107,7 +107,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/labels/create
 
-		// /api/v1/users/delete
+		// /api/v1/labels/delete
 		if((isset($routes[2]) && $routes[2] === "delete") || (isset($routes[3]) && $routes[3] === "delete")) {
 
 			Request::checkRequestMethod(["DELETE"]);
@@ -115,21 +115,21 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
 			$password = @$post->Password;
-			include_once("users/delete.php");
+			include_once("labels/delete.php");
 
-		}	// /api/v1/users/delete
+		}	// /api/v1/labels/delete
 
-		// /api/v1/users/get
+		// /api/v1/labels/get
 		if(isset($routes[2]) && $routes[2] === "get") {
 
 			Request::checkRequestMethod(["GET"]);
 			$payload = Request::requireToken($jwt);
 
-			include_once("users/get.php");
+			include_once("labels/get.php");
 
-		}	// /api/v1/users/get
+		}	// /api/v1/labels/get
 
-		// /api/v1/users/update
+		// /api/v1/labels/update
 		if((isset($routes[2]) && $routes[2] === "update") || (isset($routes[3]) && $routes[3] === "update")) {
 
 			Request::checkRequestMethod(["POST"]);
@@ -139,9 +139,9 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$email = @$post->EmailAddress;
 			$password = @$post->Password;
 			$values = ["EmailAddress" => $email, "Password" => $password];
-			include_once("users/update.php");
+			include_once("labels/update.php");
 
-		}	// /api/v1/users/update
+		}	// /api/v1/labels/update
 
 	}	// /api/v1/labels
 
