@@ -30,7 +30,6 @@ class OptionPopup {
 		this.popup.innerHTML = "";
 		this.popup.style.bottom = 0;
 		this.popup.style.height ="auto";
-		this.popup.classList.add("open");
 
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
