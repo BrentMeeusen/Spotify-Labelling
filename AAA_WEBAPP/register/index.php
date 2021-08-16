@@ -23,7 +23,7 @@
 				<p id="popup-text"></p>
 			</div>
 
-			<h1>Spotify Labelling</h1>
+			<h1><a href="../">Spotify Labelling</a></h1>
 
 			<div class="form register-form" name="html-js-form" data-action="api/v1/users/create" data-method="POST" data-redirect="">
 
