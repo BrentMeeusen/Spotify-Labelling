@@ -1,12 +1,5 @@
 <?php
 
-$ALLOWED_METHOD = "GET";
-$REQUIRE_TOKEN = TRUE;
-
-include_once("../../private/include_all.php");
-
-
-
 // If the payload doesn't contain "register", return an error
 if(!isset($payload->rights->users->find)) {
 	ApiResponse::httpResponse(401, ["error" => "You are not allowed to get users."]);
@@ -15,11 +8,11 @@ if(!isset($payload->rights->users->find)) {
 
 
 // Write a selector that chooses whether to get all users, get by ID, username, or email adddress (use GET properties)
-if(isset($_GET["id"])) {
+if(isset($id)) {
 	if(!isset($payload->rights->users->find->id) || $payload->rights->users->find->id !== TRUE) {
 		ApiResponse::httpResponse(401, ["error" => "You are not allowed to get users by ID."]);
 	}
-	$res = User::findByPublicID(strval($_GET["id"]));
+	$res = User::findByPublicID(strval($id));
 }
 
 else if(isset($_GET["username"])) {
