@@ -6,7 +6,11 @@
 	top: 0;
 	transition: 400ms ease;
 	background: var(--current--background-highlight);
+	padding: .5em;
 }
 .filters.open {
 	left: 20vw;
+}
+.filters .table-container {
+	margin-top: 5em;
 }
