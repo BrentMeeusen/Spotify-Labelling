@@ -60,9 +60,17 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
-		// Load tracks
+		// On load
 		window.addEventListener("load", async () => {
 
+			// Set filter click event
+			document.getElementById("filter").addEventListener("click", () => {
+
+				document.getElementById("filters").classList.toggle("open");
+
+			});
+
+			// Load tracks
 			document.getElementById("tracks").innnerHTML = "Loading...";
 			const res = await Api.sendRequest("api/v1/tracks/get/", "GET");
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
