@@ -38,6 +38,8 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
+				<button class="icon filter"><img src="../../assets/icons/filter.png"></button>
+
 				<div class="table-container" id="tracks"></div>
 
 			</div>
