@@ -30,6 +30,13 @@ session_start();
 			<!-- Track option popup -->
 			<div class="option-popup" id="option-popup"></div>
 
+			<!-- Filter menu -->
+			<div class="filters" id="filters">
+
+				<button class="icon" id="close-filter"><img src="../../assets/icons/menu/menu-close.png"></button>
+
+			</div>
+
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
