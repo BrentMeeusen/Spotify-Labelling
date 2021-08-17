@@ -10,7 +10,7 @@ session_start();
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Spotify Labelling | Your Songs</title>
-		
+
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap">
 		<?php include_once("../../assets/snippets/css.php"); ?>
@@ -35,13 +35,22 @@ session_start();
 
 				<div class="nav-btn" id="close-filters"><img src="../../assets/icons/menu/menu-close.png"></div>
 
+				<div class="table-container">
+					<div class="row">
+						<div class="text">
+							<p>Artist is</p>
+							<input type="text">
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<?php include_once("../../assets/snippets/navigation.php"); ?>
 
 			<!-- Title -->
 			<h1><a href="../">Spotify Labelling</a></h1>
-			
+
 			<!-- Content -->
 			<div class="module">
 
