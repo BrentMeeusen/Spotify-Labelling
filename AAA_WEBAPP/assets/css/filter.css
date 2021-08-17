@@ -1,0 +1,15 @@
+.filters {
+	position: fixed;
+	width: 80vw;
+	height: 110vh;
+	left: 100vw;
+	top: 0;
+	transition: 400ms ease;
+	background: var(--current--background-highlight);
+}
+.filters.open {
+	left: 20vw;
+}
+.filters .icon#close-filters {
+	margin: 1em;
+}
