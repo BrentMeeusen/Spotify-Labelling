@@ -14,3 +14,19 @@
 .filters .table-container {
 	margin-top: 5em;
 }
+
+.filters * {
+	align-self: center;
+}
+.filters *:focus {
+	outline: none;
+	border-color: var(--current--highlight);
+}
+
+.filters input {
+	background: var(--current--background);
+	border: 1px solid var(--current--text);
+	padding: .3em;
+	transition: 250ms ease;
+	font-size: 1.0em !important;
+}
