@@ -130,7 +130,7 @@ Api.showTracks = async (tracks) => {
 	for(const track of tracks) {
 
 		// Create a track object
-		const t = new Track(track.name, track.artists, new Date(track.addedAt), new Date(track.releaseDate), []);
+		const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), []);
 		collection.add(t);
 
 		// Create row and text container
