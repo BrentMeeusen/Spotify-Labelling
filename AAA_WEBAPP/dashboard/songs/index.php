@@ -33,7 +33,7 @@ session_start();
 			<!-- Filter menu -->
 			<div class="filters" id="filters">
 
-				<button class="icon" id="close-filter"><img src="../../assets/icons/menu/menu-close.png"></button>
+				<button class="icon" id="close-filters"><img src="../../assets/icons/menu/menu-close.png"></button>
 
 			</div>
 
@@ -72,9 +72,12 @@ session_start();
 
 			// Set filter click event
 			document.getElementById("filter").addEventListener("click", () => {
-
 				document.getElementById("filters").classList.toggle("open");
+			});
 
+			// Set close filter click event
+			document.getElementById("close-filters").addEventListener("click", () => {
+				document.getElementById("filters").classList.toggle("open");
 			});
 
 			// Load tracks
