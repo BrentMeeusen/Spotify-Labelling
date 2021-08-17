@@ -1,5 +1,20 @@
 class Collection {
 
+	tracks = [];
+
+
+
+
+
+	/**
+	 * Adds a track to the collection
+	 * 
+	 * @param {Track} track The track to add
+	 */
+	add(track) {
+		this.tracks.push(track);
+	}
+
 }
 
 
