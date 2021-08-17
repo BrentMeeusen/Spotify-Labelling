@@ -33,7 +33,7 @@ session_start();
 			<!-- Filter menu -->
 			<div class="filters" id="filters">
 
-				<button class="icon" id="close-filters"><img src="../../assets/icons/menu/menu-close.png"></button>
+				<div class="nav-btn" id="close-filters"><img src="../../assets/icons/menu/menu-close.png"></div>
 
 			</div>
 
