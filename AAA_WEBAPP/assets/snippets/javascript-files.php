@@ -9,6 +9,7 @@
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/page-protect.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/password-verifier.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/popup.js"></script>
+<script src="/Spotify Labelling/AAA_WEBAPP/assets/js/spotify.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/theme.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/values.js"></script>
 
