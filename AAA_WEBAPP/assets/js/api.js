@@ -127,9 +127,11 @@ Api.showTracks = async (tracks) => {
 	// For each track
 	for(const track of tracks) {
 
-		// Create a track object
-		const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), []);
-		Collection.add(t);
+		// Create a track object if the tracks aren't Track objects
+		if(!(track instanceof Track)) {
+			const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), []);
+			Collection.add(t);
+		}
 
 		// Create row and text container
 		const row = Api.createElement("div", { classList: "row" });
