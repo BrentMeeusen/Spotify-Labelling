@@ -224,7 +224,7 @@ Api.showLabels = async () => {
 		const textContainer = Api.createElement("div", { classList: "text" });
 
 		textContainer.appendChild(Api.createElement("p", { innerHTML: row.name }));
-		textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs" }));
+		textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
 
 		htmlRow.appendChild(textContainer);
 

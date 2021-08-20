@@ -27,6 +27,7 @@
 }
 .table-container > .row .text .right {
 	text-align: right;
+	padding: 0 0.5em;
 }
 .table-container > .row .title {
 	width: 100%;
