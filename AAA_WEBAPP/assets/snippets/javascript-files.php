@@ -3,6 +3,7 @@
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/api.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/html-js-form.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/big-popup.js"></script>
+<script src="/Spotify Labelling/AAA_WEBAPP/assets/js/filter.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/jwt.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/lazy-loading.js"></script>
 <script src="/Spotify Labelling/AAA_WEBAPP/assets/js/navigation.js"></script>
