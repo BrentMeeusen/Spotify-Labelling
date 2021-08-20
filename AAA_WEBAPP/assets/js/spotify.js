@@ -15,6 +15,21 @@ class Collection {
 		this.tracks.push(track);
 	}
 
+
+
+
+
+	/**
+	 * Adds or changes a filter to the list of tracks
+	 * 
+	 * @param {string} key What to filter on (e.g., artist, track name, date added, ...)
+	 * @param {string} equality Whether it's equal, not equal, gte, lte, ...
+	 * @param {string} value What value to filter on
+	 */
+	static filter(key, equality, value) {
+
+	}
+
 }
 
 
