@@ -30,7 +30,7 @@ class Collection {
 
 		switch(key) {
 			case "artist":
-				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().startsWith(value.toLowerCase())));
+				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase())));
 				break;
 		}
 
