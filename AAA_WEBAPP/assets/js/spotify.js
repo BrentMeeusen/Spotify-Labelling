@@ -27,10 +27,10 @@ class Collection {
 	 * @param {string} value What value to filter on
 	 */
 	static filter(key, equality, value) {
-		
+
 		switch(key) {
 			case "artist":
-				this.findTracksByArtist(value);
+				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().startsWith(value.toLowerCase())));
 				break;
 		}
 
