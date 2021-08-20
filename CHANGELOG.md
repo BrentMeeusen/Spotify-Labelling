@@ -30,6 +30,9 @@ STANDARD NEW VERSION:
 
 ## 0.xx.x-alpha - 2021/08/xx
 
+### Added
+- Filtering your tracks on artist name
+
 ### Changed
 - Closing popup on removing track from my list
 
