@@ -124,14 +124,12 @@ Api.showTracks = async (tracks) => {
 	const output = document.getElementById("tracks");
 	output.innerHTML = "";
 
-	const collection = new Collection();
-
 	// For each track
 	for(const track of tracks) {
 
 		// Create a track object
 		const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), []);
-		collection.add(t);
+		Collection.add(t);
 
 		// Create row and text container
 		const row = Api.createElement("div", { classList: "row" });

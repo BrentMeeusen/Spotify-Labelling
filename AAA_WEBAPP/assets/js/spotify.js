@@ -1,6 +1,6 @@
 class Collection {
 
-	tracks = [];
+	static tracks = [];
 
 
 
@@ -11,7 +11,7 @@ class Collection {
 	 * 
 	 * @param {Track} track The track to add
 	 */
-	add(track) {
+	static add(track) {
 		this.tracks.push(track);
 	}
 
