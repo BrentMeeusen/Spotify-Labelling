@@ -9,7 +9,6 @@ class Api {
 	 */
 	static async request(url, method) {
 		const res = await Api.sendRequest(url, method);
-		console.log(res);
 		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 	}
 
@@ -194,7 +193,10 @@ Api.showPlaylistsForImport = async (playlists) => {
 			row.appendChild(Api.createIcon("import", async() => { Popup.show("Cannot import playlists with more than 2000 songs.", "error"); }));
 		}
 		else {
-			row.appendChild(Api.createIcon("import", async () => { Api.request("api/v1/spotify/import/" + list.spotifyID, "POST"); }));
+			row.appendChild(Api.createIcon("import", async () => {
+				const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
+				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+			}));
 		}
 
 		output.appendChild(row);

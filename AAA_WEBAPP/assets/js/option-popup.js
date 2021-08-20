@@ -34,10 +34,15 @@ class OptionPopup {
 		// Add "delete track" row
 		const deleteTrack = Api.createElement("div", { classList: "row" });
 		deleteTrack.addEventListener("click", async () => {
+
 			this.close();
-			await Api.request("api/v1/tracks/" + track.id + "/delete", "DELETE");
+
+			const res = await Api.sendRequest("api/v1/tracks/" + track.id + "/delete", "DELETE");
+			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+
 			const tracks = await Api.sendRequest("api/v1/tracks/get", "GET");
 			Api.showTracks(tracks.data);
+
 		});
 		deleteTrack.appendChild(Api.createIcon("delete"));
 		deleteTrack.appendChild(Api.createElement("p", { innerHTML: "Remove song" }));
