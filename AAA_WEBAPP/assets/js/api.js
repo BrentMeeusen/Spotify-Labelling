@@ -140,7 +140,7 @@ Api.showTracks = async (tracks) => {
 
 		// Add artists
 		const artists = [];
-		for(const a of track.artists.data) {
+		for(const a of (track.artists.data ? track.artists.data : track.artists)) {
 			artists.push(a.name);
 		}
 		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "small" }));
