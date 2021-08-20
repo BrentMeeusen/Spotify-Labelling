@@ -1,15 +1,61 @@
 class Api {
 
 
+	static isSending = false;
+
+
+
+
+
 	/**
-	 * Sends the request and shows the result
+	 * Sends a request to the Spotify Labelling API
 	 * 
-	 * @param {string} url The URL of the request
-	 * @param {string} method The method of the request
+	 * @param {string} location The action of the request
+	 * @param {string} method The method of the request 
+	 * @param {object} values The values in an object so it will be received as an associative array
+	 * @returns {object} The return object
 	 */
-	static async request(url, method) {
-		const res = await Api.sendRequest(url, method);
-		Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
+	static async sendRequest(location, method, values) {
+
+		// If we're already sending, return false
+		if(Api.isSending === true) { return false; }
+		Api.isSending = true;
+
+		// Send a request and return the result
+		const response = await fetch(encodeURI(VALUES.api + location), {
+			method,
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": (Api.TOKEN && Api.TOKEN.jwt ? "Bearer " + Api.TOKEN.jwt : "")
+			},
+			body: ((values && method !== "GET") ? JSON.stringify(values) : null)
+		});
+
+		// Get the response
+		const res = await response.json();
+		Api.isSending = false;
+
+		// Show error popup for rate limiting
+		if(res.code === 429) {
+			Popup.show(res.error, "error");
+		}
+
+
+
+		// If the token is expired, redirect to login screen with error
+		if(res.error && res.error.includes("expired")) {
+			window.location.href = VALUES.assets + "php/redirect.php?redirect=&code=400&message=Your%20session%20expired.%20Please%20login%20again%20to%20continue.";
+		}
+
+		// Set the token if it's provided
+		if(res.jwt) {
+			Api.TOKEN = new JWT(res.jwt);
+			document.cookie = "jwt=" + res.jwt + "; Expires=" + Date.now() + 3600 + "; Path=/";
+		}
+
+		// Return the result
+		return res;
+
 	}
 
 
@@ -48,62 +94,6 @@ class Api {
 	static append0(value) {
 		return (value.toString().length < 2 ? "0" + value : value);
 	}
-
-}
-
-
-
-
-
-Api.isSending = false;
-/**
- * Sends a request to the Spotify Labelling API
- * 
- * @param {string} location The action of the request
- * @param {string} method The method of the request 
- * @param {object} values The values in an object so it will be received as an associative array
- * @returns {object} The return object
- */
-Api.sendRequest = async (location, method, values = {}) => {
-
-	// If we're already sending, return false
-	if(Api.isSending === true) { return false; }
-	Api.isSending = true;
-
-	// Send a request and return the result
-	const response = await fetch(encodeURI(VALUES.api + location), {
-		method,
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": (Api.TOKEN && Api.TOKEN.jwt ? "Bearer " + Api.TOKEN.jwt : "")
-		},
-		body: ((values && method !== "GET") ? JSON.stringify(values) : null)
-	});
-
-	// Get the response
-	const res = await response.json();
-	Api.isSending = false;
-
-	// Show error popup for rate limiting
-	if(res.code === 429) {
-		Popup.show(res.error, "error");
-	}
-
-
-
-	// If the token is expired, redirect to login screen with error
-	if(res.error && res.error.includes("expired")) {
-		window.location.href = VALUES.assets + "php/redirect.php?redirect=&code=400&message=Your%20session%20expired.%20Please%20login%20again%20to%20continue.";
-	}
-
-	// Set the token if it's provided
-	if(res.jwt) {
-		Api.TOKEN = new JWT(res.jwt);
-		document.cookie = "jwt=" + res.jwt + "; Expires=" + Date.now() + 3600 + "; Path=/";
-	}
-
-	// Return the result
-	return res;
 
 }
 
