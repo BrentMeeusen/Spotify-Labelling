@@ -27,6 +27,12 @@ class Collection {
 	 * @param {string} value What value to filter on
 	 */
 	static filter(key, equality, value) {
+		
+		switch(key) {
+			case "artist":
+				this.findTracksByArtist(value);
+				break;
+		}
 
 	}
 
