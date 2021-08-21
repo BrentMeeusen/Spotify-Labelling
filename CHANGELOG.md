@@ -36,6 +36,7 @@ STANDARD NEW VERSION:
 
 ### Changed
 - Closing popup on removing track from my list
+- The way tracks are retrieved from the database
 
 
 
