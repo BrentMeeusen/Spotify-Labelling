@@ -14,7 +14,6 @@ else {
 	if($res === NULL) {
 		ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst getting your tracks."]);
 	}
-	$res = $res->data;
 }
 
 // Properly return the results
