@@ -47,10 +47,7 @@ class Label extends Database {
 		$creator = $track->Creator;
 
 		for($i = 0; $i < count($ids); $i++) {
-			@$data->publicID = $ids[$i];
-			$data->name = $names[$i];
-			$data->creator = $creator;
-			array_push($labels, new Label($data));
+			array_push($labels, new Label($ids[$i], $creator, $names[$i]));
 		}
 
 		return $labels;
