@@ -174,61 +174,6 @@ Api.show = {
 
 
 /**
- * Shows the tracks
- * 
- * @param {array} tracks The tracks to show
- */
-Api.showTracks = async (tracks) => {
-
-	console.log(tracks);
-
-	const output = document.getElementById("tracks");
-	output.innerHTML = "";
-
-	// For each track
-	for(const track of tracks) {
-
-		// Create a track object if the tracks aren't Track objects
-		if(!(track instanceof Track)) {
-			const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), []);
-			Collection.add(t);
-		}
-
-		// Create row and text container
-		const row = Api.createElement("div", { classList: "row" });
-		const textContainer = Api.createElement("div", { classList: "text" });
-
-		// Add track title
-		textContainer.appendChild(Api.createElement("p", { innerHTML: track.name, classList: "title" }));
-
-		// Add artists
-		const artists = [];
-		for(const a of (track.artists.data ? track.artists.data : track.artists)) {
-			artists.push(a.name);
-		}
-		textContainer.appendChild(Api.createElement("p", { innerHTML: artists.join(", "), classList: "small" }));
-
-		// Add date added 
-		textContainer.appendChild(Api.createElement("p", { innerHTML: Api.formatDate("d-m-Y", new Date(track.addedAt)), classList: "small" }));
-
-		// Add text container and "more" button to row
-		row.appendChild(textContainer);
-		row.appendChild(Api.createIcon("more_horiz", () => {
-			OptionPopup.openTrack(track);
-		}));
-
-		// Append row
-		output.appendChild(row);
-
-	}
-
-}
-
-
-
-
-
-/**
  * Shows the playlists for import
  * 
  * @param {array} playlists The playlists which can be imported
