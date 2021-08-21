@@ -39,7 +39,6 @@ class OptionPopup {
 			const popup = new BigPopup("Choose a label", "api/v1/tracks/add-label/[TRACK_ID]/[LABEL_IDS]/", "POST");
 			const labels = await Api.get.labels();
 
-			let i = 0;
 			for(const l of labels) {
 				const el = Api.createElement("div", { innerHTML: l.name, classList: "add-label" });
 				el.dataset.selected = "false";
