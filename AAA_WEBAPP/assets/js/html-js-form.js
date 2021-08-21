@@ -97,7 +97,7 @@ class HtmlJsForm {
 		let values = {};
 
 		for(const input of this.inputs) {
-			if(input.name && input.name.includes("input")) {
+			if(input.name && input.name.split(" ").length > 1) {
 				values[input.name.split(" ")[1]] = input.value;
 			}
 			else if(input.dataset && input.dataset.selected == "true") {
