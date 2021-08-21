@@ -45,20 +45,21 @@ class ICollection {
 			$track = $this->data[$i];
 			if(!($track instanceof ITrack)) { return NULL; }
 
-			// Get all artists from this track
+			// Get all fields from this track
 			$offset = 0;
-			$artists = $track->{$field}->data;
+			$fields = $track->{$field}->data;
 
 			while(($i + ++$offset) < count($this->data)) {
 				$next = $this->data[$i + $offset];
 				if($track->equalsExceptArtist($next)) {
-					array_push($artists, $next->{$field}->data[0]);
+					array_push($fields, $next->{$field}->data[0]);
 				} else { break; }
 			}
 
 			// Save the track
 			$newTrack = $track;
-			$newTrack->setArtists(new ICollection($artists));
+			if($field === "artists") { $newTrack->setArtists(new ICollection($fields)); }
+			else if($fields === "labels") { $newTrack->setLabels(new ICollection($fields)); }
 			array_push($newTracks, $newTrack);
 
 			// Skip the merged tracks
