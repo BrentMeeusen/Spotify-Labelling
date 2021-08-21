@@ -50,11 +50,7 @@ class OptionPopup {
 			}
 			popup.show("Add");
 
-
-			// const res = await Api.sendRequest("api/v1/tracks/" + track.id + "/labels/" + "LABEL_ID");
-			// Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-
-			// Api.show.tracks(await Api.get.tracks());
+			Api.show.tracks(await Api.get.tracks());
 
 		});
 		addLabel.appendChild(Api.createIcon("add"));
