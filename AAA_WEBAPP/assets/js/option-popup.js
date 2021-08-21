@@ -43,7 +43,7 @@ class OptionPopup {
 			for(const l of labels) {
 				const el = Api.createElement("div", { innerHTML: l.name, classList: "add-label", value: l.publicID });
 				el.setAttribute("name", "input");
-				el.dataset.selected = (track.labels.data.some(l2 => l2.publicID === l.publicID) ? "true" : "false");
+				el.dataset.selected = (track.labels.some(l2 => l2.publicID === l.publicID) ? "true" : "false");
 				el.dataset.item = "label-" + i++;
 				el.addEventListener("click", () => { el.dataset.selected = (el.dataset.selected === "true" ? "false" : "true"); });
 				popup.addElement(el);
