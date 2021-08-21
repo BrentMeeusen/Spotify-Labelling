@@ -63,21 +63,21 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$data = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.Name AS LabelName FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
 			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
-			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID 
-			JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
+			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
+			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
 			WHERE T.SpotifyID = ?;", $spotifyID);
 
-		if($data === NULL) { return NULL; }
+		if($tracks === NULL) { return NULL; }
 
 		// Create Track objects and store them in an array
 		$ret = [];
-		foreach($data as $track) {
+		foreach($tracks as $track) {
 			array_push($ret, new ITrack($track));
 		}
 
@@ -101,14 +101,14 @@ class ITrack {
 	public static function findByUser(string $userID) : ?ICollection {
 
 		// Get all tracks the user has
-		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
-			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.Name AS LabelName FROM TRACKS AS T 
+			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
 			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
-			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID 
-			JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
+			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
+			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
 			WHERE TTU.UserID = ?;", $userID);
 
 		// Create Track objects and store them in an array
