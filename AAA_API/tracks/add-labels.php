@@ -11,7 +11,7 @@ foreach($post as $key => $value) {
 
 	// Add the label to the track
 	if(strpos($key, "label") !== FALSE) {
-		$track->addLabel($payload->user->id, $value);
+		$track->addLabel($value);
 	}
 
 }
