@@ -139,7 +139,7 @@ class ICollection {
 
 		$labels = [];
 		foreach($data as $row) {
-			if(!($row instanceof Label)) {
+			if(!($row instanceof Label) && $row !== NULL) {
 				return NULL;
 			}
 			array_push($labels, $row);
