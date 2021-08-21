@@ -95,6 +95,29 @@ class ITrack {
 
 
 	/**
+	 * Adds a tracks_to_labels link
+	 * 
+	 * @param		string		The label ID
+	 */
+	public function addLabel(string $labelID) : void {
+
+		// Add tracks_to_labels link
+		$stmt = Database::prepare("INSERT INTO TRACKS_TO_LABELS (TrackID, LabelID) VALUES (?, ?);");
+		$stmt->bind_param("ss", $this->id, $labelID);
+		Database::execute($stmt);
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * Removes the track_to_user link if existent, also removes artist, album if there is no other links
 	 * 
 	 * @param		string		The user ID
