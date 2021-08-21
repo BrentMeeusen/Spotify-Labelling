@@ -69,6 +69,8 @@ class ITrack {
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
 			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
+			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID
+			JOIN LABELS AS L ON L.PublicID = TTL.LabelID
 			WHERE T.SpotifyID = ?;", $spotifyID);
 
 		if($data === NULL) { return NULL; }
