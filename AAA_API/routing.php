@@ -186,6 +186,16 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 	// /api/v1/tracks
 	if(isset($routes[1]) && $routes[1] === "tracks") {
 
+		// /api/v1/tracks/add-labels/[track-id]
+		if(isset($routes[2]) && $routes[2] === "add-labels") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+			$trackID = @$routes[3];
+			include_once("tracks/add-labels.php");
+
+		}	// /api/v1/tracks/add-labels/[track-id]
+
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
 
