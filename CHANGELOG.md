@@ -32,6 +32,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Filtering your tracks on artist name
+- Add labels to tracks
 
 ### Changed
 - Closing popup on removing track from my list
