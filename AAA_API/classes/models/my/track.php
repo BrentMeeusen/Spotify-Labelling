@@ -98,7 +98,7 @@ class ITrack {
 
 		// Create and return a collection of tracks
 		$collection = ICollection::createTrackCollection($ret);
-		return @$collection->merge()->data[0];
+		return @$collection->merge("artists")->merge("labels")->data[0];
 
 	}
 
