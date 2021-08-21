@@ -34,7 +34,7 @@ class ICollection {
 	 * @return		ICollection	The new collection
 	 * @return		null		If something went wrong
 	 */
-	public function merge() : ?ICollection {
+	public function merge(string $field) : ?ICollection {
 
 		$newTracks = [];
 
@@ -47,12 +47,12 @@ class ICollection {
 
 			// Get all artists from this track
 			$offset = 0;
-			$artists = $track->artists->data;
+			$artists = $track->{$field}->data;
 
 			while(($i + ++$offset) < count($this->data)) {
 				$next = $this->data[$i + $offset];
 				if($track->equalsExceptArtist($next)) {
-					array_push($artists, $next->artists->data[0]);
+					array_push($artists, $next->{$field}->data[0]);
 				} else { break; }
 			}
 

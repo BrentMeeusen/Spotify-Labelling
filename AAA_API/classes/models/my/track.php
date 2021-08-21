@@ -119,7 +119,7 @@ class ITrack {
 
 		// Create and return a collection of tracks
 		$collection = ICollection::createTrackCollection($ret);
-		return $collection->merge();
+		return $collection->merge("artists")->merge("labels");
 
 	}
 
