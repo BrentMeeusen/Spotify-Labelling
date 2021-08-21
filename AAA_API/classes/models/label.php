@@ -34,6 +34,34 @@ class Label extends Database {
 
 
 	/**
+	 * Creates a label array from the data that the track returned
+	 * 
+	 * @param		StdClass	The track data
+	 * @return		array		The created labels
+	 */
+	public static function createFromTrack(StdClass $track) : array {
+
+		$labels = [];
+		$ids = explode(",", $trackData->LabelIDs);
+		$names = explode(",", $trackData->LabelNames);
+		$creator = $trackData->Owner;
+
+		for($i = 0; $i < count($ids); $i++) {
+			@$data->publicID = $ids[$i];
+			$data->name = $names[$i];
+			$data->creator = $creator;
+			array_push($labels, new Label($data));
+		}
+
+		return $labels;
+
+	}
+
+
+
+
+
+	/**
 	 * Label constructor when the data comes from the database
 	 * 
 	 * @param		array		An associative array with the database values
