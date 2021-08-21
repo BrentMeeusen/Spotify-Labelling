@@ -109,7 +109,7 @@ Api.get = {
 	 * @returns {array} The tracks
 	 */
 	tracks: async () => {
-		const res = Api.sendRequest("api/v1/tracks/get/", "GET");
+		const res = await Api.sendRequest("api/v1/tracks/get/", "GET");
 		return (res.data ? res.data : res);
 	}
 

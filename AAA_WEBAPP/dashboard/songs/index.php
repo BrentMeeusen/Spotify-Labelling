@@ -95,7 +95,7 @@ session_start();
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
 				Popup.show(res.error, "error", 5000);
 			}
-			Api.showTracks(res.data);
+			Api.show.tracks(res);
 
 		});
 

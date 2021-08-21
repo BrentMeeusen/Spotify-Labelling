@@ -4,7 +4,7 @@ for(const f of filters) {
 
 	f.addEventListener("input", () => {
 
-		Api.showTracks(Collection.filter(f.dataset.search, f.dataset.equality, f.value));
+		Api.show.tracks(Collection.filter(f.dataset.search, f.dataset.equality, f.value));
 
 	});
 
