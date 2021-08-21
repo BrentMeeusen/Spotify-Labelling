@@ -117,6 +117,20 @@ Api.get = {
 
 
 
+	/**
+	 * Gets the labels from the database
+	 * 
+	 * @returns {array} The labels
+	 */
+	labels: async () => {
+		const res = await Api.sendRequest("api/v1/labels/" + Api.TOKEN.getPayload().user.id, "GET");
+		return (res.data ? res.data : res);
+	},
+
+
+
+
+
 	playlists: {
 
 		/**
