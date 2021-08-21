@@ -307,6 +307,30 @@ class Label extends Database {
 
 	}
 
+
+
+
+
+
+
+
+
+
+	/**
+	 * Checks whether this label is equal to the given label
+	 * 
+	 * @param		Label		The label to check against
+	 * @return		bool		Whether they're equal or not
+	 */
+	public function equals(Label $label) : bool {
+
+		return $this->publicID === $label->publicID &&
+				$this->name === $label->name &&
+				$this->creator === $label->creator;
+
+
+	}
+
 }
 
 ?>
