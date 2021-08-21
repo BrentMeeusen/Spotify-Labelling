@@ -10,7 +10,7 @@ if(isset($trackID)) {
 
 // Else, get all tracks from this user in a collection
 else {
-	$res = Database::findTracksByUser($payload->user->id);
+	$res = ITrack::findByUser($payload->user->id);
 	if($res === NULL) {
 		ApiResponse::httpResponse(500, ["error" => "Something went wrong whilst getting your tracks."]);
 	}
