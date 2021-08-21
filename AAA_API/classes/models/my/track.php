@@ -25,7 +25,7 @@ class ITrack {
 
 		$this->album = IAlbum::createFromTrack($data);
 		$this->artists = ICollection::createArtistCollection([IArtist::createFromTrack($data)]);
-		$this->labels = ICollection::createLabelCollection([Label::findByPublicID($data->LabelName)]);
+		$this->labels = ICollection::createLabelCollection([Label::findByPublicID($data->LabelID)]);
 
 		$this->id = $data->SpotifyID;
 		$this->name = $data->Name;
@@ -78,7 +78,7 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.Name AS LabelName FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.PublicID AS LabelID FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
@@ -116,7 +116,7 @@ class ITrack {
 	public static function findByUser(string $userID) : ?ICollection {
 
 		// Get all tracks the user has
-		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.Name AS LabelName FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID, L.PublicID AS LabelID FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
