@@ -53,15 +53,19 @@ class ITrack {
 
 			// For all remaining artists
 			for($i = 1; $i < count($this->{$field}); $i++) {
-				foreach($this->{$field} as $newItem) {
+				
+				$adding = TRUE;
+				foreach($new as $newItem) {
 
 					// If remaining artist is already in artists, skip to next artist
-					if($this->{$field}[$i]->equals($newItem)) { break; }
+					if($this->{$field}[$i]->equals($newItem)) { $adding = FALSE; break; }
 
 				}
 
 				// Add it to the array
-				array_push($new, $this->{$field}[$i]);
+				if($adding) {
+					array_push($new, $this->{$field}[$i]);
+				}
 
 			}
 			$this->{$field} = $new;
