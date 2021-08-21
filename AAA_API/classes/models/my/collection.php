@@ -124,6 +124,30 @@ class ICollection {
 
 	}
 
+
+
+
+
+	/**
+	 * Creates a collection of labels
+	 * 
+	 * @param		array		The labels
+	 * @return		ICollection	The collection
+	 * @return		null		If something went wrong
+	 */
+	public static function createLabelCollection(array $data) : ?ICollection {
+
+		$labels = [];
+		foreach($data as $row) {
+			if(!($row instanceof Label)) {
+				return NULL;
+			}
+			array_push($labels, $row);
+		}
+		return new ICollection($labels);
+
+	}
+
 }
 
 ?>
