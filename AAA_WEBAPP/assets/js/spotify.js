@@ -31,7 +31,8 @@ class Collection {
 		switch(key) {
 			case "artist":
 				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase())));
-				break;
+			case "track":
+				return this.tracks.filter(t => t.name.toLowerCase().includes(value.toLowerCase()));
 		}
 
 	}
