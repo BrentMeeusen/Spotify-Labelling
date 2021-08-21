@@ -39,7 +39,7 @@ session_start();
 					<div class="row">
 						<div class="text">
 							<p>Track is</p>
-							<input type="text" class="filter-input" data-search="artist" data-equality="=">
+							<input type="text" class="filter-input" data-search="track" data-equality="=">
 						</div>
 					</div>
 					<div class="row">
