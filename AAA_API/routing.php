@@ -34,7 +34,6 @@ include_once("classes/models/spotify/spotify-track.php");
 // Include my Spotify data models
 include_once("classes/models/my/album.php");
 include_once("classes/models/my/artist.php");
-include_once("classes/models/my/collection.php");
 include_once("classes/models/my/track.php");
 
 // Include general
