@@ -36,7 +36,7 @@ class OptionPopup {
 		addLabel.addEventListener("click", async () => {
 
 			this.close();
-			const popup = new BigPopup("Choose a label", "api/v1/tracks/add-label/[TRACK_ID]/[LABEL_IDS]/", "POST");
+			const popup = new BigPopup("Choose a label", "api/v1/tracks/add-label/" + track.id + "/", "POST");
 			const labels = await Api.get.labels();
 
 			let i = 1;
