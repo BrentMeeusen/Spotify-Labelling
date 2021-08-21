@@ -159,6 +159,13 @@ Api.get = {
 	 */
 	tracks: async () => {
 		const res = await Api.sendRequest("api/v1/tracks/get/", "GET");
+
+		Collection.tracks = [];
+		for(const track of res.data) {
+			const t = new Track(track.name, track.artists, new Date(track.addedAt), new Date(track.releaseDate), track.labels);
+			Collection.add(t);
+		}
+
 		return (res.data ? res.data : res);
 	},
 
@@ -214,12 +221,6 @@ Api.show = {
 
 		// For each track
 		for(const track of tracks) {
-
-			// Create a track object if the tracks aren't Track objects
-			if(!(track instanceof Track)) {
-				const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), track.labels.data);
-				Collection.add(t);
-			}
 
 			// Create row and text container
 			const row = Api.createElement("div", { classList: "row" });
