@@ -50,6 +50,10 @@ class HtmlJsForm {
 		// Disable the button so the user can't send the same request over and over
 		this.submit.disabled = true;
 
+		console.log(this.inputs);
+		console.log(this.getValues());
+		return;
+
 		// Send the request
 		const res = await Api.sendRequest(this.action, this.method, this.getValues());
 		(this.callback ? this.callback() : true);
@@ -97,10 +101,13 @@ class HtmlJsForm {
 		let values = {};
 
 		for(const input of this.inputs) {
+			console.log("Input:", input, input.name);
 			if(input.name && input.name.split(" ").length > 1) {
+				console.log("Getting if " + input.name);
 				values[input.name.split(" ")[1]] = input.value;
 			}
 			else if(input.dataset && input.dataset.selected == "true") {
+				console.log("Getting else if " + input.name);
 				values[input.dataset.item] = input.value;
 			}
 		}
