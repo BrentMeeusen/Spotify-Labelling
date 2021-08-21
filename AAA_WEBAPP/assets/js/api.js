@@ -217,7 +217,7 @@ Api.show = {
 
 			// Create a track object if the tracks aren't Track objects
 			if(!(track instanceof Track)) {
-				const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), t.labels.data);
+				const t = new Track(track.name, track.artists.data, new Date(track.addedAt), new Date(track.releaseDate), track.labels.data);
 				Collection.add(t);
 			}
 
