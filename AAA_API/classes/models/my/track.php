@@ -78,7 +78,7 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs, TTU.UserID AS Creator FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
@@ -108,7 +108,7 @@ class ITrack {
 	public static function findByUser(string $userID) : ?array {
 
 		// Get all tracks the user has
-		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs, TTU.UserID AS Creator FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
