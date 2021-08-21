@@ -40,8 +40,8 @@ class OptionPopup {
 			const res = await Api.sendRequest("api/v1/tracks/" + track.id + "/delete", "DELETE");
 			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 
-			const tracks = await Api.sendRequest("api/v1/tracks/get", "GET");
-			Api.showTracks(tracks.data);
+			const tracks = await Api.get.tracks();
+			Api.show.tracks(tracks);
 
 		});
 		deleteTrack.appendChild(Api.createIcon("delete"));
