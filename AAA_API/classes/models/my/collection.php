@@ -144,6 +144,7 @@ class ICollection {
 			}
 			array_push($labels, $row);
 		}
+		if($labels[0] === NULL) { return new ICollection([]); }
 		return new ICollection($labels);
 
 	}
