@@ -39,8 +39,10 @@ class OptionPopup {
 			const popup = new BigPopup("Choose a label", "api/v1/tracks/add-label/[TRACK_ID]/[LABEL_IDS]/", "POST");
 			const labels = await Api.get.labels();
 
+			let i = 1;
 			for(const l of labels) {
-				const el = Api.createElement("div", { innerHTML: l.name, classList: "add-label" });
+				const el = Api.createElement("div", { innerHTML: l.name, classList: "add-label", value: l.publicID });
+				el.setAttribute("name", "input label-" + i++);
 				el.dataset.selected = "false";
 				el.addEventListener("click", () => { el.dataset.selected = (el.dataset.selected === "true" ? "false" : "true"); });
 				popup.addElement(el);
