@@ -154,10 +154,12 @@ class ITrack {
 	 */
 	public function addLabel(string $labelID) : void {
 
-		// Add tracks_to_labels link
-		$stmt = Database::prepare("INSERT INTO TRACKS_TO_LABELS (TrackID, LabelID) VALUES (?, ?);");
-		$stmt->bind_param("ss", $this->id, $labelID);
-		Database::execute($stmt);
+		// If the link doesn't exist yet, add tracks_to_labels link
+		if(count(Database::findLink("SELECT * FROM TRACKS_TO_LABELS WHERE TrackID = ? AND LabelID = ?;", $this->id, $labelID))  === 0) {
+			$stmt = Database::prepare("INSERT INTO TRACKS_TO_LABELS (TrackID, LabelID) VALUES (?, ?);");
+			$stmt->bind_param("ss", $this->id, $labelID);
+			Database::execute($stmt);
+		}
 
 	}
 
