@@ -204,6 +204,60 @@ Api.show = {
 
 
 
+	/**
+	 * Displays the labels
+	 * 
+	 * @param {array} labels The labels array
+	 */
+	labels: (labels) => {
+
+		// Clears the output and gets the data
+		const output = document.getElementById("labels");
+		output.innerHTML = "";
+
+		// For every row
+		for(const label of labels) {
+
+			// Create the row and text container
+			const row = Api.createElement("div", { classList: "row" });
+			const textContainer = Api.createElement("div", { classList: "text" });
+
+			textContainer.appendChild(Api.createElement("p", { innerHTML: label.name }));
+			textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
+
+			row.appendChild(textContainer);
+
+			// Create edit button
+			row.appendChild(Api.createIcon("edit", () => {
+
+				const popup = new BigPopup("Edit Label", "api/v1/labels/" + label.publicID + "/update", "POST", "edit-label-form");
+				popup.add("input", "Name", { value: label.name });
+				popup.show("EDIT");
+				HtmlJsForm.findById("edit-label-form").addCallback(async () => { Api.show.labels(await Api.get.labels()); });
+
+			}));
+
+			// Create remove button
+			row.appendChild(Api.createIcon("delete", () => {
+
+				const popup = new BigPopup("Remove Label", "api/v1/labels/" + label.publicID + "/delete", "DELETE", "remove-label-form");
+				popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + label.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
+				popup.show("REMOVE");
+				HtmlJsForm.findById("remove-label-form").addCallback(async () => { Api.show.labels(await Api.get.labels()); });
+
+			}));
+
+			// append row to HTML
+			output.appendChild(row);
+
+		}
+
+	},
+
+
+
+
+
 	playlists: {
 
 		/**
@@ -246,66 +300,6 @@ Api.show = {
 	}	// Api.show.playlists
 
 }	// Api.show
-
-
-
-
-
-/**
- * Shows the labels
- */
-Api.showLabels = async () => {
-
-	// Clears the output and gets the data
-	const output = document.getElementById("labels");
-	output.innerHTML = "";
-
-	const result = await Api.sendRequest("api/v1/labels/" + Api.TOKEN.getPayload().user.id, "GET");
-
-
-	// If no labels are found, return
-	if(result.data === undefined || result.data === null) {
-		return;
-	}
-
-	// For every row
-	for(const row of result.data) {
-		
-		// Create the row and text container
-		const htmlRow = Api.createElement("div", { classList: "row" });
-		const textContainer = Api.createElement("div", { classList: "text" });
-
-		textContainer.appendChild(Api.createElement("p", { innerHTML: row.name }));
-		textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
-
-		htmlRow.appendChild(textContainer);
-
-		// Create edit button
-		htmlRow.appendChild(Api.createIcon("edit", () => {
-
-			const popup = new BigPopup("Edit Label", "api/v1/labels/" + row.publicID + "/update", "POST", "edit-label-form");
-			popup.add("input", "Name", { value: row.name });
-			popup.show("EDIT");
-			HtmlJsForm.findById("edit-label-form").addCallback(() => { Api.showLabels(); });
-
-		}));
-
-		// Create remove button
-		htmlRow.appendChild(Api.createIcon("delete", () => {
-
-			const popup = new BigPopup("Remove Label", "api/v1/labels/" + row.publicID + "/delete", "DELETE", "remove-label-form");
-			popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + row.name + "\"? All songs affiliated with this label will lose their association, and it cannot be undone." });
-			popup.show("REMOVE");
-			HtmlJsForm.findById("remove-label-form").addCallback(() => { Api.showLabels(); });
-
-		}));
-
-		// append row to HTML
-		output.appendChild(htmlRow);
-
-	}
-
-}
 
 
 
