@@ -41,9 +41,9 @@ class ITrack {
 	/**
 	 * Sets the artists
 	 * 
-	 * @param		ICollection	The artists
+	 * @param		array		The artists
 	 */
-	public function setArtists(ICollection $artists) : void {
+	public function setArtists(array $artists) : void {
 		$this->artists = $artists;
 	}
 
@@ -54,9 +54,9 @@ class ITrack {
 	/**
 	 * Sets the labels
 	 * 
-	 * @param		ICollection	The labels
+	 * @param		array		The labels
 	 */
-	public function setLabels(ICollection $labels) : void {
+	public function setLabels(array $labels) : void {
 		$this->labels = $labels;
 	}
 
@@ -90,16 +90,7 @@ class ITrack {
 			GROUP BY T.SpotifyID;", $spotifyID);
 
 		if($tracks === NULL) { return NULL; }
-
-		// Create Track objects and store them in an array
-		$ret = [];
-		foreach($tracks as $track) {
-			array_push($ret, new ITrack($track));
-		}
-
-		// Create and return a collection of tracks
-		$collection = ICollection::createTrackCollection($ret);
-		return @$collection->format();
+		return new ITrack($tracks[0]);
 
 	}
 
@@ -111,10 +102,10 @@ class ITrack {
 	 * Gets all the tracks that the user has imported
 	 * 
 	 * @param		string		The user ID
-	 * @return		ICollection	All the tracks found
+	 * @return		array		All the tracks found
 	 * @return		null		If something went wrong
 	 */
-	public static function findByUser(string $userID) : ?ICollection {
+	public static function findByUser(string $userID) : ?array {
 
 		// Get all tracks the user has
 		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs FROM TRACKS AS T 
@@ -133,10 +124,7 @@ class ITrack {
 		foreach($tracks as $track) {
 			array_push($ret, new ITrack($track));
 		}
-
-		// Create and return a collection of tracks
-		$collection = ICollection::createTrackCollection($ret);
-		return $collection->format();
+		return $ret;
 
 	}
 
