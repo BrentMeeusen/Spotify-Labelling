@@ -100,6 +100,9 @@ class HtmlJsForm {
 			if(input.name && input.name.includes("input")) {
 				values[input.name.split(" ")[1]] = input.value;
 			}
+			else if(input.dataset && input.dataset.selected == "true") {
+				values[input.dataset.item] = input.value;
+			}
 		}
 
 		return values;
