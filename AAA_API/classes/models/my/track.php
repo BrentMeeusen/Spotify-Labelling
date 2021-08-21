@@ -6,6 +6,7 @@ class ITrack {
 	// Declare variables
 	public IAlbum $album;
 	public ICollection $artists;
+	public ICollection $labels;
 	public string $id;
 	public string $name;
 	public string $releaseDate;
@@ -24,6 +25,7 @@ class ITrack {
 
 		$this->album = IAlbum::createFromTrack($data);
 		$this->artists = ICollection::createArtistCollection([IArtist::createFromTrack($data)]);
+		$this->labels = ICollection::createLabelCollection([Label::findByPublicID($data->LabelName)]);
 
 		$this->id = $data->SpotifyID;
 		$this->name = $data->Name;
@@ -43,6 +45,19 @@ class ITrack {
 	 */
 	public function setArtists(ICollection $artists) : void {
 		$this->artists = $artists;
+	}
+
+
+
+
+
+	/**
+	 * Sets the labels
+	 * 
+	 * @param		ICollection	The labels
+	 */
+	public function setLabels(ICollection $labels) : void {
+		$this->labels = $labels;
 	}
 
 
