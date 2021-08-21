@@ -238,49 +238,6 @@ Api.show = {
 
 
 /**
- * Shows the playlists for import
- * 
- * @param {array} playlists The playlists which can be imported
- */
-Api.showPlaylistsForImport = async (playlists) => {
-
-	console.log(playlists);
-
-	const output = document.getElementById("playlists");
-	output.innerHTML = "";
-
-	for(const list of playlists) {
-
-		// Create row, add name, number of tracks, import button
-		const row = Api.createElement("div", { classList: "row" });
-
-		const textContainer = Api.createElement("div", { classList: "text" });
-		textContainer.appendChild(Api.createElement("p", { innerHTML: list.name, classList: "max65" }));
-		textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s"), classList: "right" }));
-		row.appendChild(textContainer);
-
-		// If the number of tracks is more than 2000, disable button
-		if(list.numTracks > 2000) {
-			row.appendChild(Api.createIcon("import", async() => { Popup.show("Cannot import playlists with more than 2000 songs.", "error"); }));
-		}
-		else {
-			row.appendChild(Api.createIcon("import", async () => {
-				const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
-				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-			}));
-		}
-
-		output.appendChild(row);
-
-	}
-
-}
-
-
-
-
-
-/**
  * Shows the labels
  */
 Api.showLabels = async () => {
