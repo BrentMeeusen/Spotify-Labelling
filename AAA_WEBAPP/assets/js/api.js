@@ -124,7 +124,7 @@ Api.get = {
 		 * 
 		 * @returns {array} The playlists that are importable
 		 */
-		import: () => {
+		import: async () => {
 			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 			return (res.data ? res.data : res);
 		}
