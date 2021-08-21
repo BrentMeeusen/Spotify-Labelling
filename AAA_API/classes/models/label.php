@@ -44,7 +44,7 @@ class Label extends Database {
 		$labels = [];
 		$ids = explode(",", $trackData->LabelIDs);
 		$names = explode(",", $trackData->LabelNames);
-		$creator = $trackData->Owner;
+		$creator = $trackData->Creator;
 
 		for($i = 0; $i < count($ids); $i++) {
 			@$data->publicID = $ids[$i];
