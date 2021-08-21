@@ -1,6 +1,7 @@
 class Api {
 
 
+	// Set variables
 	static isSending = false;
 
 
@@ -93,6 +94,54 @@ class Api {
 	 */
 	static append0(value) {
 		return (value.toString().length < 2 ? "0" + value : value);
+	}
+
+
+
+
+
+	/**
+	 * Creates an element
+	 * 
+	 * @param {string} el Element type
+	 * @param {object} options The values to add to the element
+	 * @returns {HTMLElement} The element that was created
+	 */
+	 static createElement (el, options = {}) {
+
+		const elem = document.createElement(el);
+		for(const [key, value] of Object.entries(options)) {
+			elem[key] = value;
+		}
+		return elem;
+
+	}
+
+
+
+
+
+	/**
+	 * Creates a button with an icon inside
+	 * 
+	 * @param {string} icon The icon name
+	 * @param {Function} event The click event
+	 * @returns {HTMLElement} The button with icon
+	 */
+	static createIcon (icon, event = () => {}) {
+
+		// Create button
+		const button = Api.createElement("button");
+		button.classList.add("icon");
+		button.addEventListener("click", () => {
+			event();
+		});
+
+		// Add icon to the button
+		const iconElement = Api.createElement("img", { src: VALUES.assets + "icons/" + icon + ".png" });
+		button.appendChild(iconElement);
+		return button;
+
 	}
 
 }
@@ -198,7 +247,7 @@ Api.show = {
 
 		}
 
-	},
+	},	// Api.show.tracks
 
 
 
@@ -252,7 +301,7 @@ Api.show = {
 
 		}
 
-	},
+	},	// Api.show.labels
 
 
 
@@ -271,15 +320,15 @@ Api.show = {
 			output.innerHTML = "";
 		
 			for(const list of playlists) {
-		
+
 				// Create row, add name, number of tracks, import button
 				const row = Api.createElement("div", { classList: "row" });
-		
+
 				const textContainer = Api.createElement("div", { classList: "text" });
 				textContainer.appendChild(Api.createElement("p", { innerHTML: list.name, classList: "max65" }));
 				textContainer.appendChild(Api.createElement("p", { innerHTML: list.numTracks + " song" + (list.numTracks === 1 ? "" : "s"), classList: "right" }));
 				row.appendChild(textContainer);
-		
+
 				// If the number of tracks is more than 2000, disable button
 				if(list.numTracks > 2000) {
 					row.appendChild(Api.createIcon("import", async() => { Popup.show("Cannot import playlists with more than 2000 songs.", "error"); }));
@@ -290,61 +339,13 @@ Api.show = {
 						Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 					}));
 				}
-		
+
 				output.appendChild(row);
-		
+
 			}	// for list of playlists
-		
+
 		}	// Api.show.playlists.import
 
 	}	// Api.show.playlists
 
 }	// Api.show
-
-
-
-
-
-/**
- * Creates an element
- * 
- * @param {string} el Element type
- * @param {object} options The values to add to the element
- * @returns {HTMLElement} The element that was created
- */
- Api.createElement = (el, options = {}) => {
-
-	const elem = document.createElement(el);
-	for(const [key, value] of Object.entries(options)) {
-		elem[key] = value;
-	}
-	return elem;
-
-}
-
-
-
-
-
-/**
- * Creates a button with an icon inside
- * 
- * @param {string} icon The icon name
- * @param {Function} event The click event
- * @returns {HTMLElement} The button with icon
- */
-Api.createIcon = (icon, event = () => {}) => {
-
-	// Create button
-	const button = Api.createElement("button");
-	button.classList.add("icon");
-	button.addEventListener("click", () => {
-		event();
-	});
-
-	// Add icon to the button
-	const iconElement = Api.createElement("img", { src: VALUES.assets + "icons/" + icon + ".png" });
-	button.appendChild(iconElement);
-	return button;
-
-}
