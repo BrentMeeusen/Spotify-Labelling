@@ -5,8 +5,8 @@ class ITrack {
 
 	// Declare variables
 	public IAlbum $album;
-	public ICollection $artists;
-	public ICollection $labels;
+	public array $artists;
+	public array $labels;
 	public string $id;
 	public string $name;
 	public string $releaseDate;
@@ -24,8 +24,8 @@ class ITrack {
 	public function __construct(StdClass $data) {
 
 		$this->album = IAlbum::createFromTrack($data);
-		$this->artists = ICollection::createArtistCollection([IArtist::createFromTrack($data)]);
-		$this->labels = ICollection::createLabelCollection([Label::createFromTrack($data)]);
+		$this->artists = IArtist::createFromTrack($data);
+		$this->labels = Label::createFromTrack($data);
 
 		$this->id = $data->SpotifyID;
 		$this->name = $data->Name;
