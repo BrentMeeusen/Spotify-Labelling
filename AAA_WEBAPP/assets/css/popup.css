@@ -38,3 +38,7 @@
 .popup-big h2 {
 	margin-bottom: 3rem;
 }
+
+.popup-big .add-label[data-selected="true"] {
+	border-color: var(--current--highlight);
+}
