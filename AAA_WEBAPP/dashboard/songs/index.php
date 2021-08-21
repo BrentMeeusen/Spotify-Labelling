@@ -38,6 +38,10 @@ session_start();
 				<div class="table-container">
 					<div class="row">
 						<div class="text">
+							<p>Track is</p>
+							<input type="text" class="filter-input" data-search="artist" data-equality="=">
+						</div>
+						<div class="text">
 							<p>Artist is</p>
 							<input type="text" class="filter-input" data-search="artist" data-equality="=">
 						</div>
