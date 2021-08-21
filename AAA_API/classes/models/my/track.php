@@ -25,7 +25,7 @@ class ITrack {
 
 		$this->album = IAlbum::createFromTrack($data);
 		$this->artists = ICollection::createArtistCollection([IArtist::createFromTrack($data)]);
-		$this->labels = ICollection::createLabelCollection([Label::findByPublicID($data->LabelID)]);
+		$this->labels = ICollection::createLabelCollection([Label::createFromTrack($data)]);
 
 		$this->id = $data->SpotifyID;
 		$this->name = $data->Name;
