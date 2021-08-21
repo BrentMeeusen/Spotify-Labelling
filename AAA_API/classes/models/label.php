@@ -183,7 +183,10 @@ class Label extends Database {
 	 * @return		Label		If it was found
 	 * @return		null		If no label was found
 	 */
-	public static function findByPublicID(string $publicID) : ?Label {
+	public static function findByPublicID(?string $publicID) : ?Label {
+
+		// If no ID is given, return NULL
+		if($publicID === NULL) { return NULL; }
 
 		// If no label is found, return NULL
 		$res = parent::find("SELECT * FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE PublicID = ?;", $publicID);
