@@ -42,9 +42,9 @@ class Label extends Database {
 	public static function createFromTrack(StdClass $track) : array {
 
 		$labels = [];
-		$ids = explode(",", $trackData->LabelIDs);
-		$names = explode(",", $trackData->LabelNames);
-		$creator = $trackData->Creator;
+		$ids = explode(",", $track->LabelIDs);
+		$names = explode(",", $track->LabelNames);
+		$creator = $track->Creator;
 
 		for($i = 0; $i < count($ids); $i++) {
 			@$data->publicID = $ids[$i];
