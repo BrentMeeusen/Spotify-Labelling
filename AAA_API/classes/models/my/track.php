@@ -68,9 +68,9 @@ class ITrack {
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
-			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
-			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID
-			JOIN LABELS AS L ON L.PublicID = TTL.LabelID
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
+			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID 
+			JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
 			WHERE T.SpotifyID = ?;", $spotifyID);
 
 		if($data === NULL) { return NULL; }
@@ -84,6 +84,42 @@ class ITrack {
 		// Create and return a collection of tracks
 		$collection = ICollection::createTrackCollection($ret);
 		return @$collection->merge()->data[0];
+
+	}
+
+
+
+
+
+	/**
+	 * Gets all the tracks that the user has imported
+	 * 
+	 * @param		string		The user ID
+	 * @return		ICollection	All the tracks found
+	 * @return		null		If something went wrong
+	 */
+	public static function findByUser(string $userID) : ?ICollection {
+
+		// Get all tracks the user has
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
+			JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 
+			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
+			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
+			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
+			JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID 
+			JOIN LABELS AS L ON L.PublicID = TTL.LabelID 
+			WHERE TTU.UserID = ?;", $userID);
+
+		// Create Track objects and store them in an array
+		$ret = [];
+		foreach($tracks as $track) {
+			array_push($ret, new ITrack($track));
+		}
+
+		// Create and return a collection of tracks
+		$collection = ICollection::createTrackCollection($ret);
+		return $collection->merge();
 
 	}
 
