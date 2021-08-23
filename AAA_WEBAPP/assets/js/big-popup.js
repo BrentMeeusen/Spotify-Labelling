@@ -133,7 +133,7 @@ class BigPopup {
 
 		// Create the forms
 		HtmlJsForm.getForms();
-		HtmlJsForm.findById("add-labels").addCallback(callback);
+		HtmlJsForm.findById("add-labels") ? HtmlJsForm.findById("add-labels").addCallback(callback) : true;
 
 		// Open popup
 		this.popup.style.display = "block";
