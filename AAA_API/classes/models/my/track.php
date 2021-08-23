@@ -134,7 +134,7 @@ class ITrack {
 			WHERE T.SpotifyID = ?
 			GROUP BY T.SpotifyID;", $spotifyID);
 
-		if($tracks === NULL) { return NULL; }
+		if($tracks === NULL || empty($tracks)) { return NULL; }
 		return new ITrack($tracks[0]);
 
 	}
