@@ -35,8 +35,11 @@ class Collection {
 			case "label":
 				this.filters.labels = value.toLowerCase();
 				break;
-			case "x-labels":
+			case "min-labels":
 				this.filters.gteXLabels = value.toLowerCase();
+				break;
+			case "max-labels":
+				this.filters.lteXLabels = value.toLowerCase();
 				break;
 			case "track":
 				this.filters.tracks = value.toLowerCase();
@@ -47,6 +50,7 @@ class Collection {
 		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;		// Filter artists if filter is set
 		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(this.filters.labels))) : filtered;		// Filter labels if filter is set
 		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;		// Filter at least x labels if filter is set
+		filtered = this.filters.lteXLabels ? filtered.filter(t => t.labels.length <= this.filters.lteXLabels) : filtered;		// Filter at most x labels if filter is set
 		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
 		return filtered;
 

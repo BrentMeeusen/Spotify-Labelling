@@ -56,8 +56,14 @@ session_start();
 					</div>
 					<div class="row">
 						<div class="text">
-							<p>Has at least ? labels</p>
-							<input type="number" class="filter-input" data-search="x-labels">
+							<p>At least ? labels</p>
+							<input type="number" class="filter-input" data-search="min-labels">
+						</div>
+					</div>
+					<div class="row">
+						<div class="text">
+							<p>At most ? labels</p>
+							<input type="number" class="filter-input" data-search="max-labels">
 						</div>
 					</div>
 				</div>
