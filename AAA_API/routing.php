@@ -195,6 +195,17 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/tracks/add-labels/[track-id]
 
+		// /api/v1/tracks/remove-label/[track-id]/[label-id]
+		if(isset($routes[2]) && $routes[2] === "remove-label") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+			$trackID = @$routes[3];
+			$labelID = @$routes[4];
+			include_once("tracks/remove-label.php");
+
+		}	// /api/v1/tracks/remove-label/[track-id]/[label-id]
+
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
 
