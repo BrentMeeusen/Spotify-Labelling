@@ -81,8 +81,9 @@ class BigPopup {
 	 * Shows the popup
 	 * 
 	 * @param {string} success The text on the success button
+	 * @param {Function} callback An optional callback method to run after the success button is clicked
 	 */
-	show(success) {
+	show(success, callback = {}) {
 
 		// If it's already open, don't let it open another one
 		if(BigPopup.isOpen) {
@@ -122,6 +123,7 @@ class BigPopup {
 		const buttonSave = Api.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
 		buttonSave.addEventListener("click", () => {
 			this.hide();
+			callback();
 		});
 		buttonSave.setAttribute("name", "html-js-form-submit");
 		form.appendChild(buttonSave);

@@ -48,9 +48,7 @@ class OptionPopup {
 				el.addEventListener("click", () => { el.dataset.selected = (el.dataset.selected === "true" ? "false" : "true"); });
 				popup.addElement(el);
 			}
-			popup.show("Add");
-
-			Api.show.tracks(await Api.get.tracks());
+			popup.show("Add", async () => { Api.show.tracks(await Api.get.tracks()); });
 
 		});
 		addLabel.appendChild(Api.createIcon("add"));
