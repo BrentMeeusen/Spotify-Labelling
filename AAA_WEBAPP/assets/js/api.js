@@ -162,7 +162,7 @@ Api.get = {
 
 		Collection.tracks = [];
 		for(const track of res.data) {
-			const t = new Track(track.name, track.artists, new Date(track.addedAt), new Date(track.releaseDate), track.labels);
+			const t = new Track(track.id, track.name, track.artists, new Date(track.addedAt), new Date(track.releaseDate), track.labels);
 			Collection.add(t);
 		}
 
