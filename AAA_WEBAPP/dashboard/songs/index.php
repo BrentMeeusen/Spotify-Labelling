@@ -132,7 +132,7 @@ session_start();
 					popup.addElement(el);
 				}
 				popup.show("Add to all visible", async () => { Api.show.tracks(await Api.get.tracks()); });
-				HtmlJsForm.findById("add-labels-to-all").setValues({tracks: [ Collection.filtered.map(t => t.id) ]});
+				HtmlJsForm.findById("add-labels-to-all").setValues({ tracks: Collection.filtered.map(t => t.id) });
 
 			});
 
