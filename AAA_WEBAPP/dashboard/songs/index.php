@@ -39,19 +39,25 @@ session_start();
 					<div class="row">
 						<div class="text">
 							<p>Track is</p>
-							<input type="text" class="filter-input" data-search="track" data-equality="=">
+							<input type="text" class="filter-input" data-search="track">
 						</div>
 					</div>
 					<div class="row">
 						<div class="text">
 							<p>Artist is</p>
-							<input type="text" class="filter-input" data-search="artist" data-equality="=">
+							<input type="text" class="filter-input" data-search="artist">
 						</div>
 					</div>
 					<div class="row">
 						<div class="text">
 							<p>Has label</p>
-							<input type="text" class="filter-input" data-search="label" data-equality="=">
+							<input type="text" class="filter-input" data-search="label">
+						</div>
+					</div>
+					<div class="row">
+						<div class="text">
+							<p>Has at least ? labels</p>
+							<input type="text" class="filter-input" data-search="x-labels">
 						</div>
 					</div>
 				</div>

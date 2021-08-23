@@ -23,16 +23,17 @@ class Collection {
 	 * Adds or changes a filter to the list of tracks
 	 * 
 	 * @param {string} key What to filter on (e.g., artist, track name, date added, ...)
-	 * @param {string} equality Whether it's equal, not equal, gte, lte, ...
 	 * @param {string} value What value to filter on
 	 */
-	static filter(key, equality, value) {
+	static filter(key, value) {
 
 		switch(key) {
 			case "artist":
 				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase())));
 			case "label":
 				return this.tracks.filter(t => t.labels.some(l => l.name.toLowerCase().includes(value.toLowerCase())));
+			case "x-labels":
+				return this.tracks.filter(t => t.labels.length >= value);
 			case "track":
 				return this.tracks.filter(t => t.name.toLowerCase().includes(value.toLowerCase()));
 		}
