@@ -211,7 +211,7 @@ class ITrack {
 
 		$stmt = Database::prepare("DELETE FROM TRACKS_TO_LABELS WHERE TrackID = ? AND LabelID = ?;");
 		$stmt->bind_param("ss", $this->id, $labelID);
-		Databse::execute($stmt);
+		Database::execute($stmt);
 
 	}
 
