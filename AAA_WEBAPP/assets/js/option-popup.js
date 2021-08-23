@@ -62,7 +62,7 @@ class OptionPopup {
 
 			// Add "Remove label" row
 			const removeLabel = Api.createElement("div", { classList: "row" });
-			removeLabel.addEventListener("click", () => {
+			removeLabel.addEventListener("click", async () => {
 				this.close();
 				const res = await Api.sendRequest("api/v1/tracks/remove-label/" + track.id + "/" + l.publicID, "POST");
 				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
