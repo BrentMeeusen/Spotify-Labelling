@@ -57,7 +57,7 @@ session_start();
 					<div class="row">
 						<div class="text">
 							<p>Has at least ? labels</p>
-							<input type="text" class="filter-input" data-search="x-labels">
+							<input type="number" class="filter-input" data-search="x-labels">
 						</div>
 					</div>
 				</div>
