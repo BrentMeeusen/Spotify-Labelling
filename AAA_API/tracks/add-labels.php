@@ -5,7 +5,7 @@ $tracks = [];
 // If it's only one track
 if(!(empty($trackID))) {
 	$tracks = [ITrack::findBySpotifyId($trackID)];
-	if($track === NULL) {
+	if($tracks[0] === NULL) {
 		ApiResponse::httpResponse(400, ["error" => "The track to add a label to was not found."]);
 	}
 }
