@@ -47,13 +47,13 @@ class HtmlJsForm {
 	 * 
 	 * @param {object} values The values to pass onto the request
 	 */
-	async sendForm(values = null) {
+	async sendForm() {
 
 		// Disable the button so the user can't send the same request over and over
 		this.submit.disabled = true;
 
 		// Send the request
-		const res = await Api.sendRequest(this.action, this.method, (values ? values : this.getValues()));
+		const res = await Api.sendRequest(this.action, this.method, this.getValues());
 		(this.callback ? this.callback() : true);
 
 		// Redirect if necessary
@@ -96,7 +96,7 @@ class HtmlJsForm {
 	 */
 	getValues() {
 
-		let values = {};
+		let values = (this.values ? this.values : {});
 
 		for(const input of this.inputs) {
 			if(input.name && input.name.split(" ").length > 1) {
@@ -109,6 +109,19 @@ class HtmlJsForm {
 
 		return values;
 
+	}
+
+
+
+
+
+	/**
+	 * Sets a standard set of values to the getValues() method
+	 * 
+	 * @param {object} values The standard set of values to add
+	 */
+	setValues(values) {
+		this.values = values;
 	}
 
 
