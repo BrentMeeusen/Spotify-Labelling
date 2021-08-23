@@ -28,11 +28,16 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.xx.x-alpha - 2021/08/xx
+## 0.13.0-alpha - 2021/08/xx
 
 ### Added
-- Filtering your tracks on artist name
+- Filtering your tracks on:
+	- Artist name
+	- Track name
+	- Label name
+	- Number of labels
 - Add labels to tracks
+- Remove labels from tracks
 
 ### Changed
 - Closing popup on removing track from my list
