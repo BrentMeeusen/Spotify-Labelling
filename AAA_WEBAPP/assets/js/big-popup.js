@@ -133,7 +133,6 @@ class BigPopup {
 
 		// Create the forms
 		HtmlJsForm.getForms();
-		this.id ? HtmlJsForm.findById(this.id).addCallback(callback) : true;
 
 		// Open popup
 		this.popup.style.display = "block";
