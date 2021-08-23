@@ -15,6 +15,7 @@ class Collection {
 	 */
 	static add(track) {
 		this.tracks.push(track);
+		this.filtered = this.tracks;
 	}
 
 
