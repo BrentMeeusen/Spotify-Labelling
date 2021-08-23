@@ -6,7 +6,7 @@ $tracks = [];
 if(!(empty($trackID))) {
 	$tracks = [ITrack::findBySpotifyId($trackID)];
 	if($track === NULL) {
-		ApiResponse::httpResponse(400, ["error" => "The track to delete from your account was not found."]);
+		ApiResponse::httpResponse(400, ["error" => "The track to add a label to was not found."]);
 	}
 }
 // If it's multiple tracks
