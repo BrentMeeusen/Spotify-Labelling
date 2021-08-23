@@ -27,8 +27,9 @@ class Collection {
 	 * 
 	 * @param {string} key What to filter on (e.g., artist, track name, date added, ...)
 	 * @param {string} value What value to filter on
+	 * @returns the filtered array
 	 */
-	static filter(key, value) {
+	static addFilter(key, value) {
 
 		switch(key) {
 			case "artist":
@@ -47,6 +48,21 @@ class Collection {
 				this.filters.tracks = value.toLowerCase();
 				break;
 		}
+
+		this.filter();
+
+	}
+
+
+
+
+
+	/**
+	 * Actually filters the list
+	 * 
+	 * @returns an array of tracks that are filtered
+	 */
+	static filter() {
 
 		let filtered = this.tracks;
 		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;		// Filter artists if filter is set
