@@ -1,6 +1,7 @@
 class Collection {
 
 	static tracks = [];
+	static filters = {};
 
 
 
@@ -29,14 +30,25 @@ class Collection {
 
 		switch(key) {
 			case "artist":
-				return this.tracks.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase())));
+				this.filters.artists = value.toLowerCase();
+				break;
 			case "label":
-				return this.tracks.filter(t => t.labels.some(l => l.name.toLowerCase().includes(value.toLowerCase())));
+				this.filters.labels = value.toLowerCase();
+				break;
 			case "x-labels":
-				return this.tracks.filter(t => t.labels.length >= value);
+				this.filters.gteXLabels = value.toLowerCase();
+				break;
 			case "track":
-				return this.tracks.filter(t => t.name.toLowerCase().includes(value.toLowerCase()));
+				this.filters.tracks = value.toLowerCase();
+				break;
 		}
+
+		let filtered = this.tracks;
+		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase()))) : filtered;		// Filter artists if filter is set
+		filtered = this.filters.artists ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(value.toLowerCase()))) : filtered;		// Filter labels if filter is set
+		filtered = this.filters.artists ? filtered.filter(t => t.labels.length >= value) : filtered;		// Filter at least x labels if filter is set
+		filtered = this.filters.artists ? filtered.filter(t => t.name.toLowerCase().includes(value.toLowerCase())) : filtered;
+		return filtered;
 
 	}
 
