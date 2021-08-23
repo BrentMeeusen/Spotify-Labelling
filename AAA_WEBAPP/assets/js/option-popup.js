@@ -68,6 +68,9 @@ class OptionPopup {
 				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 				Api.show.tracks(await Api.get.tracks());
 			});
+			removeLabel.appendChild(Api.createIcon("delete"));
+			removeLabel.appendChild(Api.createElement("p", { innerHTML: "Remove \"" + l.name +"\"" }));
+			this.popup.appendChild(removeLabel);
 
 		}
 
