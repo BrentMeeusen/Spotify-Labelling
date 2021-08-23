@@ -123,7 +123,6 @@ class BigPopup {
 		const buttonSave = Api.createElement("button", { innerHTML: success, type: "submit", value: "submit", classList: "small" });
 		buttonSave.addEventListener("click", () => {
 			this.hide();
-			callback();
 		});
 		buttonSave.setAttribute("name", "html-js-form-submit");
 		form.appendChild(buttonSave);
@@ -134,7 +133,8 @@ class BigPopup {
 
 		// Create the forms
 		HtmlJsForm.getForms();
-		
+		HtmlJsForm.findById("add-labels").addCallback(callback);
+
 		// Open popup
 		this.popup.style.display = "block";
 		setTimeout(() => {
