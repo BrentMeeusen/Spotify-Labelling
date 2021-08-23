@@ -81,9 +81,8 @@ class BigPopup {
 	 * Shows the popup
 	 * 
 	 * @param {string} success The text on the success button
-	 * @param {Function} callback An optional callback method to run after the success button is clicked
 	 */
-	show(success, callback = {}) {
+	show(success) {
 
 		// If it's already open, don't let it open another one
 		if(BigPopup.isOpen) {
