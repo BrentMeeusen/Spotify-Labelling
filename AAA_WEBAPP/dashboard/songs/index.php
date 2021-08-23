@@ -48,6 +48,12 @@ session_start();
 							<input type="text" class="filter-input" data-search="artist" data-equality="=">
 						</div>
 					</div>
+					<div class="row">
+						<div class="text">
+							<p>Has label</p>
+							<input type="text" class="filter-input" data-search="label" data-equality="=">
+						</div>
+					</div>
 				</div>
 
 			</div>
