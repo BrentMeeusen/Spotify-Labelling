@@ -116,6 +116,26 @@ session_start();
 				document.getElementById("filters").classList.toggle("open");
 			});
 
+			// Set "add to all visible" click event
+			document.getElementById("add-to-visible").addEventListener("click", async () => {
+
+				const popup = new BigPopup("Choose labels", "api/v1/tracks/add-labels/", "POST", "add-labels-to-all");
+				const labels = await Api.get.labels();
+
+				let i = 1;
+				for(const l of labels) {
+					const el = Api.createElement("div", { innerHTML: l.name, classList: "add-label", value: l.publicID });
+					el.setAttribute("name", "input");
+					el.dataset.selected = "false";
+					el.dataset.item = "label-" + i++;
+					el.addEventListener("click", () => { el.dataset.selected = (el.dataset.selected === "true" ? "false" : "true"); });
+					popup.addElement(el);
+				}
+				popup.show("Add to all visible", async () => { Api.show.tracks(await Api.get.tracks()); });
+				HtmlJsForm.findById("add-labels-to-all").setValues({tracks: [ Collection.filtered.map(t => t.id) ]});
+
+			});
+
 			// Load tracks
 			document.getElementById("tracks").innnerHTML = "Loading...";
 			const res = await Api.get.tracks();
