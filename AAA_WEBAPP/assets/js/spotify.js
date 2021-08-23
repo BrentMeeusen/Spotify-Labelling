@@ -49,7 +49,7 @@ class Collection {
 				break;
 		}
 
-		this.filter();
+		return this.filter();
 
 	}
 
