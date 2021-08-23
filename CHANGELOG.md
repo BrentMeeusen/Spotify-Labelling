@@ -36,8 +36,9 @@ STANDARD NEW VERSION:
 	- Track name
 	- Label name
 	- Number of labels
-- Add labels to tracks
+- Add labels to tracks (multiple labels at once)
 - Remove labels from tracks
+- Add labels to all selected tracks at once (multiple labels at once)
 
 ### Changed
 - Closing popup on removing track from my list
