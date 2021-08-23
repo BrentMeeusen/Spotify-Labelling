@@ -49,7 +49,7 @@ class OptionPopup {
 				popup.addElement(el);
 			}
 			popup.show("Add");
-			HtmlJsForm.findById("add-labels").addCallback(async () => { Api.show.tracks(await Api.get.tracks()); });
+			HtmlJsForm.findById("add-labels").addCallback(async () => { await Api.get.tracks(); Api.show.tracks(Collection.filter()); });
 
 		});
 		addLabel.appendChild(Api.createIcon("add"));
@@ -67,7 +67,8 @@ class OptionPopup {
 				this.close();
 				const res = await Api.sendRequest("api/v1/tracks/remove-label/" + track.id + "/" + l.publicID, "POST");
 				Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-				Api.show.tracks(await Api.get.tracks());
+				await Api.get.tracks();
+				Api.show.tracks(Collection.filter());
 			});
 			removeLabel.appendChild(Api.createIcon("delete"));
 			removeLabel.appendChild(Api.createElement("p", { innerHTML: "Remove \"" + l.name +"\"" }));
@@ -84,8 +85,8 @@ class OptionPopup {
 			this.close();
 			const res = await Api.sendRequest("api/v1/tracks/" + track.id + "/delete", "DELETE");
 			Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
-
-			Api.show.tracks(await Api.get.tracks());
+			await Api.get.tracks();
+			Api.show.tracks(Collection.filter());
 
 		});
 		deleteTrack.appendChild(Api.createIcon("delete"));
