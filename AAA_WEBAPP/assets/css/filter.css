@@ -30,3 +30,6 @@
 	transition: 250ms ease;
 	font-size: 1.0em !important;
 }
+.filters input[type="number"] {
+	max-width: 100px;
+}
