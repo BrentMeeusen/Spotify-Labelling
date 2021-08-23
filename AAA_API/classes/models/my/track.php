@@ -32,7 +32,7 @@ class ITrack {
 		$this->releaseDate = $data->ReleaseDate;
 		$this->addedAt = $data->AddedAt;
 
-		$this->removeDuplicates();
+		$this->clean();
 
 	}
 
@@ -41,23 +41,23 @@ class ITrack {
 
 
 	/**
-	 * Removes the duplicates from artists and labels
+	 * Removes the duplicates from artists and labels, removes only label if it is empty
 	 */
-	public function removeDuplicates() : void {
+	private function clean() : void {
 
 		$fields = ["artists", "labels"];
 		foreach($fields as $field) {
 
-			// Remove artist duplicates
+			// Remove item duplicates
 			$new = [$this->{$field}[0]];
 
-			// For all remaining artists
+			// For all remaining items
 			for($i = 1; $i < count($this->{$field}); $i++) {
 				
 				$adding = TRUE;
 				foreach($new as $newItem) {
 
-					// If remaining artist is already in artists, skip to next artist
+					// If remaining item is already in items, skip to next item
 					if($this->{$field}[$i]->equals($newItem)) { $adding = FALSE; break; }
 
 				}
@@ -70,6 +70,11 @@ class ITrack {
 			}
 			$this->{$field} = $new;
 
+		}
+
+		// Remove labels array if label is empty
+		if(empty($this->labels[0]->publicID)) {
+			$this->labels = [];
 		}
 
 	}
