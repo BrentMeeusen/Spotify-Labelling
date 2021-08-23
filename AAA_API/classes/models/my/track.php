@@ -202,6 +202,23 @@ class ITrack {
 
 
 
+	/**
+	 * Removes a track_to_labels link
+	 * 
+	 * @param		string		The label ID
+	 */
+	public function removeLabel(string $labelID) : void {
+
+		$stmt = Database::prepare("DELETE FROM TRACKS_TO_LABELS WHERE TrackID = ? AND LabelID = ?;");
+		$stmt->bind_param("ss", $this->id, $labelID);
+		Databse::execute($stmt);
+
+	}
+
+
+
+
+
 
 
 
