@@ -78,7 +78,10 @@ session_start();
 			<!-- Content -->
 			<div class="module">
 
-				<button class="icon filter" id="filter"><img src="../../assets/icons/filter.png"></button>
+				<div class="controls">
+					<button class="icon add" id="add-to-visible"><img src="../../assets/icons/add.png"></button>
+					<button class="icon filter" id="filter"><img src="../../assets/icons/filter.png"></button>
+				</div>
 
 				<div class="table-container" id="tracks"></div>
 
