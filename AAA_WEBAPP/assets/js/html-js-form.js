@@ -44,14 +44,16 @@ class HtmlJsForm {
 
 	/**
 	 * Sends the form using the action, method, and values provided
+	 * 
+	 * @param {object} values The values to pass onto the request
 	 */
-	async sendForm() {
+	async sendForm(values = null) {
 
 		// Disable the button so the user can't send the same request over and over
 		this.submit.disabled = true;
 
 		// Send the request
-		const res = await Api.sendRequest(this.action, this.method, this.getValues());
+		const res = await Api.sendRequest(this.action, this.method, (values ? values : this.getValues()));
 		(this.callback ? this.callback() : true);
 
 		// Redirect if necessary
