@@ -44,10 +44,10 @@ class Collection {
 		}
 
 		let filtered = this.tracks;
-		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(value.toLowerCase()))) : filtered;		// Filter artists if filter is set
-		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(value.toLowerCase()))) : filtered;		// Filter labels if filter is set
-		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= value) : filtered;		// Filter at least x labels if filter is set
-		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(value.toLowerCase())) : filtered;		// Filter tracks if filter is set
+		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;		// Filter artists if filter is set
+		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(this.filters.labels))) : filtered;		// Filter labels if filter is set
+		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;		// Filter at least x labels if filter is set
+		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
 		return filtered;
 
 	}
