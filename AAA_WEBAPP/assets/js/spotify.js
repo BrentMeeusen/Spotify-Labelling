@@ -47,14 +47,22 @@ class Collection {
 			case "track":
 				this.filters.tracks = value.toLowerCase();
 				break;
-			case "added-before":
-				const addedBefore = (value ? new Date(value) : new Date(9999, 1, 1));
-				this.filters.addedBefore = (addedBefore.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedBefore.setHours(23, 59, 59, 999));
-				break;
-			case "added-after":
-				const addedAfter = (value ? new Date(value) : new Date(1000, 1, 1));
-				this.filters.addedAfter = (addedAfter.getFullYear() < 1000 ? new Date(1000, 1, 1) : addedAfter.setHours(0, 0, 0, 0));
-				break;
+				case "added-before":
+					const addedBefore = (value ? new Date(value) : new Date(9999, 1, 1));
+					this.filters.addedBefore = (addedBefore.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedBefore.setHours(23, 59, 59, 999));
+					break;
+				case "added-after":
+					const addedAfter = (value ? new Date(value) : new Date(1000, 1, 1));
+					this.filters.addedAfter = (addedAfter.getFullYear() < 1000 ? new Date(1000, 1, 1) : addedAfter.setHours(0, 0, 0, 0));
+					break;
+				case "released-before":
+					const releasedBefore = (value ? new Date(value) : new Date(9999, 1, 1));
+					this.filters.releasedBefore = (releasedBefore.getFullYear() < 1000 ? new Date(9999, 1, 1) : releasedBefore.setHours(23, 59, 59, 999));
+					break;
+				case "released-after":
+					const releasedAfter = (value ? new Date(value) : new Date(1000, 1, 1));
+					this.filters.releasedAfter = (releasedAfter.getFullYear() < 1000 ? new Date(1000, 1, 1) : releasedAfter.setHours(0, 0, 0, 0));
+					break;
 		}
 
 		return this.filter();
@@ -80,6 +88,8 @@ class Collection {
 		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
 		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered; // Filter added before if filter is set
 		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered; // Filter added after if filter is set
+		filtered = this.filters.releasedBefore ? filtered.filter(t => t.releaseDate < this.filters.releasedBefore) : filtered; // Filter released before if filter is set
+		filtered = this.filters.releasedAfter ? filtered.filter(t => t.releaseDate > this.filters.releasedAfter) : filtered; // Filter released after if filter is set
 		this.filtered = filtered;
 
 		return filtered;
