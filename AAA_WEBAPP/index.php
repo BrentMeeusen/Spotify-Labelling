@@ -41,7 +41,7 @@ session_start();
 
 			<!-- <img class="lazy-image" style="margin-top: 100vh;" data-src="../assets/images/test-image", data-extension="png"> -->
 
-			<p class="footer" style="text-transform: lowercase;">v0.12.0-alpha</p>
+			<p class="footer" style="text-transform: lowercase;">v0.13.0-alpha</p>
 
 		</div>
 
