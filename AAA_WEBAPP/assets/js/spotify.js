@@ -47,6 +47,10 @@ class Collection {
 			case "track":
 				this.filters.tracks = value.toLowerCase();
 				break;
+			case "added-before":
+				const date = (value ? new Date(value) : new Date(9999, 1, 1));
+				this.filters.addedBefore = (date.getFullYear() < 1000 ? new Date(9999, 1, 1) : date);
+				break;
 		}
 
 		return this.filter();
