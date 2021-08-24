@@ -7,12 +7,14 @@
 	transition: 400ms ease;
 	background: var(--current--background-highlight);
 	padding: .5em;
+	overflow: auto;
 }
 .filters.open {
 	left: 20vw;
 }
 .filters .table-container {
 	margin-top: 5em;
+	margin-bottom: 15vh;
 }
 
 .filters * {
@@ -30,6 +32,6 @@
 	transition: 250ms ease;
 	font-size: 1.0em !important;
 }
-.filters input[type="number"] {
+.filters input[type="number"], .filters input[type="date"] {
 	max-width: 100px;
 }
