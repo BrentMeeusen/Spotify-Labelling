@@ -56,8 +56,8 @@ session_start();
 		window.addEventListener("load", async () => {
 
 			document.getElementById("playlists").innerHTML = "Loading...";
-			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
-			Api.showPlaylistsForImport(res.data);
+			const res = await Api.get.playlists.import();
+			Api.show.playlists.import(res);
 
 		});
 

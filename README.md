@@ -34,8 +34,8 @@ It is of course very possible that you gave a song a label, but you do not find 
 
 
 ## Known issues
-At this point, I am not aware of any issues in v0.12.0-alpha.
-<!-- In v0.12.0-alpha, I am aware of the following issues: -->
+At this point, I am not aware of any issues in v0.13.0-alpha.
+<!-- In v0.13.0-alpha, I am aware of the following issues: -->
 
 
 

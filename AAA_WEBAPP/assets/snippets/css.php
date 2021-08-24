@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/general.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/filter.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/form.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/lazy-loading.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/module.css">

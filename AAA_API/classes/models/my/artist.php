@@ -29,13 +29,21 @@ class IArtist {
 	 * Creates an artist from the data that the track returned
 	 * 
 	 * @param		StdClass	The track data
-	 * @return		IArtist		The created artist
+	 * @return		array		The created artist
 	 */
-	public static function createFromTrack(StdClass $trackData) : IArtist {
+	public static function createFromTrack(StdClass $trackData) : array {
 
-		@$artistData->id = $trackData->ArtistID;
-		$artistData->name = $trackData->ArtistName;
-		return new IArtist($artistData);
+		$artists = [];
+		$ids = explode(",", $trackData->ArtistIDs);
+		$names = explode(",", $trackData->ArtistNames);
+
+		for($i = 0; $i < count($ids); $i++) {
+			@$data->id = $ids[$i];
+			$data->name = $names[$i];
+			array_push($artists, new IArtist($data));
+		}
+
+		return $artists;
 
 	}
 

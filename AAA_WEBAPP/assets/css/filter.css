@@ -1,0 +1,37 @@
+.filters {
+	position: fixed;
+	width: 80vw;
+	height: 110vh;
+	left: 100vw;
+	top: 0;
+	transition: 400ms ease;
+	background: var(--current--background-highlight);
+	padding: .5em;
+	overflow: auto;
+}
+.filters.open {
+	left: 20vw;
+}
+.filters .table-container {
+	margin-top: 5em;
+	margin-bottom: 15vh;
+}
+
+.filters * {
+	align-self: center;
+}
+.filters *:focus {
+	outline: none;
+	border-color: var(--current--highlight);
+}
+
+.filters input {
+	background: var(--current--background);
+	border: 1px solid var(--current--text);
+	padding: .3em;
+	transition: 250ms ease;
+	font-size: 1.0em !important;
+}
+.filters input[type="number"], .filters input[type="date"] {
+	max-width: 100px;
+}

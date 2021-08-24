@@ -132,7 +132,7 @@ class BigPopup {
 
 		// Create the forms
 		HtmlJsForm.getForms();
-		
+
 		// Open popup
 		this.popup.style.display = "block";
 		setTimeout(() => {

@@ -60,13 +60,13 @@ session_start();
 			const addLabel = new BigPopup("Add Label", "api/v1/labels/create", "POST", "create-label-form");
 			addLabel.add("input", "Name", { placeholder: "LABEL NAME", type: "text", maxLength: "100" });
 			addLabel.show("ADD");
-			HtmlJsForm.findById("create-label-form").addCallback(() => { Api.showLabels(); });
+			HtmlJsForm.findById("create-label-form").addCallback(async () => { Api.show.labels(await Api.get.labels()); });
 
 		});
 
 		// Load labels
 		window.addEventListener("load", async () => {
-			Api.showLabels();
+			Api.show.labels(await Api.get.labels());
 		});
 
 		</script>

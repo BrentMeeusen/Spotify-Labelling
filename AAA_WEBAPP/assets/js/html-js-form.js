@@ -44,6 +44,8 @@ class HtmlJsForm {
 
 	/**
 	 * Sends the form using the action, method, and values provided
+	 * 
+	 * @param {object} values The values to pass onto the request
 	 */
 	async sendForm() {
 
@@ -94,16 +96,32 @@ class HtmlJsForm {
 	 */
 	getValues() {
 
-		let values = {};
+		let values = (this.values ? this.values : {});
 
 		for(const input of this.inputs) {
-			if(input.name && input.name.includes("input")) {
+			if(input.name && input.name.split(" ").length > 1) {
 				values[input.name.split(" ")[1]] = input.value;
+			}
+			else if(input.dataset && input.dataset.selected == "true") {
+				values[input.dataset.item] = input.value;
 			}
 		}
 
 		return values;
 
+	}
+
+
+
+
+
+	/**
+	 * Sets a standard set of values to the getValues() method
+	 * 
+	 * @param {object} values The standard set of values to add
+	 */
+	setValues(values) {
+		this.values = values;
 	}
 
 

@@ -28,6 +28,26 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.13.0-alpha - 2021/08/24
+
+### Added
+- Filtering your tracks on:
+	- Artist name
+	- Track name
+	- Label name
+	- Number of labels
+	- Released before/after
+	- Added before/after
+- Add labels to tracks (multiple labels at once)
+- Remove labels from tracks
+- Add labels to all selected tracks at once (multiple labels at once)
+
+### Changed
+- Closing popup on removing track from my list
+- The way tracks are retrieved from the database
+
+
+
 ## 0.12.0-alpha - 2021/08/17
 
 ### Added

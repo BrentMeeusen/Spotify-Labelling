@@ -118,3 +118,10 @@ button.icon > img {
 button.icon:focus, button.icon > img:focus, button.icon:focus > img {
 	outline: none;
 }
+
+.controls {
+	float: right;
+}
+.controls button.icon {
+	margin: 1em;
+}

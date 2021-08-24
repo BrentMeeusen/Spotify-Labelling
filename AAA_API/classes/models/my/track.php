@@ -5,7 +5,8 @@ class ITrack {
 
 	// Declare variables
 	public IAlbum $album;
-	public ICollection $artists;
+	public array $artists;
+	public array $labels;
 	public string $id;
 	public string $name;
 	public string $releaseDate;
@@ -23,12 +24,58 @@ class ITrack {
 	public function __construct(StdClass $data) {
 
 		$this->album = IAlbum::createFromTrack($data);
-		$this->artists = ICollection::createArtistCollection([IArtist::createFromTrack($data)]);
+		$this->artists = IArtist::createFromTrack($data);
+		$this->labels = Label::createFromTrack($data);
 
 		$this->id = $data->SpotifyID;
 		$this->name = $data->Name;
 		$this->releaseDate = $data->ReleaseDate;
 		$this->addedAt = $data->AddedAt;
+
+		$this->clean();
+
+	}
+
+
+
+
+
+	/**
+	 * Removes the duplicates from artists and labels, removes only label if it is empty
+	 */
+	private function clean() : void {
+
+		$fields = ["artists", "labels"];
+		foreach($fields as $field) {
+
+			// Remove item duplicates
+			$new = [$this->{$field}[0]];
+
+			// For all remaining items
+			for($i = 1; $i < count($this->{$field}); $i++) {
+				
+				$adding = TRUE;
+				foreach($new as $newItem) {
+
+					// If remaining item is already in items, skip to next item
+					if($this->{$field}[$i]->equals($newItem)) { $adding = FALSE; break; }
+
+				}
+
+				// Add it to the array
+				if($adding) {
+					array_push($new, $this->{$field}[$i]);
+				}
+
+			}
+			$this->{$field} = $new;
+
+		}
+
+		// Remove labels array if label is empty
+		if(empty($this->labels[0]->publicID)) {
+			$this->labels = [];
+		}
 
 	}
 
@@ -39,10 +86,23 @@ class ITrack {
 	/**
 	 * Sets the artists
 	 * 
-	 * @param		ICollection	The artists
+	 * @param		array		The artists
 	 */
-	public function setArtists(ICollection $artists) : void {
+	public function setArtists(array $artists) : void {
 		$this->artists = $artists;
+	}
+
+
+
+
+
+	/**
+	 * Sets the labels
+	 * 
+	 * @param		array		The labels
+	 */
+	public function setLabels(array $labels) : void {
+		$this->labels = $labels;
 	}
 
 
@@ -63,25 +123,95 @@ class ITrack {
 	 */
 	public static function findBySpotifyId(string $spotifyID) : ?ITrack {
 
-		$data = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, ART.Name AS ArtistName, ART.SpotifyID AS ArtistID FROM TRACKS AS T 
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs, TTU.UserID AS Creator FROM TRACKS AS T 
 			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
 			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
 			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
 			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
-			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID
-			WHERE T.SpotifyID = ?;", $spotifyID);
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
+			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
+			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID
+			WHERE T.SpotifyID = ?
+			GROUP BY T.SpotifyID;", $spotifyID);
 
-		if($data === NULL) { return NULL; }
+		if($tracks === NULL || empty($tracks)) { return NULL; }
+		return new ITrack($tracks[0]);
+
+	}
+
+
+
+
+
+	/**
+	 * Gets all the tracks that the user has imported
+	 * 
+	 * @param		string		The user ID
+	 * @return		array		All the tracks found
+	 * @return		null		If something went wrong
+	 */
+	public static function findByUser(string $userID) : ?array {
+
+		// Get all tracks the user has
+		$tracks = Database::find("SELECT T.*, TTU.AddedAt, ALB.Name AS AlbumName, ALB.SpotifyID AS AlbumID, GROUP_CONCAT(ART.Name) AS ArtistNames, GROUP_CONCAT(ART.SpotifyID) AS ArtistIDs, GROUP_CONCAT(L.Name) AS LabelNames, GROUP_CONCAT(TTL.LabelID) AS LabelIDs, TTU.UserID AS Creator FROM TRACKS AS T 
+			LEFT JOIN TRACKS_TO_USERS AS TTU ON T.SpotifyID = TTU.TrackID 	-- Always join track, even if no TTU exists
+			JOIN TRACKS_TO_ALBUMS AS TTALB ON T.SpotifyID = TTALB.TrackID 
+			JOIN ALBUMS AS ALB ON ALB.SpotifyID = TTALB.AlbumID 
+			JOIN TRACKS_TO_ARTISTS AS TTART ON T.SpotifyID = TTART.TrackID 
+			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
+			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
+			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID
+			WHERE TTU.UserID = ?
+			GROUP BY T.SpotifyID;", $userID);
 
 		// Create Track objects and store them in an array
 		$ret = [];
-		foreach($data as $track) {
+		foreach($tracks as $track) {
 			array_push($ret, new ITrack($track));
 		}
+		return $ret;
 
-		// Create and return a collection of tracks
-		$collection = ICollection::createTrackCollection($ret);
-		return @$collection->merge()->data[0];
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Adds a tracks_to_labels link
+	 * 
+	 * @param		string		The label ID
+	 */
+	public function addLabel(string $labelID) : void {
+
+		// If the link doesn't exist yet, add tracks_to_labels link
+		if(count(Database::findLink("SELECT * FROM TRACKS_TO_LABELS WHERE TrackID = ? AND LabelID = ?;", $this->id, $labelID))  === 0) {
+			$stmt = Database::prepare("INSERT INTO TRACKS_TO_LABELS (TrackID, LabelID) VALUES (?, ?);");
+			$stmt->bind_param("ss", $this->id, $labelID);
+			Database::execute($stmt);
+		}
+
+	}
+
+
+
+
+
+	/**
+	 * Removes a track_to_labels link
+	 * 
+	 * @param		string		The label ID
+	 */
+	public function removeLabel(string $labelID) : void {
+
+		$stmt = Database::prepare("DELETE FROM TRACKS_TO_LABELS WHERE TrackID = ? AND LabelID = ?;");
+		$stmt->bind_param("ss", $this->id, $labelID);
+		Database::execute($stmt);
 
 	}
 

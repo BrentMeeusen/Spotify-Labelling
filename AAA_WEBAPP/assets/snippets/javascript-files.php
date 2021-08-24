@@ -2,12 +2,14 @@
 <script src="/assets/js/api.js"></script>
 <script src="/assets/js/html-js-form.js"></script>
 <script src="/assets/js/big-popup.js"></script>
+<script src="/assets/js/filter.js"></script>
 <script src="/assets/js/jwt.js"></script>
 <script src="/assets/js/lazy-loading.js"></script>
 <script src="/assets/js/navigation.js"></script>
 <script src="/assets/js/page-protect.js"></script>
 <script src="/assets/js/password-verifier.js"></script>
 <script src="/assets/js/popup.js"></script>
+<script src="/assets/js/spotify.js"></script>
 <script src="/assets/js/theme.js"></script>
 <script src="/assets/js/values.js"></script>
 

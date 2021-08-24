@@ -34,6 +34,31 @@ class Label extends Database {
 
 
 	/**
+	 * Creates a label array from the data that the track returned
+	 * 
+	 * @param		StdClass	The track data
+	 * @return		array		The created labels
+	 */
+	public static function createFromTrack(StdClass $track) : array {
+
+		$labels = [];
+		$ids = explode(",", $track->LabelIDs);
+		$names = explode(",", $track->LabelNames);
+		$creator = $track->Creator;
+
+		for($i = 0; $i < count($ids); $i++) {
+			array_push($labels, new Label($ids[$i], $creator, $names[$i]));
+		}
+
+		return $labels;
+
+	}
+
+
+
+
+
+	/**
 	 * Label constructor when the data comes from the database
 	 * 
 	 * @param		array		An associative array with the database values
@@ -183,7 +208,10 @@ class Label extends Database {
 	 * @return		Label		If it was found
 	 * @return		null		If no label was found
 	 */
-	public static function findByPublicID(string $publicID) : ?Label {
+	public static function findByPublicID(?string $publicID) : ?Label {
+
+		// If no ID is given, return NULL
+		if($publicID === NULL) { return NULL; }
 
 		// If no label is found, return NULL
 		$res = parent::find("SELECT * FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE PublicID = ?;", $publicID);
@@ -276,6 +304,30 @@ class Label extends Database {
 		}
 
 		return $return;
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Checks whether this label is equal to the given label
+	 * 
+	 * @param		Label		The label to check against
+	 * @return		bool		Whether they're equal or not
+	 */
+	public function equals(Label $label) : bool {
+
+		return $this->publicID === $label->publicID &&
+				$this->name === $label->name &&
+				$this->creator === $label->creator;
+
 
 	}
 

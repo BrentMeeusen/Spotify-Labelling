@@ -1,14 +1,12 @@
 .option-popup {
 	position: fixed;
-	bottom: -35vh;
+	bottom: -10em;
 	width: 100vw;
-	height: 30vh;
+	max-height: 50vh;
+	overflow: auto;
 	background: var(--current--background-highlight);
 	box-shadow: 0 -0.5em 1em 0.5em var(--current--background-highlight);
 	transition: 400ms ease;
-}
-.option-popup.open {
-	bottom: 0;
 }
 .option-popup .row {
 	width: 80vw;

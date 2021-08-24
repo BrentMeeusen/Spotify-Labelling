@@ -34,7 +34,6 @@ include_once("classes/models/spotify/spotify-track.php");
 // Include my Spotify data models
 include_once("classes/models/my/album.php");
 include_once("classes/models/my/artist.php");
-include_once("classes/models/my/collection.php");
 include_once("classes/models/my/track.php");
 
 // Include general
@@ -185,6 +184,27 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 	// /api/v1/tracks
 	if(isset($routes[1]) && $routes[1] === "tracks") {
+
+		// /api/v1/tracks/add-labels/[track-id]
+		if(isset($routes[2]) && $routes[2] === "add-labels") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+			$trackID = @$routes[3];
+			include_once("tracks/add-labels.php");
+
+		}	// /api/v1/tracks/add-labels/[track-id]
+
+		// /api/v1/tracks/remove-label/[track-id]/[label-id]
+		if(isset($routes[2]) && $routes[2] === "remove-label") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+			$trackID = @$routes[3];
+			$labelID = @$routes[4];
+			include_once("tracks/remove-label.php");
+
+		}	// /api/v1/tracks/remove-label/[track-id]/[label-id]
 
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
