@@ -74,6 +74,7 @@ class Collection {
 		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;		// Filter at least x labels if filter is set
 		filtered = this.filters.lteXLabels ? filtered.filter(t => t.labels.length <= this.filters.lteXLabels) : filtered;		// Filter at most x labels if filter is set
 		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
+		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered; // Filter added before if filter is set
 		this.filtered = filtered;
 		return filtered;
 
