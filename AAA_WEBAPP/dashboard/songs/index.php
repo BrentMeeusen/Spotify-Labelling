@@ -66,6 +66,30 @@ session_start();
 							<input type="number" class="filter-input" data-search="max-labels">
 						</div>
 					</div>
+					<div class="row">
+						<div class="text">
+							<p>Added before</p>
+							<input type="date" class="filter-input" data-search="added-before">
+						</div>
+					</div>
+					<div class="row">
+						<div class="text">
+							<p>Added after</p>
+							<input type="date" class="filter-input" data-search="added-after">
+						</div>
+					</div>
+					<div class="row">
+						<div class="text">
+							<p>Released before</p>
+							<input type="date" class="filter-input" data-search="released-before">
+						</div>
+					</div>
+					<div class="row">
+						<div class="text">
+							<p>Released after</p>
+							<input type="date" class="filter-input" data-search="released-after">
+						</div>
+					</div>
 				</div>
 
 			</div>
