@@ -52,8 +52,8 @@ class Collection {
 				this.filters.addedBefore = (addedBefore.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedBefore.setHours(23, 59, 59, 999));
 				break;
 			case "added-after":
-				const addedAfter = (value ? new Date(value) : new Date(9999, 1, 1));
-				this.filters.addedAfter = (addedAfter.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedAfter.setHours(0, 0, 0, 0));
+				const addedAfter = (value ? new Date(value) : new Date(1000, 1, 1));
+				this.filters.addedAfter = (addedAfter.getFullYear() < 1000 ? new Date(1000, 1, 1) : addedAfter.setHours(0, 0, 0, 0));
 				break;
 		}
 
@@ -81,6 +81,9 @@ class Collection {
 		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered; // Filter added before if filter is set
 		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered; // Filter added after if filter is set
 		this.filtered = filtered;
+
+		console.log(this.filters);
+
 		return filtered;
 
 	}
