@@ -82,8 +82,6 @@ class Collection {
 		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered; // Filter added after if filter is set
 		this.filtered = filtered;
 
-		console.log(this.filters);
-
 		return filtered;
 
 	}
