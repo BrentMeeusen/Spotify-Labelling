@@ -28,7 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-## 0.13.0-alpha - 2021/08/xx
+## 0.13.0-alpha - 2021/08/24
 
 ### Added
 - Filtering your tracks on:
@@ -36,6 +36,8 @@ STANDARD NEW VERSION:
 	- Track name
 	- Label name
 	- Number of labels
+	- Released before/after
+	- Added before/after
 - Add labels to tracks (multiple labels at once)
 - Remove labels from tracks
 - Add labels to all selected tracks at once (multiple labels at once)
