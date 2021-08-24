@@ -48,8 +48,12 @@ class Collection {
 				this.filters.tracks = value.toLowerCase();
 				break;
 			case "added-before":
-				const date = (value ? new Date(value) : new Date(9999, 1, 1));
-				this.filters.addedBefore = (date.getFullYear() < 1000 ? new Date(9999, 1, 1) : date.setHours(23, 59, 59, 999));
+				const addedBefore = (value ? new Date(value) : new Date(9999, 1, 1));
+				this.filters.addedBefore = (addedBefore.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedBefore.setHours(23, 59, 59, 999));
+				break;
+			case "added-after":
+				const addedAfter = (value ? new Date(value) : new Date(9999, 1, 1));
+				this.filters.addedAfter = (addedAfter.getFullYear() < 1000 ? new Date(9999, 1, 1) : addedAfter.setHours(0, 0, 0, 0));
 				break;
 		}
 
@@ -75,6 +79,7 @@ class Collection {
 		filtered = this.filters.lteXLabels ? filtered.filter(t => t.labels.length <= this.filters.lteXLabels) : filtered;		// Filter at most x labels if filter is set
 		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
 		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered; // Filter added before if filter is set
+		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered; // Filter added after if filter is set
 		this.filtered = filtered;
 		return filtered;
 
