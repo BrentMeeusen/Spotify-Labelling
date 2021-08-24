@@ -49,7 +49,7 @@ class Collection {
 				break;
 			case "added-before":
 				const date = (value ? new Date(value) : new Date(9999, 1, 1));
-				this.filters.addedBefore = (date.getFullYear() < 1000 ? new Date(9999, 1, 1) : date);
+				this.filters.addedBefore = (date.getFullYear() < 1000 ? new Date(9999, 1, 1) : date.setHours(23, 59, 59, 999));
 				break;
 		}
 
