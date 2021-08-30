@@ -111,11 +111,12 @@ class SpotifyApi {
 
 		$tracks = [];
 		$next = ".com/v1/me/tracks";
+		$i = 1;
 
 		do {
 
 			// Get the tracks, only add limit parameter if we're at the first parameter
-			$response = self::sendRequest(explode(".com/", $next)[1], "GET");
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ($i === 1 ? ["limit" => 50] : NULL));
 
 			// Store the tracks
 			foreach($response->items as $track) {
@@ -124,6 +125,7 @@ class SpotifyApi {
 
 			// Setup the next request
 			$next = $response->next;
+			$i++;
 
 		}
 		while($next !== NULL);
