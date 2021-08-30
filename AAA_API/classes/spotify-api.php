@@ -102,6 +102,42 @@ class SpotifyApi {
 
 
 
+	/**
+	 * Gets the liked tracks from the user
+	 * 
+	 * @return		array		The tracks
+	 */
+	public static function getMyLikedTracks() : array {
+
+		$tracks = [];
+		$next = ".com/v1/me/tracks";
+		$i = 1;
+
+		do {
+
+			// Get the tracks, only add limit parameter if we're at the first parameter
+			$response = self::sendRequest(explode(".com/", $next)[1], "GET", ($i === 1 ? ["limit" => 50] : NULL));
+
+			// Store the tracks
+			foreach($response->items as $track) {
+				array_push($tracks, $track);
+			}
+
+			// Setup the next request
+			$next = $response->next;
+			$i++;
+
+		}
+		while($next !== NULL);
+
+		return $tracks;
+
+	}
+
+
+
+
+
 
 
 

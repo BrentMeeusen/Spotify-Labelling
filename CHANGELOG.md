@@ -28,6 +28,21 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.13.1-alpha - 2021/08/30
+
+### Added
+- Importing your Liked Songs
+- Alphabetical order for labels and songs
+
+### Changed
+- 404 to 200 status code when no labels are found
+
+### Fixed
+- Unkown artists bug when removing song from Your Songs
+- Bug where label creator was null
+
+
+
 ## 0.13.0-alpha - 2021/08/24
 
 ### Added

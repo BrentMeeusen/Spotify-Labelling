@@ -162,7 +162,8 @@ class ITrack {
 			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
 			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID
 			WHERE TTU.UserID = ?
-			GROUP BY T.SpotifyID;", $userID);
+			GROUP BY T.SpotifyID
+			ORDER BY T.Name ASC;", $userID);
 
 		// Create Track objects and store them in an array
 		$ret = [];
@@ -253,7 +254,7 @@ class ITrack {
 		}
 
 		// For each artist
-		foreach($this->artists->data as $artist) {
+		foreach($this->artists as $artist) {
 
 			// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
 			$links = Database::find("SELECT * FROM TRACKS_TO_ARTISTS WHERE ArtistID = ?;", $artist->id);

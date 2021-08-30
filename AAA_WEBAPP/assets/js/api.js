@@ -336,7 +336,7 @@ Api.show = {
 				}
 				else {
 					row.appendChild(Api.createIcon("import", async () => {
-						const res = await Api.sendRequest("api/v1/spotify/import/" + list.spotifyID, "POST");
+						const res = await Api.sendRequest("api/v1/spotify/import/" + (list.spotifyID || ""), "POST");
 						Popup.show(res.message || res.error, (res.code >= 200 && res.code <= 299 ? "success" : "error"), 5000);
 					}));
 				}
