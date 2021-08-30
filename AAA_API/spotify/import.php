@@ -4,7 +4,8 @@
 SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
 // Get the tracks
-$data = SpotifyApi::getTracksFromPlaylist($playlistID);
+if(empty($playlistID)) { $data = SpotifyApi::getMyLikedTracks(); }
+else { $data = SpotifyApi::getTracksFromPlaylist($playlistID); }
 
 // Parse the data using the models
 $tracks = SpotifyCollection::createTrackCollection($data);
