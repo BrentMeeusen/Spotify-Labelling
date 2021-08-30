@@ -33,6 +33,9 @@ STANDARD NEW VERSION:
 ### Added
 - Importing your Liked Songs
 
+### Changed
+- 404 to 200 status code when no labels are found
+
 ### Fixed
 - Unkown artists bug when removing song from Your Songs
 - Bug where label creator was null
