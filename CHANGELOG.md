@@ -28,6 +28,17 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.13.1-alpha - 2021/08/30
+
+### Added
+- Importing your Liked Songs
+
+### Fixed
+- Unkown artists bug when removing song from Your Songs
+- Bug where label creator was null
+
+
+
 ## 0.13.0-alpha - 2021/08/24
 
 ### Added
