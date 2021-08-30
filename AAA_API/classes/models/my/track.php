@@ -253,7 +253,7 @@ class ITrack {
 		}
 
 		// For each artist
-		foreach($this->artists->data as $artist) {
+		foreach($this->artists as $artist) {
 
 			// If there are no other TTArtist links (aka there are no tracks from that artist anymore), remove the artist
 			$links = Database::find("SELECT * FROM TRACKS_TO_ARTISTS WHERE ArtistID = ?;", $artist->id);
