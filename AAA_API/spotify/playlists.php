@@ -5,6 +5,7 @@ SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 
 // Send a request to the endpoint at Spotify
 $data = SpotifyApi::getMyPlaylists();
+array_push($data, SpotifyApi::getMyLikedTracks());
 
 // Parse the data using the models
 $playlists = SpotifyCollection::createPlaylistCollection($data);
