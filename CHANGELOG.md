@@ -32,6 +32,7 @@ STANDARD NEW VERSION:
 
 ### Added
 - Importing your Liked Songs
+- Alphabetical order for labels and songs
 
 ### Changed
 - 404 to 200 status code when no labels are found
