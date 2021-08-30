@@ -238,7 +238,7 @@ class Label extends Database {
 	public static function findAvailable(string $ownerID) : ?array {
 
 		// If no label is found, return NULL
-		$res = parent::find("SELECT L.* FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE OwnerID = ?;", $ownerID);
+		$res = parent::find("SELECT L.* FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE OwnerID = ? ORDER BY L.Name ASC;", $ownerID);
 		if(count($res) === 0) {
 			return NULL;
 		}
