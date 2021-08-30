@@ -44,7 +44,7 @@ class Label extends Database {
 		$labels = [];
 		$ids = explode(",", $track->LabelIDs);
 		$names = explode(",", $track->LabelNames);
-		$creator = $track->Creator;
+		$creator = $track->Creator || "";
 
 		for($i = 0; $i < count($ids); $i++) {
 			array_push($labels, new Label($ids[$i], $creator, $names[$i]));
