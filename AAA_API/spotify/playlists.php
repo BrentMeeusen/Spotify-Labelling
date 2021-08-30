@@ -12,7 +12,7 @@ $playlists = SpotifyCollection::createPlaylistCollection($data);
 // Get liked tracks
 @$liked->name = "Liked Songs";
 $liked->id = NULL;
-@$liked->tracks->total = count(SpotifyApi::getMyLikedTracks());
+@$liked->numTracks = count(SpotifyApi::getMyLikedTracks());
 array_unshift($playlists->data, $liked);
 
 // Return the useful playlist data
