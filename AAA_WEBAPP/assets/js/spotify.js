@@ -107,8 +107,10 @@ class Collection {
 
 
 
+Track.ID = 1;
 class Track {
 
+	privateID = Track.ID++;
 	id = "";
 	artists = [];
 	labels = [];
