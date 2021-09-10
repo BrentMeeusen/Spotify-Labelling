@@ -61,14 +61,16 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
+		window.addEventListener("load", async () => {
+			
 		// Get the Spotify email address if user has just logged in
 		const message = <?php print(isset($message) ? "\"$message\"" : "null"); ?>;
-		// if(message === "Logged in successfully.") {
-		window.addEventListener("load", async () => {
-			const res = await Api.sendRequest("api/v1/users/set-spotify-email/", "POST");
-			console.log(res);
+			if(message === "Logged in successfully.") {
+				const res = await Api.sendRequest("api/v1/users/set-spotify-email/", "POST");
+				Api.show.spotifyEmail(res.data);
+			}
+
 		});
-		// }
 
 		</script>
 
