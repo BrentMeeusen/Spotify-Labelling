@@ -5,7 +5,7 @@
 // If the user isn't found, return an error
 $user = User::findByEmailAddress($emailAddress);
 if($user === NULL) {
-	ApiResponse::httpResponse(404, ["error" => "We couldn't find your account.", "data" => $payload->user]);
+	ApiResponse::httpResponse(404, ["error" => "We couldn't find your account."]);
 }
 
 // Send the email
