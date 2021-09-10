@@ -18,8 +18,8 @@ class Api {
 	 */
 	static async sendRequest(location, method, values) {
 
-		// If we're already sending, return false
-		if(Api.isSending === true) { return false; }
+		// If we're already sending, return an object that can be read by the Popup
+		if(Api.isSending === true) { return { code: 1, error: "There is still a request that is not processed, please wait..." }; }
 		Api.isSending = true;
 
 		// Send a request and return the result
