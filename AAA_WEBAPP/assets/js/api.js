@@ -347,6 +347,19 @@ Api.show = {
 
 		}	// Api.show.playlists.import
 
-	}	// Api.show.playlists
+	},	// Api.show.playlists
+
+
+
+
+
+	/**
+	 * Shows the email address of the user
+	 * 
+	 * @param {string} email The email address
+	 */
+	spotifyEmail(email) {
+		document.getElementById("spotify-email").innerHTML = email;
+	}
 
 }	// Api.show
