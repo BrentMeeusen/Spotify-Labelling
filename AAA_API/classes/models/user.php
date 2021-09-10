@@ -424,6 +424,13 @@ class User extends Database {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
+
+		// Get all tracks that the user has and delete them
+		$ids = Database::find("SELECT TTU.TrackID AS trackID FROM TRACKS_TO_USERS AS TTU WHERE UserID = ?;", $user->publicID);
+
+		for($ids as $id) {
+			ITrack::findBySpotifyId($id->trackID)->removeUser($user->publicID);
+		}
 		
 		// Delete the user
 		return parent::deleteEntry($user, "USERS");
