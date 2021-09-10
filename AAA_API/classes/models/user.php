@@ -136,6 +136,22 @@ class User extends Database {
 
 
 
+	/**
+	 * Sets the new password
+	 * 
+	 * @param		string		The new password
+	 * @return		User		The updated user
+	 */
+	public function setPassword(string $newPassword) : User {
+
+		return User::update($user, ["Password" => $newPassword]);
+
+	}
+
+
+
+
+
 
 
 
