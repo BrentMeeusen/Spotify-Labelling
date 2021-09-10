@@ -43,3 +43,8 @@ At this point, I am not aware of any issues in v0.13.1-alpha.
 If you encounter problems with using the program, please create an issue with the tag `help`.
 
 
+
+## Credits
+This project has been created by me, but I have been helped by a couple of my friends who I asked to be alpha tester. My special thanks go to [Teambeurnaut](https://github.com/Teambeurnaut) for being the most dedicated alpha tester. He helped me find many bugs and came up with some small features which, in total, made the application better usable.
+
+
