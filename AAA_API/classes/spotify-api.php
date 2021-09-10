@@ -28,6 +28,21 @@ class SpotifyApi {
 
 
 
+	/**
+	 * Gets the email address the user is logged in with
+	 * 
+	 * @return		string		The email address
+	 */
+	public static function getEmailAddress() : string {
+
+		$profile = self::sendRequest("v1/me", "GET");
+		return $profile->email;
+
+	}
+
+
+
+
 
 	/**
 	 * Gets the songs from a given playlist from the Spotify API
