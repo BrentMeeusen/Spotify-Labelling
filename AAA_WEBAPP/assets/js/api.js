@@ -33,8 +33,8 @@ class Api {
 		});
 
 		// Get the response
-		const res = await response.json();
 		Api.isSending = false;
+		const res = await response.json();
 
 		// Show error popup for rate limiting
 		if(res.code === 429) {
