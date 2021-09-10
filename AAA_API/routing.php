@@ -255,7 +255,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
-			$token = @$post->AccessToken;
+			$emailAddress = @$routes[3];
 			include_once("users/reset-password.php");
 
 		}	// /api/v1/users/reset-password
