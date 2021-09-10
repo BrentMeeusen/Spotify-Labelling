@@ -152,9 +152,11 @@ class User extends Database {
 
 	/**
 	 * Sets the user Spotify email
+	 * 
+	 * @return		User		The upated user
 	 */
-	public function setSpotifyEmail() : void {
-		User::update($this, ["SpotifyEmail" => SpotifyApi::getEmailAddress()]);
+	public function setSpotifyEmail() : User {
+		return User::update($this, ["SpotifyEmail" => SpotifyApi::getEmailAddress()]);
 	}
 
 
