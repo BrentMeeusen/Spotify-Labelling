@@ -160,7 +160,7 @@ Api.get = {
 	tracks: async () => {
 		const res = await Api.sendRequest("api/v1/tracks/get/", "GET");
 
-		Collection.tracks = [];
+		Collection.reset();
 		for(const track of res.data) {
 			const t = new Track(track.id, track.name, track.artists, new Date(track.addedAt), new Date(track.releaseDate), track.labels);
 			Collection.add(t);
