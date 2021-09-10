@@ -38,7 +38,7 @@ $publicUserID = @$_GET["id"];
 				<p>Here you can reset the password for <?php print($email); ?>.</p>
 			</div>
 
-			<div class="form register-form" name="html-js-form" data-action="api/v1/set-password" data-method="POST" data-redirect="">
+			<div class="form register-form" name="html-js-form" data-action="api/v1/users/set-password" data-method="POST" data-redirect="">
 
 				<input name="input Password"		type="password"		placeholder="PASSWORD" 			id="password">
 				<input name="input PasswordRepeat"	type="password"		placeholder="REPEAT PASSWORD"	id="password-repeat">
