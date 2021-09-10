@@ -259,6 +259,18 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/forgot-password
 
+		// /api/v1/users/set-password
+		if(isset($routes[2]) && $routes[2] === "set-password") {
+
+			Request::checkRequestMethod(["POST"]);
+
+			$emailAddress = @$post->EmailAddress;
+			$password = $post->Password;
+			$userID = $post->UserID;
+			include_once("users/set-password.php");
+
+		}	// /api/v1/users/set-password
+
 		// /api/v1/users/create
 		if(isset($routes[2]) && $routes[2] === "create") {
 
