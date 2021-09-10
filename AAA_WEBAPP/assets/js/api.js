@@ -227,7 +227,7 @@ Api.show = {
 			const textContainer = Api.createElement("div", { classList: "text" });
 
 			// Add track title
-			textContainer.appendChild(Api.createElement("p", { innerHTML: track.name, classList: "title" }));
+			textContainer.appendChild(Api.createElement("p", { innerHTML: track.privateID + ". " + track.name, classList: "title" }));
 
 			// Add artists
 			const artists = [];
