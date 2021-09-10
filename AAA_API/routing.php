@@ -253,7 +253,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		if(isset($routes[2]) && $routes[2] === "forgot-password") {
 
 			Request::checkRequestMethod(["POST"]);
-			$payload = Request::requireToken($jwt);
 
 			$emailAddress = @$routes[3];
 			include_once("users/forgot-password.php");
