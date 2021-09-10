@@ -29,10 +29,10 @@ session_start();
 
 			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="assets/php/auth.php">
 
-			<input name="input Identifier"		type="text"			placeholder="EMAIL ADDRESS">
-			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
+				<input name="input Identifier"		type="text"			placeholder="EMAIL ADDRESS">
+				<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
 
-			<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
 
 			</div>
 
