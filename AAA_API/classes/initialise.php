@@ -47,6 +47,7 @@ class Initialise extends Database {
 			Password		VARCHAR(256)	NOT NULL,
 			AccountStatus	INT(1)			NOT NULL,
 			AccessToken		VARCHAR(256),
+			SpotifyEmail	VARCAHR(250),
 			
 			PRIMARY KEY (ID),
 			UNIQUE(PublicID)
