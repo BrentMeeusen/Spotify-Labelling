@@ -18,8 +18,8 @@ class Api {
 	 */
 	static async sendRequest(location, method, values) {
 
-		// If we're already sending, return false
-		if(Api.isSending === true) { return false; }
+		// If we're already sending, return an object that can be read by the Popup
+		if(Api.isSending === true) { return { code: 1, error: "There is still a request that is not processed, please wait..." }; }
 		Api.isSending = true;
 
 		// Send a request and return the result
@@ -33,8 +33,8 @@ class Api {
 		});
 
 		// Get the response
-		const res = await response.json();
 		Api.isSending = false;
+		const res = await response.json();
 
 		// Show error popup for rate limiting
 		if(res.code === 429) {
@@ -166,7 +166,7 @@ Api.get = {
 			Collection.add(t);
 		}
 
-		return (res.data ? res.data : res);
+		return (res.data ? Collection.tracks : res);
 	},
 
 
@@ -227,7 +227,7 @@ Api.show = {
 			const textContainer = Api.createElement("div", { classList: "text" });
 
 			// Add track title
-			textContainer.appendChild(Api.createElement("p", { innerHTML: track.name, classList: "title" }));
+			textContainer.appendChild(Api.createElement("p", { innerHTML: track.privateID + ". " + track.name, classList: "title" }));
 
 			// Add artists
 			const artists = [];

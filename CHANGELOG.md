@@ -28,6 +28,17 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.13.2-alpha - 2021/09/10
+
+### Added
+- Numbers in "Your songs" list so it's easier to remember where you left off
+
+### Fixed
+- After an invalid JSON request, you'd have to refresh the page to use the application again
+- Trying to import local files (which is not possible)
+
+
+
 ## 0.13.1-alpha - 2021/08/30
 
 ### Added
