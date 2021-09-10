@@ -8,10 +8,10 @@ if($user === NULL) {
 
 // Set the Spotify email
 SpotifyApi::setAuthorisationToken($payload->user->accessToken);
-$user->setSpotifyEmail();
+$user = $user->setSpotifyEmail();
 
 // Return
-ApiResponse::httpResponse(200, ["message" => "Spotify email set successfully."]);
+ApiResponse::httpResponse(200, ["message" => "Spotify email set successfully.", "data" => $user->spotifyEmail]);
 
 
 ?>
