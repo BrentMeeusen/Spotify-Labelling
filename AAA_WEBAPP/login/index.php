@@ -36,6 +36,8 @@ session_start();
 
 			</div>
 
+			<p class="forgot-password">Forgot your password? Click <span id="forgot-password">here</span> to reset your password.</p>
+
 
 
 			<!-- <img class="lazy-image" style="margin-top: 100vh;" data-src="../assets/images/test-image", data-extension="png"> -->
