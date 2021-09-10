@@ -278,9 +278,9 @@ class User extends Database {
 	/**
 	 * Sends an email to request a new password
 	 */
-	public static function requestNewPassword(string $email) : void {
+	public function requestNewPassword() : void {
 
-		$link = "http://spotify-labelling.21webb.nl/request-password?email=" . $email;
+		$link = "http://spotify-labelling.21webb.nl/request-password?email=" . $this->email . "&id=" . $this->publicID;
 
 		$body = "<h2>Forgot password</h2><p>Click <a href='$link'>here</a> to reset your password. If you did not request this, you can ignore this email.</p><p>Cannot click the link? Then paste the following URL in your browser: $link</p>";
 
