@@ -250,6 +250,30 @@ class User extends Database {
 
 
 	/**
+	 * Sends an email
+	 * 
+	 * @param		string		The email address to send it to
+	 * @param		string		The subject of the email
+	 * @param		string		The body of the email
+	 */
+	private static function sendMail(string $to, string $subject, string $email) : void {
+
+		$body = "<html><head></head><body>$email</body></html>";
+		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
+				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
+				"Organization: Spotify Labelling\r\n" . 
+				"MIME-Version: 1.0\r\n" . 
+				"Content-type: text/html; charset: utf8\r\n" . 
+				"X-Priority: 3\r\n" . 
+				"X-Mailer: PHP" . phpversion() ." \r\n";
+
+		@mail($to, $subject, $body, $headers);
+
+	}
+
+
+
+	/**
 	 * Sends a verification email
 	 * 
 	 * @param		string		The public ID of the user
@@ -276,6 +300,11 @@ class User extends Database {
 		@mail($email, $subject, $body, $headers);
 
 	} 
+
+
+
+
+
 
 
 
