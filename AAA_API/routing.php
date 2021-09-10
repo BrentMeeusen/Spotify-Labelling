@@ -249,16 +249,16 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/add-token
 
-		// /api/v1/users/reset-password
-		if(isset($routes[2]) && $routes[2] === "reset-password") {
+		// /api/v1/users/forgot-password
+		if(isset($routes[2]) && $routes[2] === "forgot-password") {
 
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 
 			$emailAddress = @$routes[3];
-			include_once("users/reset-password.php");
+			include_once("users/forgot-password.php");
 
-		}	// /api/v1/users/reset-password
+		}	// /api/v1/users/forgot-password
 
 		// /api/v1/users/create
 		if(isset($routes[2]) && $routes[2] === "create") {
