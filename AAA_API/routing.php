@@ -254,7 +254,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 			Request::checkRequestMethod(["POST"]);
 
-			$emailAddress = @$routes[3];
+			$emailAddress = @$routes[3] || "";
 			include_once("users/forgot-password.php");
 
 		}	// /api/v1/users/forgot-password
