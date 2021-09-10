@@ -48,7 +48,7 @@ class SpotifyApi {
 
 			// Store the playlists
 			foreach($response->items as $track) {
-				array_push($tracks, $track);
+				if(!$track->is_local) { array_push($tracks, $track); }
 			}
 
 			// Setup the next request
