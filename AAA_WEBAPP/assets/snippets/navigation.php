@@ -8,6 +8,8 @@
 	<div class="nav-btn" id="nav-close">
 		<img src="/Spotify Labelling/AAA_WEBAPP/assets/icons/menu/menu-close.png">
 	</div>
+
+	<p>You're connected with the Spotify account at <span id="spotify-email"></span</p>
 	
 	<ul>
 		<li><a href="/Spotify Labelling/AAA_WEBAPP/dashboard/">Dashboard</a></li>
