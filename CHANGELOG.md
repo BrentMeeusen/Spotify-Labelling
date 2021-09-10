@@ -33,6 +33,9 @@ STANDARD NEW VERSION:
 
 ### Added
 - Numbers in "Your songs" list so it's easier to remember where you left off
+
+### Fixed
+- Bug where after an invalid JSON request, you'd have to refresh the page to use the application again
  -->
 
 
