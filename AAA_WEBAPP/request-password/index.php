@@ -45,7 +45,7 @@ $publicUserID = @$_GET["id"];
 				<input name="input EmailAddress" value="<?php print($email); ?>" type="text" hidden>
 				<input name="input UserID" value="<?php print($publicUserID); ?>" type="text" hidden>
 
-				<button type="submit" name="html-js-form-submit" value="submit" id="submit">LOGIN</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="submit" disabled>SET PASSWORD</button>
 
 			</div>
 
