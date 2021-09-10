@@ -144,7 +144,7 @@ class User extends Database {
 	 */
 	public function setPassword(string $newPassword) : User {
 
-		return User::update($user, ["Password" => $newPassword]);
+		return User::update($this, ["Password" => $newPassword]);
 
 	}
 
