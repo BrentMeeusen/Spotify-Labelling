@@ -282,22 +282,12 @@ class User extends Database {
 	public static function sendVerificationEmail(string $id, string $email) : void {
 
 		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $id . "&email=" . $email;
-
-		$subject = "Verify Your Account";
 		
 		$body = "<html><head></head><body>";
 		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
 		$body .= "</body></html>";
 
-		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
-				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
-				"Organization: Spotify Labelling\r\n" . 
-				"MIME-Version: 1.0\r\n" . 
-				"Content-type: text/html; charset: utf8\r\n" . 
-				"X-Priority: 3\r\n" . 
-				"X-Mailer: PHP" . phpversion() ." \r\n";
-
-		@mail($email, $subject, $body, $headers);
+		self::sendMail($email, "Verify Your Account", $body);
 
 	} 
 
