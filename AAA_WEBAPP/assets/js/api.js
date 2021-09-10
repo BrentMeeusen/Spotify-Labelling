@@ -166,7 +166,7 @@ Api.get = {
 			Collection.add(t);
 		}
 
-		return (res.data ? res.data : res);
+		return (res.data ? Collection.tracks : res);
 	},
 
 
