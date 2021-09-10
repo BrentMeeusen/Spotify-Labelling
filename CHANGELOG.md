@@ -28,6 +28,15 @@ STANDARD NEW VERSION:
 
 -->
 
+<!-- 
+## 0.1x.x-alpha - 2021/09/xx
+
+### Added
+- Numbers in "Your songs" list so it's easier to remember where you left off
+ -->
+
+
+
 ## 0.13.1-alpha - 2021/08/30
 
 ### Added
