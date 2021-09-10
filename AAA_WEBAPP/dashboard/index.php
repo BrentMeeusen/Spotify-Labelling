@@ -61,6 +61,12 @@ session_start();
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
 
+		// Get the Spotify email address if user has just logged in
+		const message = <?php print(isset($message) ? "\"$message\"" : "null"); ?>;
+		if(message === "Logged in successfully.") {
+			Api.sendRequest("api/v1/users/set-spotify-email/", "POST");
+		}
+
 		</script>
 
 	</body>
