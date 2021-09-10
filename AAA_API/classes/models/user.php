@@ -280,7 +280,10 @@ class User extends Database {
 	 */
 	public static function requestNewPassword(string $email) : void {
 
+		$link = "http://spotify-labelling.21webb.nl/request-password?email=" . $email;
+
 		$body = "<h2>Forgot password</h2><p>Click <a href='$link'>here</a> to reset your password. If you did not request this, you can ignore this email.</p><p>Cannot click the link? Then paste the following URL in your browser: $link</p>";
+
 		self::sendMail($email, "Spotify Labelling | Forgot password", $body);
 
 	}
