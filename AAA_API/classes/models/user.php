@@ -14,6 +14,7 @@ class User extends Database {
 	public string $accountStatusText;
 
 	public ?string $accessToken;
+	public ?string $spotifyEmail;
 
 
 
@@ -27,13 +28,15 @@ class User extends Database {
 	 * @param		string		Email address
 	 * @param		int			Account status
 	 * @param		string		Access token
+	 * @param		string		Spotify email address
 	 */
-	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
+	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL, $spotifyEmail = NULL) {
 
 		$this->publicID = $publicID;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 		$this->accessToken = $accessToken;
+		$this->spotifyEmail = $spotifyEmail;
 
 		$status = $this->setAccountStatus($accountStatus);
 		$this->accountStatus = $status["status"];
@@ -53,7 +56,7 @@ class User extends Database {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
+		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"], $values["SpotifyEmail"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -193,7 +196,7 @@ class User extends Database {
 
 		// Set the current payload
 		$payload = [
-			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
+			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken, "spotifyEmail" => $this->spotifyEmail],
 			"rights" => [
 				// Rights for all users
 				"users" => ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE],
@@ -405,7 +408,7 @@ class User extends Database {
 		$user = parent::prepareUpdate($user, $values);
 
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ?, SpotifyEmail = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
@@ -413,7 +416,7 @@ class User extends Database {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("ssisi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
+		$stmt->bind_param("ssissi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->spotifyEmail, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);

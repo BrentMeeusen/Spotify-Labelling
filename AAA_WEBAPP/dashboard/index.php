@@ -63,9 +63,12 @@ session_start();
 
 		// Get the Spotify email address if user has just logged in
 		const message = <?php print(isset($message) ? "\"$message\"" : "null"); ?>;
-		if(message === "Logged in successfully.") {
-			Api.sendRequest("api/v1/users/set-spotify-email/", "POST");
-		}
+		// if(message === "Logged in successfully.") {
+		window.addEventListener("load", async () => {
+			const res = await Api.sendRequest("api/v1/users/set-spotify-email/", "POST");
+			console.log(res);
+		});
+		// }
 
 		</script>
 
