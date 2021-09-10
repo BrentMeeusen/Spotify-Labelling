@@ -273,7 +273,23 @@ class User extends Database {
 
 
 
+
+
 	/**
+	 * Sends an email to request a new password
+	 */
+	public static function requestNewPassword(string $email) : void {
+
+		$body = "<h2>Forgot password</h2><p>Click <a href='$link'>here</a> to reset your password. If you did not request this, you can ignore this email.</p><p>Cannot click the link? Then paste the following URL in your browser: $link</p>";
+		self::sendMail($email, "Spotify Labelling | Forgot password", $body);
+
+	}
+
+
+
+
+
+	 /**
 	 * Sends a verification email
 	 * 
 	 * @param		string		The public ID of the user
@@ -287,7 +303,7 @@ class User extends Database {
 		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
 		$body .= "</body></html>";
 
-		self::sendMail($email, "Verify Your Account", $body);
+		self::sendMail($email, "Spotify Labelling | Verify Your Account", $body);
 
 	} 
 
