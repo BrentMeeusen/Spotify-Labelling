@@ -249,6 +249,17 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/users/add-token
 
+		// /api/v1/users/reset-password
+		if(isset($routes[2]) && $routes[2] === "reset-password") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$token = @$post->AccessToken;
+			include_once("users/reset-password.php");
+
+		}	// /api/v1/users/reset-password
+
 		// /api/v1/users/create
 		if(isset($routes[2]) && $routes[2] === "create") {
 
