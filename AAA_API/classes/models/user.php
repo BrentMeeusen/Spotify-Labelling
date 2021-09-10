@@ -428,7 +428,7 @@ class User extends Database {
 		// Get all tracks that the user has and delete them
 		$ids = Database::find("SELECT TTU.TrackID AS trackID FROM TRACKS_TO_USERS AS TTU WHERE UserID = ?;", $user->publicID);
 
-		for($ids as $id) {
+		foreach($ids as $id) {
 			ITrack::findBySpotifyId($id->trackID)->removeUser($user->publicID);
 		}
 		
