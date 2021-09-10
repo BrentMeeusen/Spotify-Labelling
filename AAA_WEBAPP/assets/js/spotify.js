@@ -107,7 +107,6 @@ class Collection {
 
 
 
-Track.ID = 1;
 class Track {
 
 	privateID = Track.ID++;
@@ -144,3 +143,4 @@ class Track {
 	}
 
 }
+Track.ID = 1;
