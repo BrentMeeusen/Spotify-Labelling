@@ -51,3 +51,9 @@
 .nav a:hover, .nav a:active, .nav a:focus {
 	color: var(--current--highlight);
 }
+
+
+
+#spotify-email {
+	font-weight: 600;
+}
