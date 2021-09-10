@@ -11,7 +11,7 @@ SpotifyApi::setAuthorisationToken($payload->user->accessToken);
 $user->setSpotifyEmail();
 
 // Return
-ApiResponse::httpResponse(200, ["message" => "Your password was reset successfully."]);
+ApiResponse::httpResponse(200, ["message" => "Spotify email set successfully."]);
 
 
 ?>
