@@ -197,7 +197,19 @@ Api.get = {
 		import: async () => {
 			const res = await Api.sendRequest("api/v1/spotify/playlists", "GET");
 			return (res.data ? res.data : res);
-		}
+		},
+
+
+
+		/**
+		 * Gets the labels from the database
+		 * 
+		 * @returns {array} The labels
+		 */
+		mine: async () => {
+			const res = await Api.sendRequest("api/v1/playlists/", "GET");
+			return (res.data ? res.data : res);
+		},
 
 	}
 
