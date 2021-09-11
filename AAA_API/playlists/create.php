@@ -18,7 +18,7 @@ if(Playlist::findByName($name, $payload->user->id) !== NULL) {
 
 
 // Create the playlist
-$res = Playlist::create(["Creator" => $payload->user->id, "Name" => $name]);
+$res = IPlaylist::create(["Creator" => $payload->user->id, "Name" => $name]);
 
 // Properly return the results
 ApiResponse::httpResponse(200, ["message" => "The playlist was successfully created.", "data" => $res]);
