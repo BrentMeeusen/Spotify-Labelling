@@ -46,3 +46,9 @@
 .popup-big button[type="submit"][value="submit"] {
 	text-transform: uppercase;
 }
+
+.click-to-dismiss {
+	font-size: 0.85em;
+	padding-top: 0.2rem;
+	color: var(--current--text-low);
+}
