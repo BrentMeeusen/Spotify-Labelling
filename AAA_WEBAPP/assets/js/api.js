@@ -378,9 +378,7 @@ Api.show = {
 				// Create the row and text container
 				const row = Api.createElement("div", { classList: "row" });
 				const textContainer = Api.createElement("div", { classList: "text" });
-	
 				textContainer.appendChild(Api.createElement("p", { innerHTML: playlist.name }));
-				textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
 	
 				row.appendChild(textContainer);
 	
