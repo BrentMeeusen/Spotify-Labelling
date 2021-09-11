@@ -154,6 +154,24 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 
 
+	// /api/v1/playlists
+	if(isset($routes[1]) && $routes[1] === "playlists") {
+
+		// /api/v1/playlists/create
+		if(isset($routes[2]) && $routes[2] === "create") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$name = @$post->Name;
+			include_once("playlists/create.php");
+
+		}
+
+	}	// /api/v1/playlists
+
+
+
 	// /api/v1/spotify
 	if(isset($routes[1]) && $routes[1] === "spotify") {
 
