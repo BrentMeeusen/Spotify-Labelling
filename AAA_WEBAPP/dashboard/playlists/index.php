@@ -66,7 +66,7 @@ session_start();
 
 		// Load playlists
 		window.addEventListener("load", async () => {
-			Api.show.playlists(await Api.get.playlists());
+			Api.show.playlists(await Api.get.playlists.mine());
 		});
 
 		</script>
