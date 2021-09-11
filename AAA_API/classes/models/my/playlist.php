@@ -1,6 +1,6 @@
 <?php
 
-class IPlaylist {
+class IPlaylist extends Database {
 
 
 	// Declare variables
@@ -48,15 +48,15 @@ class IPlaylist {
 		$playlist = new IPlaylist(Database::generateRandomID("PLAYLISTS"), $values["Name"], $values["Creator"]);
 
 		// Create playlist
-		$stmt = Database::prepare("INSERT INTO PLAYLISTS (PublicID, Name) VALUES (?, ?);");
+		$stmt = self::prepare("INSERT INTO PLAYLISTS (PublicID, Name) VALUES (?, ?);");
 		$playlist->sanitizeInputs();
 		$stmt->bind_param("ss", $playlist->publicID, $playlist->name);
-		Database::execute($stmt);
+		self::execute($stmt);
 
 		// Create playlist-to-user
-		$stmt = Database::prepare("INSERT INTO PLAYLISTS_TO_USERS (PlaylistID, UserID) VALUES (?, ?);");
+		$stmt = self::prepare("INSERT INTO PLAYLISTS_TO_USERS (PlaylistID, UserID) VALUES (?, ?);");
 		$stmt->bind_param("ss", $playlist->publicID, $playlist->creator);
-		Database::execute($stmt);
+		self::execute($stmt);
 
 		// Return the result
 		return $playlist;
@@ -83,7 +83,7 @@ class IPlaylist {
 	public static function findByName(string $name, string $userID) : ?IPlaylist {
 
 		// If no playlist is found, return NULL
-		$res = Database::findLink("SELECT P.* FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE Name = ? AND PTU.UserID = ?;", $name, $userID);
+		$res = parent::findLink("SELECT P.* FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE Name = ? AND PTU.UserID = ?;", $name, $userID);
 		if(count($res) === 0) {
 			return NULL;
 		}
