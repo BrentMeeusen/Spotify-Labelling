@@ -357,7 +357,59 @@ Api.show = {
 
 			}	// for list of playlists
 
-		}	// Api.show.playlists.import
+		},	// Api.show.playlists.import
+
+
+
+		/**
+		 * Displays the playlists
+		 * 
+		 * @param {array} playlists The playlists array
+		 */
+		mine: (playlists) => {
+	
+			// Clears the output and gets the data
+			const output = document.getElementById("playlists");
+			output.innerHTML = "";
+	
+			// For every row
+			for(const playlist of playlists) {
+	
+				// Create the row and text container
+				const row = Api.createElement("div", { classList: "row" });
+				const textContainer = Api.createElement("div", { classList: "text" });
+	
+				textContainer.appendChild(Api.createElement("p", { innerHTML: playlist.name }));
+				textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
+	
+				row.appendChild(textContainer);
+	
+				// Create edit button
+				row.appendChild(Api.createIcon("edit", () => {
+	
+					const popup = new BigPopup("Edit Playlist", "api/v1/playlists/" + playlist.publicID + "/update", "POST", "edit-playlist-form");
+					popup.add("input", "Name", { value: playlist.name });
+					popup.show("EDIT");
+					HtmlJsForm.findById("edit-playlist-form").addCallback(async () => { Api.show.playlists.mine(await Api.get.playlists.mine()); });
+	
+				}));
+	
+				// Create remove button
+				row.appendChild(Api.createIcon("delete", () => {
+	
+					const popup = new BigPopup("Remove Playlist", "api/v1/playlists/" + playlist.publicID + "/delete", "DELETE", "remove-playlist-form");
+					popup.add("p", "text", { innerHTML: "Are you sure you want to remove \"" + playlist.name + "\"? All songs affiliated with this playlist will lose their association, and it cannot be undone." });
+					popup.show("REMOVE");
+					HtmlJsForm.findById("remove-playlist-form").addCallback(async () => { Api.show.playlists.mine(await Api.get.playlists.mine()); });
+	
+				}));
+	
+				// append row to HTML
+				output.appendChild(row);
+	
+			}
+
+		}	// Api.show.playlists.mine
 
 	},	// Api.show.playlists
 
