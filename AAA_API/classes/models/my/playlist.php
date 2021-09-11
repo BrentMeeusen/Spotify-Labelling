@@ -48,15 +48,15 @@ class IPlaylist {
 		$playlist = new IPlaylist(Database::generateRandomID("PLAYLISTS"), $values["Name"], $values["Creator"]);
 
 		// Create playlist
-		$stmt = self::prepare("INSERT INTO PLAYLISTS (PublicID, Name) VALUES (?, ?);");
+		$stmt = Database::prepare("INSERT INTO PLAYLISTS (PublicID, Name) VALUES (?, ?);");
 		$playlist->sanitizeInputs();
 		$stmt->bind_param("ss", $playlist->publicID, $playlist->name);
-		self::execute($stmt);
+		Database::execute($stmt);
 
 		// Create playlist-to-user
-		$stmt = self::prepare("INSERT INTO PLAYLISTS_TO_USERS (PlaylistID, UserID) VALUES (?, ?);");
+		$stmt = Database::prepare("INSERT INTO PLAYLISTS_TO_USERS (PlaylistID, UserID) VALUES (?, ?);");
 		$stmt->bind_param("ss", $playlist->publicID, $playlist->creator);
-		self::execute($stmt);
+		Database::execute($stmt);
 
 		// Return the result
 		return $playlist;
