@@ -285,7 +285,7 @@ Api.show = {
 			const textContainer = Api.createElement("div", { classList: "text" });
 
 			textContainer.appendChild(Api.createElement("p", { innerHTML: label.name }));
-			textContainer.appendChild(Api.createElement("p", { innerHTML: "xx songs", classList: "right" }));
+			textContainer.appendChild(Api.createElement("p", { innerHTML: label.numTracks + " song" + (label.numTracks !== 1 ? "s" : ""), classList: "right" }));
 
 			row.appendChild(textContainer);
 
