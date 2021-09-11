@@ -30,8 +30,15 @@ session_start();
 
 			<!-- Title -->
 			<h1><a href="../">Spotify Labelling</a></h1>
-			
-			<p>PLAYLISTS GO HERE</p>
+
+			<!-- Content -->
+			<div class="module">
+
+				<button class="wide" id="add-playlist">ADD PLAYLIST</button>
+
+				<div class="table-container" id="playlists"></div>
+
+			</div>
 
 		</div>	<!-- .main-wrapper -->
 
@@ -46,6 +53,21 @@ session_start();
 
 		// Protect the page
 		PageProtect.protect({ verifiedLevel: 2 });
+
+		// Add "Add playlist" button functionality
+		document.getElementById("add-playlist").addEventListener("click", () => {
+
+			const addLabel = new BigPopup("Add Playlist", "api/v1/playlists/create", "POST", "create-playlist-form");
+			addLabel.add("input", "Name", { placeholder: "PLAYLIST NAME", type: "text", maxLength: "100" });
+			addLabel.show("ADD");
+			HtmlJsForm.findById("create-playlist-form").addCallback(async () => { Api.show.playlists(await Api.get.playlists()); });
+
+		});
+
+		// Load playlists
+		window.addEventListener("load", async () => {
+			Api.show.playlists(await Api.get.playlists());
+		});
 
 		</script>
 
