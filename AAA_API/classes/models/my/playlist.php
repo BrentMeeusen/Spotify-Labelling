@@ -83,7 +83,7 @@ class IPlaylist {
 	public static function findByName(string $name, string $userID) : ?IPlaylist {
 
 		// If no playlist is found, return NULL
-		$res = parent::findLink("SELECT P.* FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE Name = ? AND PTU.UserID = ?;", $name, $userID);
+		$res = Database::findLink("SELECT P.* FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE Name = ? AND PTU.UserID = ?;", $name, $userID);
 		if(count($res) === 0) {
 			return NULL;
 		}
