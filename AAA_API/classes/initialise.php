@@ -354,6 +354,30 @@ class Initialise extends Database {
 
 
 
+	/**
+	 * Creates PLAYLISTS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createPlaylists(mysqli $conn) {
+
+		$tableName = "PLAYLISTS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			PublicID		VARCHAR(32)		NOT NULL,
+			Name			VARCHAR(100)	NOT NULL,
+
+			PRIMARY KEY (ID),
+			UNIQUE(PublicID)
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
 
 
 
@@ -380,6 +404,7 @@ class Initialise extends Database {
 		self::createTracksToUsers($conn);
 		self::createTracksToLabels($conn);
 		self::createRequests($conn);
+		self::createPlaylists($conn);
 
 		// Insert special rights into table
 
