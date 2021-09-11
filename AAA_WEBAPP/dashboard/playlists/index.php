@@ -60,13 +60,13 @@ session_start();
 			const addLabel = new BigPopup("Add Playlist", "api/v1/playlists/create", "POST", "create-playlist-form");
 			addLabel.add("input", "Name", { placeholder: "PLAYLIST NAME", type: "text", maxLength: "100" });
 			addLabel.show("ADD");
-			HtmlJsForm.findById("create-playlist-form").addCallback(async () => { Api.show.playlists(await Api.get.playlists()); });
+			HtmlJsForm.findById("create-playlist-form").addCallback(async () => { Api.show.playlists.mine(await Api.get.playlists.mine()); });
 
 		});
 
 		// Load playlists
 		window.addEventListener("load", async () => {
-			Api.show.playlists(await Api.get.playlists.mine());
+			Api.show.playlists.mine(await Api.get.playlists.mine());
 		});
 
 		</script>
