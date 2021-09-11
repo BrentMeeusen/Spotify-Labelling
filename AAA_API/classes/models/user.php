@@ -203,7 +203,9 @@ class User extends Database {
 				// Rights for user of its own
 				"user" => ["update" => TRUE, "delete" => TRUE],
 				// Rights for all labels
-				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE]
+				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE],
+				// Rights for all playlists
+				"playlist" => ["create" => TRUE, "update" => TRUE, "delete" => TRUE]
 			]
 		];
 
