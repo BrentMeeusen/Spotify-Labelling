@@ -378,6 +378,31 @@ class Initialise extends Database {
 
 
 
+	/**
+	 * Creates PLAYLISTS_TO_USERS table
+	 * 
+	 * @param		mysqli		The database to create the table in
+	 */
+	private static function createPlaylistsToUsers(mysqli $conn) {
+
+		$tableName = "PLAYLISTS_TO_USERS";
+		$SQL = "CREATE TABLE $tableName (
+			ID				INT(11)			NOT NULL	AUTO_INCREMENT,
+			PlaylistID		VARCHAR(50)		NOT NULL,
+			UserID			VARCHAR(32)		NOT NULL,
+
+			PRIMARY KEY (ID),
+			FOREIGN KEY (UserID) REFERENCES USERS (PublicID) ON DELETE CASCADE,
+			FOREIGN KEY (PlaylistID) REFERENCES PLAYLISTS (PublicID) ON DELETE CASCADE
+		);";
+		$res = self::createTable($conn, $SQL, $tableName);
+
+	}
+
+
+
+
+
 
 
 
@@ -405,6 +430,7 @@ class Initialise extends Database {
 		self::createTracksToLabels($conn);
 		self::createRequests($conn);
 		self::createPlaylists($conn);
+		self::createPlaylistsToUsers($conn);
 
 		// Insert special rights into table
 
