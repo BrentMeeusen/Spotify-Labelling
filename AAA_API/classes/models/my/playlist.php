@@ -104,6 +104,34 @@ class IPlaylist extends Database {
 
 	}
 
+
+
+
+
+	/**
+	 * Finds the playlist by creator
+	 * 
+	 * @param		string		The creator ID
+	 * @return		array		If playlists were found
+	 * @return		null		If no playlist was found
+	 */
+	public static function findByCreator(string $userID) : ?array {
+
+		// If no labels are found, return NULL
+		$res = parent::find("SELECT * FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE PTU.UserID = ?;", $userID);
+		if(count($res) === 0) {
+			return NULL;
+		}
+
+		// Loop over all labels and return the array
+		$return = [];
+		foreach($res as $row) {
+			array_push($return, new IPlaylist($row->PublicID, $row->Name, $userID));
+		}
+
+		return $return;
+	}
+
 }
 
 
