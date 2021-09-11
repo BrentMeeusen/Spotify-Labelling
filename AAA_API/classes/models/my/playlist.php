@@ -31,6 +31,17 @@ class IPlaylist extends Database {
 
 
 
+	/**
+	 * Sanitizes the inputs
+	 */
+	public function sanitizeInputs() : void {
+		$this->name = parent::sanitize($this->name);
+	}
+
+
+
+
+
 
 
 
