@@ -246,7 +246,8 @@ class Label extends Database {
 		// Loop over all labels and return the array
 		$return = [];
 		foreach($res as $row) {
-			array_push($return, new Label($row->PublicID, $ownerID, $row->Name));
+			$numTracks = parent::find("SELECT COUNT(L.ID) AS NumTracks FROM LABELS AS L JOIN TRACKS_TO_LABELS AS TTL ON TTL.LabelID = L.PublicID WHERE TTL.LabelID = ?;", $row->PublicID);
+			array_push($return, new Label($row->PublicID, $ownerID, $row->Name, $numTracks[0]->NumTracks));
 		}
 
 		return $return;
