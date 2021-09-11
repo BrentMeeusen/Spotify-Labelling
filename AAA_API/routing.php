@@ -197,6 +197,13 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/spotify/playlists
 
+		// /api/v1/playlists
+		Request::checkRequestMethod(["GET"]);
+		$payload = Request::requireToken($jwt);
+
+		$userID = @$payload->user->id;
+		include_once("playlists/get.php");
+
 	}	// /api/v1/spotify
 
 
