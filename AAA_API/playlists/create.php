@@ -11,7 +11,7 @@ if(!my_isset($name)) {
 }
 
 // If a playlist already exists, return an error
-if(Playlist::findByName($name, $payload->user->id) !== NULL) {
+if(IPlaylist::findByName($name, $payload->user->id) !== NULL) {
 	ApiResponse::httpResponse(400, ["error" => "You already have a playlist with the name \"$name\"."]);
 }
 
