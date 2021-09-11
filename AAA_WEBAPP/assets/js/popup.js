@@ -7,6 +7,17 @@ Popup.text = document.getElementById("popup-text");
 
 
 /**
+ * When the window is loaded, add "Click to dismiss" button
+ */
+window.addEventListener("load", () => {
+	Popup.container.appendChild(Api.createElement("p", { classList: "click-to-dismiss", innerHTML: "Click/tap to dismiss" }));
+});
+
+
+
+
+
+/**
  * When the popup is clicked, close it
  */
 Popup.container.addEventListener("click", () => {
@@ -26,9 +37,8 @@ Popup.container.addEventListener("click", () => {
  */
 Popup.show = (message, type, dur = 5000) => {
 
-	// Show message and "Click to dismiss"
+	// Show message
 	Popup.text.innerHTML = message;
-	Popup.container.appendChild(Api.createElement("p", { classList: "click-to-dismiss", innerHTML: "Click/tap to dismiss" }));
 
 	// Set border type
 	Popup.container.style.top = 0;
