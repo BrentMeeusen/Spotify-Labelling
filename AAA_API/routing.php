@@ -169,6 +169,34 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}
 
+		// /api/v1/playlists/[playlist-id]/delete
+		if(isset($routes[3]) && $routes[3] === "delete") {
+
+			Request::checkRequestMethod(["DELETE"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = (isset($routes[3]) ? $routes[2] : NULL);
+			include_once("playlists/delete.php");
+
+		}	// /api/v1/playlists/delete
+
+		// /api/v1/playlists/[playlist-id]/update
+		if((isset($routes[3]) && $routes[3] === "update") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = (isset($routes[3]) ? $routes[2] : NULL);
+
+			// TODO: IMPLEMENT UPDATE ENDPOINT
+
+			// $email = @$post->EmailAddress;
+			// $password = @$post->Password;
+			// $values = ["EmailAddress" => $email, "Password" => $password];
+			include_once("playlists/update.php");
+
+		}	// /api/v1/playlists/update
+
 		// /api/v1/playlists
 		Request::checkRequestMethod(["GET"]);
 		$payload = Request::requireToken($jwt);
