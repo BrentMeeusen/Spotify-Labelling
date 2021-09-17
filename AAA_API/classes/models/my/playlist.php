@@ -79,6 +79,32 @@ class IPlaylist extends Database {
 
 
 	/**
+	 * Updates the playlist
+	 * 
+	 * @param		IPlaylist	The playlist to update
+	 * @param		array		The new values in an associative array
+	 * @param		IPlaylist	The updated playlist
+	 */
+	public static function update(IPlaylist $playlist, array $values) : IPlaylist {
+
+		// Prepare the update process
+		$playlist = parent::prepareUpdate($playlist, $values);
+
+		// Do the actual updating
+		$stmt = self::prepare("UPDATE PLAYLISTS SET Name = ? WHERE PublicID = ?;");
+		$stmt->bind_param("ss", $playlist->name, $playlist->publicID);
+		self::execute($stmt);
+
+		// Return the new playlist
+		return $playlist;
+
+	}
+
+
+
+
+
+	/**
 	 * Deletes a playlist
 	 * 
 	 * @param		IPlaylist	The playlist to delete
