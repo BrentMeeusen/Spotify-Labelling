@@ -187,6 +187,8 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$payload = Request::requireToken($jwt);
 
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
+			$name = @$post->Name;
+			$values = ["Name" => $name];
 
 			// TODO: IMPLEMENT UPDATE ENDPOINT
 
