@@ -37,6 +37,7 @@ STANDARD NEW VERSION:
 - A field in the navigation menu where it displays with which Spotify account you're connected
 - "Click/tap to dismiss" message to notification popup
 - Showing how many songs have the label on the "Your Labels" page
+- Creating, updating, getting, and deleting playlists
 
 ### Changed
 - All data that is not connected to any other user than the user that deletes its account, will no longer be stored
