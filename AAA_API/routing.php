@@ -252,6 +252,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$payload = Request::requireToken($jwt);
 			$trackID = @$routes[3];
 			$labelID = @$routes[4];
+			@$post->labelOne = $labelID;
 			include_once("tracks/remove-labels.php");
 
 		}	// /api/v1/tracks/remove-labels/[track-id]/[label-id]
