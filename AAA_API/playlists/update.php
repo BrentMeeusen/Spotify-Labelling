@@ -1,5 +1,10 @@
 <?php
 
+// TODO: REMOVE WHEN ENDPOINT IS AVAILABLE
+ApiResponse::httpResponse(200, ["message" => "Editing playlists is currently unavailable."]);
+
+
+
 // If the ID is set, update ID
 if(isset($id)) {
 
