@@ -38,6 +38,7 @@ STANDARD NEW VERSION:
 - "Click/tap to dismiss" message to notification popup
 - Showing how many songs have the label on the "Your Labels" page
 - Creating, updating, getting, and deleting playlists
+- Removing a label from all visible songs
 
 ### Changed
 - All data that is not connected to any other user than the user that deletes its account, will no longer be stored
