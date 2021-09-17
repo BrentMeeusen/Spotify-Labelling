@@ -184,7 +184,7 @@ session_start();
 			});
 
 			// Load tracks
-			document.getElementById("tracks").innnerHTML = "Loading...";
+			document.getElementById("tracks").innerHTML = "Loading...";
 			const res = await Api.get.tracks();
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
 				Popup.show(res.error, "error", 5000);
