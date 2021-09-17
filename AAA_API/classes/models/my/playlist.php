@@ -84,6 +84,30 @@ class IPlaylist extends Database {
 
 
 	/**
+	 * Finds the playlist by playlist public ID
+	 * 
+	 * @param		string		The playlist ID
+	 * @return		IPlaylist	If it was found
+	 * @return		null		If no playlist was found
+	 */
+	public static function findById(string $id) : ?IPlaylist {
+
+		// If no playlist was found, return NULL
+		$res = parent::find("SELECT P.*, PTU.UserID AS UserID FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE PublicID = ?;", $id);
+		if(count($res) === 0) {
+			return NULL;
+		}
+
+		// Create and return the found playlist as an object
+		return new IPlaylist($res[0]->PublicID, $res[0]->Name, $res[0]->UserID);
+
+	}
+
+
+
+
+
+	/**
 	 * Finds the playlist by name
 	 * 
 	 * @param		string		The name of the playlist
