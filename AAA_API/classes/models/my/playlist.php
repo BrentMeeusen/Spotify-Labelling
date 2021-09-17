@@ -130,7 +130,12 @@ class IPlaylist extends Database {
 	 * @param		IPlaylist	The playlist to delete
 	 */
 	public static function delete(IPlaylist $playlist) : void {
+
+		// TODO: Delete the playlist from Spotify
+
+		// Delete it from the database
 		parent::deleteEntry($playlist, "PLAYLISTS");
+
 	}
 
 
