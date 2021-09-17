@@ -181,7 +181,7 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 		}	// /api/v1/playlists/delete
 
 		// /api/v1/playlists/[playlist-id]/update
-		if((isset($routes[3]) && $routes[3] === "update") {
+		if(isset($routes[3]) && $routes[3] === "update") {
 
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
