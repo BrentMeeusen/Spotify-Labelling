@@ -189,12 +189,6 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			$id = (isset($routes[3]) ? $routes[2] : NULL);
 			$name = @$post->Name;
 			$values = ["Name" => $name];
-
-			// TODO: IMPLEMENT UPDATE ENDPOINT
-
-			// $email = @$post->EmailAddress;
-			// $password = @$post->Password;
-			// $values = ["EmailAddress" => $email, "Password" => $password];
 			include_once("playlists/update.php");
 
 		}	// /api/v1/playlists/update
