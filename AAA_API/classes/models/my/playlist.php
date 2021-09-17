@@ -84,7 +84,7 @@ class IPlaylist extends Database {
 	 * @param		IPlaylist	The playlist to delete
 	 */
 	public static function delete(IPlaylist $playlist) : void {
-		parent::deleteEntry($label, "PLAYLISTS");
+		parent::deleteEntry($playlist, "PLAYLISTS");
 	}
 
 
