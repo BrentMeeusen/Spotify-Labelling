@@ -42,6 +42,7 @@ STANDARD NEW VERSION:
 
 ### Changed
 - All data that is not connected to any other user than the user that deletes its account, will no longer be stored
+- The scopes that are required for the application to work
 
 ### Fixed
 - Numbers in "Your songs" wouldn't reset after modifying labels
