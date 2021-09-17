@@ -48,7 +48,7 @@ class SpotifyAlbum implements SpotifyData {
 		}
 
 		// If the track-album link does not exist yet
-		if(Database::findTrackToAlbum($trackID, $this->id) === NULL) {
+		if(count(Database::findLink("SELECT * FROM TRACKS_TO_ALBUMS WHERE TrackID = ? AND AlbumID = ?;", $trackID, $this->id)) === 0) {
 
 			// Store the track-album link
 			$stmt = Database::prepare("INSERT INTO TRACKS_TO_ALBUMS (TrackID, AlbumID) VALUES (?, ?);");
