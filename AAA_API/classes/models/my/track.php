@@ -131,8 +131,7 @@ class ITrack {
 			JOIN ARTISTS AS ART ON ART.SpotifyID = TTART.ArtistID 
 			LEFT JOIN TRACKS_TO_LABELS AS TTL ON TTL.TrackID = T.SpotifyID	-- Always join track, even if no label exists
 			LEFT JOIN LABELS AS L ON L.PublicID = TTL.LabelID
-			WHERE T.SpotifyID = ?
-			GROUP BY T.SpotifyID;", $spotifyID);
+			WHERE T.SpotifyID = ?;", $spotifyID);
 
 		if($tracks === NULL || empty($tracks)) { return NULL; }
 		return new ITrack($tracks[0]);
