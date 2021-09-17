@@ -42,6 +42,26 @@ class IPlaylist extends Database {
 
 
 
+	/**
+	 * Default method for duplicates check
+	 * 
+	 * @return		bool		False if no duplicates are found
+	 * @return		array		[key => Property, value => Duplicate value]
+	 */
+	public function hasDuplicates() {
+
+		// Get all entries that are from this creator with this name
+		$res = parent::findLink("SELECT P.* FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE PTU.UserID = ? AND P.Name = ?;", $this->creator, $this->name);
+
+		// Return whether it has found a duplicate or not
+		return (count($res) === 0 ? FALSE : ["key" => "a playlist", "value" => $res[0]->Name]);
+
+	}
+
+
+
+
+
 
 
 
