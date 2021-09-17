@@ -201,7 +201,7 @@ class IPlaylist extends Database {
 	public static function findByCreator(string $userID) : ?array {
 
 		// If no labels are found, return NULL
-		$res = parent::find("SELECT * FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE PTU.UserID = ?;", $userID);
+		$res = parent::find("SELECT * FROM PLAYLISTS AS P JOIN PLAYLISTS_TO_USERS AS PTU ON P.PublicID = PTU.PlaylistID WHERE PTU.UserID = ? ORDER BY P.Name ASC;", $userID);
 		if(count($res) === 0) {
 			return NULL;
 		}
