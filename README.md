@@ -5,7 +5,7 @@ In my personal opinion, Spotify is a great platform for streaming music. However
 
 
 ## Status
-At this point, the project is still in the alpha phase (v0.13.1-alpha), where a few people are invited to test the application. The goal is to have a working application that can be released as beta in August or September. You can follow the progress by viewing the [changelog](https://github.com/BrentMeeusen/Spotify-Labelling/blob/master/CHANGELOG.md).
+At this point, the project is still in the alpha phase (v0.14.0-alpha), where a few people are invited to test the application. The goal is to have a working application that can be released as beta in August or September. You can follow the progress by viewing the [changelog](https://github.com/BrentMeeusen/Spotify-Labelling/blob/master/CHANGELOG.md).
 
 
 
@@ -34,8 +34,8 @@ It is of course very possible that you gave a song a label, but you do not find 
 
 
 ## Known issues
-At this point, I am not aware of any issues in v0.13.1-alpha.
-<!-- In v0.13.1-alpha, I am aware of the following issues: -->
+At this point, I am not aware of any issues in v0.14.0-alpha.
+<!-- In v0.14.0-alpha, I am aware of the following issues: -->
 
 
 
