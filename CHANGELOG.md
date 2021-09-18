@@ -28,9 +28,7 @@ STANDARD NEW VERSION:
 
 -->
 
-<!-- 
-
-## 0.14.0-alpha - 2021/09/xx
+## 0.14.0-alpha - 2021/09/18
 
 ### Added
 - Reset password
@@ -47,7 +45,6 @@ STANDARD NEW VERSION:
 ### Fixed
 - Numbers in "Your songs" wouldn't reset after modifying labels
 
- -->
 
 
 ## 0.13.2-alpha - 2021/09/10
