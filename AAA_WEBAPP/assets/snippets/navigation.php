@@ -7,6 +7,8 @@
 	<div class="nav-btn" id="nav-close">
 		<img src="/assets/icons/menu/menu-close.png">
 	</div>
+
+	<p>You're connected with the Spotify account at <span id="spotify-email">.</span</p>
 	
 	<ul>
 		<li><a href="/dashboard/">Dashboard</a></li>

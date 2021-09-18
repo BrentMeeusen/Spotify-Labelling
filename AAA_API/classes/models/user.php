@@ -14,6 +14,7 @@ class User extends Database {
 	public string $accountStatusText;
 
 	public ?string $accessToken;
+	public ?string $spotifyEmail;
 
 
 
@@ -27,13 +28,15 @@ class User extends Database {
 	 * @param		string		Email address
 	 * @param		int			Account status
 	 * @param		string		Access token
+	 * @param		string		Spotify email address
 	 */
-	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL) {
+	public function __construct(string $publicID, string $password, string $emailAddress, int $accountStatus, ?string $accessToken = NULL, $spotifyEmail = NULL) {
 
 		$this->publicID = $publicID;
 		$this->password = $password;
 		$this->emailAddress = $emailAddress;
 		$this->accessToken = $accessToken;
+		$this->spotifyEmail = $spotifyEmail;
 
 		$status = $this->setAccountStatus($accountStatus);
 		$this->accountStatus = $status["status"];
@@ -53,7 +56,7 @@ class User extends Database {
 	 */
 	public static function construct(array $values) : User {
 
-		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"]);
+		$user = new User($values["PublicID"], $values["Password"], $values["EmailAddress"], $values["AccountStatus"], $values["AccessToken"], $values["SpotifyEmail"]);
 		$user->id = $values["ID"];
 		return $user;
 
@@ -136,6 +139,33 @@ class User extends Database {
 
 
 
+	/**
+	 * Sets the new password
+	 * 
+	 * @param		string		The new password
+	 * @return		User		The updated user
+	 */
+	public function setPassword(string $newPassword) : User {
+		return User::update($this, ["Password" => $newPassword]);
+	}
+
+
+
+
+
+	/**
+	 * Sets the user Spotify email
+	 * 
+	 * @return		User		The upated user
+	 */
+	public function setSpotifyEmail() : User {
+		return User::update($this, ["SpotifyEmail" => SpotifyApi::getEmailAddress()]);
+	}
+
+
+
+
+
 
 
 
@@ -166,14 +196,16 @@ class User extends Database {
 
 		// Set the current payload
 		$payload = [
-			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken],
+			"user" => ["id" => $this->publicID, "emailAddress" => $this->emailAddress, "accountStatus" => $this->accountStatus, "accountStatusText" => $this->accountStatusText, "accessToken" => $this->accessToken, "spotifyEmail" => $this->spotifyEmail],
 			"rights" => [
 				// Rights for all users
 				"users" => ["find" => ["all" => TRUE, "id" => FALSE, "emailAddress" => FALSE, "username" => FALSE], "update" => FALSE, "delete" => FALSE],
 				// Rights for user of its own
 				"user" => ["update" => TRUE, "delete" => TRUE],
 				// Rights for all labels
-				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE]
+				"label" => ["find" => ["available" => TRUE, "id" => FALSE], "create" => TRUE, "update" => TRUE, "delete" => TRUE],
+				// Rights for all playlists
+				"playlist" => ["create" => TRUE, "update" => TRUE, "delete" => TRUE]
 			]
 		];
 
@@ -250,21 +282,15 @@ class User extends Database {
 
 
 	/**
-	 * Sends a verification email
+	 * Sends an email
 	 * 
-	 * @param		string		The public ID of the user
-	 * @param		string		The email address of the user
+	 * @param		string		The email address to send it to
+	 * @param		string		The subject of the email
+	 * @param		string		The body of the email
 	 */
-	public static function sendVerificationEmail(string $id, string $email) : void {
+	private static function sendMail(string $to, string $subject, string $email) : void {
 
-		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $id . "&email=" . $email;
-
-		$subject = "Verify Your Account";
-		
-		$body = "<html><head></head><body>";
-		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
-		$body .= "</body></html>";
-
+		$body = "<html><head></head><body>$email</body></html>";
 		$headers = "Return-Path: Spotify Labelling <no-reply@21webb.nl\r\n" . 
 				"From: Spotify Labelling <no-reply@21webb.nl>\r\n" .
 				"Organization: Spotify Labelling\r\n" . 
@@ -273,9 +299,53 @@ class User extends Database {
 				"X-Priority: 3\r\n" . 
 				"X-Mailer: PHP" . phpversion() ." \r\n";
 
-		@mail($email, $subject, $body, $headers);
+		@mail($to, $subject, $body, $headers);
+
+	}
+
+
+
+
+
+	/**
+	 * Sends an email to request a new password
+	 */
+	public function requestNewPassword() : void {
+
+		$link = "http://spotify-labelling.21webb.nl/request-password?email=" . $this->emailAddress . "&id=" . $this->publicID;
+
+		$body = "<h2>Forgot password</h2><p>Click <a href='$link'>here</a> to reset your password. If you did not request this, you can ignore this email.</p><p>Cannot click the link? Then paste the following URL in your browser: $link</p>";
+
+		self::sendMail($this->emailAddress, "Spotify Labelling | Forgot password", $body);
+
+	}
+
+
+
+
+
+	 /**
+	 * Sends a verification email
+	 * 
+	 * @param		string		The public ID of the user
+	 * @param		string		The email address of the user
+	 */
+	public static function sendVerificationEmail(string $id, string $email) : void {
+
+		$link = "http://spotify-labelling.21webb.nl/verify-account?id=" . $id . "&email=" . $email;
+		
+		$body = "<html><head></head><body>";
+		$body .= "<h2>Verify your account</h2><p>In order to verify your account, please click <a href='$link'>here</a>.</p><p>If the link does not work, paste the following URL in your browser: $link</p>";
+		$body .= "</body></html>";
+
+		self::sendMail($email, "Spotify Labelling | Verify Your Account", $body);
 
 	} 
+
+
+
+
+
 
 
 
@@ -340,7 +410,7 @@ class User extends Database {
 		$user = parent::prepareUpdate($user, $values);
 
 		// Prepare SQL statement
-		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ? WHERE PublicID = ?;");
+		$stmt = self::prepare("UPDATE USERS SET EmailAddress = ?, Password = ?, AccountStatus = ?, AccessToken = ?, SpotifyEmail = ? WHERE PublicID = ?;");
 
 		// Hash password if it is updated
 		if(array_key_exists("Password", $values)) {
@@ -348,7 +418,7 @@ class User extends Database {
 		}
 
 		// Insert input into SQL statement
-		$stmt->bind_param("ssisi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->publicID);
+		$stmt->bind_param("ssissi", $user->emailAddress, $user->password, $user->accountStatus, $user->accessToken, $user->spotifyEmail, $user->publicID);
 
 		// Execute SQL statement and return the result
 		self::execute($stmt);
@@ -370,6 +440,13 @@ class User extends Database {
 
 		// Check whether object is of type Label
 		if(!($user instanceof User)) { throw new InvalidArgumentException; }
+
+		// Get all tracks that the user has and delete them
+		$ids = Database::find("SELECT TTU.TrackID AS trackID FROM TRACKS_TO_USERS AS TTU WHERE UserID = ?;", $user->publicID);
+
+		foreach($ids as $id) {
+			ITrack::findBySpotifyId($id->trackID)->removeUser($user->publicID);
+		}
 		
 		// Delete the user
 		return parent::deleteEntry($user, "USERS");

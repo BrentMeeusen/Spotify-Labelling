@@ -9,6 +9,7 @@ class Label extends Database {
 
 	public string $creator;
 	public string $name;
+	public ?int $numTracks;
 
 
 
@@ -20,12 +21,14 @@ class Label extends Database {
 	 * @param		string		The label public ID
 	 * @param		string		The creator public ID
 	 * @param		string		Label name
+	 * @param		int			The number of songs with this label
 	 */
-	public function __construct(string $publicID, string $creator, string $name) {
+	public function __construct(string $publicID, string $creator, string $name, ?int $numTracks = NULL) {
 
 		$this->publicID = $publicID;
 		$this->creator = $creator;
 		$this->name = $name;
+		$this->numTracks = $numTracks;
 
 	}
 
@@ -66,7 +69,7 @@ class Label extends Database {
 	 */
 	public static function construct(array $values) : Label {
 
-		$label = new Label($values["PublicID"], $values["Creator"], $values["Name"]);
+		$label = new Label($values["PublicID"], $values["Creator"], $values["Name"], $values["NumTracks"]);
 		return $label;
 
 	}
@@ -246,7 +249,8 @@ class Label extends Database {
 		// Loop over all labels and return the array
 		$return = [];
 		foreach($res as $row) {
-			array_push($return, new Label($row->PublicID, $ownerID, $row->Name));
+			$numTracks = parent::find("SELECT COUNT(L.ID) AS NumTracks FROM LABELS AS L JOIN TRACKS_TO_LABELS AS TTL ON TTL.LabelID = L.PublicID WHERE TTL.LabelID = ?;", $row->PublicID);
+			array_push($return, new Label($row->PublicID, $ownerID, $row->Name, $numTracks[0]->NumTracks));
 		}
 
 		return $return;

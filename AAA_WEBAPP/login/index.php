@@ -21,20 +21,26 @@ session_start();
 
 		<div class="main-wrapper">
 
+			<!-- Notification popup -->
 			<div class="popup" id="popup">
 				<p id="popup-text"></p>
 			</div>
+
+			<!-- Popup -->
+			<div class="popup-big" id="popup-big"></div>
 		
 			<h1><a href="../">Spotify Labelling</a></h1>
 
 			<div class="form register-form" name="html-js-form" data-action="api/v1/login" data-method="POST" data-redirect="assets/php/auth.php">
 
-			<input name="input Identifier"		type="text"			placeholder="EMAIL ADDRESS">
-			<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
+				<input name="input Identifier"		type="text"			placeholder="EMAIL ADDRESS">
+				<input name="input Password"		type="password"		placeholder="PASSWORD"	id="password">
 
-			<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
+				<button type="submit" name="html-js-form-submit" value="submit" id="login-btn">LOGIN</button>
 
 			</div>
+
+			<p class="forgot-password">Forgot your password? Click <span id="forgot-password">here</span> to reset your password.</p>
 
 
 
@@ -57,6 +63,16 @@ session_start();
 		?>
 
 		<script>
+
+		// Add functionality for "forgot password" link
+		document.getElementById("forgot-password").addEventListener("click", () => {
+
+			const popup = new BigPopup("Forgot password?", "api/v1/users/forgot-password", "POST");
+			popup.add("p", "", { innerHTML: "This will send an email to the email address you fill in with a link where you can reset your password." });
+			popup.add("input", "email-address", { placeholder: "Email address" });
+			popup.show("Send email");
+
+		});
 		
 		// Create a token
 		window.addEventListener("load", async () => {

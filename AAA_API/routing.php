@@ -34,6 +34,7 @@ include_once("classes/models/spotify/spotify-track.php");
 // Include my Spotify data models
 include_once("classes/models/my/album.php");
 include_once("classes/models/my/artist.php");
+include_once("classes/models/my/playlist.php");
 include_once("classes/models/my/track.php");
 
 // Include general
@@ -154,6 +155,55 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 
 
+	// /api/v1/playlists
+	if(isset($routes[1]) && $routes[1] === "playlists") {
+
+		// /api/v1/playlists/create
+		if(isset($routes[2]) && $routes[2] === "create") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$name = @$post->Name;
+			include_once("playlists/create.php");
+
+		}
+
+		// /api/v1/playlists/[playlist-id]/delete
+		if(isset($routes[3]) && $routes[3] === "delete") {
+
+			Request::checkRequestMethod(["DELETE"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = (isset($routes[3]) ? $routes[2] : NULL);
+			include_once("playlists/delete.php");
+
+		}	// /api/v1/playlists/delete
+
+		// /api/v1/playlists/[playlist-id]/update
+		if(isset($routes[3]) && $routes[3] === "update") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			$id = (isset($routes[3]) ? $routes[2] : NULL);
+			$name = @$post->Name;
+			$values = ["Name" => $name];
+			include_once("playlists/update.php");
+
+		}	// /api/v1/playlists/update
+
+		// /api/v1/playlists
+		Request::checkRequestMethod(["GET"]);
+		$payload = Request::requireToken($jwt);
+
+		$userID = @$payload->user->id;
+		include_once("playlists/get.php");
+
+	}	// /api/v1/playlists
+
+
+
 	// /api/v1/spotify
 	if(isset($routes[1]) && $routes[1] === "spotify") {
 
@@ -195,16 +245,17 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 
 		}	// /api/v1/tracks/add-labels/[track-id]
 
-		// /api/v1/tracks/remove-label/[track-id]/[label-id]
-		if(isset($routes[2]) && $routes[2] === "remove-label") {
+		// /api/v1/tracks/remove-labels/[track-id]/[label-id]
+		if(isset($routes[2]) && $routes[2] === "remove-labels") {
 
 			Request::checkRequestMethod(["POST"]);
 			$payload = Request::requireToken($jwt);
 			$trackID = @$routes[3];
 			$labelID = @$routes[4];
-			include_once("tracks/remove-label.php");
+			@$post->labelOne = $labelID;
+			include_once("tracks/remove-labels.php");
 
-		}	// /api/v1/tracks/remove-label/[track-id]/[label-id]
+		}	// /api/v1/tracks/remove-labels/[track-id]/[label-id]
 
 		// /api/v1/tracks/get
 		if(isset($routes[2]) && $routes[2] === "get") {
@@ -248,6 +299,38 @@ if(isset($routes[0]) && $routes[0] === "v1") {
 			include_once("users/add-token.php");
 
 		}	// /api/v1/users/add-token
+
+		// /api/v1/users/forgot-password
+		if(isset($routes[2]) && $routes[2] === "forgot-password") {
+
+			Request::checkRequestMethod(["POST"]);
+
+			$emailAddress = @$post->{"email-address"};
+			include_once("users/forgot-password.php");
+
+		}	// /api/v1/users/forgot-password
+
+		// /api/v1/users/set-password
+		if(isset($routes[2]) && $routes[2] === "set-password") {
+
+			Request::checkRequestMethod(["POST"]);
+
+			$emailAddress = @$post->EmailAddress;
+			$password = $post->Password;
+			$userID = $post->UserID;
+			include_once("users/set-password.php");
+
+		}	// /api/v1/users/set-password
+
+		// /api/v1/users/set-spotify-email
+		if(isset($routes[2]) && $routes[2] === "set-spotify-email") {
+
+			Request::checkRequestMethod(["POST"]);
+			$payload = Request::requireToken($jwt);
+
+			include_once("users/set-spotify-email.php");
+
+		}	// /api/v1/users/set-spotify-email
 
 		// /api/v1/users/create
 		if(isset($routes[2]) && $routes[2] === "create") {

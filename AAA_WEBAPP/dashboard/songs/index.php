@@ -103,6 +103,7 @@ session_start();
 			<div class="module">
 
 				<div class="controls">
+					<button class="icon remove" id="remove-from-visible"><img src="../../assets/icons/minus.png"></button>
 					<button class="icon add" id="add-to-visible"><img src="../../assets/icons/add.png"></button>
 					<button class="icon filter" id="filter"><img src="../../assets/icons/filter.png"></button>
 				</div>
@@ -161,8 +162,29 @@ session_start();
 
 			});
 
+			// Set "remove from all visible" click event
+			document.getElementById("remove-from-visible").addEventListener("click", async () => {
+
+				const popup = new BigPopup("Choose labels", "api/v1/tracks/remove-labels/", "POST", "remove-labels-from-all");
+				const labels = await Api.get.labels();
+
+				let i = 1;
+				for(const l of labels) {
+					const el = Api.createElement("div", { innerHTML: l.name, classList: "remove-label", value: l.publicID });
+					el.setAttribute("name", "input");
+					el.dataset.selected = "false";
+					el.dataset.item = "label-" + i++;
+					el.addEventListener("click", () => { el.dataset.selected = (el.dataset.selected === "true" ? "false" : "true"); });
+					popup.addElement(el);
+				}
+				popup.show("Remove from all visible", async () => { Api.show.tracks(await Api.get.tracks()); });
+				HtmlJsForm.findById("remove-labels-from-all").setValues({ tracks: Collection.filtered.map(t => t.id) });
+				HtmlJsForm.findById("remove-labels-from-all").addCallback(async () => { await Api.get.tracks(); Api.show.tracks(Collection.filter()); });
+
+			});
+
 			// Load tracks
-			document.getElementById("tracks").innnerHTML = "Loading...";
+			document.getElementById("tracks").innerHTML = "Loading...";
 			const res = await Api.get.tracks();
 			if(res && res.code && (res.code < 200 || res.code > 299)) {
 				Popup.show(res.error, "error", 5000);

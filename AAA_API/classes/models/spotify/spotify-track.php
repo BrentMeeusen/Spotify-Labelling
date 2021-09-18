@@ -54,7 +54,7 @@ class SpotifyTrack implements SpotifyData {
 		}
 
 		// If the track-user link does not exist yet
-		if(Database::findTrackToUser($this->id, $userID) === NULL) {
+		if(count(Database::findLink("SELECT * FROM TRACKS_TO_USERS WHERE TrackID = ? AND UserID = ?;", $this->id, $userID)) === 0) {
 
 			// Store the track-user link
 			$stmt = Database::prepare("INSERT INTO TRACKS_TO_USERS (TrackID, UserID) VALUES (?, ?);");

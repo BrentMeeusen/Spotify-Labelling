@@ -9,6 +9,18 @@ class Collection {
 
 
 	/**
+	 * Resets the collection
+	 */
+	static reset() {
+		this.tracks = [];
+		Track.ID = 1;
+	}
+
+
+
+
+
+	/**
 	 * Adds a track to the collection
 	 * 
 	 * @param {Track} track The track to add

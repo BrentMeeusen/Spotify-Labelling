@@ -24,7 +24,8 @@ PageProtect.protect = (options) => {
 		window.location.href = VALUES.assets + "php/redirect.php?code=403&message=" + encodeURIComponent("Access forbidden.") + "&redirect=" + encodeURIComponent("");
 	}
 
-	// If all page protection went fine, return true
+	// If all page protection went fine, set user Spotify email address and return true
+	Api.show.spotifyEmail(payload.user.spotifyEmail || "unkown");
 	return true;
 
 }

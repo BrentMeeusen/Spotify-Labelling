@@ -48,7 +48,7 @@ class SpotifyArtist implements SpotifyData {
 		}
 
 		// If the track-artist link does not exist yet
-		if(Database::findTrackToArtist($trackID, $this->id) === NULL) {
+		if(count(Database::findLink("SELECT * FROM TRACKS_TO_ARTISTS WHERE TrackID = ? AND ArtistID = ?;", $trackID, $this->id)) === 0) {
 
 			// Store the track-artist link
 			$stmt = Database::prepare("INSERT INTO TRACKS_TO_ARTISTS (TrackID, ArtistID) VALUES (?, ?);");

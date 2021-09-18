@@ -28,6 +28,25 @@ STANDARD NEW VERSION:
 
 -->
 
+## 0.14.0-alpha - 2021/09/18
+
+### Added
+- Reset password
+- A field in the navigation menu where it displays with which Spotify account you're connected
+- "Click/tap to dismiss" message to notification popup
+- Showing how many songs have the label on the "Your Labels" page
+- Creating, updating, getting, and deleting playlists
+- Removing a label from all visible songs
+
+### Changed
+- All data that is not connected to any other user than the user that deletes its account, will no longer be stored
+- The scopes that are required for the application to work
+
+### Fixed
+- Numbers in "Your songs" wouldn't reset after modifying labels
+
+
+
 ## 0.13.2-alpha - 2021/09/10
 
 ### Added
