@@ -516,7 +516,7 @@ class User extends Database {
 	public static function findByEmailAddress(string $emailAddress) : ?User {
 
 		// If no user is found, return NULL
-		$res = Database::find("SELECT * FROM USERS WHERE EmailAddress = ?;", $emailAddress);
+		$res = Database::find("SELECT * FROM USERS WHERE EmailAddress = ?;", Database::sanitize($emailAddress));
 		if(count($res) === 0) {
 			return NULL;
 		}
