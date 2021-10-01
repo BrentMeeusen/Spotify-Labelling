@@ -104,6 +104,26 @@ class Database {
 
 
 	/**
+	 * Desanitizes a certain input
+	 * 
+	 * @param		array		The inputs to desanitize
+	 * @return		array		The desanitized inputs
+	 */
+	protected function desanitize(array $desanitize) : array {
+		foreach($desanitize as &$row) {
+			if(is_array($row)) {
+				$row = self::desanitize($row);
+			}
+			$row = str_replace("\\", "", $row);
+		}
+		return $desanitize;
+	}
+
+
+
+
+
+	/**
 	 * Prepares the update method
 	 * 
 	 * @param		Database	The entry to update
