@@ -213,7 +213,7 @@ class Database {
 		$stmt->bind_param("s", $parameter);
 		self::execute($stmt);
 		$res = $stmt->get_result();
-		return json_decode(json_encode($res->fetch_all(1)));
+		return json_decode(json_encode(self::desanitize($res->fetch_all(1))));
 
 	}
 
