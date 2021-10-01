@@ -103,11 +103,11 @@ class Collection {
 
 		// Filter on (not) artist if filter(s) is/are set
 		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;
-		filtered = this.filters.notArtists ? filtered.filter(t => t.artists.all(a => !a.name.toLowerCase().includes(this.filters.notArtists))) : filtered;
+		filtered = this.filters.notArtists ? filtered.filter(t => t.artists.every(a => !a.name.toLowerCase().includes(this.filters.notArtists))) : filtered;
 
 		// Filter on (not) label if filter(s) is/are set
 		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(this.filters.labels))) : filtered;
-		filtered = this.filters.notLabels ? filtered.filter(t => t.labels.all(l => !l.name.toLowerCase().includes(this.filters.notLabels))) : filtered;
+		filtered = this.filters.notLabels ? filtered.filter(t => t.labels.every(l => !l.name.toLowerCase().includes(this.filters.notLabels))) : filtered;
 
 		// Filter on at least/most x labels if filter(s) is/are set
 		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;
