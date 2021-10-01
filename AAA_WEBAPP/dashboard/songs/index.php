@@ -63,7 +63,7 @@ session_start();
 					<div class="row">
 						<div class="text">
 							<p>Does not have label</p>
-							<input type="text" class="filter-input" data-search="label">
+							<input type="text" class="filter-input" data-search="not-label">
 						</div>
 					</div>
 					<div class="row">
