@@ -137,14 +137,16 @@ class Database {
 			$entry->{lcfirst($key)} = $value;
 		}
 
+		// Sanitize input for checking for duplicates
+		$entry->sanitizeInputs();
+
 		// Check for duplicate values that should be unique
 		$dupes = $entry->hasDuplicates();
 		if($dupes !== FALSE) {
 			ApiResponse::httpResponse(400, ["error" => "There already exists " . $dupes["key"] . " with the value \"" . $dupes["value"] . "\"."]);
 		}
 
-		// Sanitize input and return the entry
-		$entry->sanitizeInputs();
+		// Return the entry
 		return $entry;
 
 	}
