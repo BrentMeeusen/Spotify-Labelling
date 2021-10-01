@@ -255,7 +255,7 @@ class Database {
 		$stmt->bind_param("ss", $p1, $p2);
 		self::execute($stmt);
 		$res = $stmt->get_result();
-		return json_decode(json_encode($res->fetch_all(1)));
+		return json_decode(json_encode(self::desanitize($res->fetch_all(1))));
 
 	}
 
