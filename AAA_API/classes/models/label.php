@@ -272,7 +272,7 @@ class Label extends Database {
 	public static function findByName(string $name, string $ownerID) : ?Label {
 
 		// If no label is found, return NULL
-		$res = parent::findLink("SELECT L.* FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE Name = ? AND LTU.OwnerID = ?;", $name, $ownerID);
+		$res = parent::findLink("SELECT L.* FROM LABELS AS L JOIN LABELS_TO_USERS AS LTU ON L.PublicID = LTU.LabelID WHERE Name = ? AND LTU.OwnerID = ?;", Database::sanitize($name), $ownerID);
 		if(count($res) === 0) {
 			return NULL;
 		}
