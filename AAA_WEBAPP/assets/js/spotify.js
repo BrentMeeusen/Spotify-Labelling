@@ -98,18 +98,34 @@ class Collection {
 	 */
 	static filter() {
 
+		// All tracks
 		let filtered = this.tracks;
-		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;		// Filter artists if filter is set
-		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(this.filters.labels))) : filtered;		// Filter labels if filter is set
-		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;		// Filter at least x labels if filter is set
-		filtered = this.filters.lteXLabels ? filtered.filter(t => t.labels.length <= this.filters.lteXLabels) : filtered;		// Filter at most x labels if filter is set
-		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;		// Filter tracks if filter is set
-		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered; // Filter added before if filter is set
-		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered; // Filter added after if filter is set
-		filtered = this.filters.releasedBefore ? filtered.filter(t => t.releaseDate < this.filters.releasedBefore) : filtered; // Filter released before if filter is set
-		filtered = this.filters.releasedAfter ? filtered.filter(t => t.releaseDate > this.filters.releasedAfter) : filtered; // Filter released after if filter is set
-		this.filtered = filtered;
 
+		// Filter on (not) artist if filter(s) is/are set
+		filtered = this.filters.artists ? filtered.filter(t => t.artists.some(a => a.name.toLowerCase().includes(this.filters.artists))) : filtered;
+		filtered = this.filters.notArtists ? filtered.filter(t => t.artists.all(a => !a.name.toLowerCase().includes(this.filters.notArtists))) : filtered;
+
+		// Filter on (not) label if filter(s) is/are set
+		filtered = this.filters.labels ? filtered.filter(t => t.labels.some(l => l.name.toLowerCase().includes(this.filters.labels))) : filtered;
+		filtered = this.filters.notLabels ? filtered.filter(t => t.labels.all(l => !l.name.toLowerCase().includes(this.filters.notLabels))) : filtered;
+
+		// Filter on at least/most x labels if filter(s) is/are set
+		filtered = this.filters.gteXLabels ? filtered.filter(t => t.labels.length >= this.filters.gteXLabels) : filtered;
+		filtered = this.filters.lteXLabels ? filtered.filter(t => t.labels.length <= this.filters.lteXLabels) : filtered;
+
+		// Filter on track name if filter is set
+		filtered = this.filters.tracks ? filtered.filter(t => t.name.toLowerCase().includes(this.filters.tracks)) : filtered;
+
+		// Filter on added before/after if filter(s) is/are set
+		filtered = this.filters.addedBefore ? filtered.filter(t => t.addedAt < this.filters.addedBefore) : filtered;
+		filtered = this.filters.addedAfter ? filtered.filter(t => t.addedAt > this.filters.addedAfter) : filtered;
+
+		// Filter on released before/after if filter(s) is/are set
+		filtered = this.filters.releasedBefore ? filtered.filter(t => t.releaseDate < this.filters.releasedBefore) : filtered;
+		filtered = this.filters.releasedAfter ? filtered.filter(t => t.releaseDate > this.filters.releasedAfter) : filtered;
+
+		// Set current filtered list to the filtered list and return it
+		this.filtered = filtered;
 		return filtered;
 
 	}
