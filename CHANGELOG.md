@@ -30,6 +30,11 @@ STANDARD NEW VERSION:
 
 <!-- ## 0.14.1-alpha - 2021/10/??
 
+### Added
+- Filtering your tracks on:
+	- Artist is not
+	- Does not have label
+
 ### Fixed
 - Seeing the results of input sanitizing
  -->
