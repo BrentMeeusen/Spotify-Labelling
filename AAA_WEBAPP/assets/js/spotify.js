@@ -47,8 +47,14 @@ class Collection {
 			case "artist":
 				this.filters.artists = value.toLowerCase();
 				break;
+			case "not-artist":
+				this.filters.notArtists = value.toLowerCase();
+				break;
 			case "label":
 				this.filters.labels = value.toLowerCase();
+				break;
+			case "not-label":
+				this.filters.notLabels = value.toLowerCase();
 				break;
 			case "min-labels":
 				this.filters.gteXLabels = value.toLowerCase();
